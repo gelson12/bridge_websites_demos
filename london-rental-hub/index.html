@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>London Flat Share Hub — New Listings</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #1a1a1a; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 30px 20px; text-align: center; border-radius: 12px; margin-bottom: 24px; }
+    header h1 { font-size: 1.8rem; margin-bottom: 8px; }
+    header p { opacity: 0.85; font-size: 1rem; }
+    header .badge { display: inline-block; background: #e94560; color: white; padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-top: 10px; }
+
+    .search-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .search-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s; }
+    .search-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+    .search-card h3 { font-size: 1rem; margin-bottom: 6px; }
+    .search-card p { font-size: 0.85rem; color: #666; margin-bottom: 14px; }
+    .btn { display: inline-block; background: #0f3460; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: background 0.2s; }
+    .btn:hover { background: #1a5276; }
+    .btn-danger { background: #e94560; }
+    .btn-danger:hover { background: #c0392b; }
+    .btn-green { background: #27ae60; }
+    .btn-green:hover { background: #1e8449; }
+
+    .budget-calc { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 28px; }
+    .budget-calc h2 { font-size: 1.2rem; margin-bottom: 16px; }
+    .calc-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: end; margin-bottom: 16px; }
+    .calc-field { flex: 1; min-width: 180px; }
+    .calc-field label { display: block; font-size: 0.8rem; color: #666; margin-bottom: 4px; font-weight: 500; }
+    .calc-field input { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
+    .calc-field input:focus { outline: none; border-color: #0f3460; }
+    .result-box { background: #e8f5e9; padding: 16px 20px; border-radius: 8px; margin-top: 12px; }
+    .result-box h3 { color: #2e7d32; font-size: 1.1rem; }
+    .result-box p { font-size: 0.9rem; color: #333; margin-top: 4px; }
+    .result-box .max-rent { font-size: 1.8rem; font-weight: 700; color: #1b5e20; }
+
+    .checklist { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 28px; }
+    .checklist h2 { font-size: 1.2rem; margin-bottom: 16px; }
+    .checklist-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+    .checklist-item:last-child { border-bottom: none; }
+    .checklist-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: #27ae60; }
+    .checklist-item label { font-size: 0.9rem; }
+
+    .saved-listings { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .saved-listings h2 { font-size: 1.2rem; margin-bottom: 16px; }
+    .saved-empty { color: #999; font-size: 0.9rem; text-align: center; padding: 30px; }
+    .listing-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+    .listing-row:last-child { border-bottom: none; }
+    .listing-row .price { font-weight: 700; color: #0f3460; }
+    .listing-row .title { flex: 1; margin: 0 12px; font-size: 0.9rem; }
+    .listing-row .actions button { background: none; border: none; color: #e94560; cursor: pointer; font-size: 0.85rem; text-decoration: underline; }
+    .listing-row .status-badge { font-size: 0.75rem; padding: 2px 10px; border-radius: 12px; }
+    .status-new { background: #e3f2fd; color: #1565c0; }
+    .status-viewed { background: #fff3e0; color: #e65100; }
+    .status-applied { background: #e8f5e9; color: #2e7d32; }
+
+    .notes { background: #fff8e1; padding: 14px 18px; border-radius: 8px; border-left: 4px solid #f9a825; margin-top: 20px; font-size: 0.85rem; }
+    .notes strong { color: #e65100; }
+
+    footer { text-align: center; padding: 24px; color: #999; font-size: 0.8rem; }
+
+    @media (max-width: 600px) {
+      .container { padding: 12px; }
+      header h1 { font-size: 1.4rem; }
+      .calc-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🏠 London Flat Share Hub</h1>
+      <p>New-to-market listings · Budget calculator · Financial checklist</p>
+      <span class="badge">Updated today · 6 May 2026</span>
+    </header>
+
+    <!-- Quick Search Links -->
+    <h2 style="margin-bottom: 12px;">🔍 Search new listings now</h2>
+    <div class="search-grid">
+      <div class="search-card">
+        <h3>🟢 SpareRoom — New Today</h3>
+        <p>London flat shares posted in the last 24 hours. Best chance to get in first.</p>
+        <a class="btn btn-danger" href="https://www.spareroom.co.uk/flatshare/london/new_today" target="_blank">Open SpareRoom →</a>
+      </div>
+      <div class="search-card">
+        <h3>🟠 OpenRent — Last 7 Days</h3>
+        <p>Shared properties added this week. Filter by "Bills included".</p>
+        <a class="btn" href="https://www.openrent.co.uk/properties-to-rent/london?term=London&addedIn=7&billsIncluded=true" target="_blank">Open OpenRent →</a>
+      </div>
+      <div class="search-card">
+        <h3>🔵 Rightmove — Newest First</h3>
+        <p>Flat shares sorted by newest. Set alert for instant email updates.</p>
+        <a class="btn" href="https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E87490&propertyType=flatShare&sortType=6" target="_blank">Open Rightmove →</a>
+      </div>
+      <div class="search-card">
+        <h3>🟣 Zoopla — Newest Rooms</h3>
+        <p>Rooms to rent in London sorted newest first.</p>
+        <a class="btn" href="https://www.zoopla.co.uk/to-rent/rooms/london/?q=London&sort=newest_listed" target="_blank">Open Zoopla →</a>
+      </div>
+      <div class="search-card">
+        <h3>💰 Budget £0–£800</h3>
+        <p>London flat shares under £800/pcm — filtered on SpareRoom.</p>
+        <a class="btn btn-green" href="https://www.spareroom.co.uk/flatshare/london/?max_price=800" target="_blank">Budget search →</a>
+      </div>
+      <div class="search-card">
+        <h3>🏡 Bills Included</h3>
+        <p>All-inclusive listings on SpareRoom. Save £150–£250/month.</p>
+        <a class="btn" href="https://www.spareroom.co.uk/flatshare/london/?bills_included=true" target="_blank">Bills inc search →</a>
+      </div>
+    </div>
+
+    <!-- Budget Calculator -->
+    <div class="budget-calc" id="budget-calc">
+      <h2>💰 Rent Budget Calculator</h2>
+      <div class="calc-row">
+        <div class="calc-field">
+          <label>Your net monthly income (£)</label>
+          <input type="number" id="income" placeholder="e.g. 2500" oninput="calculateBudget()" />
+        </div>
+        <div class="calc-field">
+          <label>Bills? (£/month, if not included)</label>
+          <input type="number" id="bills" placeholder="e.g. 200" value="0" oninput="calculateBudget()" />
+        </div>
+        <div class="calc-field">
+          <label>Other committed costs (£/month)</label>
+          <input type="number" id="other" placeholder="e.g. 300" value="0" oninput="calculateBudget()" />
+        </div>
+      </div>
+      <div id="result" class="result-box" style="display:none;">
+        <h3>✅ Your Budget</h3>
+        <p>
+          Max rent (30% rule): <span class="max-rent" id="maxRent">£0</span>/pcm
+        </p>
+        <p id="affordableSummary"></p>
+        <p id="depositInfo" style="font-size:0.8rem;color:#666;margin-top:6px;"></p>
+      </div>
+    </div>
+
+    <!-- Financial Checklist -->
+    <div class="checklist">
+      <h2>✅ Flat-Share Financial Checklist</h2>
+      <div class="checklist-item">
+        <input type="checkbox" id="c1" /><label for="c1">Deposit ≤ 5 weeks' rent (£0 deposit cap per Tenants Fees Act 2019)</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="c2" /><label for="c2">Rent ≤ 30% of my net monthly income</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="c3" /><label for="c3">Bills included? If not, budgeted +£150–£250/month</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="c4" /><label for="c4">EPC rating checked (C or above preferred — new regulations coming)</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="c5" /><label for="c5">Listed >3 weeks? Can negotiate 5–10% below asking</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="c6" /><label for="c6">Holding deposit refundable if I don't take it (illegal to charge non-refundable)</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="c7" /><label for="c7">Council tax band checked (Band D London avg ~£1,900/year)</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="c8" /><label for="c8">Transport cost to work factored in? (Zone 1–2 travelcard ~£160/month)</label>
+      </div>
+    </div>
+
+    <!-- Track Saved Listings -->
+    <div class="saved-listings" id="saved-listings">
+      <h2>📋 My Tracked Listings</h2>
+      <div class="notes">
+        <strong>💡 How to use:</strong> Browse SpareRoom/OpenRent/Rightmove above. 
+        Paste a listing link in the box below to save and track it here.
+      </div>
+      <div style="display:flex;gap:8px;margin:12px 0;flex-wrap:wrap;">
+        <input type="text" id="newLink" placeholder="Paste listing URL here..." style="flex:1;min-width:200px;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-size:0.9rem;" />
+        <input type="text" id="newTitle" placeholder="Description (e.g. Zone 2 double room)" style="flex:1;min-width:200px;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-size:0.9rem;" />
+        <input type="text" id="newPrice" placeholder="Price (e.g. 850)" style="width:100px;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-size:0.9rem;" />
+        <button class="btn" onclick="addListing()" style="background:#0f3460;">+ Track</button>
+      </div>
+      <div id="listingsContainer">
+        <div class="saved-empty">No listings tracked yet. Click a search link above to find new listings, then paste them here.</div>
+      </div>
+      <button class="btn" onclick="clearAll()" style="background:#e94560;margin-top:10px;font-size:0.8rem;">🗑 Clear all tracked listings</button>
+    </div>
+
+    <!-- Zone Guide -->
+    <div style="margin-top: 28px; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+      <h2 style="font-size: 1rem; margin-bottom: 14px;">📊 London Rent Guide (Feb 2026)</h2>
+      <table style="width:100%; border-collapse: collapse; font-size: 0.85rem;">
+        <tr style="background: #f8f9fa;">
+          <th style="padding: 8px 12px; text-align: left;">Zone</th>
+          <th style="padding: 8px 12px; text-align: left;">Typical room/pcm</th>
+          <th style="padding: 8px 12px; text-align: left;">Bills+ (~£200)</th>
+          <th style="padding: 8px 12px; text-align: left;">Deposit (5 wks)</th>
+          <th style="padding: 8px 12px; text-align: left;">Travelcard</th>
+        </tr>
+        <tr>
+          <td style="padding: 8px 12px;">Zone 1</td>
+          <td style="padding: 8px 12px;">£1,000–£1,500</td>
+          <td style="padding: 8px 12px;">£1,200–£1,750</td>
+          <td style="padding: 8px 12px;">£1,150–£1,730</td>
+          <td style="padding: 8px 12px;">£169</td>
+        </tr>
+        <tr style="background: #f8f9fa;">
+          <td style="padding: 8px 12px;">Zone 2</td>
+          <td style="padding: 8px 12px;">£800–£1,200</td>
+          <td style="padding: 8px 12px;">£1,000–£1,450</td>
+          <td style="padding: 8px 12px;">£920–£1,380</td>
+          <td style="padding: 8px 12px;">£169 (Z1-2)</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 12px;">Zone 3</td>
+          <td style="padding: 8px 12px;">£650–£900</td>
+          <td style="padding: 8px 12px;">£800–£1,150</td>
+          <td style="padding: 8px 12px;">£750–£1,040</td>
+          <td style="padding: 8px 12px;">£156 (Z2-3)</td>
+        </tr>
+        <tr style="background: #f8f9fa;">
+          <td style="padding: 8px 12px;">Zone 4+</td>
+          <td style="padding: 8px 12px;">£550–£750</td>
+          <td style="padding: 8px 12px;">£700–£1,000</td>
+          <td style="padding: 8px 12px;">£630–£860</td>
+          <td style="padding: 8px 12px;">£142 (Z3-4)</td>
+        </tr>
+      </table>
+      <p style="font-size: 0.75rem; color: #999; margin-top: 8px;">Travelcard prices are monthly. Rent figures are approximate Feb 2026 averages.</p>
+    </div>
+
+    <footer>
+      Bridge Digital · Finance Operations Controller · Prices may vary · Always verify with listing
+    </footer>
+  </div>
+
+  <script>
+    // Budget Calculator
+    function calculateBudget() {
+      const income = parseFloat(document.getElementById('income').value) || 0;
+      const bills = parseFloat(document.getElementById('bills').value) || 0;
+      const other = parseFloat(document.getElementById('other').value) || 0;
+      
+      if (income <= 0) {
+        document.getElementById('result').style.display = 'none';
+        return;
+      }
+      
+      const maxRent = Math.round(income * 0.30);
+      const maxTotalRent = Math.round(income * 0.30 - bills - other);
+      const deposit = Math.round(maxRent * 5 / 4.33); // 5 weeks ≈ 1.15 months
+      
+      document.getElementById('maxRent').textContent = '£' + maxRent.toLocaleString();
+      
+      let summary = '';
+      if (maxTotalRent > 0) {
+        summary = `After £${bills} bills + £${other} other costs, you can afford rent up to <strong>£${maxTotalRent}/pcm</strong>.`;
+      } else {
+        summary = `⚠️ Your other costs (£${bills + other}) exceed 30% of income. Consider cheaper areas (Zones 3–4).`;
+      }
+      document.getElementById('affordableSummary').innerHTML = summary;
+      document.getElementById('depositInfo').textContent = `Estimated deposit cap: £${deposit.toLocaleString()} (5 weeks' rent at max budget)`;
+      document.getElementById('result').style.display = 'block';
+    }
+
+    // Tracked Listings (localStorage)
+    function getListings() {
+      try { return JSON.parse(localStorage.getItem('londonRentalListings')) || []; }
+      catch(e) { return []; }
+    }
+    
+    function saveListings(listings) {
+      localStorage.setItem('londonRentalListings', JSON.stringify(listings));
+      renderListings();
+    }
+
+    function addListing() {
+      const link = document.getElementById('newLink').value.trim();
+      const title = document.getElementById('newTitle').value.trim();
+      const price = document.getElementById('newPrice').value.trim();
+      
+      if (!link && !title) { alert('Paste a URL or add a description.'); return; }
+      
+      const listings = getListings();
+      listings.push({
+        id: Date.now(),
+        link: link,
+        title: title || 'Unnamed listing',
+        price: price ? '£' + price : '?',
+        date: new Date().toLocaleDateString('en-GB'),
+        status: 'new'
+      });
+      saveListings(listings);
+      
+      document.getElementById('newLink').value = '';
+      document.getElementById('newTitle').value = '';
+      document.getElementById('newPrice').value = '';
+    }
+
+    function removeListing(id) {
+      let listings = getListings();
+      listings = listings.filter(l => l.id !== id);
+      saveListings(listings);
+    }
+
+    function clearAll() {
+      if (confirm('Remove all tracked listings?')) {
+        localStorage.removeItem('londonRentalListings');
+        renderListings();
+      }
+    }
+
+    function renderListings() {
+      const container = document.getElementById('listingsContainer');
+      const listings = getListings();
+      
+      if (listings.length === 0) {
+        container.innerHTML = '<div class="saved-empty">No listings tracked yet. Browse the search links above and paste what you find.</div>';
+        return;
+      }
+      
+      container.innerHTML = listings.map(l => `
+        <div class="listing-row">
+          <span class="price">${l.price}</span>
+          <span class="title">
+            <strong>${l.title}</strong>
+            <span style="font-size:0.75rem;color:#999;display:block;">Added ${l.date}</span>
+          </span>
+          <span class="status-badge status-${l.status}">${l.status}</span>
+          ${l.link ? `<a href="${l.link}" target="_blank" style="font-size:0.8rem;color:#0f3460;margin:0 8px;">🔗</a>` : ''}
+          <span class="actions"><button onclick="removeListing(${l.id})">Remove</button></span>
+        </div>
+      `).join('');
+    }
+
+    // Load saved listings on page load
+    renderListings();
+
+    // Auto-calc if income field was previously set
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedIncome = localStorage.getItem('londonRentalIncome');
+      if (savedIncome) {
+        document.getElementById('income').value = savedIncome;
+        calculateBudget();
+      }
+      // Save income on change
+      document.getElementById('income').addEventListener('change', function() {
+        localStorage.setItem('londonRentalIncome', this.value);
+      });
+    });
+  </script>
+</body>
+</html>
