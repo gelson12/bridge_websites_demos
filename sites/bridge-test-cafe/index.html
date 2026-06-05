@@ -3,32 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bridge Test Cafe - Your Daily Connection in Lisboa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <title>Bridge Test Cafe - Your Daily Brew, Lisbon's Heartbeat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-forest-green: #2F4F4F;
-            --color-warm-beige: #F5F5DC;
-            --color-terracotta: #E2725B;
-            --color-cream: #FFFAF0;
-            --color-charcoal-gray: #36454F;
-            --color-white: #ffffff;
-            --color-black: #000000;
-            --color-accent-light: #F7E7CD; /* Lighter beige/cream for contrast */
-
-            --font-display: 'Merriweather', serif;
-            --font-body: 'Lato', sans-serif;
-
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 3rem;
-            --spacing-xl: 5rem;
-
-            --border-radius-sm: 0.5rem;
-            --border-radius-md: 1rem;
-            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
-            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --color-terracotta: #E97451;
+            --color-olive: #808000;
+            --color-cream: #F5F5DC;
+            --color-charcoal: #36454F;
+            --color-deep-blue: #1F4287; /* Slightly modernized deep blue */
+            --font-montserrat: 'Montserrat', sans-serif;
+            --font-lato: 'Lato', sans-serif;
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
 
         /* Base Styles */
@@ -43,35 +30,21 @@
         }
 
         body {
-            font-family: var(--font-body);
-            color: var(--color-charcoal-gray);
+            font-family: var(--font-lato);
+            color: var(--color-charcoal);
             line-height: 1.6;
             background-color: var(--color-cream);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-display);
-            color: var(--color-forest-green);
-            line-height: 1.2;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        h1 { font-size: 3rem; }
-        h2 { font-size: 2.5rem; }
-        h3 { font-size: 1.8rem; }
-        h4 { font-size: 1.4rem; }
-
-        @media (min-width: 768px) {
-            h1 { font-size: 4.5rem; }
-            h2 { font-size: 3.5rem; }
-            h3 { font-size: 2.2rem; }
+            font-family: var(--font-montserrat);
+            font-weight: 700;
+            color: var(--color-deep-blue);
         }
 
         p {
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: 1em;
         }
 
         a {
@@ -81,120 +54,155 @@
         }
 
         a:hover {
-            color: var(--color-forest-green);
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
+            color: var(--color-olive);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 var(--spacing-sm);
+            padding: 20px;
         }
 
         .btn {
             display: inline-block;
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--border-radius-sm);
-            font-weight: bold;
-            text-align: center;
+            background-color: var(--color-terracotta);
+            color: var(--color-cream);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-family: var(--font-montserrat);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
-            cursor: pointer;
             border: none;
-        }
-
-        .btn-primary {
-            background-color: var(--color-terracotta);
-            color: var(--color-white);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--color-forest-green);
-            transform: translateY(-3px);
+            cursor: pointer;
             box-shadow: var(--shadow-light);
         }
 
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--color-terracotta);
-            border: 2px solid var(--color-terracotta);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--color-terracotta);
-            color: var(--color-white);
+        .btn:hover {
+            background-color: var(--color-olive);
             transform: translateY(-3px);
-            box-shadow: var(--shadow-light);
+            box-shadow: var(--shadow-medium);
         }
 
-        section {
-            padding: var(--spacing-xl) 0;
+        .section-heading {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-heading h2 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            color: var(--color-deep-blue);
+        }
+
+        .section-heading h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--color-terracotta);
+            border-radius: 2px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            visibility: hidden;
         }
 
-        section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+        .animated.slideInUp {
+            animation: slideInUp 0.8s ease-out forwards;
         }
 
-        /* Navigation Bar */
-        .navbar {
+        .animated.fadeIn {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animated.scaleIn {
+            animation: scaleIn 0.7s ease-out forwards;
+        }
+
+        /* Header & Navigation */
+        .main-header {
             position: fixed;
             width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
             background-color: transparent;
-            padding: var(--spacing-sm) 0;
+            padding: 15px 0;
+            z-index: 1000;
             transition: all 0.4s ease-in-out;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .navbar.scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: var(--spacing-xs) 0;
+        .main-header.scrolled {
+            background-color: rgba(var(--color-cream-rgb), 0.95); /* Using rgba with Cream */
+            padding: 10px 0;
             box-shadow: var(--shadow-light);
-            border-bottom: 1px solid rgba(var(--color-charcoal-gray), 0.05);
         }
 
-        .navbar.scrolled .nav-link, .navbar.scrolled .brand-logo {
-            color: var(--color-charcoal-gray);
-        }
-
-        .navbar-content {
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .brand-logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--color-white);
+        .logo {
+            font-family: var(--font-montserrat);
+            font-weight: 900;
+            font-size: 1.8em;
+            color: var(--color-deep-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--color-terracotta);
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: var(--spacing-md);
+            gap: 30px;
         }
 
-        .nav-link {
-            color: var(--color-white);
-            font-weight: bold;
-            transition: color 0.3s ease;
+        .nav-links a {
+            color: var(--color-deep-blue);
+            font-weight: 700;
+            font-family: var(--font-montserrat);
             position: relative;
         }
 
-        .nav-link::after {
+        .nav-links a::after {
             content: '';
             position: absolute;
             left: 0;
@@ -205,86 +213,28 @@
             transition: width 0.3s ease;
         }
 
-        .nav-link:hover::after {
+        .nav-links a:hover::after {
             width: 100%;
         }
 
-        .hamburger-menu {
+        .hamburger {
             display: none;
-            cursor: pointer;
             flex-direction: column;
+            cursor: pointer;
             gap: 5px;
-            z-index: 1001;
+            z-index: 1100;
         }
 
-        .hamburger-menu span {
-            display: block;
+        .hamburger .bar {
             width: 25px;
             height: 3px;
-            background-color: var(--color-white);
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            background-color: var(--color-deep-blue);
+            transition: all 0.3s ease;
+            border-radius: 2px;
         }
 
-        .navbar.scrolled .hamburger-menu span {
-            background-color: var(--color-charcoal-gray);
-        }
-
-        .hamburger-menu.active span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-
-        .hamburger-menu.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger-menu.active span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-
-        .mobile-nav-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(var(--color-charcoal-gray), 0.95);
-            z-index: 999;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-
-        .mobile-nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-            text-align: center;
-        }
-
-        .mobile-nav-links li {
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .mobile-nav-links .nav-link {
-            color: var(--color-white);
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links, .navbar .btn {
-                display: none;
-            }
-            .hamburger-menu {
-                display: flex;
-            }
+        .nav-links.active {
+            transform: translateX(0);
         }
 
         /* Hero Section */
@@ -295,10 +245,11 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: var(--color-white);
+            color: var(--color-cream);
             overflow: hidden;
-            padding: var(--spacing-md);
-            background: linear-gradient(135deg, var(--color-forest-green) 0%, rgba(var(--color-forest-green), 0.8) 50%, var(--color-terracotta) 100%);
+            background-size: cover;
+            background-position: center;
+            background-image: url('https://images.pexels.com/photos/18721982/pexels-photo-18721982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
         }
 
         .hero::before {
@@ -308,341 +259,248 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://images.pexels.com/photos/20728161/pexels-photo-20728161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center/cover;
-            filter: brightness(0.5) contrast(1.1);
-            z-index: 1;
-            animation: heroZoom 15s infinite alternate ease-in-out;
-        }
-
-        @keyframes heroZoom {
-            from {
-                transform: scale(1);
-            }
-            to {
-                transform: scale(1.1);
-            }
+            background: linear-gradient(135deg, rgba(var(--color-deep-blue-rgb), 0.7) 0%, rgba(var(--color-terracotta-rgb), 0.7) 100%);
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
-            max-width: 900px;
-            animation: heroReveal 1s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
-            animation-delay: 0.5s;
+            z-index: 10;
+            max-width: 800px;
+            padding: 20px;
         }
 
-        @keyframes heroReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-content h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            color: var(--color-cream);
+            line-height: 1.1;
         }
 
-        .hero h1 {
-            color: var(--color-white);
-            font-size: 3.5rem;
-            margin-bottom: var(--spacing-sm);
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            animation: fadeInTop 0.8s ease-out forwards var(--hero-delay-h1, 0.8s);
+        .hero-content p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            font-weight: 300;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: var(--spacing-lg);
-            opacity: 0;
-            animation: fadeInTop 0.8s ease-out forwards var(--hero-delay-p, 1.1s);
-        }
-
-        .hero-actions {
+        .hero-cta {
             display: flex;
-            gap: var(--spacing-md);
             justify-content: center;
-            opacity: 0;
-            animation: fadeInTop 0.8s ease-out forwards var(--hero-delay-btns, 1.4s);
-        }
-
-        @keyframes fadeInTop {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .hero-actions {
-                flex-direction: column;
-            }
+            gap: 20px;
         }
 
         /* Trust Strip */
         .trust-strip {
-            background-color: var(--color-forest-green);
+            background-color: var(--color-deep-blue);
             color: var(--color-cream);
-            padding: var(--spacing-lg) 0;
+            padding: 60px 0;
             text-align: center;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
         }
 
-        .trust-strip-content {
+        .trust-strip .container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            gap: var(--spacing-md);
+            gap: 30px;
         }
 
         .trust-item {
             flex: 1 1 250px;
-            padding: var(--spacing-sm);
-            font-size: 1.2rem;
-            font-weight: bold;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(var(--color-cream-rgb), 0.1);
+            box-shadow: var(--shadow-light);
+            transition: transform 0.3s ease;
         }
 
-        .trust-item strong {
-            display: block;
-            font-size: 2.5rem;
-            font-family: var(--font-display);
+        .trust-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .trust-item h3 {
+            font-size: 2.5em;
             color: var(--color-terracotta);
-            margin-bottom: var(--spacing-xs);
-        }
-        .trust-item strong.animated-number {
-            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
 
-        @media (max-width: 768px) {
-            .trust-strip-content {
-                flex-direction: column;
-            }
+        .trust-item p {
+            font-size: 1.1em;
+            font-weight: 300;
         }
 
         /* Services Section */
         .services {
+            padding: 100px 0;
             background-color: var(--color-cream);
-            text-align: center;
-            position: relative;
-        }
-
-        .services::before {
-            content: '';
-            position: absolute;
-            top: -50px;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(to bottom, rgba(var(--color-forest-green), 0.1), transparent);
-            z-index: 0;
-        }
-
-        .section-header {
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .section-header h2 {
-            font-size: 3rem;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .section-header p {
-            max-width: 700px;
-            margin: 0 auto;
-            color: var(--color-charcoal-gray);
-            font-size: 1.1rem;
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-lg);
+            gap: 40px;
         }
 
         .service-card {
-            background-color: var(--color-white);
-            padding: var(--spacing-lg);
-            border-radius: var(--border-radius-md);
-            box-shadow: var(--shadow-light);
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-medium);
         }
 
-        .service-card-image {
+        .service-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            border-radius: var(--border-radius-sm);
-            margin-bottom: var(--spacing-md);
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         .service-card svg {
             width: 60px;
             height: 60px;
-            color: var(--color-terracotta);
-            margin-bottom: var(--spacing-md);
-            stroke-width: 2;
-            fill: none;
+            fill: var(--color-terracotta);
+            margin-bottom: 20px;
         }
 
         .service-card h3 {
-            margin-bottom: var(--spacing-sm);
-            color: var(--color-forest-green);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: var(--color-deep-blue);
         }
 
         .service-card p {
-            color: var(--color-charcoal-gray);
-            font-size: 0.95rem;
-            flex-grow: 1;
+            color: var(--color-charcoal);
+            font-weight: 300;
         }
 
         /* About Section */
         .about {
-            background-color: var(--color-accent-light);
+            padding: 100px 0;
+            background-color: var(--color-light-grey); /* Assuming a lighter cream/grey */
             position: relative;
-            overflow: hidden;
         }
 
-        .about-content {
+        .about .container {
             display: flex;
-            flex-direction: column;
-            gap: var(--spacing-xl);
+            flex-wrap: wrap;
             align-items: center;
+            gap: 50px;
         }
 
-        .about-text {
-            flex: 1;
-            padding-right: var(--spacing-lg);
-        }
-
-        .about-image {
-            flex: 1;
-            border-radius: var(--border-radius-md);
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-            transform: scale(1);
-            transition: transform 0.5s ease;
-        }
-
-        .about-image:hover {
-            transform: scale(1.03);
+        .about-image, .about-content {
+            flex: 1 1 45%;
         }
 
         .about-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: var(--shadow-medium);
+            transition: transform 0.5s ease;
         }
 
-        @media (min-width: 992px) {
-            .about-content {
-                flex-direction: row;
-            }
-            .about-text {
-                order: 2; /* Text on right */
-            }
-            .about-image {
-                order: 1; /* Image on left */
-            }
-            .about-content:nth-child(even) .about-text {
-                order: 1; /* Alternate: text on left */
-            }
-            .about-content:nth-child(even) .about-image {
-                order: 2; /* Alternate: image on right */
-            }
+        .about-image img:hover {
+            transform: scale(1.03);
+        }
+
+        .about-content h2 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            color: var(--color-deep-blue);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5em;
+            font-size: 1.1em;
+            color: var(--color-charcoal);
         }
 
         /* Testimonials Section */
         .testimonials {
-            background-color: var(--color-cream);
-            text-align: center;
+            padding: 100px 0;
+            background-color: var(--color-deep-blue);
+            color: var(--color-cream);
         }
 
-        .testimonials-grid {
+        .testimonials .section-heading h2 {
+            color: var(--color-cream);
+        }
+
+        .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-lg);
+            gap: 40px;
         }
 
         .testimonial-card {
-            background-color: var(--color-white);
-            padding: var(--spacing-lg);
-            border-radius: var(--border-radius-md);
+            background-color: rgba(var(--color-cream-rgb), 0.08);
+            border-radius: 15px;
+            padding: 30px;
             box-shadow: var(--shadow-light);
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .testimonial-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-medium);
         }
 
-        .testimonial-avatar {
+        .testimonial-card .avatar {
             width: 80px;
             height: 80px;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 auto var(--spacing-sm) auto;
-            border: 3px solid var(--color-terracotta);
+            margin: 0 auto 20px;
+            border: 4px solid var(--color-terracotta);
+            box-shadow: var(--shadow-light);
         }
 
-        .testimonial-text {
+        .testimonial-card p {
             font-style: italic;
-            margin-bottom: var(--spacing-sm);
-            color: var(--color-charcoal-gray);
+            font-size: 1.1em;
+            margin-bottom: 20px;
         }
 
-        .testimonial-author {
-            font-weight: bold;
-            color: var(--color-forest-green);
+        .testimonial-card h4 {
+            font-size: 1.3em;
+            color: var(--color-terracotta);
+            margin-bottom: 5px;
         }
 
-        .testimonial-role {
-            font-size: 0.9rem;
-            color: var(--color-charcoal-gray);
+        .testimonial-card span {
+            font-size: 0.9em;
+            color: rgba(var(--color-cream-rgb), 0.7);
         }
 
         /* Gallery Section */
         .gallery {
-            background-color: var(--color-accent-light);
-            text-align: center;
-            position: relative;
+            padding: 100px 0;
+            background-color: var(--color-cream);
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-md);
+            gap: 25px;
         }
 
         .gallery-item {
-            border-radius: var(--border-radius-md);
             overflow: hidden;
+            border-radius: 15px;
             box-shadow: var(--shadow-light);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: var(--shadow-md);
+            position: relative;
         }
 
         .gallery-item img {
@@ -650,53 +508,93 @@
             height: 250px;
             object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(var(--color-deep-blue-rgb), 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            color: var(--color-cream);
+            font-family: var(--font-montserrat);
+            font-weight: 700;
+            font-size: 1.3em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Contact Section */
         .contact {
-            background-color: var(--color-forest-green);
-            color: var(--color-white);
-            text-align: center;
+            padding: 100px 0;
+            background-color: var(--color-light-grey);
+            position: relative;
         }
 
-        .contact .section-header h2 {
-            color: var(--color-white);
+        .contact .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
         }
 
-        .contact .section-header p {
-            color: var(--color-cream);
+        .contact-form-wrapper, .contact-info {
+            flex: 1 1 45%;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .contact-form-wrapper h3, .contact-info h3 {
+            font-size: 2em;
+            margin-bottom: 25px;
+            color: var(--color-deep-blue);
         }
 
         .contact-form {
-            max-width: 600px;
-            margin: var(--spacing-xl) auto 0 auto;
-            background-color: var(--color-white);
-            padding: var(--spacing-lg);
-            border-radius: var(--border-radius-md);
-            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .form-group {
-            margin-bottom: var(--spacing-md);
-            text-align: left;
+            margin-bottom: 15px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: var(--spacing-xs);
-            font-weight: bold;
-            color: var(--color-charcoal-gray);
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--color-charcoal);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: var(--spacing-sm);
-            border: 1px solid #ccc;
-            border-radius: var(--border-radius-sm);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            color: var(--color-charcoal-gray);
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-lato);
+            font-size: 1em;
             transition: border-color 0.3s ease;
         }
 
@@ -704,423 +602,597 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--color-terracotta);
-            box-shadow: 0 0 0 2px rgba(var(--color-terracotta), 0.2);
+            box-shadow: 0 0 0 3px rgba(var(--color-terracotta-rgb), 0.2);
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
+        .contact-info p {
+            font-size: 1.1em;
+            margin-bottom: 1em;
+            color: var(--color-charcoal);
         }
 
-        .contact-form .btn {
-            width: 100%;
-            padding: var(--spacing-md);
-            font-size: 1.1rem;
+        .contact-info ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .contact-info ul li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+        }
+
+        .contact-info ul li svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--color-terracotta);
+            margin-right: 15px;
         }
 
         /* Footer */
         .footer {
-            background-color: var(--color-charcoal-gray);
-            color: var(--color-cream);
-            padding: var(--spacing-xl) 0 var(--spacing-md) 0;
-            font-size: 0.9rem;
+            background-color: var(--color-charcoal);
+            color: rgba(var(--color-cream-rgb), 0.8);
+            padding: 80px 0 40px;
+            font-size: 0.95em;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--spacing-lg);
-            margin-bottom: var(--spacing-xl);
+            gap: 40px;
+            margin-bottom: 50px;
         }
 
         .footer-col h4 {
-            color: var(--color-terracotta);
-            margin-bottom: var(--spacing-sm);
+            font-size: 1.4em;
+            color: var(--color-cream);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--color-terracotta);
+            border-radius: 2px;
         }
 
         .footer-col ul {
             list-style: none;
-            padding: 0;
         }
 
         .footer-col ul li {
-            margin-bottom: var(--spacing-xs);
+            margin-bottom: 12px;
         }
 
         .footer-col ul li a {
-            color: var(--color-cream);
+            color: rgba(var(--color-cream-rgb), 0.7);
             transition: color 0.3s ease;
         }
 
         .footer-col ul li a:hover {
             color: var(--color-terracotta);
+            padding-left: 5px;
         }
 
-        .social-links {
+        .footer-col .social-icons {
             display: flex;
-            gap: var(--spacing-sm);
-            margin-top: var(--spacing-sm);
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        .social-link svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--color-cream);
-            transition: fill 0.3s ease;
+        .footer-col .social-icons a {
+            color: var(--color-cream);
+            font-size: 1.5em;
+            transition: transform 0.3s ease, color 0.3s ease;
         }
 
-        .social-link:hover svg {
-            fill: var(--color-terracotta);
+        .footer-col .social-icons a:hover {
+            color: var(--color-terracotta);
+            transform: translateY(-3px);
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: var(--spacing-md);
-            border-top: 1px solid rgba(var(--color-cream), 0.1);
+            padding-top: 30px;
+            border-top: 1px solid rgba(var(--color-cream-rgb), 0.1);
+            color: rgba(var(--color-cream-rgb), 0.6);
         }
 
-        /* Utility classes for animations */
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3.5em;
             }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 0;
+                right: 0;
+                background-color: var(--color-deep-blue);
+                width: 70%;
+                height: 100vh;
+                padding-top: 100px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+                transform: translateX(100%);
+                transition: transform 0.4s ease-in-out;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .nav-links li {
+                margin-bottom: 25px;
+                text-align: center;
+            }
+
+            .nav-links a {
+                color: var(--color-cream);
+                font-size: 1.5em;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.8em;
+            }
+            .hero-content p {
+                font-size: 1.2em;
+            }
+            .hero-cta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .section-heading h2 {
+                font-size: 2em;
+            }
+
+            .about .container, .contact .container {
+                flex-direction: column;
+            }
+
+            .about-image, .about-content, .contact-form-wrapper, .contact-info {
+                flex: 1 1 100%;
+            }
+
+            .trust-item {
+                flex: 1 1 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5em;
+            }
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+            .hero-content p {
+                font-size: 1em;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* Color RGB definitions for rgba usage */
+        .main-header {
+            --color-cream-rgb: 245, 245, 220;
+        }
+        .hero::before {
+            --color-deep-blue-rgb: 31, 66, 135;
+            --color-terracotta-rgb: 233, 116, 81;
+        }
+        .trust-item {
+            --color-cream-rgb: 245, 245, 220;
+        }
+        .testimonial-card, .footer-col ul li a {
+            --color-cream-rgb: 245, 245, 220;
+        }
+        .gallery-overlay {
+            --color-deep-blue-rgb: 31, 66, 135;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            --color-terracotta-rgb: 233, 116, 81;
+        }
+        .footer-bottom {
+            --color-cream-rgb: 245, 245, 220;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container navbar-content">
-            <a href="#hero" class="brand-logo">Bridge Test Cafe</a>
-            <ul class="nav-links">
-                <li><a href="#hero" class="nav-link">Home</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#about" class="nav-link">About Us</a></li>
-                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-                <li><a href="#gallery" class="nav-link">Gallery</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <a href="#contact" class="btn btn-primary">Order Now</a>
-            <div class="hamburger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <div class="mobile-nav-overlay">
-        <ul class="mobile-nav-links">
-            <li><a href="#hero" class="nav-link">Home</a></li>
-            <li><a href="#services" class="nav-link">Services</a></li>
-            <li><a href="#about" class="nav-link">About Us</a></li>
-            <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-            <li><a href="#gallery" class="nav-link">Gallery</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-            <li><a href="#contact" class="btn btn-primary">Order Now</a></li>
-        </ul>
-    </div>
-
-    <header id="hero" class="hero">
-        <div class="hero-content">
-            <h1 style="--hero-delay-h1: 0.8s;">Your Daily Connection in Lisboa.</h1>
-            <p style="--hero-delay-p: 1.1s;">Experience the warmth of artisanal coffee, freshly baked delights, and a vibrant community atmosphere right here in Rua de Teste, Lisboa. Bridge Test Cafe is more than just a cafe; it's a place to connect, relax, and savor life's simple pleasures.</p>
-            <div class="hero-actions" style="--hero-delay-btns: 1.4s;">
-                <a href="#services" class="btn btn-primary">Explore Our Menu</a>
-                <a href="#contact" class="btn btn-secondary">Find Us</a>
+    <header class="main-header">
+        <div class="nav-content container">
+            <a href="#" class="logo">Bridge Test Cafe</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#contact" class="btn">Order Now</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
         </div>
     </header>
 
-    <section id="trust-strip" class="trust-strip">
-        <div class="container trust-strip-content">
-            <div class="trust-item">
-                <strong class="animated-number" data-target="500">0</strong>+
-                <p>Happy Clients</p>
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content animated fadeIn" style="animation-delay: 0.5s;">
+                <h1 class="animated slideInUp" style="animation-delay: 0.8s;">Your Daily Brew, Lisbon's Heartbeat</h1>
+                <p class="animated slideInUp" style="animation-delay: 1.1s;">Experience the rich aroma of artisanal coffee and freshly baked delights in the heart of Lisbon.</p>
+                <div class="hero-cta">
+                    <a href="#services" class="btn animated scaleIn" style="animation-delay: 1.4s;">Our Menu</a>
+                    <a href="#contact" class="btn animated scaleIn" style="animation-delay: 1.6s; background-color: var(--color-olive);">Visit Us</a>
+                </div>
             </div>
-            <div class="trust-item">
-                <strong class="animated-number" data-target="49">0</strong>/5
-                <p>Star Ratings</p>
-            </div>
-            <div class="trust-item">
-                <strong class="animated-number" data-target="10">0</strong>+
-                <p>Years in Business</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Offerings</h2>
-                <p>At Bridge Test Cafe, we believe in crafting experiences. From the moment you step in, you'll be greeted by the aroma of freshly brewed coffee and the sight of delectable pastries, all served with a smile.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <img src="https://images.pexels.com/photos/32547536/pexels-photo-32547536.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Artisan Coffee" class="service-card-image">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-coffee">
-                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
-                        <line x1="6" y1="1" x2="6" y2="4"></line>
-                        <line x1="10" y1="1" x2="10" y2="4"></line>
-                        <line x1="14" y1="1" x2="14" y2="4"></line>
-                    </svg>
-                    <h3>Artisan Coffee</h3>
-                    <p>Sustainably sourced, expertly roasted, and meticulously prepared. Our baristas are passionate about bringing you the perfect cup, from rich espressos to creamy lattes, tailored to your taste.</p>
+        <section id="trust" class="trust-strip">
+            <div class="container">
+                <div class="trust-item animated slideInUp" style="animation-delay: 0.2s;">
+                    <h3 data-counter="500">0</h3>
+                    <p>Happy Customers</p>
                 </div>
-                <div class="service-card">
-                    <img src="https://images.pexels.com/photos/18721982/pexels-photo-18721982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fresh Pastries" class="service-card-image">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cake">
-                        <path d="M10 20v-6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v6"></path>
-                        <path d="M8 20v-6a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v6"></path>
-                        <path d="M22 20v-6a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v6"></path>
-                        <path d="M12 2a4 4 0 0 1 4 4v4H8V6a4 4 0 0 1 4-4z"></path>
-                    </svg>
-                    <h3>Freshly Baked Pastries</h3>
-                    <p>Indulge in our exquisite selection of pastries, baked fresh daily. From classic croissants and Portuguese tarts to unique seasonal treats, there's always something delightful to pair with your coffee.</p>
+                <div class="trust-item animated slideInUp" style="animation-delay: 0.4s;">
+                    <h3 data-counter="4.9">0</h3>
+                    <p>Star Rating</p>
                 </div>
-                <div class="service-card">
-                    <img src="https://images.pexels.com/photos/30444143/pexels-photo-30444143.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Community Hub" class="service-card-image">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9" cy="7" r="4"></circle>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
-                    <h3>A Communal Space</h3>
-                    <p>Bridge Test Cafe is designed to be a hub for connection. Whether you're catching up with friends, working remotely, or simply enjoying a quiet moment, our cozy atmosphere welcomes all.</p>
+                <div class="trust-item animated slideInUp" style="animation-delay: 0.6s;">
+                    <h3 data-counter="5">0</h3>
+                    <p>Years in Business</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="about" class="about">
-        <div class="container about-content">
-            <div class="about-image">
-                <img src="https://images.pexels.com/photos/4927237/pexels-photo-4927237.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Interior of Bridge Test Cafe">
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-heading animated slideInUp">
+                    <h2>Our Artisanal Offerings</h2>
+                    <p>Crafted with passion, served with a smile.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card animated slideInUp" style="animation-delay: 0.1s;">
+                        <img src="https://images.pexels.com/photos/16543350/pexels-photo-16543350.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Specialty Coffee">
+                        <h3>Specialty Coffee</h3>
+                        <p>Discover our meticulously sourced single-origin beans and expertly prepared espresso drinks, brewed to perfection.</p>
+                    </div>
+                    <div class="service-card animated slideInUp" style="animation-delay: 0.3s;">
+                        <img src="https://images.pexels.com/photos/425240/pexels-photo-425240.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Freshly Baked Pastries">
+                        <h3>Freshly Baked Pastries</h3>
+                        <p>Indulge in our selection of croissants, cakes, and artisanal bread, baked fresh daily with the finest ingredients.</p>
+                    </div>
+                    <div class="service-card animated slideInUp" style="animation-delay: 0.5s;">
+                        <img src="https://images.pexels.com/photos/33015766/pexels-photo-33015766.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Hearty Breakfast & Brunch">
+                        <h3>Hearty Breakfast & Brunch</h3>
+                        <p>Start your day right with our delicious breakfast and brunch options, from classic Portuguese toasts to healthy bowls.</p>
+                    </div>
+                </div>
             </div>
-            <div class="about-text">
-                <h2>Our Story: Brewing Connection in Lisboa</h2>
-                <p>Bridge Test Cafe was founded with a simple yet profound vision: to create a space where the vibrant spirit of Lisboa could gather, connect, and enjoy exceptional coffee. Nestled in the heart of Rua de Teste, our cafe has become a beloved local spot since opening our doors.</p>
-                <p>We're more than just a coffee shop; we're a community hub. Every bean is carefully selected, every pastry baked with love, and every interaction infused with genuine warmth. We believe in sustainable practices, supporting local producers, and fostering an inviting atmosphere where everyone feels at home.</p>
-                <p>Come for the coffee, stay for the company. Discover your new favorite spot at Bridge Test Cafe – Your Daily Connection in Lisboa.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>What Our Guests Say</h2>
-                <p>Don't just take our word for it. Hear from our wonderful community about their experiences at Bridge Test Cafe.</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer Avatar" class="testimonial-avatar">
-                    <p class="testimonial-text">"Bridge Test Cafe is my go-to spot in Lisboa. The coffee is consistently excellent, and the almond croissants are simply divine. The staff are always so welcoming, making it feel like a second home!"</p>
-                    <p class="testimonial-author">Ana Sofia</p>
-                    <p class="testimonial-role">Local Resident</p>
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-image animated scaleIn" style="animation-delay: 0.2s;">
+                    <img src="https://images.pexels.com/photos/4927237/pexels-photo-4927237.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="About Bridge Test Cafe">
                 </div>
-                <div class="testimonial-card">
-                    <img src="https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer Avatar" class="testimonial-avatar">
-                    <p class="testimonial-text">"As a remote worker, finding a cafe with great ambiance and strong Wi-Fi is crucial. Bridge Test Cafe delivers on all fronts. It’s vibrant, yet cozy enough to focus, and the pastel de nata is a must-try!"</p>
-                    <p class="testimonial-author">Miguel Santos</p>
-                    <p class="testimonial-role">Freelance Designer</p>
-                </div>
-                <div class="testimonial-card">
-                    <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer Avatar" class="testimonial-avatar">
-                    <p class="testimonial-text">"Every morning starts better with a visit to Bridge Test Cafe. Their specialty brews are always a delight, and the friendly faces behind the counter make my day. Highly recommend for anyone in the area!"</p>
-                    <p class="testimonial-author">Isabella Pereira</p>
-                    <p class="testimonial-role">Morning Regular</p>
+                <div class="about-content animated slideInUp" style="animation-delay: 0.4s;">
+                    <h2>Our Story & Passion</h2>
+                    <p>Bridge Test Cafe was founded in 2020 with a simple vision: to create a cozy haven where the community could gather over exceptional coffee and delectable treats. Nestled in the vibrant Rua de Teste, we quickly became known for our warm ambiance and commitment to quality.</p>
+                    <p>We believe in the power of good coffee to bring people together. Every cup brewed and every pastry baked reflects our passion for craftsmanship and our dedication to providing a memorable experience. Come, be a part of our story.</p>
+                    <a href="#contact" class="btn">Discover More</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Gallery</h2>
-                <p>A glimpse into the delightful moments and cozy corners of Bridge Test Cafe. Come and experience it for yourself!</p>
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <div class="section-heading animated slideInUp">
+                    <h2>What Our Customers Say</h2>
+                    <p>Hear from those who love their daily brew at Bridge Test Cafe.</p>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card animated slideInUp" style="animation-delay: 0.1s;">
+                        <img src="https://images.pexels.com/photos/1036620/pexels-photo-1036620.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer Avatar" class="avatar">
+                        <p>"The best coffee in Lisbon! Bridge Test Cafe is my go-to spot for a relaxing morning and incredible pastries."</p>
+                        <h4>Ana Silva</h4>
+                        <span>Local Resident</span>
+                    </div>
+                    <div class="testimonial-card animated slideInUp" style="animation-delay: 0.3s;">
+                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer Avatar" class="avatar">
+                        <p>"A charming cafe with a fantastic atmosphere. Their brunch menu is exceptional, and the service is always top-notch."</p>
+                        <h4>João Costa</h4>
+                        <span>Food Blogger</span>
+                    </div>
+                    <div class="testimonial-card animated slideInUp" style="animation-delay: 0.5s;">
+                        <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer Avatar" class="avatar">
+                        <p>"Bridge Test Cafe truly captures the heartbeat of Lisbon. It's more than a cafe; it's a community hub."</p>
+                        <h4>Maria Santos</h4>
+                        <span>Entrepreneur</span>
+                    </div>
+                </div>
             </div>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="https://images.pexels.com/photos/4921263/pexels-photo-4921263.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cafe Interior"></div>
-                <div class="gallery-item"><img src="https://images.pexels.com/photos/32547536/pexels-photo-32547536.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Coffee preparation"></div>
-                <div class="gallery-item"><img src="https://images.pexels.com/photos/18721982/pexels-photo-18721982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Pastries display"></div>
-                <div class="gallery-item"><img src="https://images.pexels.com/photos/30444143/pexels-photo-30444143.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="People enjoying coffee"></div>
-                <div class="gallery-item"><img src="https://images.pexels.com/photos/4927237/pexels-photo-4927237.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Exterior shot of cafe"></div>
-                <div class="gallery-item"><img src="https://images.pexels.com/photos/20728161/pexels-photo-20728161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Warm coffee shop ambiance"></div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>Connect With Us</h2>
-                <p>Have a question, feedback, or want to make a special order? Reach out to us, and we'll be happy to assist you!</p>
+        <section id="gallery" class="gallery">
+            <div class="container">
+                <div class="section-heading animated slideInUp">
+                    <h2>Our Visual Delights</h2>
+                    <p>A glimpse into the heartwarming world of Bridge Test Cafe.</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item animated scaleIn" style="animation-delay: 0.1s;">
+                        <img src="https://images.pexels.com/photos/23235262/pexels-photo-23235262.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cafe Interior">
+                        <div class="gallery-overlay"><span>Cozy Interior</span></div>
+                    </div>
+                    <div class="gallery-item animated scaleIn" style="animation-delay: 0.2s;">
+                        <img src="https://images.pexels.com/photos/16543350/pexels-photo-16543350.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Espresso Shot">
+                        <div class="gallery-overlay"><span>Perfect Espresso</span></div>
+                    </div>
+                    <div class="gallery-item animated scaleIn" style="animation-delay: 0.3s;">
+                        <img src="https://images.pexels.com/photos/425240/pexels-photo-425240.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fresh Croissants">
+                        <div class="gallery-overlay"><span>Baked Fresh</span></div>
+                    </div>
+                    <div class="gallery-item animated scaleIn" style="animation-delay: 0.4s;">
+                        <img src="https://images.pexels.com/photos/4927237/pexels-photo-4927237.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Barista at Work">
+                        <div class="gallery-overlay"><span>Art of Coffee</span></div>
+                    </div>
+                    <div class="gallery-item animated scaleIn" style="animation-delay: 0.5s;">
+                        <img src="https://images.pexels.com/photos/33015766/pexels-photo-33015766.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Brunch Spread">
+                        <div class="gallery-overlay"><span>Brunch Delights</span></div>
+                    </div>
+                    <div class="gallery-item animated scaleIn" style="animation-delay: 0.6s;">
+                        <img src="https://images.pexels.com/photos/18721982/pexels-photo-18721982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Outdoor Seating">
+                        <div class="gallery-overlay"><span>Al Fresco Charm</span></div>
+                    </div>
+                </div>
             </div>
-            <form action="#" method="POST" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-heading animated slideInUp">
+                    <h2>Reach Out To Us</h2>
+                    <p>We'd love to hear from you. Visit us or send a message!</p>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                <div class="contact-form-wrapper animated slideInUp" style="animation-delay: 0.2s;">
+                    <h3>Send a Message</h3>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
+                <div class="contact-info animated slideInUp" style="animation-delay: 0.4s;">
+                    <h3>Our Location & Hours</h3>
+                    <p>Find us in the heart of Lisbon, where the aroma of fresh coffee welcomes you.</p>
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            Rua de Teste 1200-100 Lisboa
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.25-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7h-.25z"/></svg>
+                            Mon-Fri: 7:00 AM - 7:00 PM <br> Sat-Sun: 8:00 AM - 6:00 PM
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            info@bridgetestcafe.com
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.01.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.2c.27-.27.35-.66.24-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.59 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+                            +351 21 123 4567
+                        </li>
+                    </ul>
                 </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-        </div>
-    </section>
+            </div>
+        </section>
+    </main>
 
     <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h4>Bridge Test Cafe</h4>
-                <p>Your Daily Connection in Lisboa, offering artisanal coffee, freshly baked delights, and a warm communal space. Come find your moment of peace.</p>
-                <div class="social-links">
-                    <a href="#" class="social-link" aria-label="Facebook">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.588-1.333h2.412v-5h-3.974c-3.755 0-4.026 2.543-4.026 4.047v2.953z"/></svg>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.772 1.666 4.979 4.92.058 1.265.069 1.645.069 4.849 0 3.204-.012 3.584-.069 4.849-.207 3.252-1.725 4.771-4.979 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.252-.148-4.773-1.666-4.92-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.584.07-4.849.207-3.252 1.724-4.771 4.979-4.919 1.265-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.933.072-4.343.196-6.045 1.884-6.242 6.242-.058 1.267-.069 1.675-.069 4.933 0 3.259.014 3.668.072 4.934.196 4.342 1.884 6.045 6.242 6.242 1.267.058 1.675.069 4.933.069 3.259 0 3.668-.014 4.934-.072 4.342-.196 6.045-1.884 6.242-6.242.058-1.267.069-1.675.069-4.933 0-3.259-.014-3.668-.072-4.934-.196-4.342-1.884-6.045-6.242-6.242-1.267-.058-1.675-.069-4.933-.069zm0 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6.5-7.5a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5z"/></svg>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Twitter">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.594 0-6.49 2.903-6.49 6.49 0 .504.058.991.162 1.465-5.392-.27-10.197-2.868-13.407-6.794-.559.96-.883 2.07-.883 3.252 0 2.253 1.149 4.244 2.906 5.416-.84-.027-1.62-.257-2.3-.641-.006.027-.006.05-.006.073 0 3.154 2.23 5.794 5.193 6.393-.545.149-1.12.23-1.703.23-.418 0-.823-.041-1.22-.116.823 2.572 3.2 4.45 6.02 4.498-2.219 1.749-5.018 2.804-8.076 2.804-.524 0-1.04-.031-1.549-.091 2.91 1.866 6.36 2.95 10.064 2.95 12.076 0 18.679-10.016 18.679-18.681 0-.285-.006-.568-.018-.85z"/></svg>
-                    </a>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Bridge Test Cafe</h4>
+                    <p>Your Daily Brew, Lisbon's Heartbeat. We are dedicated to serving exceptional coffee and baked goods in a warm, inviting atmosphere.</p>
+                    <div class="social-icons">
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.407 0-6.182 2.761-6.182 6.168 0 .484.054.954.145 1.404-5.144-.252-9.684-2.712-12.732-6.446-.532.903-.846 1.962-.846 3.085 0 2.146 1.093 4.045 2.748 5.159-.807-.025-1.566-.247-2.228-.616v.079c0 2.984 2.127 5.467 4.953 6.031-.518.147-1.066.236-1.637.236-.403 0-.795-.039-1.177-.113.794 2.472 3.09 4.269 5.825 4.319-2.094 1.636-4.48 2.529-7.147 2.529-.46 0-.91-.025-1.35-.078 2.94 1.897 6.405 2.99 10.158 2.99 12.156 0 18.779-10.057 18.779-18.78 0-.376-.012-.752-.031-1.125z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.697 0-1.262-.565-1.262-1.262 0-.697.565-1.262 1.262-1.262.697 0 1.262.565 1.262 1.262 0 .697-.565 1.262-1.262 1.262zm7 6.891h-2v-3.482c0-2.234-2.2-2.179-2.2 0v3.482h-2v-6h2v1.093c.873-1.616 3-1.737 3 1.541v3.366z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#services">Menu</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Working Hours</h4>
+                    <ul>
+                        <li>Monday - Friday: 7 AM - 7 PM</li>
+                        <li>Saturday - Sunday: 8 AM - 6 PM</li>
+                        <li>Public Holidays: Closed</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with our latest offers and news!</p>
+                    <form action="#" method="POST">
+                        <input type="email" placeholder="Your email" class="form-group" style="padding: 10px; border-radius: 5px; border: none; width: 100%; margin-bottom: 10px; background-color: rgba(255,255,255,0.1);">
+                        <button type="submit" class="btn" style="width: 100%; padding: 10px; font-size: 1em;">Subscribe</button>
+                    </form>
                 </div>
             </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#about">Our Story</a></li>
-                    <li><a href="#services">Our Menu</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
+            <div class="footer-bottom">
+                &copy; 2024 Bridge Test Cafe. All rights reserved.
             </div>
-            <div class="footer-col">
-                <h4>Visit Us</h4>
-                <p>Rua de Teste 1200-100 Lisboa, Portugal</p>
-                <p>Monday - Friday: 8 AM - 7 PM</p>
-                <p>Saturday - Sunday: 9 AM - 6 PM</p>
-            </div>
-            <div class="footer-col">
-                <h4>Contact Info</h4>
-                <p>Email: info@bridgetestcafe.pt</p>
-                <p>Phone: +351 21 XXX XXXX</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Bridge Test Cafe. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Navbar Shrink and Mobile Menu
-            const navbar = document.querySelector('.navbar');
-            const hamburgerMenu = document.querySelector('.hamburger-menu');
-            const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
-            const mobileNavLinks = document.querySelector('.mobile-nav-links');
-
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-
-            hamburgerMenu.addEventListener('click', () => {
-                hamburgerMenu.classList.toggle('active');
-                mobileNavOverlay.classList.toggle('active');
-                document.body.style.overflow = mobileNavOverlay.classList.contains('active') ? 'hidden' : '';
-            });
-
-            mobileNavLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburgerMenu.classList.remove('active');
-                    mobileNavOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-
-            // Scroll Reveal Animation
-            const sections = document.querySelectorAll('section');
-            const options = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // Stop observing once visible
-                    }
-                });
-            }, options);
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-
-            // Animated Number Counters
-            const animateNumbers = () => {
-                const counters = document.querySelectorAll('.animated-number');
-                const speed = 200; // The lower the speed, the faster the count
-
-                counters.forEach(counter => {
-                    const updateCount = () => {
-                        const target = +counter.getAttribute('data-target');
-                        const count = +counter.innerText;
-                        const increment = target / speed;
-
-                        if (count < target) {
-                            counter.innerText = Math.ceil(count + increment);
-                            setTimeout(updateCount, 1);
-                        } else {
-                            counter.innerText = target;
-                        }
-                    };
-                    updateCount();
-                });
-            };
-
-            const trustStrip = document.getElementById('trust-strip');
-            const trustObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateNumbers();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            trustObserver.observe(trustStrip);
-
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
             });
         });
+
+        // Sticky Nav Bar
+        const header = document.querySelector('.main-header');
+        const creamRgb = getComputedStyle(document.documentElement).getPropertyValue('--color-cream').match(/\d+/g).map(Number); // Get RGB values for cream color
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+                // Dynamically set RGBA for the background
+                header.style.backgroundColor = `rgba(${creamRgb[0]}, ${creamRgb[1]}, ${creamRgb[2]}, 0.95)`;
+            } else {
+                header.classList.remove('scrolled');
+                header.style.backgroundColor = 'transparent';
+            }
+        });
+        
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile nav when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fadeIn'); // Default fade in if no specific animation class
+                    if (entry.target.classList.contains('slideInUp')) {
+                        entry.target.style.animationName = 'slideInUp';
+                    } else if (entry.target.classList.contains('scaleIn')) {
+                        entry.target.style.animationName = 'scaleIn';
+                    } else {
+                        entry.target.style.animationName = 'fadeIn';
+                    }
+                    entry.target.style.visibility = 'visible';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animated').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Animated Number Counters
+        const animateNumbers = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counterElement = entry.target.querySelector('h3');
+                    if (counterElement) {
+                        const targetValue = parseFloat(counterElement.dataset.counter);
+                        let startValue = 0;
+                        const duration = 2000; // 2 seconds
+                        const increment = targetValue / (duration / 16); // ~60fps
+
+                        const updateCounter = () => {
+                            if (startValue < targetValue) {
+                                startValue += increment;
+                                if (counterElement.dataset.counter.includes('.')) {
+                                    counterElement.textContent = startValue.toFixed(1); // For floating point numbers like 4.9
+                                } else {
+                                    counterElement.textContent = Math.ceil(startValue);
+                                }
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counterElement.textContent = targetValue;
+                            }
+                        };
+                        updateCounter();
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        };
+
+        const trustObserver = new IntersectionObserver(animateNumbers, observerOptions);
+        document.querySelectorAll('.trust-strip').forEach(element => {
+            trustObserver.observe(element);
+        });
+
+        // Dynamic RGB for CSS variables to be used in JS
+        document.documentElement.style.setProperty('--color-cream-rgb', `${creamRgb[0]}, ${creamRgb[1]}, ${creamRgb[2]}`);
+        const deepBlueRgb = getComputedStyle(document.documentElement).getPropertyValue('--color-deep-blue').match(/\d+/g).map(Number);
+        document.documentElement.style.setProperty('--color-deep-blue-rgb', `${deepBlueRgb[0]}, ${deepBlueRgb[1]}, ${deepBlueRgb[2]}`);
+        const terracottaRgb = getComputedStyle(document.documentElement).getPropertyValue('--color-terracotta').match(/\d+/g).map(Number);
+        document.documentElement.style.setProperty('--color-terracotta-rgb', `${terracottaRgb[0]}, ${terracottaRgb[1]}, ${terracottaRgb[2]}`);
+
     </script>
 </body>
 </html>
