@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurora Solar Installers | Power London with the Sun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1B4F72;
+  --primary-dark: #0F3550;
+  --accent: #F39C12;
+  --accent-light: #F5B041;
+  --bg-light: #E8F8F5;
+  --white: #FFFFFF;
+  --dark: #2C3E50;
+  --dark-soft: #4A6274;
+  --shadow-sm: 0 2px 12px rgba(27,79,114,0.08);
+  --shadow-md: 0 6px 30px rgba(27,79,114,0.12);
+  --shadow-lg: 0 16px 60px rgba(27,79,114,0.18);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5, .logo, .nav-link, .btn, .stat-num, .testimonial-name { font-family: 'Poppins', sans-serif; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 100px 0; position: relative; }
+.section-reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.section-reveal.visible { opacity: 1; transform: translateY(0); }
+.section-label { font-family: 'Poppins', sans-serif; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 12px; }
+.section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: var(--primary); line-height: 1.2; margin-bottom: 16px; }
+.section-subtitle { font-size: 1.05rem; color: var(--dark-soft); line-height: 1.7; max-width: 600px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer; transition: all var(--transition); position: relative; overflow: hidden; }
+.btn-primary { background: var(--accent); color: var(--white); box-shadow: 0 4px 18px rgba(243,156,18,0.35); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(243,156,18,0.45); }
+.btn-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
+.btn-outline:hover { background: var(--white); color: var(--primary); }
+.btn-outline-dark { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+.btn-outline-dark:hover { background: var(--primary); color: var(--white); }
+.btn svg { width: 18px; height: 18px; transition: transform var(--transition); }
+.btn:hover svg { transform: translateX(4px); }
+
+/* FLOATING SHAPES */
+.floating-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.shape { position: absolute; border-radius: 50%; opacity: 0.06; animation: floatShape 20s ease-in-out infinite; }
+.shape:nth-child(1) { width: 400px; height: 400px; background: var(--accent); top: -100px; right: -100px; animation-delay: 0s; }
+.shape:nth-child(2) { width: 300px; height: 300px; background: var(--primary); bottom: 10%; left: -80px; animation-delay: -6s; }
+.shape:nth-child(3) { width: 200px; height: 200px; background: var(--accent); top: 50%; right: 10%; animation-delay: -12s; }
+@keyframes floatShape {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(30px, -40px) scale(1.05) rotate(5deg); }
+  66% { transform: translate(-20px, 20px) scale(0.95) rotate(-3deg); }
+}
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 18px 0; transition: all var(--transition); }
+nav.scrolled { background: rgba(255,255,255,0.94); backdrop-filter: blur(16px); box-shadow: var(--shadow-sm); padding: 10px 0; }
+nav.scrolled .logo-text, nav.scrolled .nav-link { color: var(--primary); }
+nav.scrolled .btn-nav { border-color: var(--primary); color: var(--primary); }
+nav.scrolled .btn-nav:hover { background: var(--primary); color: var(--white); }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-icon { width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 800; color: var(--white); flex-shrink: 0; }
+.logo-text { font-size: 1.25rem; font-weight: 700; color: var(--white); transition: color var(--transition); }
+.logo-text span { font-weight: 300; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-link { font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.85); transition: color var(--transition); position: relative; }
+.nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width var(--transition); }
+.nav-link:hover { color: var(--white); }
+.nav-link:hover::after { width: 100%; }
+nav.scrolled .nav-link:hover { color: var(--primary); }
+.btn-nav { padding: 8px 22px; border-radius: 50px; border: 2px solid rgba(255,255,255,0.7); color: var(--white); font-size: 0.85rem; font-weight: 600; background: transparent; cursor: pointer; transition: all var(--transition); font-family: 'Inter', sans-serif; }
+.btn-nav:hover { background: var(--white); color: var(--primary); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 5px; }
+.hamburger span { display: block; width: 26px; height: 2.5px; background: var(--white); border-radius: 3px; transition: all var(--transition); }
+nav.scrolled .hamburger span { background: var(--primary); }
+.hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; background: var(--primary-dark); }
+.hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(27,79,114,0.92) 0%, rgba(27,79,114,0.65) 50%, rgba(243,156,18,0.25) 100%); z-index: 1; }
+.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+.hero-wave { position: absolute; bottom: -2px; left: 0; right: 0; z-index: 2; line-height: 0; }
+.hero-wave svg { width: 100%; height: auto; display: block; }
+.hero-content { position: relative; z-index: 3; width: 100%; padding: 120px 0 80px; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.hero-text { }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); padding: 8px 18px; border-radius: 50px; font-size: 0.8rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 28px; border: 1px solid rgba(255,255,255,0.15); }
+.hero-badge svg { width: 14px; height: 14px; fill: var(--accent); }
+.hero-title { font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 900; color: var(--white); line-height: 1.08; margin-bottom: 20px; letter-spacing: -0.02em; }
+.hero-title span { color: var(--accent); display: inline-block; }
+.hero-p { font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 36px; max-width: 520px; }
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-visual { position: relative; }
+.hero-card { background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-lg); padding: 32px; color: var(--white); }
+.hero-card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.hero-stat { text-align: center; }
+.hero-stat-num { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 700; color: var(--accent); }
+.hero-stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-top: 4px; }
+.hero-divider { width: 40px; height: 3px; background: var(--accent); border-radius: 3px; margin: 20px auto; }
+.hero-quote { font-size: 0.9rem; line-height: 1.6; color: rgba(255,255,255,0.75); font-style: italic; text-align: center; }
+.hero-quote-author { font-style: normal; font-weight: 600; color: var(--white); margin-top: 8px; font-size: 0.85rem; }
+.hero-reveal { opacity: 0; transform: translateY(30px); }
+.hero-reveal.d1 { animation: heroFadeUp 0.8s 0.15s forwards; }
+.hero-reveal.d2 { animation: heroFadeUp 0.8s 0.35s forwards; }
+.hero-reveal.d3 { animation: heroFadeUp 0.8s 0.55s forwards; }
+.hero-reveal.d4 { animation: heroFadeUp 0.8s 0.75s forwards; }
+@keyframes heroFadeUp { to { opacity: 1; transform: translateY(0); } }
+
+/* TRUST STRIP */
+.trust-strip { background: var(--bg-light); padding: 40px 0; position: relative; z-index: 2; }
+.trust-inner { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 30px; }
+.trust-item { text-align: center; }
+.trust-num { font-family: 'Poppins', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--primary); line-height: 1; }
+.trust-num .plus { color: var(--accent); }
+.trust-label { font-size: 0.85rem; color: var(--dark-soft); margin-top: 4px; font-weight: 500; }
+
+/* SERVICES */
+.services { background: var(--white); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 50px; }
+.service-card { background: var(--white); border-radius: var(--radius-md); padding: 36px 30px; box-shadow: var(--shadow-sm); border: 1px solid rgba(27,79,114,0.06); transition: all var(--transition); position: relative; overflow: hidden; }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform var(--transition); }
+.service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-icon { width: 56px; height: 56px; border-radius: var(--radius-sm); background: var(--bg-light); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.service-icon svg { width: 28px; height: 28px; stroke: var(--primary); fill: none; stroke-width: 1.8; }
+.service-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+.service-card p { font-size: 0.92rem; color: var(--dark-soft); line-height: 1.65; }
+.service-card .service-img { width: 100%; height: 160px; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 20px; }
+
+/* ABOUT */
+.about { background: var(--bg-light); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.about-image { position: relative; }
+.about-image img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+.about-image::before { content: ''; position: absolute; top: -16px; left: -16px; width: 100%; height: 100%; border: 3px solid var(--accent); border-radius: var(--radius-lg); z-index: 0; }
+.about-image img { position: relative; z-index: 1; }
+.about-badge { display: inline-flex; align-items: center; gap: 10px; background: var(--white); padding: 12px 24px; border-radius: 50px; box-shadow: var(--shadow-md); position: absolute; bottom: -20px; right: -10px; z-index: 2; }
+.about-badge-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: var(--white); font-weight: 800; font-size: 1.1rem; }
+.about-badge-text { font-size: 0.8rem; font-weight: 600; color: var(--dark); }
+.about-badge-text span { color: var(--accent); font-size: 1rem; }
+.about-content .section-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+.about-content p { color: var(--dark-soft); line-height: 1.7; margin-bottom: 20px; font-size: 0.95rem; }
+.about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0; }
+.about-feature { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 500; color: var(--dark); }
+.about-feature svg { width: 18px; height: 18px; fill: var(--accent); flex-shrink: 0; }
+
+/* TESTIMONIALS */
+.testimonials { background: var(--primary); color: var(--white); }
+.testimonials .section-label { color: var(--accent); }
+.testimonials .section-title { color: var(--white); }
+.testimonials .section-subtitle { color: rgba(255,255,255,0.7); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; margin-top: 50px; }
+.testi-card { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 32px; transition: all var(--transition); }
+.testi-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); }
+.testi-stars { color: var(--accent); font-size: 1rem; letter-spacing: 2px; margin-bottom: 16px; }
+.testi-text { font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin-bottom: 24px; font-style: italic; }
+.testi-author { display: flex; align-items: center; gap: 14px; }
+.testi-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+.testi-name { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.95rem; }
+.testi-role { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+
+/* WHY CHOOSE US / GALLERY */
+.why-choose { background: var(--white); }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 50px; }
+.why-card { text-align: center; padding: 32px 20px; border-radius: var(--radius-md); border: 1px solid rgba(27,79,114,0.06); transition: all var(--transition); }
+.why-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.why-card-num { font-family: 'Poppins', sans-serif; font-size: 2.8rem; font-weight: 900; color: var(--bg-light); line-height: 1; margin-bottom: 8px; }
+.why-card h4 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+.why-card p { font-size: 0.88rem; color: var(--dark-soft); line-height: 1.6; }
+.gallery { padding: 0; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.gallery-item { position: relative; overflow: hidden; aspect-ratio: 4/3; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: all 0.6s ease; }
+.gallery-item:hover img { transform: scale(1.08); }
+.gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(27,79,114,0.75), transparent); opacity: 0; transition: opacity 0.4s ease; display: flex; align-items: flex-end; padding: 24px; }
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay span { color: var(--white); font-weight: 600; font-size: 0.9rem; }
+
+/* CONTACT */
+.contact { background: var(--bg-light); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; margin-top: 50px; }
+.contact-info h3 { font-family: 'Poppins', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
+.contact-info p { color: var(--dark-soft); line-height: 1.7; margin-bottom: 28px; }
+.contact-detail { display: flex; gap: 14px; margin-bottom: 18px; align-items: flex-start; }
+.contact-detail svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 1.8; flex-shrink: 0; margin-top: 2px; }
+.contact-detail div { }
+.contact-detail strong { display: block; font-size: 0.9rem; color: var(--primary); }
+.contact-detail span { font-size: 0.88rem; color: var(--dark-soft); }
+.contact-form { background: var(--white); padding: 36px; border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
+.form-group input, .form-group textarea { width: 100%; padding: 14px 18px; border: 2px solid #e8edf0; border-radius: var(--radius-sm); font-family: 'Inter', sans-serif; font-size: 0.95rem; transition: all var(--transition); outline: none; background: var(--white); }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(243,156,18,0.12); }
+.form-group textarea { resize: vertical; min-height: 120px; }
+
+/* FOOTER */
+footer { background: var(--primary-dark); color: rgba(255,255,255,0.7); padding: 70px 0 30px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 50px; }
+.footer-brand .logo-text { color: var(--white); font-size: 1.1rem; margin-bottom: 16px; display: inline-block; }
+.footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 300px; margin-bottom: 20px; }
+.footer-socials { display: flex; gap: 12px; }
+.footer-socials a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; transition: all var(--transition); color: var(--white); }
+.footer-socials a:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
+.footer-socials a svg { width: 18px; height: 18px; fill: currentColor; }
+.footer-col h4 { font-family: 'Poppins', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 20px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { font-size: 0.85rem; color: rgba(255,255,255,0.6); transition: color var(--transition); }
+.footer-col ul li a:hover { color: var(--accent); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.82rem; }
+
+@media (max-width: 1024px) {
+  .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { position: fixed; top: 0; right: -100%; width: 75%; max-width: 320px; height: 100vh; background: var(--primary-dark); flex-direction: column; justify-content: center; align-items: center; gap: 24px; transition: right 0.4s ease; z-index: 999; }
+  .nav-links.open { right: 0; }
+  nav.scrolled .nav-links { background: var(--white); }
+  nav.scrolled .nav-links .nav-link { color: var(--primary); }
+  nav.scrolled .nav-links .nav-link:hover { color: var(--accent); }
+  .hamburger { display: flex; z-index: 1001; }
+  .btn-nav-mobile { display: block; }
+  .btn-nav-desktop { display: none; }
+  .section { padding: 70px 0; }
+  .services-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .about-features { grid-template-columns: 1fr; }
+  .trust-inner { gap: 20px; }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .hero-btns { flex-direction: column; }
+  .btn { width: 100%; justify-content: center; }
+  .container { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="floating-shapes">
+  <div class="shape"></div>
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
+
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="#" class="logo" aria-label="Aurora Solar Installers home">
+      <div class="logo-icon">A</div>
+      <span class="logo-text">Aurora<span>Solar</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><a href="#contact" class="btn btn-nav btn-nav-mobile">Get a Quote</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-nav btn-nav-desktop">Get a Free Quote</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero" id="hero" aria-label="Hero">
+  <img src="https://live.staticflickr.com/2709/4474985481_90dd10deb5_b.jpg" alt="Solar panels on a rooftop under bright sunlight" class="hero-bg" loading="eager" />
+  <div class="hero-content">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="hero-badge hero-reveal d1">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke="var(--accent)" stroke-width="2" fill="none"/></svg>
+            London's trusted solar partner since 2012
+          </div>
+          <h1 class="hero-title hero-reveal d2">Power London<br>with the <span>Sun</span></h1>
+          <p class="hero-p hero-reveal d3">Premium solar installation across Greater London. Cut your energy bills by up to 70% with our end-to-end design, installation, and maintenance service.</p>
+          <div class="hero-btns hero-reveal d4">
+            <a href="#contact" class="btn btn-primary">Get Your Free Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            <a href="#services" class="btn btn-outline">Explore Services</a>
+          </div>
+        </div>
+        <div class="hero-visual hero-reveal d3">
+          <div class="hero-card">
+            <div class="hero-card-stats">
+              <div class="hero-stat">
+                <div class="hero-stat-num counter" data-target="1200">0</div>
+                <div class="hero-stat-label">Panels Installed</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-num counter" data-target="98">0</div>
+                <div class="hero-stat-label">% Satisfied Clients</div>
+              </div>
+            </div>
+            <div class="hero-divider"></div>
+            <p class="hero-quote">"Aurora transformed our energy bills. Best investment we've ever made."</p>
+            <p class="hero-quote-author">— Sarah T., Islington</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,70 C360,110 720,0 1440,70 L1440,100 L0,100 Z" fill="var(--bg-light)"/></svg>
+  </div>
+</section>
+
+<section class="trust-strip" aria-label="Trust indicators">
+  <div class="container trust-inner">
+    <div class="trust-item">
+      <div class="trust-num"><span class="counter" data-target="500">0</span><span class="plus">+</span></div>
+      <div class="trust-label">Homes Powered</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num"><span class="counter" data-target="4.9">0</span><span class="plus">★</span></div>
+      <div class="trust-label">Average Rating</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num"><span class="counter" data-target="13">0</span><span class="plus">+</span></div>
+      <div class="trust-label">Years in Business</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num"><span class="counter" data-target="25">0</span><span class="plus">+</span></div>
+      <div class="trust-label">MWh Saved Yearly</div>
+    </div>
+  </div>
+</section>
+
+<section class="services section section-reveal" id="services" aria-label="Services">
+  <div class="container">
+    <div class="section-label">Our Services</div>
+    <h2 class="section-title">End-to-End Solar Solutions</h2>
+    <p class="section-subtitle">From consultation to commissioning, we handle every step of your solar journey across London.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="https://live.staticflickr.com/5633/21998357270_5266152fc5_b.jpg" alt="Residential solar panel installation on a house roof" class="service-img" loading="lazy" />
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor"/><path d="M2 17l10 5 10-5" stroke="currentColor"/><path d="M2 12l10 5 10-5" stroke="currentColor"/></svg>
+        </div>
+        <h3>Residential Solar</h3>
+        <p>Bespoke rooftop arrays for London homes. Sleek monocrystalline panels with 25-year performance warranties and optimised roof integration.</p>
+      </div>
+      <div class="service-card">
+        <img src="https        </div>
+      </div>
+      <div class="service-card">
+        <img src="https://live.staticflickr.com/5165/5328170670_5eaa96a395.jpg" alt="Commercial solar panel installation on a large building" class="service-img" loading="lazy" />
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor"/><path d="M8 21h8M12 17v4" stroke="currentColor"/></svg>
+        </div>
+        <h3>Commercial & Industrial</h3>
+        <p>Large-scale solar for offices, warehouses, and factories. Maximise roof space with high-density arrays and smart energy management systems.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://live.staticflickr.com/4762/25101903087_6060b27aa7_b.jpg" alt="Solar battery storage unit installed in a modern home" class="service-img" loading="lazy" />
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="18" rx="2" stroke="currentColor"/><line x1="10" y1="2" x2="10" y2="6" stroke="currentColor"/><line x1="14" y1="2" x2="14" y2="6" stroke="currentColor"/><path d="M10 10l4 4M14 10l-4 4" stroke="currentColor"/></svg>
+        </div>
+        <h3>Battery Storage</h3>
+        <p>Store excess solar energy with Tesla Powerwall and GivEnergy systems. Achieve true energy independence and keep the lights on during outages.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about section section-reveal" id="about" aria-label="About us">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="https://live.staticflickr.com/2630/4110096079_2a461671b5_b.jpg" alt="Solar panels installed on a residential property in London" loading="lazy" />
+        <div class="about-badge">
+          <div class="about-badge-icon">10k+</div>
+          <div class="about-badge-text">Panels <span>Installed</span></div>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="section-label">About Aurora</div>
+        <h2 class="section-title">London's Home-Grown Solar Experts</h2>
+        <p>Founded in 2012 by two engineers who believed London's rooftops were an untapped power plant, Aurora Solar Installers has grown into the city's most trusted solar installation company.</p>
+        <p>Every installation is designed in-house, installed by MCS-certified teams, and backed by our 10-year workmanship guarantee. We don't just fit panels — we build energy systems that last a generation.</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            MCS Certified
+          </div>
+          <div class="about-feature">
+            <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            10-Year Guarantee
+          </div>
+          <div class="about-feature">
+            <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            RECC Protected
+          </div>
+          <div class="about-feature">
+            <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            0% Finance Available
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-outline-dark">Book a Free Survey</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials section section-reveal" id="testimonials" aria-label="Testimonials">
+  <div class="container">
+    <div class="section-label">Social Proof</div>
+    <h2 class="section-title">What Londoners Say</h2>
+    <p class="section-subtitle">Real reviews from real customers across greater London.</p>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"From the survey to commissioning, Aurora made everything simple. Our August energy bill dropped from 180 to 42. The team was professional, punctual, and left the site spotless."</p>
+        <div class="testi-author">
+          <img src="https://live.staticflickr.com/2849/10577368563_99d04ee1f8_b.jpg" alt="Portrait of Sarah Thompson" class="testi-avatar" loading="lazy" />
+          <div>
+            <div class="testi-name">Sarah Thompson</div>
+            <div class="testi-role">Homeowner, Islington</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"We had Aurora fit 48 panels across our warehouse roof in Wembley. The ROI model was spot on — we're saving over 12,000 a year. Their commercial team really knows their stuff."</p>
+        <div class="testi-author">
+          <img src="https://live.staticflickr.com/2630/4110096079_2a461671b5_b.jpg" alt="Portrait of James Akintola" class="testi-avatar" loading="lazy" />
+          <div>
+            <div class="testi-name">James Akintola</div>
+            <div class="testi-role">Director, GreenBox Logistics</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"We added a Powerwall through Aurora and it's been a game-changer. During the December storms we were the only house on the street with power. Absolutely worth every penny."</p>
+        <div class="testi-author">
+          <img src="https://live.staticflickr.com/4762/25101903087_6060b27aa7_b.jpg" alt="Portrait of Priya Mehta" class="testi-avatar" loading="lazy" />
+          <div>
+            <div class="testi-name">Priya Mehta</div>
+            <div class="testi-role">Homeowner, Richmond</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-choose section section-reveal" aria-label="Why choose us">
+  <div class="container">
+    <div class="section-label">Why Aurora</div>
+    <h2 class="section-title">Built for London, by Londoners</h2>
+    <p class="section-subtitle">Every roof is different. We design for yours.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-num">01</div>
+        <h4>Bespoke Design</h4>
+        <p>3D-modelled layouts with satellite imaging. Every panel positioned for maximum London daylight capture across every season.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">02</div>
+        <h4>Premium Components</h4>
+        <p>Only Tier-1 monocrystalline panels from SunPower and LG. No budget modules — just high-efficiency hardware with full certification.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">03</div>
+        <h4>Rapid Installation</h4>
+        <p>Most residential installs completed in 1-2 days. Minimal disruption, full cleanup. Your system goes live the same week you sign.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">04</div>
+        <h4>Lifetime Support</h4>
+        <p>Real-time monitoring, remote diagnostics, and priority call-outs for Aurora customers. We don't disappear after the install.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery section-reveal" aria-label="Installation gallery">
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://live.staticflickr.com/2709/4474985481_90dd10deb5_b.jpg" alt="Solar panels on a residential rooftop" loading="lazy" />
+      <div class="gallery-overlay"><span>Rooftop Array, Hampstead</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://live.staticflickr.com/5633/21998357270_5266152fc5_b.jpg" alt="Solar panel installation in progress" loading="lazy" />
+      <div class="gallery-overlay"><span>Installation, Dulwich</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://live.staticflickr.com/5165/5328170670_5eaa96a395.jpg" alt="Commercial solar panel array" loading="lazy" />
+      <div class="gallery-overlay"><span>Warehouse, Wembley</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://live.staticflickr.com/4762/25101903087_6060b27aa7_b.jpg" alt="Solar battery storage unit" loading="lazy" />
+      <div class="gallery-overlay"><span>Battery Install, Richmond</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://live.staticflickr.com/2849/10577368563_99d04ee1f8_b.jpg" alt="Solar panel close-up showing modern design" loading="lazy" />
+      <div class="gallery-overlay"><span>Panel Detail, Canary Wharf</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://live.staticflickr.com/2630/4110096079_2a461671b5_b.jpg" alt="Solar panels on a modern home roof" loading="lazy" />
+      <div class="gallery-overlay"><span>Residential, Chelsea</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact section section-reveal" id="contact" aria-label="Contact us">
+  <div class="container">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-title">Your Free Solar Survey</h2>
+    <p class="section-subtitle">Fill in the form and we'll call you within 24 hours to arrange a free, no-obligation site survey and quote.</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Let's talk about your roof</h3>
+        <p>Whether you're curious about costs, want a quick payback estimate, or are ready to go solar, our team is here to help. We cover all London boroughs and most of the home counties.</p>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor"/><circle cx="12" cy="10" r="3" stroke="currentColor"/></svg>
+          <div>
+            <strong>Office</strong>
+            <span>71 Holloway Road, London N7 8LT</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor"/><polyline points="22,6 12,13 2,6" stroke="currentColor"/></svg>
+          <div>
+            <strong>Email</strong>
+            <span>hello@aurorasolar.london</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor"/></svg>
+          <div>
+            <strong>Phone</strong>
+            <span>020 7946 0823</span>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you. We'll be in touch within 24 hours.');">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="e.g. John Smith" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="john@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="07900 123456" />
+        </div>
+        <div class="form-group">
+          <label for="message">Tell us about your property</label>
+          <textarea id="message" placeholder="Roof type, approximate square footage, any questions..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Request Free Survey <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer aria-label="Footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo-text" style="display:inline-flex;align-items:center;gap:8px;">
+          <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">A</div>
+          Aurora<span>Solar</span>
+        </a>
+        <p>Powering London homes and businesses with clean, renewable solar energy since 2012. MCS certified. RECC protected.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l6 8-6 8h2l5-6 5 6h6l-7-9 6-7h-2l-4.5 5.5L10 4H4z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Residential Solar</a></li>
+          <li><a href="#">Commercial Solar</a></li>
+          <li><a href="#">Battery Storage</a></li>
+          <li><a href="#">EV Charging</a></li>
+          <li><a href="#">Maintenance</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Aurora Solar Installers Ltd. All rights reserved.</span>
+      <span>Designed in London. Powered by the sun.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+});
+
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// Intersection Observer — scroll reveals
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.section-reveal').forEach(el => revealObserver.observe(el));
+
+// Animated counters
+const counterElements = document.querySelectorAll('.counter');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseFloat(el.getAttribute('data-target'));
+      const isDecimal = target % 1 !== 0;
+      const duration = 2000;
+      const start = performance.now();
+
+      function animate(time) {
+        const elapsed = time - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = eased * target;
+        el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
+        if (progress < 1) requestAnimationFrame(animate);
+        else el.textContent = isDecimal ? target.toFixed(1) : Math.floor(target);
+      }
+      requestAnimationFrame(animate);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.3 });
+
+counterElements.forEach(el => counterObserver.observe(el));
+
+// Hero stat counters also animate on load
+document.querySelectorAll('.hero .counter').forEach(el => {
+  const target = parseFloat(el.getAttribute('data-target'));
+  const isDecimal = target % 1 !== 0;
+  const duration = 2000;
+  const start = performance.now();
+  function animate(time) {
+    const elapsed = time - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = eased * target;
+    el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
+    if (progress < 1) requestAnimationFrame(animate);
+    else el.textContent = isDecimal ? target.toFixed(1) : Math.floor(target);
+  }
+  requestAnimationFrame(animate);
+});
+</script>
+
+</body>
+</html>
