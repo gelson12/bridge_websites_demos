@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gate — Your local since 1876</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --chestnut: #8B5E3C;
+  --chestnut-dark: #6B3F28;
+  --chestnut-light: #A87750;
+  --oat: #F5EDE0;
+  --oat-light: #FCF8F2;
+  --forest: #2D4A3E;
+  --forest-light: #3F6656;
+  --brass: #C8974B;
+  --brass-light: #DFB87A;
+  --charcoal: #2C2826;
+  --charcoal-light: #4A4440;
+  --white: #FFFFFF;
+  --shadow-sm: 0 2px 8px rgba(44,40,38,0.06);
+  --shadow-md: 0 8px 30px rgba(44,40,38,0.10);
+  --shadow-lg: 0 20px 60px rgba(44,40,38,0.14);
+  --radius: 12px;
+  --radius-lg: 24px;
+  --max-w: 1200px;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--charcoal);
+  background: var(--oat-light);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font: inherit; }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all var(--transition);
+}
+nav.scrolled {
+  background: rgba(44,40,38,0.92);
+  backdrop-filter: blur(16px) saturate(1.3);
+  padding: 12px 0;
+  box-shadow: 0 2px 30px rgba(0,0,0,0.15);
+}
+nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--oat);
+  letter-spacing: 0.02em;
+}
+.logo span { color: var(--brass); }
+.nav-links {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(245,237,224,0.75);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color var(--transition);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--brass);
+  transition: width var(--transition);
+}
+.nav-links a:hover { color: var(--brass); }
+.nav-links a:hover::after { width: 100%; }
+.cta-btn {
+  background: var(--brass);
+  color: var(--charcoal) !important;
+  padding: 10px 28px;
+  border-radius: 50px;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+  transition: all var(--transition) !important;
+}
+.cta-btn:hover {
+  background: var(--brass-light) !important;
+  transform: scale(1.04);
+  box-shadow: 0 4px 20px rgba(200,151,75,0.35);
+}
+.cta-btn::after { display: none !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 28px; height: 2px; background: var(--oat); transition: all var(--transition); border-radius: 2px; }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.pexels.com/photos/34847709/pexels-photo-34847709.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') center/cover no-repeat;
+  filter: brightness(0.35) saturate(1.1);
+  transform: scale(1.05);
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+@keyframes heroZoom {
+  0% { transform: scale(1.05); }
+  100% { transform: scale(1.15); }
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(44,40,38,0.3) 0%, rgba(44,40,38,0.7) 70%);
+}
+.hero-floating {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,151,75,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-floating:nth-child(2) { width: 600px; height: 600px; top: -200px; right: -100px; animation: float1 12s ease-in-out infinite; }
+.hero-floating:nth-child(3) { width: 400px; height: 400px; bottom: -150px; left: -80px; background: radial-gradient(circle, rgba(139,94,60,0.10) 0%, transparent 70%); animation: float2 16s ease-in-out infinite; }
+@keyframes float1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-40px,30px); } }
+@keyframes float2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(50px,-40px); } }
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: 80px;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(200,151,75,0.15);
+  border: 1px solid rgba(200,151,75,0.3);
+  color: var(--brass);
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.3s;
+}
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 900;
+  color: var(--oat);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+.hero h1 span { color: var(--brass); font-style: italic; }
+.hero p {
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  color: rgba(245,237,224,0.75);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.7s;
+}
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.9s;
+}
+.btn-primary {
+  background: var(--brass);
+  color: var(--charcoal);
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  transition: all var(--transition);
+  letter-spacing: 0.02em;
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(200,151,75,0.35);
+  background: var(--brass-light);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--oat);
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 1px solid rgba(245,237,224,0.3);
+  transition: all var(--transition);
+}
+.btn-secondary:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+  transform: translateY(-3px);
+  background: rgba(200,151,75,0.08);
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero h1, .hero-badge, .hero p, .hero-ctas { transform: translateY(30px); }
+
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: rgba(245,237,224,0.4);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: bounceDown 2s ease infinite;
+}
+.hero-scroll svg { width: 18px; height: 18px; }
+@keyframes bounceDown {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ===== SECTION COMMON ===== */
+section { padding: 100px 0; }
+.section-reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+.section-reveal.visible { opacity: 1; transform: translateY(0); }
+
+.section-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--brass);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: var(--charcoal);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.section-sub {
+  font-size: 1.1rem;
+  color: var(--charcoal-light);
+  max-width: 600px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ===== TRUST STRIP ===== */
+.trust-strip {
+  background: var(--forest);
+  padding: 60px 0;
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 32px;
+  text-align: center;
+}
+.trust-item { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.trust-item.visible { opacity: 1; transform: translateY(0); }
+.trust-item .num {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--brass);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.trust-item .label {
+  font-size: 0.85rem;
+  color: rgba(245,237,224,0.7);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.trust-item .star { color: var(--brass); font-size: 1.4rem; }
+
+/* ===== SERVICES ===== */
+.services {
+  background: var(--oat-light);
+  position: relative;
+}
+.services::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, var(--oat), transparent);
+}
+.services-header { text-align: center; margin-bottom: 60px; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+.service-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+  opacity: 0; transform: translateY(30px);
+}
+.service-card.visible { opacity: 1; transform: translateY(0); }
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+.service-card-img {
+  height: 220px;
+  overflow: hidden;
+}
+.service-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.service-card:hover .service-card-img img { transform: scale(1.08); }
+.service-card-body { padding: 32px; }
+.service-card-icon {
+  width: 48px; height: 48px;
+  background: rgba(200,151,75,0.1);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.service-card-icon svg { width: 24px; height: 24px; color: var(--brass); }
+.service-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--charcoal);
+  margin-bottom: 10px;
+}
+.service-card p {
+  font-size: 0.95rem;
+  color: var(--charcoal-light);
+  line-height: 1.7;
+}
+
+/* ===== ABOUT ===== */
+.about {
+  background: var(--oat);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.about-image {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  opacity: 0; transform: translateX(-30px);
+  transition: all 0.8s ease;
+}
+.about-image.visible { opacity: 1; transform: translateX(0); }
+.about-image img {
+  width: 100%; height: 500px;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.about-image:hover img { transform: scale(1.04); }
+.about-image::after {
+  content: '"Since 1876"';
+  position: absolute; bottom: 24px; left: 24px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--oat);
+  font-size: 1.1rem;
+  padding: 10px 22px;
+  background: rgba(44,40,38,0.7);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+}
+.about-content {
+  opacity: 0; transform: translateX(30px);
+  transition: all 0.8s ease 0.2s;
+}
+.about-content.visible { opacity: 1; transform: translateX(0); }
+.about-content p {
+  font-size: 1.05rem;
+  color: var(--charcoal-light);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.about-signature {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--chestnut);
+  font-size: 1.2rem;
+  margin-top: 28px;
+}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials {
+  background: var(--forest);
+  position: relative;
+  overflow: hidden;
+}
+.testimonials::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, var(--oat), transparent);
+  pointer-events: none;
+}
+.testimonials .section-title { color: var(--oat); }
+.testimonials .section-sub { color: rgba(245,237,224,0.65); }
+.testimonials-header { text-align: center; margin-bottom: 60px; position: relative; z-index: 1; }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  position: relative; z-index: 1;
+}
+.testimonial-card {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(245,237,224,0.08);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  transition: all var(--transition);
+  opacity: 0; transform: translateY(30px);
+}
+.testimonial-card.visible { opacity: 1; transform: translateY(0); }
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.10);
+  border-color: rgba(200,151,75,0.2);
+}
+.testimonial-stars { color: var(--brass); font-size: 1.1rem; margin-bottom: 16px; letter-spacing: 3px; }
+.testimonial-text {
+  font-size: 1rem;
+  color: rgba(245,237,224,0.85);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.testimonial-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--brass);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--charcoal);
+  font-size: 1.1rem;
+  overflow: hidden;
+}
+.testimonial-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.testimonial-name { font-weight: 700; color: var(--oat); font-size: 0.95rem; }
+.testimonial-role { font-size: 0.8rem; color: rgba(245,237,224,0.5); }
+
+/* ===== GALLERY ===== */
+.gallery {
+  background: var(--oat-light);
+}
+.gallery-header { text-align: center; margin-bottom: 60px; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.gallery-item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  opacity: 0; transform: translateY(30px);
+  transition: all 0.6s ease;
+  aspect-ratio: 4/3;
+}
+.gallery-item.visible { opacity: 1; transform: translateY(0); }
+.gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.gallery-item:hover img { transform: scale(1.08); }
+.gallery-item-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(44,40,38,0.6) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity var(--transition);
+  display: flex; align-items: flex-end; padding: 20px;
+}
+.gallery-item:hover .gallery-item-overlay { opacity: 1; }
+.gallery-item-overlay span {
+  color: var(--oat);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+}
+
+/* ===== CTA SECTION ===== */
+.cta-section {
+  background: var(--charcoal);
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; top: -200px; right: -200px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,151,75,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  position: relative; z-index: 1;
+}
+.cta-info .section-title { color: var(--oat); }
+.cta-info .section-sub { color: rgba(245,237,224,0.6); }
+.cta-details { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+.cta-detail {
+  display: flex; align-items: center; gap: 16px;
+  color: rgba(245,237,224,0.75);
+  font-size: 0.95rem;
+}
+.cta-detail svg { width: 20px; height: 20px; color: var(--brass); flex-shrink: 0; }
+
+.cta-form {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(245,237,224,0.08);
+  border-radius: var(--radius-lg);
+  padding: 44px;
+  backdrop-filter: blur(12px);
+  opacity: 0; transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+.cta-form.visible { opacity: 1; transform: translateY(0); }
+.cta-form h3 {
+  font-family: var(--font-serif);
+  color: var(--oat);
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+.cta-form p { color: rgba(245,237,224,0.5); font-size: 0.9rem; margin-bottom: 28px; }
+.form-group { margin-bottom: 16px; }
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(245,237,224,0.06);
+  border: 1px solid rgba(245,237,224,0.1);
+  border-radius: 8px;
+  color: var(--oat);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  transition: all var(--transition);
+  outline: none;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--brass);
+  background: rgba(200,151,75,0.06);
+  box-shadow: 0 0 0 3px rgba(200,151,75,0.1);
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(245,237,224,0.3); }
+.form-group textarea { min-height: 120px; resize: vertical; }
+.btn-submit {
+  width: 100%;
+  background: var(--brass);
+  color: var(--charcoal);
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all var(--transition);
+  letter-spacing: 0.02em;
+  margin-top: 8px;
+}
+.btn-submit:hover {
+  background: var(--brass-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200,151,75,0.3);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--charcoal);
+  border-top: 1px solid rgba(245,237,224,0.06);
+  padding: 80px 0 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 60px;
+}
+.footer-brand .logo { font-size: 1.4rem; }
+.footer-brand p {
+  color: rgba(245,237,224,0.5);
+  font-size: 0.9rem;
+  margin-top: 16px;
+  line-height: 1.7;
+  max-width: 320px;
+}
+.footer-socials {
+  display: flex; gap: 12px;
+  margin-top: 24px;
+}
+.footer-socials a {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(245,237,224,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(245,237,224,0.5);
+  transition: all var(--transition);
+  font-size: 0.85rem;
+}
+.footer-socials a:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+  transform: translateY(-3px);
+}
+.footer-col h4 {
+  color: var(--oat);
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-col ul a {
+  color: rgba(245,237,224,0.45);
+  font-size: 0.9rem;
+  transition: color var(--transition);
+}
+.footer-col ul a:hover { color: var(--brass); }
+.footer-bottom {
+  border-top: 1px solid rgba(245,237,224,0.06);
+  padding: 24px 0;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-bottom p {
+  color: rgba(245,237,224,0.3);
+  font-size: 0.8rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-image img { height: 350px; }
+  .cta-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-grid > :first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    position: fixed; top: 0; right: -100%;
+    width: 280px; height: 100vh;
+    background: var(--charcoal);
+    flex-direction: column;
+    padding: 100px 40px 40px;
+    gap: 28px;
+    align-items: flex-start;
+    transition: right 0.4s ease;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.3);
+  }
+  .nav-links.open { right: 0; }
+  .nav-links a { font-size: 1.1rem; }
+  section { padding: 70px 0; }
+  .services-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .cta-form { padding: 32px; }
+}
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .trust-item .num { font-size: 2rem; }
+  .hero h1 { font-size: 2.6rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <a href="#" class="logo">The <span>Gate</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services">Pub</a></li>
+      <li><a href="#about">Story</a></li>
+      <li><a href="#testimonials">Words</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact" class="cta-btn">Visit Us</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-floating"></div>
+  <div class="hero-floating"></div>
+  <div class="container">
+    <div class="hero-badge">Est. 1876</div>
+    <h1>Your <span>local</span> since 1876</h1>
+    <p>Warm pints, good company, and the crackling hearth of a pub that's been the heart of this community for nearly 150 years.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Book a Table</a>
+      <a href="#services" class="btn-secondary">Explore Our Pub</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Scroll
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="trust-strip">
+  <div class="container trust-grid">
+    <div class="trust-item"><div class="num" data-count="149">0</div><div class="label">Years of Service</div></div>
+    <div class="trust-item"><div class="num"><span class="star">&#9733;</span> 4.9</div><div class="label">Guest Rating</div></div>
+    <div class="trust-item"><div class="num" data-count="18">0</div><div class="label">Cask Ales Rotating</div></div>
+    <div class="trust-item"><div class="num" data-count="6">0</div><div class="label">Generations Served</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header section-reveal">
+      <div class="section-label">Our Offerings</div>
+      <h2 class="section-title">The heart of the house</h2>
+      <p class="section-sub">From perfectly pulled pints to Sunday roasts that taste like home — everything we do is built around warming the spirit.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-card-img"><img src="https://images.pexels.com/photos/19909001/pexels-photo-19909001.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cask ales and craft beers behind the bar" loading="lazy"></div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M17 8h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><path d="M5 8h12v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8Z"/><path d="M8 3v5M12 3v5M16 3v5"/></svg>
+          </div>
+          <h3>Finest Cask Ales</h3>
+          <p>Eighteen rotating cask ales and craft beers from local breweries and across the British Isles. Always served at cellar temperature, never rushed.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-card-img"><img src="https://images.pexels.com/photos/32879325/pexels-photo-32879325.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Sunday roast with all the trimmings" loading="lazy"></div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 2v4a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V2"/><path d="M12 12v10"/><path d="M8 22h8"/></svg>
+          </div>
+          <h3>Hearty Pub Fare</h3>
+          <p>Proper Sunday roasts, steak-and-ale pies, sticky toffee pudding — honest British cooking made from scratch with produce from the nearby farms.</p>
+                 </div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-card-img"><img src="https://images.pexels.com/photos/5239523/pexels-photo-5239523.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cozy fireplace corner of the pub" loading="lazy"></div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 18v-6a4 4 0 0 1 8 0v6"/><rect x="4" y="18" width="16" height="3" rx="1"/><path d="M12 3v4"/><path d="M9.5 5.5 12 3l2.5 2.5"/></svg>
+          </div>
+          <h3>The Snug &amp; Hearth</h3>
+          <p>Two crackling fireplaces, worn leather armchairs, and quiet corners where conversations stretch long into the evening. No music, no screens — just company.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-image">
+      <img src="https://images.pexels.com/photos/2848681/pexels-photo-2848681.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Gate pub interior with warm lighting" loading="lazy">
+    </div>
+    <div class="about-content">
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">Where the gate stood, the pub stayed</h2>
+      <p>The Gate has been pouring pints on this corner since 1876 — the year Victoria was Empress of India and the first telephone rang. Back then it was a coaching inn for travellers passing through the old tollgate. The gate is long gone, but the pub never left.</p>
+      <p>Six generations of landlords have kept the same spirit alive: a warm welcome, a well-kept pint, and a place where everybody knows your name — or will by the time you finish your first drink. The oak beams are original. The fires have never gone out. And the stories told across this bar could fill a library.</p>
+      <p>Today we're still family-run, still pouring local ales, and still the place the neighbourhood calls its second home. Pull up a stool.</p>
+      <div class="about-signature">&mdash; The Clarke family, licensees since 1963</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header section-reveal">
+      <div class="section-label" style="color:var(--brass);">Regulars' Corner</div>
+      <h2 class="section-title">What the locals say</h2>
+      <p class="section-sub">We don't advertise. We pour good pints and let the regulars do the talking.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <div class="testimonial-text">"The Gate is exactly what a pub should be. No fruit machines, no blaring music — just a proper fire, a perfectly kept pint of bitter, and good conversation. My grandfather drank here. So will my grandchildren."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AK</div>
+          <div><div class="testimonial-name">Arthur Kendrick</div><div class="testimonial-role">Regular of 42 years</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <div class="testimonial-text">"Moved to the area three years ago and wandered in on a rainy Tuesday. Haven't stopped coming since. The Sunday roast is the best I've had outside my mum's kitchen, and the landlord remembered my name by the second visit."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">EP</div>
+          <div><div class="testimonial-name">Ella Pham</div><div class="testimonial-role">New regular, 3 years</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <div class="testimonial-text">"They rotate eighteen cask ales and every single one is served the way it should be. The team here genuinely care about what they do. It's rare to find that kind of pride in a pint these days."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JM</div>
+          <div><div class="testimonial-name">Jamie Morton</div><div class="testimonial-role">CAMRA member</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-header section-reveal">
+      <div class="section-label">Around the House</div>
+      <h2 class="section-title">The Gate in pictures</h2>
+      <p class="section-sub">A glimpse inside the most beloved pub on this side of the county.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/8804894/pexels-photo-8804894.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Gate pub exterior at golden hour" loading="lazy">
+        <div class="gallery-item-overlay"><span>The front door, always open</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/19909001/pexels-photo-19909001.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Behind the bar at The Gate" loading="lazy">
+        <div class="gallery-item-overlay"><span>Eighteen ales on rotation</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/5239523/pexels-photo-5239523.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cosy corner by the fire" loading="lazy">
+        <div class="gallery-item-overlay"><span>Fireside seating</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/32879325/pexels-photo-32879325.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Sunday roast at The Gate" loading="lazy">
+        <div class="gallery-item-overlay"><span>Sunday roasts, all year</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/2848681/pexels-photo-2848681.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Warm pub interior with wooden beams" loading="lazy">
+        <div class="gallery-item-overlay"><span>Oak beams since 1876</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/34847709/pexels-photo-34847709.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Evening atmosphere outside The Gate" loading="lazy">
+        <div class="gallery-item-overlay"><span>Evening lights</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="cta-section" id="contact">
+  <div class="container cta-grid">
+    <div class="cta-info section-reveal">
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-title">Save your spot by the fire</h2>
+      <p class="section-sub">Walk-ins are always welcome, but if you want a table by the hearth for Sunday lunch or a quiet corner for a catch-up, drop us a line.</p>
+      <div class="cta-details">
+        <div class="cta-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          14 Tollgate Lane, Market Walton, MK6 4HQ
+        </div>
+        <div class="cta-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +44 1908 247 301
+        </div>
+        <div class="cta-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Mon-Thu 4pm-11pm &bull; Fri-Sat 12pm-12am &bull; Sun 12pm-10pm
+        </div>
+      </div>
+    </div>
+    <div class="cta-form">
+      <h3>Book a table</h3>
+      <p>We'll reply within the hour during opening times.</p>
+      <form onsubmit="event.preventDefault(); this.querySelector('.btn-submit').textContent='Sent! Thank you.';">
+        <div class="form-group">
+          <input type="text" placeholder="Your name" required aria-label="Your name">
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Email address" required aria-label="Email address">
+        </div>
+        <div class="form-group">
+          <input type="tel" placeholder="Phone number" aria-label="Phone number">
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Date, time, number of guests, or just say hello..." aria-label="Your message"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Booking Enquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">The <span>Gate</span></a>
+      <p>Your local since 1876. Warm pints, crackling fires, and the best company this side of the county. Pull up a stool — you're home.</p>
+      <div class="footer-socials">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="Twitter">X</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>The Pub</h4>
+      <ul>
+        <li><a href="#services">What's on</a></li>
+        <li><a href="#">Cask ale list</a></li>
+        <li><a href="#">Sunday menu</a></li>
+        <li><a href="#">Private hire</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Visit</h4>
+      <ul>
+        <li><a href="#contact">Find us</a></li>
+        <li><a href="#">Opening hours</a></li>
+        <li><a href="#contact">Book a table</a></li>
+        <li><a href="#">Parking</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>More</h4>
+      <ul>
+        <li><a href="#about">Our story</a></li>
+        <li><a href="#">Gift vouchers</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; 2026 The Gate. All rights reserved.</p>
+    <p>Built with care, like a proper pint.</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  // Sticky nav
+  const nav = document.getElementById('nav');
+  let lastScroll = 0;
+  window.addEventListener('scroll', function() {
+    const y = window.scrollY;
+    if (y > 80) { nav.classList.add('scrolled'); }
+    else { nav.classList.remove('scrolled'); }
+    lastScroll = y;
+  }, { passive: true });
+
+  // Mobile hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', function() {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // Scroll reveal IntersectionObserver
+  const revealEls = document.querySelectorAll('.section-reveal, .service-card, .trust-item, .gallery-item, .testimonial-card, .cta-form, .about-image, .about-content');
+  const revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+  // Number counters
+  const counters = document.querySelectorAll('[data-count]');
+  const countObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        if (isNaN(target)) return;
+        countObserver.unobserve(el);
+        let current = 0;
+        const step = Math.max(1, Math.floor(target / 50));
+        const timer = setInterval(function() {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current;
+        }, 30);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(function(el) { countObserver.observe(el); });
+})();
+</script>
+</body>
+</html>
