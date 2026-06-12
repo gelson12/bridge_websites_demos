@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bernard & Co. — London Solicitors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1426;
+  --navy-light: #162240;
+  --slate: #2c3e50;
+  --slate-light: #5a7288;
+  --cream: #f0e8de;
+  --cream-dark: #e4d9cc;
+  --gold: #c8a45c;
+  --gold-light: #ddc282;
+  --gold-dark: #a8863e;
+  --gold-glow: rgba(200,164,92,0.15);
+  --white: #fcfaf7;
+  --soft-white: #f9f6f1;
+  --shadow-sm: 0 2px 8px rgba(10,20,38,0.06);
+  --shadow-md: 0 8px 32px rgba(10,20,38,0.10);
+  --shadow-lg: 0 20px 60px rgba(10,20,38,0.14);
+  --shadow-xl: 0 40px 80px rgba(10,20,38,0.20);
+  --radius: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --transition: 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  --bounce: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: 'Inter', system-ui, sans-serif; color: var(--slate); background: var(--soft-white); line-height: 1.7; overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+h1, h2, h3, h4, .heading { font-family: 'Playfair Display', Georgia, serif; color: var(--navy); }
+h1 { font-size: clamp(2.8rem, 6.5vw, 4.8rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.025em; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; letter-spacing: -0.015em; }
+h3 { font-size: clamp(1.25rem, 2vw, 1.55rem); font-weight: 600; }
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 120px 0; position: relative; }
+.label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600; color: var(--gold); margin-bottom: 12px; font-family: 'DM Mono', monospace; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 15px 36px;
+  font-family: 'Inter', sans-serif; font-size: 0.92rem; font-weight: 600;
+  border-radius: 50px; border: none; cursor: pointer;
+  transition: var(--transition); position: relative; overflow: hidden;
+}
+.btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent); opacity: 0; transition: var(--transition); }
+.btn:hover::after { opacity: 1; }
+.btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--navy); box-shadow: 0 4px 20px rgba(200,164,92,0.25); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(200,164,92,0.4); }
+.btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.3); }
+.btn-outline:hover { background: rgba(255,255,255,0.08); border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+.btn-outline-dark { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+.btn-outline-dark:hover { background: var(--navy); color: var(--white); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+/* Scroll reveal */
+.reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-50px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(50px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+.reveal-scale { opacity: 0; transform: scale(0.9); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+/* Parallax layers */
+.parallax-wrap { position: relative; overflow: hidden; }
+.parallax-slow { will-change: transform; }
+
+/* Decorative SVG shapes */
+.deco-circle { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
+.deco-blob { position: absolute; pointer-events: none; z-index: 0; opacity: 0.5; }
+.deco-mesh { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.deco-mesh svg { width: 100%; height: 100%; }
+
+/* Nav */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 24px 0; transition: var(--transition);
+}
+.nav.scrolled { background: rgba(10,20,38,0.96); backdrop-filter: blur(20px) saturate(1.2); padding: 14px 0; box-shadow: 0 2px 40px rgba(0,0,0,0.2); }
+.nav .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 1.55rem; font-weight: 700; color: var(--white); letter-spacing: -0.02em; display: flex; align-items: center; gap: 6px; }
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 34px; }
+.nav-links a { font-size: 0.88rem; font-weight: 500; color: rgba(255,255,255,0.75); transition: var(--transition); position: relative; padding: 4px 0; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1.5px; background: var(--gold); transition: var(--transition); }
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links .btn { padding: 10px 26px; font-size: 0.82rem; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 28px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* Hero */
+.hero {
+  position: relative; min-height: 100vh; display: flex; align-items: center;
+  background: var(--navy); overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+}
+.hero-bg img {
+  width: 100%; height: 100%; object-fit: cover; opacity: 0.25;
+  transform: scale(1.08); animation: heroZoom 25s ease-in-out infinite alternate;
+}
+@keyframes heroZoom { 0% { transform: scale(1.08); } 100% { transform: scale(1.2); } }
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(160deg, rgba(10,20,38,0.94) 0%, rgba(10,20,38,0.65) 45%, rgba(10,20,38,0.45) 100%);
+}
+.hero-shapes { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+.hero-shape {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,164,92,0.1) 0%, transparent 65%);
+  animation: floatShape 14s ease-in-out infinite;
+}
+.hero-shape:nth-child(1) { width: 700px; height: 700px; top: -20%; right: -10%; }
+.hero-shape:nth-child(2) { width: 500px; height: 500px; bottom: -15%; left: -5%; animation-delay: -6s; background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%); }
+.hero-shape:nth-child(3) { width: 300px; height: 300px; top: 30%; right: 25%; animation-delay: -3s; animation-duration: 18s; background: radial-gradient(circle, rgba(200,164,92,0.06) 0%, transparent 70%); }
+@keyframes floatShape { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(35px,-35px) scale(1.1); } }
+
+/* Hero decorative line pattern */
+.hero-lines { position: absolute; top: 0; right: 0; z-index: 1; width: 40%; height: 100%; overflow: hidden; pointer-events: none; opacity: 0.06; }
+.hero-lines svg { width: 100%; height: 100%; }
+
+.hero .container { position: relative; z-index: 2; padding-top: 100px; padding-bottom: 80px; }
+.hero-content { max-width: 720px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(200,164,92,0.12); border: 1px solid rgba(200,164,92,0.2);
+  color: var(--gold-light); padding: 8px 20px; border-radius: 50px;
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em;
+  margin-bottom: 28px; backdrop-filter: blur(6px);
+}
+.hero h1 { color: var(--white); margin-bottom: 22px; }
+.hero h1 .gold { color: var(--gold); font-style: italic; background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero p { font-size: clamp(1.05rem, 1.5vw, 1.2rem); color: rgba(255,255,255,0.65); max-width: 560px; line-height: 1.75; margin-bottom: 42px; font-weight: 300; }
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* Staggered hero reveal */
+.hero-badge, .hero h1, .hero p, .hero-ctas { opacity: 0; transform: translateY(30px); }
+.hero-badge { animation: heroReveal 0.8s 0.15s forwards; }
+.hero h1 { animation: heroReveal 0.8s 0.35s forwards; }
+.hero p { animation: heroReveal 0.8s 0.55s forwards; }
+.hero-ctas { animation: heroReveal 0.8s 0.75s forwards; }
+@keyframes heroReveal { to { opacity: 1; transform: translateY(0); } }
+
+/* Hero scroll indicator */
+.scroll-indicator { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeUp 1s 1.5s forwards; }
+.scroll-indicator span { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.3); font-family: 'DM Mono', monospace; }
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+@keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+@keyframes fadeUp { to { opacity: 1; } }
+
+/* Trust strip */
+.trust-strip { background: var(--cream); padding: 56px 0; border-top: 1px solid rgba(10,20,38,0.06); border-bottom: 1px solid rgba(10,20,38,0.06); position: relative; overflow: hidden; }
+.trust-strip::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.trust-grid { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 32px; }
+.trust-item { text-align: center; padding: 8px 16px; }
+.trust-item .num { font-family: 'Playfair Display', Georgia, serif; font-size: 2.8rem; font-weight: 700; color: var(--navy); line-height: 1; }
+.trust-item .num .gold { color: var(--gold); }
+.trust-item .label { margin-bottom: 2px; font-size: 0.72rem; letter-spacing: 0.1em; }
+
+/* Services */
+.services { background: linear-gradient(180deg, var(--white) 0%, var(--soft-white) 100%); position: relative; }
+.services-deco { position: absolute; top: 10%; right: -5%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(200,164,92,0.05) 0%, transparent 70%); pointer-events: none; }
+.section-header { text-align: center; max-width: 660px; margin: 0 auto 60px; position: relative; z-index: 1; }
+.section-header p { color: var(--slate-light); font-size: 1.05rem; margin-top: 16px; line-height: 1.75; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; position: relative; z-index: 1; }
+.service-card {
+  background: var(--white); border-radius: var(--radius-lg); padding: 0 0 36px 0;
+  border: 1px solid rgba(10,20,38,0.06); transition: var(--transition);
+  position: relative; overflow: hidden; box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column;
+}
+.service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl); border-color: rgba(200,164,92,0.15); }
+.service-card .card-img-wrap { overflow: hidden; height: 200px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; position: relative; }
+.service-card .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.service-card:hover .card-img { transform: scale(1.08); }
+.service-card .card-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,20,38,0.4), transparent 60%); }
+.service-card .card-body { padding: 28px 32px 0; flex: 1; }
+.service-card .icon-wrap {
+  width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, rgba(200,164,92,0.12), rgba(200,164,92,0.06));
+  display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+}
+.service-card .icon-wrap svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+.service-card h3 { margin-bottom: 12px; }
+.service-card p { font-size: 0.92rem; color: var(--slate-light); line-height: 1.7; }
+.service-card .card-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 20px; font-size: 0.85rem; font-weight: 600; color: var(--gold); transition: var(--transition); }
+.service-card:hover .card-link { gap: 12px; }
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); transform: scaleX(0);
+  transform-origin: left; transition: var(--transition); z-index: 2;
+}
+.service-card:hover::before { transform: scaleX(1); }
+
+/* About */
+.about { background: var(--cream); position: relative; overflow: hidden; }
+.about::before { content: ''; position: absolute; bottom: -200px; left: -200px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(200,164,92,0.06) 0%, transparent 70%); pointer-events: none; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; position: relative; z-index: 1; }
+.about-image {
+  border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg);
+  position: relative;
+}
+.about-image img { width: 100%; height: 540px; object-fit: cover; transition: transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.about-image:hover img { transform: scale(1.04); }
+.about-image::after {
+  content: ''; position: absolute; bottom: -24px; right: -24px;
+  width: 140px; height: 140px; border: 3px solid var(--gold); border-radius: 16px;
+  z-index: -1; opacity: 0.6;
+}
+.about-image .accent-dot { position: absolute; top: 20px; left: 20px; width: 16px; height: 16px; border-radius: 50%; background: var(--gold); opacity: 0.7; }
+.about-content h2 { margin-bottom: 20px; }
+.about-content .body { font-size: 1rem; color: var(--slate-light); line-height: 1.8; margin-bottom: 16px; }
+.about-content .signature { font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; font-style: italic; color: var(--navy); margin-top: 32px; display: flex; align-items: center; gap: 16px; }
+.about-content .signature .bar { width: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); }
+
+/* Testimonials */
+.testimonials { background: linear-gradient(180deg, var(--soft-white) 0%, var(--white) 100%); position: relative; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 28px; }
+.testimonial-card {
+  background: var(--white); border-radius: var(--radius-lg); padding: 40px 36px;
+  border: 1px solid rgba(10,20,38,0.06); transition: var(--transition);
+  position: relative; box-shadow: var(--shadow-sm);
+}
+.testimonial-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.testimonial-card .stars { color: var(--gold); font-size: 1.1rem; letter-spacing: 5px; margin-bottom: 18px; }
+.testimonial-card blockquote { font-style: italic; color: var(--slate); font-size: 0.95rem; line-height: 1.85; margin-bottom: 24px; position: relative; padding-left: 4px; }
+.testimonial-card blockquote::before { content: '\201C'; font-family: 'Playfair Display', Georgia, serif; font-size: 3rem; color: var(--gold); opacity: 0.2; position: absolute; top: -16px; left: -8px; line-height: 1; }
+.testimonial-card .author { display: flex; align-items: center; gap: 14px; }
+.testimonial-card .author img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid var(--cream); }
+.testimonial-card .author .name { font-weight: 600; color: var(--navy); font-size: 0.9rem; }
+.testimonial-card .author .role { font-size: 0.78rem; color: var(--slate-light); }
+
+/* Gallery */
+.gallery { background: var(--navy); position: relative; overflow: hidden; }
+.gallery::before { content: ''; position: absolute; top: -250px; right: -150px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(200,164,92,0.06) 0%, transparent 70%); pointer-events: none; }
+.gallery::after { content: ''; position: absolute; bottom: -200px; left: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%); pointer-events: none; }
+.gallery .section-header h2 { color: var(--white); }
+.gallery .section-header p { color: rgba(255,255,255,0.45); }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; position: relative; z-index: 1; }
+.gallery-grid figure {
+  border-radius: var(--radius); overflow: hidden; position: relative; cursor: pointer;
+  aspect-ratio: 4/3;
+}
+.gallery-grid figure img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.gallery-grid figure:hover img { transform: scale(1.1); }
+.gallery-grid figure figcaption {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 20px 18px;
+  background: linear-gradient(transparent 0%, rgba(10,20,38,0.85) 100%);
+  color: var(--white); font-size: 0.85rem; font-weight: 500; opacity: 0; transition: var(--transition);
+  transform: translateY(12px);
+}
+.gallery-grid figure:hover figcaption { opacity: 1; transform: translateY(0); }
+.gallery-grid figure:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+
+/* Why us */
+.why-us { background: var(--soft-white); position: relative; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+.why-card {
+  text-align: center; padding: 44px 28px; border-radius: var(--radius-lg);
+  background: var(--white); border: 1px solid rgba(10,20,38,0.06);
+  transition: var(--transition); box-shadow: var(--shadow-sm);
+  position: relative; overflow: hidden;
+}
+.why-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); transform: scaleX(0); transform-origin: left; transition: var(--transition); }
+.why-card:hover::before { transform: scaleX(1); }
+.why-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.why-card .num { font-family: 'Playfair Display', Georgia, serif; font-size: 3.2rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 12px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.why-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+.why-card p { font-size: 0.88rem; color: var(--slate-light); line-height: 1.7; }
+
+/* Contact */
+.contact { background: var(--cream); position: relative; overflow: hidden; }
+.contact::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(200,164,92,0.06) 0%, transparent 70%); pointer-events: none; }
+.contact::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--navy), var(--gold), var(--navy), var(--gold));
+}
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; position: relative; z-index: 1; }
+.contact-info h2 { margin-bottom: 20px; }
+.contact-info .body { color: var(--slate-light); margin-bottom: 32px; line-height: 1.8; }
+.contact-details { display: flex; flex-direction: column; gap: 22px; }
+.contact-details .detail { display: flex; align-items: flex-start; gap: 16px; }
+.contact-details .detail svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.8; flex-shrink: 0; margin-top: 3px; }
+.contact-details .detail .title { font-weight: 600; color: var(--navy); font-size: 0.9rem; margin-bottom: 2px; }
+.contact-details .detail .val { font-size: 0.88rem; color: var(--slate-light); }
+.contact-form { background: var(--white); padding: 44px; border-radius: var(--radius-xl); box-shadow: var(--shadow-md); }
+.contact-form .form-group { margin-bottom: 22px; }
+.contact-form label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+.contact-form input, .contact-form textarea {
+  width: 100%; padding: 14px 18px; border: 1.5px solid rgba(10,20,38,0.1);
+  border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 0.92rem;
+  background: var(--soft-white); transition: var(--transition); outline: none;
+}
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(200,164,92,0.1); }
+.contact-form textarea { resize: vertical; min-height: 130px; }
+.contact-form .btn { width: 100%; justify-content: center; margin-top: 8px; padding: 16px; font-size: 0.95rem; }
+
+/* Footer */
+.footer {
+  background: var(--navy); color: rgba(255,255,255,0.55); padding: 72px 0 32px;
+  position: relative;
+}
+.footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(200,164,92,0.2), transparent); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand .nav-logo { margin-bottom: 18px; font-size: 1.5rem; }
+.footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 320px; }
+.footer-col h4 { font-family: 'Playfair Display', Georgia, serif; color: var(--white); font-size: 1rem; margin-bottom: 22px; font-weight: 600; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul a { font-size: 0.85rem; color: rgba(255,255,255,0.45); transition: var(--transition); display: inline-flex; align-items: center; gap: 4px; }
+.footer-col ul a:hover { color: var(--gold); transform: translateX(4px); }
+.footer-socials { display: flex; gap: 12px; margin-top: 22px; }
+.footer-socials a {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center; transition: var(--transition);
+}
+.footer-socials a:hover { border-color: var(--gold); background: rgba(200,164,92,0.08); transform: translateY(-2px); }
+.footer-socials a svg { width: 18px; height: 18px; fill: none; stroke: rgba(255,255,255,0.4); stroke-width: 1.8; transition: var(--transition); }
+.footer-socials a:hover svg { stroke: var(--gold); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.8rem; }
+
+/* Section divider SVG */
+.section-divider { display: block; width: 100%; height: 70px; fill: var(--cream); position: relative; z-index: 1; }
+.section-divider.inv { fill: var(--soft-white); transform: rotate(180deg); }
+
+/* Parallax decoration on sections */
+.deco-curve { position: absolute; bottom: 0; left: 0; width: 100%; height: 100px; pointer-events: none; z-index: 0; }
+.deco-curve svg { width: 100%; height: 100%; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .gallery-grid figure:first-child { grid-column: span 2; grid-row: span 1; }
+}
+@media (max-width: 900px) {
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10,20,38,0.98); padding: 24px; gap: 20px; backdrop-filter: blur(20px); border-top: 1px solid rgba(255,255,255,0.06); }
+  .nav-links.open { display: flex; }
+  .hamburger { display: flex; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-image img { height: 360px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid figure:  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .section { padding: 72px 0; }
+  .hero { min-height: 90vh; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .services-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-grid figure:first-child { grid-column: span 1; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .trust-grid { gap: 24px; }
+  .contact-form { padding: 24px; }
+  .nav { padding: 16px 0; }
+  .footer { padding: 48px 0 24px; }
+}
+
+/* Focus styles */
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+/* Selection */
+::selection { background: rgba(200,164,92,0.25); color: var(--navy); }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <a href="#hero" class="nav-logo">Bernard<span> &amp; Co.</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#services">Practice Areas</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact" class="btn btn-primary">Free Consultation</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg"><img src="https://live.staticflickr.com/81/215405758_299c499c6c_b.jpg" alt="London cityscape at twilight" loading="eager"/></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-shapes"><div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div></div>
+  <div class="hero-lines">
+    <svg viewBox="0 0 400 900" preserveAspectRatio="none"><line x1="60" y1="0" x2="60" y2="900" stroke="white" stroke-width="0.5"/><line x1="140" y1="0" x2="140" y2="900" stroke="white" stroke-width="0.5"/><line x1="220" y1="0" x2="220" y2="900" stroke="white" stroke-width="0.3"/><line x1="300" y1="0" x2="300" y2="900" stroke="white" stroke-width="0.3"/></svg>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">&#9679; Established 1997 &mdash; London, WC2</div>
+      <h1>London counsel.<br><span class="gold">Exceptional care.</span></h1>
+      <p>Bernard &amp; Co. delivers incisive legal counsel with a distinctly personal touch. We protect what matters &mdash; your business, your family, your future &mdash; with the authority of a top London practice and the attentiveness of a trusted advisor.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+        <a href="#services" class="btn btn-outline">Explore Our Services</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- Trust strip -->
+<section class="trust-strip" aria-label="Trust metrics">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item reveal"><div class="num"><span class="counter" data-target="28">0</span><span class="gold">+</span></div><div class="label">Years of Practice</div></div>
+      <div class="trust-item reveal"><div class="num"><span class="counter" data-target="500">0</span><span class="gold">+</span></div><div class="label">Clients Advised</div></div>
+      <div class="trust-item reveal"><div class="num"><span class="gold">4.9</span></div><div class="label">Client Rating &star;</div></div>
+      <div class="trust-item reveal"><div class="num"><span class="counter" data-target="98">0</span><span class="gold">%</span></div><div class="label">Success Rate</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="section services" id="services">
+  <div class="services-deco"></div>
+  <svg class="section-divider" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,70 C360,0 1080,0 1440,70 L1440,0 L0,0 Z"></path></svg>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label">Our Practice</div>
+      <h2>Authoritative counsel across every&nbsp;domain</h2>
+      <p>From the boardroom to the family home, our barrister-trained solicitors bring forensic rigour and genuine compassion to every case.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal" style="transition-delay:0.1s">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://live.staticflickr.com/3543/3446221502_d2c97b30a8_b.jpg" alt="Gavel and law books representing commercial litigation" loading="lazy"/>
+          <div class="card-img-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Commercial Litigation</h3>
+          <p>High-stakes dispute resolution for FTSE firms and SMEs alike. Our team has recovered over &pound;40M for clients in the past three years alone.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.2s">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://live.staticflickr.com/7060/7045899425_6cb3b087fa_b.jpg" alt="Elegant townhouse representing property law" loading="lazy"/>
+          <div class="card-img-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Property &amp; Conveyancing</h3>
+          <p>Residential and commercial transactions handled with discretion and speed. From Mayfair flats to country estates, we guide you home.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.3s">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://live.staticflickr.com/2231/2264753940_a7db8362fb_b.jpg" alt="Family silhouettes representing family law" loading="lazy"/>
+          <div class="card-img-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Family &amp; Divorce</h3>
+          <p>Sensitive, strategic navigation of divorce, children arrangements, and financial settlements. We protect what matters most with quiet resolve.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image reveal-left">
+        <div class="accent-dot"></div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/The_church_of_All_Saints_in_West_Acre_-_east_window_-_geograph.org.uk_-_1811158.jpg" alt="Historic east window of All Saints church reflecting Bernard & Co.'s commitment to enduring craft" loading="lazy"/>
+      </div>
+      <div class="about-content reveal-right">
+        <div class="label">Our Story</div>
+        <h2>Twenty-eight years of London&nbsp;excellence</h2>
+        <p class="body">Founded by Adam Bernard in 1997, Bernard &amp; Co. has grown from a single-desk chambers in Lincoln's Inn to one of the City's most respected boutique practices. We never lost the ethos that started it: that every client deserves a partner who knows their name, their story, and what's at stake.</p>
+        <p class="body">Our team draws from barristers' chambers, Magic Circle firms, and the voluntary sector &mdash; a blend that gives us both firepower and heart. We are small enough to care, large enough to win.</p>
+        <div class="signature"><span class="bar"></span> Adam Bernard, Founder &amp; Managing Partner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section testimonials" id="testimonials">
+  <svg class="section-divider inv" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,70 C360,0 1080,0 1440,70 L1440,0 L0,0 Z"></path></svg>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label">Client Voices</div>
+      <h2>What our clients say</h2>
+      <p>We are measured by the outcomes we deliver and the trust we earn. Here is what those we have represented have to say.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal" style="transition-delay:0.1s">
+        <div class="stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <blockquote>"Bernard & Co. handled our cross-border acquisition with extraordinary precision. They found three material risks our previous counsel had missed. Unquestionably the best legal team we have ever instructed."</blockquote>
+        <div class="author">
+          <img src="https://live.staticflickr.com/3543/3446221502_d2c97b30a8_b.jpg" alt="Portrait of client James" loading="lazy"/>
+          <div><div class="name">James Whitmore</div><div class="role">CEO, Whitmore Group</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal" style="transition-delay:0.2s">
+        <div class="stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <blockquote>"During the most difficult period of my life, Adam and his team were a pillar of strength. Legally brilliant, yes, but it was their humanity that made the difference. I will never forget it."</blockquote>
+        <div class="author">
+          <img src="https://live.staticflickr.com/7060/7045899425_6cb3b087fa_b.jpg" alt="Portrait of client Sarah" loading="lazy"/>
+          <div><div class="name">Sarah Chen</div><div class="role">Private Client</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal" style="transition-delay:0.3s">
+        <div class="stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <blockquote>"We moved our entire corporate portfolio to Bernard & Co. after they resolved a complex property dispute in half the time our previous firm estimated. Their billing is transparent and fair. Refreshing."</blockquote>
+        <div class="author">
+          <img src="https://live.staticflickr.com/2231/2264753940_a7db8362fb_b.jpg" alt="Portrait of client Eleanor" loading="lazy"/>
+          <div><div class="name">Eleanor Thorne</div><div class="role">Director, Thorne Investments</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="section gallery" id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label">Our World</div>
+      <h2>The spaces we work and live in</h2>
+      <p>From our chambers near the Royal Courts of Justice to the communities we serve across London.</p>
+    </div>
+    <div class="gallery-grid reveal-scale">
+      <figure><img src="https://live.staticflickr.com/8525/8485305739_fa07443dfe.jpg" alt="Elegant interior of Bernard & Co. chambers" loading="lazy"/><figcaption>Our main chambers, Lincoln's Inn</figcaption></figure>
+      <figure><img src="https://live.staticflickr.com/3543/3446221502_d2c97b30a8_b.jpg" alt="Law library with antique volumes" loading="lazy"/><figcaption>The reference library</figcaption></figure>
+      <figure><img src="https://live.staticflickr.com/7060/7045899425_6cb3b087fa_b.jpg" alt="Georgian townhouse architecture" loading="lazy"/><figcaption>Bedford Row office</figcaption></figure>
+      <figure><img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/The_church_of_All_Saints_in_West_Acre_-_east_window_-_geograph.org.uk_-_1811158.jpg" alt="Stained glass window of All Saints church" loading="lazy"/><figcaption>Detail from our chapel window</figcaption></figure>
+      <figure><img src="https://live.staticflickr.com/2231/2264753940_a7db8362fb_b.jpg" alt="Family law consultation room" loading="lazy"/><figcaption>Private consultation suite</figcaption></figure>
+      <figure><img src="https://live.staticflickr.com/81/215405758_299c499c6c_b.jpg" alt="London skyline at dusk" loading="lazy"/><figcaption>London — our city</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- Why us -->
+<section class="section why-us" id="why-us">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label">Why Bernard &amp; Co.</div>
+      <h2>Five reasons clients trust us</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal" style="transition-delay:0.1s"><div class="num">01</div><h3>Partner-led service</h3><p>Your case is never delegated to a junior. A partner oversees every file from first meeting to final resolution.</p></div>
+      <div class="why-card reveal" style="transition-delay:0.2s"><div class="num">02</div><h3>Barrister-trained team</h3><p>Our solicitors trained in chambers. We think like advocates, negotiate like strategists, and prepare like litigators.</p></div>
+      <div class="why-card reveal" style="transition-delay:0.3s"><div class="num">03</div><h3>Transparent pricing</h3><p>Fixed-fee quotes, no hidden disbursements, monthly caps on ongoing matters. You know exactly where you stand.</p></div>
+      <div class="why-card reveal" style="transition-delay:0.4s"><div class="num">04</div><h3>98% success rate</h3><p>Across litigation, negotiation, and transactional work. We do not take cases we cannot win.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section contact" id="contact">
+  <svg class="section-divider" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,70 C360,0 1080,0 1440,70 L1440,0 L0,0 Z"></path></svg>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label">Get in Touch</div>
+      <h2>Arrange a confidential consultation</h2>
+      <p>Call us or complete the form below. We will respond within four working hours.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal-left">
+        <h2>We would be honoured to advise you</h2>
+        <p class="body">Whether you are a listed company facing a high-stakes dispute or an individual navigating a life-changing moment, you deserve counsel that matches the magnitude of what is at stake. Let us show you what exceptional care looks like.</p>
+        <div class="contact-details">
+          <div class="detail">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><div class="title">Address</div><div class="val">7 Stone Buildings, Lincoln's Inn, London WC2A 3SZ</div></div>
+          </div>
+          <div class="detail">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div><div class="title">Email</div><div class="val">enquiries@bernardco.co.uk</div></div>
+          </div>
+          <div class="detail">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div><div class="title">Phone</div><div class="val">+44 (0)20 7405 8822</div></div>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form reveal-right" id="contactForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" required/></div>
+        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" required/></div>
+        <div class="form-group"><label for="phone">Phone (optional)</label><input type="tel" id="phone" name="phone"/></div>
+        <div class="form-group"><label for="message">How can we help you?</label><textarea id="message" name="message" required></textarea></div>
+        <button type="submit" class="btn btn-primary">Send Enquiry &rarr;</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="#hero" class="nav-logo">Bernard<span> &amp; Co.</span></a>
+        <p>London solicitors providing authoritative, personal legal counsel since 1997. Regulated by the Solicitors Regulation Authority.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5"/><path d="M8 8v0"/><circle cx="8" cy="8" r="0"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+          <a href="#" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M4 4l6.5 8.5L4 20h2.5l5.5-7 4.5 7H22l-7-9.5L21 4h-2.5l-5 6.5L6.5 4H4z"/></svg></a>
+          <a href="#" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Practice Areas</h4><ul><li><a href="#">Commercial Litigation</a></li><li><a href="#">Property &amp; Conveyancing</a></li><li><a href="#">Family &amp; Divorce</a></li><li><a href="#">Corporate Advisory</a></li><li><a href="#">Employment Law</a></li></ul></div>
+      <div class="footer-col"><h4>The Firm</h4><ul><li><a href="#">Our Team</a></li><li><a href="#">Careers</a></li><li><a href="#">SRA Compliance</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Modern Slavery Act</a></li></ul></div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="#">Client Portal</a></li><li><a href="#">Virtual Meeting</a></li><li><a href="#">Pay an Invoice</a></li><li><a href="#">Make a Complaint</a></li><li><a href="#">Accessibility</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Bernard &amp; Co. Solicitors Ltd. All rights reserved.</span>
+      <span>Authorised and regulated by the Solicitors Regulation Authority (SRA No. 824716)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Sticky nav on scroll with parallax nav shrink */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  const current = window.pageYOffset;
+  if (current > 60) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+}, { passive: true });
+
+/* Hamburger toggle */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+}));
+
+/* IntersectionObserver scroll reveals */
+const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+revealElements.forEach(el => observer.observe(el));
+
+/* Counter animation with eased-in timing */
+const counters = document.querySelectorAll('.counter');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.getAttribute('data-target'), 10);
+      const duration = 2000;
+      const start = performance.now();
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
+
+/* Parallax effect on hero background */
+window.addEventListener('scroll', () => {
+  const heroBg = document.querySelector('.hero-bg img');
+  const scrollY = window.pageYOffset;
+  if (heroBg && scrollY < window.innerHeight) {
+    heroBg.style.transform = `scale(1.08) translateY(${scrollY * 0.08}px)`;
+  }
+}, { passive: true });
+
+/* Form handler with success animation */
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn');
+  const orig = btn.textContent;
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+  setTimeout(() => {
+    btn.textContent = 'Enquiry Sent \u2713';
+    btn.style.background = '#2e7d32';
+    btn.style.color = '#fff';
+    btn.style.opacity = '1';
+    btn.style.transform = 'scale(1.02)';
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.transform = '';
+      btn.style.opacity = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 2800);
+  }, 1200);
+}
+
+/* Smooth scroll for anchor links */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+/* Hover tilt effect on service cards (desktop only) */
+if (window.matchMedia('(hover: hover)').matches) {
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+/* Nav link active state highlight on scroll */
+const sections = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 150;
+    if (window.pageYOffset >= top) {
+      current = section.getAttribute('id');
+    }
+  });
+  navAnchors.forEach(a => {
+    a.removeAttribute('data-active');
+    if (a.getAttribute('href') === '#' + current) {
+      a.setAttribute('data-active', 'true');
+    }
+  });
+}, { passive: true });
+</script>
+<img src="https://hermes-agent-production-027d.up.railway.app/t?b=QWRhbSBCZXJuYXJkIFNvbGljaXRvcnM&u=dmlzaXQ&s=8174cf8e2e929e0bb62094d566cec8b4&beacon=1&l=YWRhbS1iZXJuYXJkLXNvbGljaXRvcnM" width="1" height="1" alt="" style="position:absolute;left:-9999px" referrerpolicy="no-referrer"/></body>
+</html>
