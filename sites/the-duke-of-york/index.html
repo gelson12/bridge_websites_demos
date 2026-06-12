@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Duke of York | Pub & Kitchen, W7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --burgundy: #6B2D3A;
+  --burgundy-dark: #4A1E28;
+  --burgundy-light: #8B3E4E;
+  --oak: #8B5E3C;
+  --oak-light: #A67B5B;
+  --cream: #F5EEE6;
+  --cream-dark: #E8DCCC;
+  --cream-light: #FDFAF6;
+  --brass: #C9A84C;
+  --brass-light: #DBC46A;
+  --brass-dark: #A88830;
+  --forest: #2D4A3E;
+  --forest-light: #3E6656;
+  --charcoal: #2C2422;
+  --warm-white: #FFFAF5;
+  --shadow-sm: 0 2px 8px rgba(44,36,34,0.06);
+  --shadow-md: 0 8px 30px rgba(44,36,34,0.1);
+  --shadow-lg: 0 20px 60px rgba(44,36,34,0.15);
+  --shadow-xl: 0 30px 80px rgba(44,36,34,0.2);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Lato',sans-serif;color:var(--charcoal);background:var(--cream-light);overflow-x:hidden;line-height:1.6}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2;font-weight:600}
+h2{font-size:clamp(2rem,4.5vw,3.4rem);margin-bottom:0.5em}
+h2 span{display:block;font-size:0.55em;font-family:'Lato',sans-serif;font-weight:400;color:var(--oak);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.3em}
+p{color:var(--charcoal);line-height:1.7;font-weight:300;font-size:clamp(0.95rem,1.1vw,1.1rem)}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section-pad{padding:clamp(4rem,10vw,8rem) 0}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:50px;font-family:'Lato',sans-serif;font-weight:700;font-size:0.95rem;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;transition:all 0.4s var(--ease-out);border:none;position:relative;overflow:hidden}
+.btn-primary{background:var(--brass);color:var(--charcoal)}.btn-primary:hover{background:var(--brass-light);transform:translateY(-2px);box-shadow:0 8px 25px rgba(201,168,76,0.35)}
+.btn-secondary{background:transparent;color:var(--cream);border:2px solid var(--cream)}.btn-secondary:hover{background:var(--cream);color:var(--burgundy);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--burgundy);border:2px solid var(--burgundy)}.btn-outline:hover{background:var(--burgundy);color:var(--cream);transform:translateY(-2px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:all 0.5s var(--ease-smooth)}.nav-scrolled{background:rgba(74,30,40,0.97);padding:12px 0;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 4px 30px rgba(0,0,0,0.2)}
+nav .container{display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--cream);letter-spacing:0.02em}.nav-brand span{color:var(--brass)}.nav-brand small{display:block;font-family:'Lato',sans-serif;font-size:0.5rem;font-weight:300;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream-dark);margin-top:-2px}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{font-family:'Lato',sans-serif;font-size:0.85rem;font-weight:400;color:var(--cream);letter-spacing:0.08em;text-transform:uppercase;transition:color 0.3s;position:relative}.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--brass);transition:width 0.4s var(--ease-out)}.nav-links a:hover::after,.nav-links a.active-link::after{width:100%}.nav-links a:hover{color:var(--brass)}
+.nav-cta{padding:10px 24px;border-radius:50px;background:var(--brass);color:var(--charcoal)!important;font-weight:700!important;font-size:0.75rem!important}.nav-cta::after{display:none!important}.nav-cta:hover{background:var(--brass-light)!important;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}.hamburger span{width:28px;height:2px;background:var(--cream);border-radius:2px;transition:all 0.4s var(--ease-out)}.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}.hamburger.active span:nth-child(2){opacity:0}.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.pexels.com/photos/34847709/pexels-photo-34847709.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') center/cover no-repeat;transform:scale(1.05);animation:heroZoom 20s ease-in-out infinite alternate}
+@keyframes heroZoom{from{transform:scale(1.05)}to{transform:scale(1.15)}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(74,30,40,0.82) 0%,rgba(44,36,34,0.7) 50%,rgba(45,74,62,0.5) 100%)}
+.hero-shapes{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-shapes svg{position:absolute;opacity:0.08}
+.hero-shapes .shape1{top:-10%;right:-5%;width:600px;height:600px}.hero-shapes .shape2{bottom:-15%;left:-8%;width:500px;height:500px}
+.hero .container{position:relative;z-index:2;width:100%}
+.hero-content{max-width:700px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.2);border:1px solid rgba(201,168,76,0.3);border-radius:50px;padding:8px 20px;margin-bottom:32px;opacity:0;animation:fadeUp 0.8s 0.3s var(--ease-out) forwards}.hero-badge span{color:var(--brass);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:700}.hero-badge svg{width:16px;height:16px;fill:var(--brass)}
+.hero h1{font-size:clamp(2.8rem,7vw,5.5rem);color:var(--cream);line-height:1.05;letter-spacing:-0.02em;margin-bottom:24px;opacity:0;animation:fadeUp 0.8s 0.5s var(--ease-out) forwards}.hero h1 em{font-style:italic;color:var(--brass)}
+.hero p{font-size:clamp(1.05rem,1.3vw,1.3rem);color:rgba(245,238,230,0.85);max-width:540px;margin-bottom:40px;font-weight:300;opacity:0;animation:fadeUp 0.8s 0.7s var(--ease-out) forwards}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s 0.9s var(--ease-out) forwards}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(245,238,230,0.5);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;animation:float 3s ease-in-out infinite;opacity:0;animation:fadeUp 0.8s 1.2s var(--ease-out) forwards}.hero-scroll svg{width:20px;height:20px;fill:rgba(245,238,230,0.5)}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+
+/* TRUST STRIP */
+.trust-strip{background:var(--burgundy-dark);padding:40px 0;border-top:1px solid rgba(201,168,76,0.15);border-bottom:1px solid rgba(201,168,76,0.15)}
+.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px;text-align:center}
+.trust-item{opacity:0;transition:all 0.6s var(--ease-out)}.trust-item.revealed{opacity:1}.trust-item .num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--brass);line-height:1}.trust-item .num span{display:inline}.trust-item .label{font-size:0.8rem;color:rgba(245,238,230,0.65);letter-spacing:0.06em;text-transform:uppercase;margin-top:6px}
+
+/* ABOUT */
+.about{position:relative}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:center}
+.about-image{position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-xl);opacity:0;transform:translateX(-40px);transition:all 0.8s var(--ease-out)}.about-image.revealed{opacity:1;transform:translateX(0)}.about-image img{width:100%;height:520px;object-fit:cover;transition:transform 0.8s var(--ease-smooth)}.about-image:hover img{transform:scale(1.04)}.about-image::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(74,30,40,0.15),transparent 50%)}
+.about-decor{position:absolute;top:-20px;right:-20px;width:120px;height:120px;border:3px solid var(--brass);border-radius:var(--radius-md);z-index:-1;opacity:0.3}
+.about-content{opacity:0;transform:translateX(40px);transition:all 0.8s var(--ease-out) 0.2s}.about-content.revealed{opacity:1;transform:translateX(0)}
+.about-content h2{color:var(--burgundy)}.about-content h2 span{color:var(--oak)}
+.about-content p{margin-bottom:20px;color:rgba(44,36,34,0.75);font-size:clamp(0.95rem,1.05vw,1.1rem)}
+.about-sign{display:flex;align-items:center;gap:16px;margin-top:32px;padding:20px 0;border-top:1px solid var(--cream-dark)}
+.about-sign-avatar{width:50px;height:50px;border-radius:50%;background:var(--brass);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--charcoal);font-size:1.2rem}.about-sign-text{font-size:0.85rem}.about-sign-text strong{font-family:'Playfair Display',serif;font-size:1rem;color:var(--burgundy)}.about-sign-text small{display:block;color:var(--oak);font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase}
+
+/* FEATURES */
+.features{background:var(--cream);position:relative;overflow:hidden}
+.features::before{content:'';position:absolute;top:-120px;left:0;right:0;height:240px;background:var(--cream-light);transform:skewY(-3deg);z-index:0}
+.features .container{position:relative;z-index:1}
+.features-header{text-align:center;margin-bottom:clamp(40px,6vw,64px);opacity:0;transition:all 0.8s var(--ease-out)}.features-header.revealed{opacity:1}.features-header h2{color:var(--burgundy)}.features-header h2 span{color:var(--oak)}.features-header p{color:rgba(44,36,34,0.6);max-width:520px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,32px)}
+.feature-card{background:var(--cream-light);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);transition:all 0.5s var(--ease-out);opacity:0;transform:translateY(40px)}.feature-card.revealed{opacity:1;transform:translateY(0)}.feature-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.feature-card-image{height:200px;overflow:hidden;position:relative}.feature-card-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s var(--ease-smooth)}.feature-card:hover .feature-card-image img{transform:scale(1.06)}.feature-card-image::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(74,30,40,0.25),transparent 40%)}
+.feature-card-body{padding:28px}
+.feature-icon{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:var(--radius-sm);background:rgba(201,168,76,0.12);margin-bottom:16px}.feature-icon svg{width:22px;height:22px;fill:var(--brass)}
+.feature-card h3{font-size:1.3rem;color:var(--burgundy);margin-bottom:8px}.feature-card p{font-size:0.9rem;color:rgba(44,36,34,0.65);line-height:1.6}
+.feature-tag{display:inline-block;margin-top:16px;font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--brass-dark);border-bottom:1px solid transparent;transition:all 0.3s}.feature-card:hover .feature-tag{border-bottom-color:var(--brass)}
+
+/* TESTIMONIALS */
+.testimonials{position:relative}
+.testimonials-header{text-align:center;margin-bottom:clamp(40px,6vw,60px);opacity:0;transition:all 0.8s var(--ease-out)}.testimonials-header.revealed{opacity:1}.testimonials-header h2{color:var(--burgundy)}.testimonials-header h2 span{color:var(--oak)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,32px)}
+.testimonial-card{background:var(--cream-light);border-radius:var(--radius-lg);padding:36px 32px;box-shadow:var(--shadow-sm);position:relative;opacity:0;transform:translateY(30px);transition:all 0.6s var(--ease-out)}.testimonial-card.revealed{opacity:1;transform:translateY(0)}.testimonial-card:hover{box-shadow:var(--shadow-md)}
+.testimonial-card::before{content:'\201C';position:absolute;top:20px;left:28px;font-family:'Playfair Display',serif;font-size:4rem;color:var(--brass);opacity:0.25;line-height:1}
+.testimonial-stars{display:flex;gap:4px;margin-bottom:16px}.testimonial-stars svg{width:16px;height:16px;fill:var(--brass)}
+.testimonial-card blockquote{font-style:italic;color:rgba(44,36,34,0.75);font-size:1rem;line-height:1.7;margin-bottom:20px;padding-top:8px}
+.testimonial-author{display:flex;align-items:center;gap:14px}.testimonial-author img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--cream-dark)}.testimonial-author div strong{font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--burgundy);display:block}.testimonial-author div span{font-size:0.75rem;color:var(--oak);letter-spacing:0.04em}
+
+/* GALLERY */
+.gallery{background:var(--burgundy-dark);position:relative;overflow:hidden}
+.gallery::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--brass),var(--brass-light),var(--brass))}
+.gallery-header{text-align:center;margin-bottom:clamp(32px,5vw,48px);opacity:0;transition:all 0.8s var(--ease-out)}.gallery-header.revealed{opacity:1}.gallery-header h2{color:var(--cream)}.gallery-header h2 span{color:var(--brass);opacity:0.7}.gallery-header p{color:rgba(245,238,230,0.55);max-width:480px;margin:0 auto}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.5vw,16px)}
+.gallery-item{position:relative;border-radius:var(--radius-md);overflow:hidden;aspect-ratio:4/3;cursor:pointer;opacity:0;transform:scale(0.92);transition:all 0.6s var(--ease-out)}.gallery-item.revealed{opacity:1;transform:scale(1)}.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s var(--ease-smooth)}.gallery-item:hover img{transform:scale(1.08)}.gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(74,30,40,0.2),transparent 40%);opacity:0;transition:opacity 0.4s}.gallery-item:hover::after{opacity:1}
+.gallery-item-overlay{position:absolute;bottom:0;left:0;right:0;padding:20px;color:var(--cream);opacity:0;transform:translateY(10px);transition:all 0.4s var(--ease-out);z-index:2}.gallery-item:hover .gallery-item-overlay{opacity:1;transform:translateY(0)}.gallery-item-overlay strong{font-family:'Playfair Display',serif;font-size:0.9rem;display:block}.gallery-item-overlay span{font-size:0.7rem;opacity:0.7;letter-spacing:0.04em}
+.gallery-item:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+
+/* CONTACT */
+.contact{position:relative}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start}
+.contact-info{opacity:0;transform:translateX(-30px);transition:all 0.8s var(--ease-out)}.contact-info.revealed{opacity:1;transform:translateX(0)}
+.contact-info h2{color:var(--burgundy)}.contact-info h2 span{color:var(--oak)}
+.contact-info>p{color:rgba(44,36,34,0.6);margin-bottom:32px;max-width:400px}
+.contact-details{display:flex;flex-direction:column;gap:20px}
+.contact-detail{display:flex;align-items:flex-start;gap:16px}.contact-detail svg{width:20px;height:20px;fill:var(--brass);flex-shrink:0;margin-top:2px}.contact-detail div strong{font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--burgundy);display:block}.contact-detail div span{font-size:0.88rem;color:rgba(44,36,34,0.65);line-height:1.5}
+.contact-hours{margin-top:24px;padding:20px 24px;background:var(--cream);border-radius:var(--radius-md);border-left:3px solid var(--brass)}.contact-hours strong{font-family:'Playfair Display',serif;color:var(--burgundy);font-size:0.95rem;display:block;margin-bottom:8px}.contact-hours .row{display:flex;justify-content:space-between;font-size:0.85rem;color:rgba(44,36,34,0.7);padding:4px 0}.contact-hours .row .day{font-weight:400}.contact-hours .row .time{font-weight:700;color:var(--burgundy)}
+
+.contact-form-wrap{opacity:0;transform:translateX(30px);transition:all 0.8s var(--ease-out) 0.15s}.contact-form-wrap.revealed{opacity:1;transform:translateX(0)}
+.contact-form{background:var(--cream-light);padding:clamp(28px,4vw,40px);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);border:1px solid var(--cream-dark)}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:0.8rem;font-weight:700;color:var(--burgundy);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
+.form-group input,.form-group textarea{width:100%;padding:14px 16px;border:1px solid var(--cream-dark);border-radius:var(--radius-sm);font-family:'Lato',sans-serif;font-size:0.95rem;background:var(--cream-light);color:var(--charcoal);transition:all 0.3s;outline:none}.form-group input:focus,.form-group textarea:focus{border-color:var(--brass);box-shadow:0 0 0 3px rgba(201,168,76,0.15)}.form-group textarea{resize:vertical;min-height:120px}
+.contact-form .btn{width:100%;justify-content:center}
+
+/* FOOTER */
+footer{background:var(--charcoal);color:var(--cream);padding:clamp(48px,8vw,80px) 0 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(32px,4vw,48px);margin-bottom:clamp(32px,5vw,48px)}
+.footer-brand{opacity:0;transition:all 0.6s var(--ease-out)}.footer-brand.revealed{opacity:1}
+.footer-brand .brand{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--cream)}.footer-brand .brand span{color:var(--brass)}
+.footer-brand p{font-size:0.85rem;color:rgba(245,238,230,0.5);margin-top:12px;max-width:300px;line-height:1.6}
+.footer-social{display:flex;gap:12px;margin-top:20px}.footer-social a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(245,238,230,0.15);display:flex;align-items:center;justify-content:center;transition:all 0.3s}.footer-social a:hover{border-color:var(--brass);background:rgba(201,168,76,0.1);transform:translateY(-2px)}.footer-social svg{width:16px;height:16px;fill:rgba(245,238,230,0.5);transition:fill 0.3s}.footer-social a:hover svg{fill:var(--brass)}
+.footer-col{opacity:0;transform:translateY(20px);transition:all 0.6s var(--ease-out)}.footer-col.revealed{opacity:1;transform:translateY(0)}.footer-col h4{font-family:'Lato',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
+.footer-col ul{list-style:none}.footer-col ul li{margin-bottom:10px}.footer-col ul a{font-size:0.85rem;color:rgba(245,238,230,0.5);transition:color 0.3s}.footer-col ul a:hover{color:var(--brass)}
+.footer-bottom{border-top:1px solid rgba(245,238,230,0.08);padding:24px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:0.75rem;color:rgba(245,238,230,0.35)}.footer-bottom a{color:rgba(245,238,230,0.5);transition:color 0.3s}.footer-bottom a:hover{color:var(--brass)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* SECTION DIVIDER SVG */
+.section-divider{position:relative;width:100%;height:60px;overflow:hidden;margin-top:-1px}.section-divider svg{width:100%;height:100%}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--charcoal)}::-webkit-scrollbar-thumb{background:var(--oak);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:var(--brass)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .about-grid{grid-template-columns:1fr}.about-image img{height:380px}.about-decor{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .gallery-item:first-child{grid-column:span 2;grid-row:span 1}
+}
+@media(max-width:768px){
+  .nav-links{position:fixed;top:0;right:-100%;width:300px;height:100vh;background:var(--burgundy-dark);flex-direction:column;justify-content:center;align-items:center;gap:28px;transition:right 0.5s var(--ease-smooth);z-index:999;box-shadow:-10px 0 40px rgba(0,0,0,0.3)}
+  .nav-links.open{right:0}.hamburger{display:flex;z-index:1000}
+  .hero h1{font-size:clamp(2.2rem,10vw,3.2rem)}.hero p{font-size:1rem}
+  .trust-grid{grid-template-columns:repeat(2,1fr);gap:20px}.trust-item .num{font-size:1.8rem}
+  .features-grid{grid-template-columns:1fr}
+  .testimonials-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;gap:8px}.gallery-item:first-child{grid-column:span 2}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .contact-hours .row{font-size:0.8rem}
+}
+@media(max-width:480px){
+  .hero-btns{flex-direction:column}.hero-btns .btn{width:100%;justify-content:center}
+  .gallery-grid{grid-template-columns:1fr}.gallery-item:first-child{grid-column:span 1}
+  nav .container{padding:0 16px}.container{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container">
+    <a href="#" class="nav-brand">The Duke<span>.</span> <small>Uxbridge Road, W7</small></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Experience</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact" class="nav-cta">Book a Table</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-shapes">
+    <svg class="shape1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M39.5,-67.2C55.2,-60.4,74.4,-58.8,82.1,-47.7C89.7,-36.6,85.8,-16,81.9,3.8C78,23.6,74.1,42.7,64.2,57.3C54.3,71.9,38.4,82.1,21.4,86.5C4.4,90.9,-13.7,89.5,-29.9,82C-46.1,74.5,-60.4,60.9,-69.1,44.8C-77.8,28.7,-80.9,10.2,-78.4,-7.2C-75.9,-24.6,-67.8,-41,-56.1,-52C-44.4,-63,-29.2,-68.7,-14.3,-72.7C0.6,-76.7,23.7,-74,39.5,-67.2Z" fill="var(--brass)"/></svg>
+    <svg class="shape2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M41.5,-64.8C55.8,-64.2,70.8,-57.8,75.9,-46C81,-34.2,76.2,-17.1,72.4,-1.5C68.6,14.1,65.9,28.1,58.5,40C51.2,51.9,39.3,61.6,26.3,68.2C13.3,74.8,-0.7,78C13.3,74.8,-0.7,78.2,-14.1,76.5C-27.5,74.9,-40.2,68.2,-51.2,58.2C-62.2,48.2,-71.5,35,-75.6,20.3C-79.8,5.6,-78.8,-10.6,-72.6,-24.2C-66.4,-37.8,-55,-48.8,-42.3,-54.2C-29.5,-59.6,-15.4,-59.4,-1.5,-57.8C12.4,-56.2,27.1,-65.4,41.5,-64.8Z" fill="var(--forest)"/></svg>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        <span>Est. 1847 &mdash; W7 Landmark</span>
+      </div>
+      <h1>Where London<br>Meets Its <em>Local</em></h1>
+      <p>Since 1847, The Duke of York has been the hearth of Hanwell &mdash; pouring pints, sharing stories, and welcoming all who walk through our doors at 161 Uxbridge Road.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary">Book a Table</a>
+        <a href="#about" class="btn btn-secondary">Discover More</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <svg viewBox="0 0 24 24"><path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41 7.59L8.83 9L12 5.83ZM12 18.17L8.83 15L7.42 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/></svg>
+    Scroll
+  </div>
+</section>
+
+<div class="section-divider" style="background:var(--burgundy-dark)"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,40 C360,0 720,60 1080,20 C1260,0 1350,30 1440,35 L1440,60 L0,60 Z" fill="var(--cream-light)"/></svg></div>
+
+<section class="trust-strip" id="trust">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item"><div class="num"><span class="counter" data-target="178">0</span></div><div class="label">Years Serving London</div></div>
+      <div class="trust-item"><div class="num"><span class="counter" data-target="87">0</span><span>K</span></div><div class="label">Guests Welcomed</div></div>
+      <div class="trust-item"><div class="num"><span class="counter" data-target="4.9">0</span></div><div class="label">&#9733; Rating on Google</div></div>
+      <div class="trust-item"><div class="num"><span class="counter" data-target="36">0</span></div><div class="label">Cask Ales on Rotation</div></div>
+      <div class="trust-item"><div class="num"><span class="counter" data-target="12">0</span></div><div class="label">Awards &amp; Accolades</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="about section-pad" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/32576428/pexels-photo-32576428.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The warm, historic interior of The Duke of York pub in Hanwell, London W7" loading="lazy">
+        <div class="about-decor"></div>
+      </div>
+      <div class="about-content">
+        <h2><span>Our Story</span>A Local With a Legacy</h2>
+        <p>Tucked away on Uxbridge Road since the reign of Queen Victoria, The Duke of York has weathered wars, watched the trams roll by, and remained the steadfast heart of Hanwell. Our oak-panelled walls hold centuries of laughter, the glow of the fireplace has warmed generations, and our hand-pulled ales have quenched the thirst of every local from every walk of life.</p>
+        <p>Today, we honour that legacy: proper British hospitality, a seasonally-rotating menu built from British produce, one of West London's finest selections of cask ale and craft beer, and the same open-armed warmth that made us a landmark in 1847.</p>
+        <div class="about-sign">
+          <div class="about-sign-avatar">DY</div>
+          <div class="about-sign-text">
+            <strong>Duke's Stewards</strong>
+            <small>Since 1847 &middot; W7</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features section-pad" id="features">
+  <div class="container">
+    <div class="features-header">
+      <h2><span>The Duke's Offer</span>What Makes Us Home</h2>
+      <p>From the perfect pint to a Sunday roast that feels like a hug &mdash; here&rsquo;s what awaits you at The Duke of York.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-card-image">
+          <img src="https://images.pexels.com/photos/6570569/pexels-photo-6570569.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A perfectly poured cask ale at the bar" loading="lazy">
+        </div>
+        <div class="feature-card-body">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M18.79 7.79L16.46 1.72C16.15 0.88 15.2 0.44 14.35 0.75L7.79 3.07C6.95 3.38 6.5 4.33 6.82 5.18L9.14 11.25C9.45 12.09 10.41 12.54 11.25 12.22L17.82 9.9C18.66 9.59 19.1 8.64 18.79 7.79Z"/><path d="M6 20C7.1 20 8 19.1 8 18V14L5 9H3V18C3 19.1 3.9 20 5 20H6Z"/><path d="M18 13C16.9 13 16 13.9 16 15V19C16 20.1 16.9 21 18 21H20C21.1 21 22 20.1 22 19V15C22 13.9 21.1 13 20 13H18Z"/></svg></div>
+          <h3>30 Rotating Cask Ales</h3>
+          <p>Our cellar is a living thing &mdash; 36 hand-pulled cask ales rotated year-round, from London legends to small-batch heroes. The perfect pint lives here.</p>
+          <span class="feature-tag">Explore our beer list &rarr;</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-image">
+          <img src="https://images.pexels.com/photos/27643025/pexels-photo-27643025.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A hearty Sunday roast dinner" loading="lazy">
+        </div>
+        <div class="feature-card-body">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M8.1 13.34L3.91 9.16C2.35 7.59 2.35 5.07 3.91 3.5L9.16 8.75L8.1 13.34Z"/><path d="M11.26 11.69L7.05 7.47L15.37 2.85L19.58 7.07L11.26 11.69Z"/><path d="M20.08 11.77L13.23 18.62L11.22 16.61L12.28 15.55L9.16 12.43L10.22 11.37L13.34 14.49L14.4 13.43L11.28 10.31L12.34 9.25L15.46 12.37L16.52 11.31L13.4 8.19L14.46 7.13L20.08 12.75C20.86 13.53 20.86 14.79 20.08 15.57V15.57Z"/><path d="M11.41 17.69L10.35 18.75L7.93 16.33L5.5 18.75L4.44 17.69L6.86 15.27L4.44 12.85L5.5 11.79L7.93 14.21L10.35 11.79L11.41 12.85L8.98 15.27L11.41 17.69Z"/></svg></div>
+          <h3>Hearty British Fare</h3>
+          <p>Our kitchen champions British produce: Sunday roasts with colossal Yorkshire puds, beer-battered catch of the day, sausages from the Hanwell butcher, and sticky toffee pudding that&rsquo;s worth the journey alone.</p>
+          <span class="feature-tag">View our menu &rarr;</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-image">
+          <img src="https://images.pexels.com/photos/37199351/pexels-photo-37199351.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A cosy fireplace corner of the pub" loading="lazy">
+        </div>
+        <div class="feature-card-body">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+          <h3>Warmth &amp; Welcome</h3>
+          <p>Two crackling fireplaces, candlelit corners, a book-laden snug, and a sun-trap beer garden where summer evenings stretch into darkness. This is not a chain &mdash; it&rsquo;s a proper local, run by people who know your name.</p>
+          <span class="feature-tag">Come say hello &rarr;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials section-pad" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <h2><span>Guest Love</span>What They Say</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        </div>
+        <blockquote>The Duke is everything you want a London pub to be. The Sunday roast is the best I&rsquo;ve had north of the river &mdash; and the cask ale selection is unreal. My local for life.</blockquote>
+        <div class="testimonial-author">
+          <img src="https://images.pexels.com/photos/34847709/pexels-photo-34847709.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Portrait of Emma" loading="lazy">
+          <div><strong>Emma W.</strong><span>Regular &middot; W7</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        </div>
+        <blockquote>Found this gem on a walk along the canal. Walked in for one pint, stayed for three and a pie. Exactly what a pub should be &mdash; character, warmth, brilliant staff, and beer that&rsquo;s looked after properly.</blockquote>
+        <div class="testimonial-author">
+          <img src="https://images.pexels.com/photos/32576428/pexels-photo-32576428.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Portrait of James" loading="lazy">
+          <div><strong>James K.</strong><span>via Google Reviews</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        </div>
+        <blockquote>We booked the garden for a birthday party and it was absolutely perfect. The team bent over backwards &mdash; felt like family. The fish and chips alone is worth the trip across London.</blockquote>
+        <div class="testimonial-author">
+          <img src="https://images.pexels.com/photos/27643025/pexels-photo-27643025.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Portrait of Priya" loading="lazy">
+          <div><strong>Priya M.</strong><span>Birthday Party Host</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery section-pad" id="gallery">
+  <div class="container">
+    <div class="gallery-header">
+      <h2><span>Through the Lens</span>The Duke in Pictures</h2>
+      <p>Step inside &mdash; every corner of our pub tells a story.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/37467648/pexels-photo-37467648.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Duke of York pub interior with warm lighting" loading="lazy">
+        <div class="gallery-item-overlay"><strong>The Main Bar</strong><span>Where locals gather</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/34847709/pexels-photo-34847709.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Duke of York exterior on Uxbridge Road" loading="lazy">
+        <div class="gallery-item-overlay"><strong>Our Fa&ccedil;ade</strong><span>Welcome to W7</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/6570569/pexels-photo-6570569.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Hand-pulled cask ale being poured" loading="lazy">
+        <div class="gallery-item-overlay"><strong>Cask Ales</strong><span>Perfectly poured</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/37199351/pexels-photo-37199351.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cosy fireplace corner" loading="lazy">
+        <div class="gallery-item-overlay"><strong>The Snug</strong><span>By the fire</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/32576428/pexels-photo-32576428.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Interior details of the pub" loading="lazy">
+        <div class="gallery-item-overlay"><strong>Oak &amp; Brass</strong><span>Details that last</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact section-pad" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2><span>Get in Touch</span>Find Us at the Duke</h2>
+        <p>Whether you&rsquo;re booking a table for Sunday roast, reserving the garden for a celebration, or just wondering what&rsquo;s on tap &mdash; we&rsquo;d love to hear from you.</p>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <div><strong>Visit Us</strong><span>161 Uxbridge Road, Hanwell, London W7 3SP</span></div>
+          </div>
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <div><strong>Email Us</strong><span>hello@dukeofyorkw7.co.uk</span></div>
+          </div>
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <div><strong>Call Us</strong><span>020 8567 2345</span></div>
+          </div>
+        </div>
+        <div class="contact-hours">
+          <strong>Opening Hours</strong>
+          <div class="row"><span class="day">Monday &ndash; Thursday</span><span class="time">12pm &ndash; 11pm</span></div>
+          <div class="row"><span class="day">Friday &ndash; Saturday</span><span class="time">12pm &ndash; Midnight</span></div>
+          <div class="row"><span class="day">Sunday</span><span class="time">12pm &ndash; 10:30pm</span></div>
+          <div class="row"><span class="day">Sunday Roast</span><span class="time">12pm &ndash; 8pm</span></div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="e.g. Jane Miller" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" placeholder="Tell us what you&rsquo;re after &mdash; a table booking, event enquiry, or just to say hello..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Enquiry</button>
+          <p style="margin-top:12px;font-size:0.75rem;color:rgba(44,36,34,0.4);text-align:center;">We&rsquo;ll reply within 24 hours</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">The Duke<span>.</span></div>
+        <p>Since 1847, the heart of Hanwell &mdash; serving proper pints, honest food, and a warm welcome to all who walk through our doors on Uxbridge Road.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2m-.2 2A3.6 3.6 0 004 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 003.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 010 2.5 1.25 1.25 0 010-2.5M12 7a5 5 0 110 10 5 5 0 010-10m0 2a3 3 0 100 6 3 3 0 000-6z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0022 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="#about">About</a></li><li><a href="#features">Experience</a></li><li><a href="#testimonials">Reviews</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Visit</h4><ul><li><a href="#">Book a Table</a></li><li><a href="#">Private Events</a></li><li><a href="#">Our Menu</a></li><li><a href="#">Cask List</a></li><li><a href="#">Garden Hire</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="#">161 Uxbridge Road</a></li><li><a href="#">London W7 3SP</a></li><li><a href="#">020 8567 2345</a></li><li><a href="#">hello@dukeofyorkw7.co.uk</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 The Duke of York, Hanwell. All rights reserved.</p>
+      <p><a href="#">Privacy Policy</a> &middot; <a href="#">Accessibility</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky nav
+const nav = document.getElementById('navbar');
+const hero = document.querySelector('.hero');
+const heroObserver = new IntersectionObserver(([e]) => {
+  nav.classList.toggle('nav-scrolled', !e.isIntersecting);
+}, { rootMargin: '-80px 0px 0px 0px' });
+heroObserver.observe(hero);
+
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}));
+
+// Scroll reveal
+const revealElements = (entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+    }
+  });
+};
+const revealObserver = new IntersectionObserver(revealElements, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.about-image, .about-content, .features-header, .feature-card, .testimonials-header, .testimonial-card, .gallery-header, .gallery-item, .contact-info, .contact-form-wrap, .footer-brand, .footer-col, .trust-item').forEach(el => revealObserver.observe(el));
+
+// Number counters
+const counters = document.querySelectorAll('.counter');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target);
+      const isDecimal = target% 1 !== 0;
+      const duration = 2000;
+      const start = performance.now();
+      const update = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = eased * target;
+        el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current).toString();
+        if (progress < 1) requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
+
+// Form handler
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  const orig = btn.textContent;
+  btn.textContent = 'Sent! Thank you';
+  btn.style.background = 'var(--forest)';
+  btn.style.color = 'var(--cream)';
+  setTimeout(() => {
+    btn.textContent = orig;
+    btn.style.background = '';
+    btn.style.color = '';
+    e.target.reset();
+  }, 3000);
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    const target = document.querySelector(id);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Active nav link highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    const top = s.offsetTop - 120;
+    if (window.scrollY >= top) current = s.id;
+  });
+  navAnchors.forEach(a => {
+    a.classList.toggle('active-link', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+
+<img src="https://hermes-agent-production-027d.up.railway.app/t?b=VGhlIER1a2Ugb2YgWW9yaw&u=dmlzaXQ&s=fed450290878af03879377fd1ef2542d&beacon=1&l=b3NtLW5vZGUtMjU1OTI1NDc" width="1" height="1" alt="" style="position:absolute;left:-9999px" referrerpolicy="no-referrer"/></body>
+</html>
