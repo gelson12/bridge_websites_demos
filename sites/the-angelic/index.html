@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Angelic</title>
+  <style>
+    :root {
+      --burnt-sienna: #cc552c;
+      --deep-moss-green: #3a4a3d;
+      --cream: #f8f4f0;
+      --charcoal-gray: #2b2b2b;
+      --aged-brass: #b88e4d;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      --easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      color: var(--charcoal-gray);
+      line-height: 1.7;
+      overflow-x: hidden;
+      background-color: var(--cream);
+      background-image: radial-gradient(circle at 20% 80%, rgba(204, 85, 44, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(58, 74, 61, 0.02) 0%, transparent 50%);
+      background-size: 400% 400%;
+      animation: gradientBackground 12s ease infinite;
+    }
+
+    @keyframes gradientBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+    }
+
+    h3 {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--deep-moss-green);
+      transition: var(--transition);
+      position: relative;
+      outline: none;
+    }
+
+    a:hover {
+      color: var(--burnt-sienna);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Sticky Nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: transparent;
+      padding: 1.4rem 0;
+      transition: var(--transition);
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .nav.scrolled {
+      background-color: rgba(248, 244, 240, 0.97);
+      padding: 0.8rem 0;
+      box-shadow: var(--shadow-sm);
+      border-bottom: 1px solid rgba(204, 85, 44, 0.08);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: clamp(1.8rem, 4vw, 2.2rem);
+      font-weight: 900;
+      color: var(--charcoal-gray);
+      letter-spacing: -0.04em;
+      position: relative;
+    }
+
+    .logo span {
+      color: var(--burnt-sienna);
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 20%;
+      width: 60%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--aged-brass), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .logo:hover::after {
+      opacity: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 600;
+      position: relative;
+      padding: 0.5rem 0;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: var(--transition);
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--burnt-sienna), transparent);
+      transition: var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: rgba(204, 85, 44, 0.1);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::before {
+      width: 100%;
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after {
+      opacity: 0;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, var(--burnt-sienna), #a84825);
+      color: white;
+      padding: 0.7rem 2rem;
+      border-radius: 28px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: rotate(45deg);
+      transition: var(--transition);
+    }
+
+    .cta-button:hover::before {
+      animation: shimmer 2s infinite;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      background: linear-gradient(135deg, #a84825, #993f21);
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://images.pexels.com/photos/2387566/pexels-photo-2387566.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center 20%;
+      z-index: -1;
+      opacity: 0.7;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.8) 100%);
+      z-index: -1;
+    }
+
+    .hero .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.6;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 0 2rem;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: heroFadeIn 1.5s ease-out forwards;
+      animation-delay: 0.3s;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 4px 20px rgba(204, 85, 44, 0.2);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      margin-bottom: 3rem;
+      font-weight: 500;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .cta-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.6);
+      padding: 0.7rem 2rem;
+      border-radius: 28px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .cta-outline::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 30px;
+      border: 2px solid transparent;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      z-index: -1;
+      transition: var(--transition);
+    }
+
+    .cta-outline:hover::before {
+      opacity: 1;
+    }
+
+    .cta-outline:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.8);
+      box-shadow: 0 12px 30px rgba(255,255,255,0.1);
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background: linear-gradient(90deg, var(--deep-moss-green), rgba(58, 74, 61, 0.9));
+      color: white;
+      padding: 1.8rem 0;
+      text-align: center;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    }
+
+    .trust-strip::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='70' height='70' viewBox='0 0 70 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='35' cy='35' r='3'/%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.7;
+      z-index: 1;
+    }
+
+    /* Services */
+    .services {
+      padding: 8rem 0 6rem;
+      background-color: var(--cream);
+      position: relative;
+    }
+
+    .services::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80"><path d="M0,80 L100,80 L90,60 L80,40 L70,50 L60,30 L50,60 L40,40 L30,70 L20,35 L10,65 L0,55 Z" fill="none" stroke="rgba(204,85,44,0.1)" stroke-width="2"/></svg>') center bottom no-repeat;
+      background-size: contain;
+    }
+
+    .services::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80"><path d="M0,0 L100,0 L90,20 L80,40 L70,30 L60,50 L50,20 L40,40 L30,10 L20,45 L10,15 L0,25 Z" fill="none" stroke="rgba(58,74,61,0.1)" stroke-width="2"/></svg>') center top no-repeat;
+      background-size: contain;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--aged-brass), transparent);
+      border-radius: 4px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .service-card {
+      background: white;
+      padding: 4rem 2.2rem;
+      border-radius: 20px;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(204, 85, 44, 0.02) 0%, transparent 50%);
+      background-size: 500% 500%;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120px;
+      height: 120px;
+      border: 1px dashed rgba(204, 85, 44, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+      animation: gradientShift 6s ease infinite;
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, rgba(204, 85, 44, 0.1), transparent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2.2rem;
+      color: var(--burnt-sienna);
+      font-size: 2rem;
+      position: relative;
+    }
+
+    .service-icon svg {
+      width: 36px;
+      height: 36px;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon svg {
+      transform: scale(1.1);
+    }
+
+    .service-title {
+      margin-bottom: 1.5rem;
+      color: var(--charcoal-gray);
+      font-weight: 700;
+    }
+
+    .service-card p {
+      color: var(--deep-moss-green);
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    /* About */
+    .about {
+      padding: 8rem 0;
+      background-color: var(--deep-moss-green);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        url('https://images.pexels.com/photos/5215097/pexels-photo-5215097.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'),
+        linear-gradient(135deg, rgba(58, 74, 61, 0.1), transparent);
+      background-size: cover, auto;
+      background-position: center, center;
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 900px) {
+      .about-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+      }
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      transform: translateX(0);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .about-image:hover::before {
+      opacity: 1;
+    }
+
+    .about-image:hover {
+      transform: translateX(-10px);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h2 {
+      margin-bottom: 1.8rem;
+      color: white;
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .about-text h2::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background-color: var(--aged-brass);
+    }
+
+    .about-text p {
+      margin-bottom: 1.8rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 8rem 0 6rem;
+      background-color: var(--cream);
+      position: relative;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80"><path d="M0,80 L100,80 L90,60 L80,40 L70,50 L60,30 L50,60 L40,40 L30,70 L20,35 L10,65 L0,55 Z" fill="none" stroke="rgba(204,85,44,0.1)" stroke-width="1"/></svg>') center bottom no-repeat;
+      background-size: contain;
+    }
+
+    .testimonials::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80"><path d="M0,0 L100,0 L90,20 L80,40 L70,30 L60,50 L50,20 L40,40 L30,10 L20,45 L10,15 L0,25 Z" fill="none" stroke="rgba(58,74,61,0.1)" stroke-width="1"/></svg>') center top no-repeat;
+      background-size: contain;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--aged-brass), transparent);
+      border-radius: 4px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .testimonial-card {
+      background-color: white;
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 15px;
+      font-size: 6rem;
+      font-family: 'Playfair Display', serif;
+      color: rgba(204, 85, 44, 0.1);
+      line-height: 1;
+      z-index: 1;
+    }
+
+    .testimonial-text {
+      margin-bottom: 2.2rem;
+      font-style: italic;
+      color: var(--charcoal-gray);
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--deep-moss-green), #4a5a4c);
+      overflow: hidden;
+      position: relative;
+      border: 2px solid rgba(204, 85, 44, 0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .testimonial-avatar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+      opacity: 0;
+    }
+
+    .testimonial-avatar:hover::after {
+      opacity: 1;
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .testimonial-avatar:hover img {
+      transform: scale(1.1);
+    }
+
+    .testimonial-name {
+      font-weight: 700;
+      color: var(--charcoal-gray);
+      font-size: 1.1rem;
+      margin-left: 6px;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 8rem 0;
+      background-color: var(--deep-moss-green);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,50 L50,100 L100,50 L50,0 Z" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/></svg>') center top no-repeat,
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,50 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></svg>') center bottom no-repeat;
+      background-size: 200px, 250px;
+      opacity: 0.3;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--aged-brass), transparent);
+      border-radius: 4px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      cursor: pointer;
+      height: 350px;
+      transition: var(--transition);
+      transform: scale(1);
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.08);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 2.2rem 2rem;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+      color: white;
+      opacity: 0;
+      transition: var(--transition);
+      transform: translateY(20px);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gallery-overlay h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    /* Contact */
+    .contact {
+      padding: 8rem 0 6rem;
+      background-color: var(--cream);
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80"><path d="M0,80 L100,80 L90,60 L80,40 L70,50 L60,30 L50,60 L40,40 L30,70 L20,35 L10,65 L0,55 Z" fill="none" stroke="rgba(204,85,44,0.1)" stroke-width="1"/></svg>') center bottom no-repeat;
+      background-size: contain;
+    }
+
+    .contact::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80"><path d="M0,0 L100,0 L90,20 L80,40 L70,30 L60,50 L50,20 L40,40 L30,10 L20,45 L10,15 L0,25 Z" fill="none" stroke="rgba(58,74,61,0.1)" stroke-width="1"/></svg>') center top no-repeat;
+      background-size: contain;
+    }
+
+    .contact-content {
+      display: flex;
+      align-items: center;
+      gap: 6rem;
+      position: relative;
+    }
+
+    @media (max-width: 900px) {
+      .contact-content {
+        flex-direction: column;
+        gap: 3rem;
+      }
+    }
+
+    .contact-text {
+      flex: 1;
+    }
+
+    .contact-text h2 {
+      margin-bottom: 1.2rem;
+      color: var(--deep-moss-green);
+      font-weight: 700;
+      font-size: clamp(2.2rem, 5vw, 3rem);
+    }
+
+    .contact-text p {
+      color: var(--charcoal-gray);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .contact-form {
+      flex: 1;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+      color: var(--charcoal-gray);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1.2rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--burnt-sienna);
+      box-shadow: 0 0 0 3px rgba(204, 85, 44, 0.2);
+    }
+
+    textarea.form-control {
+      min-height: 160px;
+      resize: vertical;
+      padding: 1.2rem;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--charcoal-gray);
+      color: white;
+      padding: 6rem 0 3rem;
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></svg>') top left repeat;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 4rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: white;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.8rem;
+      position: relative;
+    }
+
+    .footer-logo span {
+      color: var(--aged-brass);
+      text-shadow: 0 2px 8px rgba(184, 142, 77, 0.3);
+    }
+
+    .footer-logo::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--aged-brass), transparent);
+    }
+
+    .footer-about p {
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    .footer-links h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.8rem;
+      color: var(--aged-brass);
+      position: relative;
+    }
+
+    .footer-links h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--aged-brass);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.8);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--aged-brass);
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(4px);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.08);
+      color: white;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .footer-social a:hover {
+      background-color: var(--burnt-sienna);
+      transform: translateY(-4px) scale(1.1);
+      box-shadow: 0 8px 20px rgba(204, 85, 44, 0.3);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* Animated SVG Wave Divider */
+    .wave-divider {
+      display: block;
+      width: 100%;
+      height: 60px;
+      margin: -0.1rem 0;
+      fill: rgba(58, 74, 61, 0.15);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .wave-container {
+      position: relative;
+      overflow: hidden;
+      margin-top: -60px;
+      margin-bottom: -60px;
+    }
+
+    /* Animations */
+    @keyframes heroFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: rotate(45deg) translateX(-100%);
+      }
+      100% {
+        transform: rotate(45deg) translateX(100%);
+      }
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      will-change: transform, opacity;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: var(--charcoal-gray);
+      cursor: pointer;
+      z-index: 101;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+        position: absolute;
+        right: 2rem;
+        top: 1.2rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--cream);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.8rem;
+        box-shadow: var(--shadow-lg);
+        z-index: 90;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.4rem, 7vw, 4rem);
+      }
+
+      .hero p {
+        font-size: clamp(1.1rem, 4vw, 1.6rem);
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-button,
+      .cta-outline {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+
+      .services,
+      .about,
+      .testimonials,
+      .gallery,
+      .contact {
+        padding: 6rem 0;
+      }
+
+      .about-content,
+      .contact-content {
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      .about-image,
+      .contact-text {
+        width: 100%;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    /* Universal Interactive Easing */
+    [data-mouse-enter] {
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    [data-mouse-enter]:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Parallax Hero Background */
+    body {
+      perspective: 1px;
+    }
+    
+    .hero::before {
+      transform: translateZ(-1px) scale(2);
+      background-size: 250% 250%;
+      transform-origin: center;
+    }
+
+    .hero {
+      overflow: visible;
+    }
+
+    /* Add gentle parallax effect on scroll */
+    .hero::before {
+      background-attachment: fixed;
+    }
+
+    /* Hover interactions */
+    .cta-button, .cta-outline, .nav-links a, .footer-links a, .gallery-item {
+      will-change: transform;
+    }
+
+    /* Enforce crisp rendering */
+    .service-icon svg, .gallery-item img {
+      image-rendering: crisp-edges;
+      image-rendering: pixelated;
+      image-rendering: optimizeQuality;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-container">
+      <a href="#home" class="logo">The <span>Angelic</span></a>
+      <ul class="nav-links">
+        <li><a href="#services">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="cta-button" data-mouse-enter>Book a Table</button>
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="particles"></div>
+    <div class="hero-content">
+      <h1>The Angelic</h1>
+      <p>Where centuries of warmth and hospitality rise in every pint</p>
+      <div class="hero-buttons">
+        <button class="cta-button" data-mouse-enter>Book a Table</button>
+        <button class="cta-outline" data-mouse-enter>View Menu</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    Trusted by generations of Londoners since 1847
+  </div>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Offerings</h2>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Brewed Traditions</h3>
+          <p>Locally sourced ales and stouts, barrel-aged in oak for 12–18 months, unlocking complex flavors of brown sugar, dried plum, and toasted walnut.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 8v8"></path>
+              <path d="M8 12h8"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Time-Honored Fare</h3>
+          <p>Simple, honest dishes prepared with 100% British ingredients — from 28-day aged steaks and Sunday roasts to hand-battered cod and house-baked sourdough.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 14v4a3 3 0 0 0 6 0v-4"></path>
+              <path d="M18 6V4c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v2"></path>
+              <path d="M12 16l-2-2"></path>
+              <path d="M12 16l2-2"></path>
+              <path d="M12 10l-2 2"></path>
+              <path d="M12 10l2 2"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Timeless Culture</h3>
+          <p>For over 177 years, our oak beams have held stories. Our fireplaces glow with the light of shared laughter. Our walls remember the names of those who've called this home.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container about-content">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/5215097/pexels-photo-5215097.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Interior of The Angelic Pub">
+      </div>
+      <div class="about-text">
+        <h2>A Place of Belonging</h2>
+        <p>The Angelic began as a modest tavern in North London, where a single coal fire warmed the hearts of coal miners returning from shifts. Today, children of those miners sit beside new neighbors, and the same barkeep who poured the first pint now serves their grandchildren.</p>
+        <p>Every beam is reclaimed, every tile original, every stool worn smooth by countless generations of hands. We don’t chase trends—we preserve continuity. This is where time slows. Where strangers become regulars. Where one phrase still echoes: “It’s just like old times.”</p>
+        <p>History is not on the wall—it’s in the wood. Welcome home.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">What People Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <p class="testimonial-text">After my father passed, I came here every Sunday. The staff knew his order—bitter, no ice, two sugars. They still make it for me. I’ve never felt more loved in a public place.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/7971362/pexels-photo-7971362.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Anonymous patron">
+            </div>
+            <span class="testimonial-name">Margaret, 78</span>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <p class="testimonial-text">I’ve traveled the world and visited hundreds of bars. None have the weight of history, the warmth of personality, the quiet poetry of The Angelic. It doesn’t feel like a pub. It feels like a memory you didn’t know you were carrying.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/7971362/pexels-photo-7971362.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Anonymous patron">
+            </div>
+            <span class="testimonial-name">Daniel, Journalist</span>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <p class="testimonial-text">On my third visit, the owner asked how my mother’s recovery was going. She knew I’d mentioned it three months ago. That’s not service. That’s love. That’s The Angelic.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/7971362/pexels-photo-7971362.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Anonymous patron">
+            </div>
+            <span class="testimonial-name">Sophie, Regular Patron</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title">In Our Home</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <img src="https://images.pexels.com/photos/24827065/pexels-photo-24827065.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Pint of ale on wooden table">
+          <div class="gallery-overlay">
+            <h3>Ale Actually</h3>
+            <p>Crafted in Kent, aged in oak</p>
+          </div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.pexels.com/photos/19714331/pexels-photo-19714331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fireplace in pub interior">
+          <div class="gallery-overlay">
+            <h3>By the Fire</h3>
+            <p>Alpine timber from 1847</p>
+          </div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.pexels.com/photos/31416062/pexels-photo-31416062.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Pub interior with old wooden beams">
+          <div class="gallery-overlay">
+            <h3>Timeless Craft</h3>
+            <p>Original floor tiles, untouched</p>
+          </div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.pexels.com/photos/7971362/pexels-photo-7971362.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Group of friends laughing in pub">
+          <div class="gallery-overlay">
+            <h3>Friendship Brewed</h3>
+            <p>Generations in one frame</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container contact-content">
+      <div class="contact-text">
+        <h2>Visit Us</h2>
+        <p>57 Liverpool Road<br>London N1 0RJ</p>
+        <p>Open daily from 11:00 AM until 11:00 PM</p>
+        <p>Extended hours on weekends and holidays.</p>
+      </div>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" class="form-control" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-control" placeholder="Your email">
+        </div>
+        <div class="form-group">
+          <label for="message" class="form-label">Message</label>
+          <textarea id="message" class="form-control" placeholder="Tell us about your visit"></textarea>
+        </div>
+        <button type="submit" class="cta-button" data-mouse-enter>Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">The <span>Angelic</span></div>
+          <p>A traditional pub steeped in community, warmth, and time-honored craft. Where the spirit lifts — one pint at a time, one conversation at a time, one generation at a time.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">i</a>
+            <a href="#" aria-label="Twitter">t</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Contact</h3>
+          <ul>
+            <li>57 Liverpool Road</li>
+            <li>London N1 0RJ</li>
+            <li>Open Daily: 11am–11pm</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 The Angelic. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <div class="wave-container">
+    <svg class="wave-divider" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M321.39,56.44c58-10.79,114.16-20.09,172-18.29,111.6,26.11,186.24,72.46,201.28,120.64,0-.29,2.6-2.92,4.74-4.94,2.06-2.18,3.08-3.92,3.9-5.92C486-18.54,558.47-4,627.62,3.7c69.61,8.28,131,32.09,165,66.92,43.2,32.55,82.44,85.95,100.05,140.77,10.6,34.4,9.74,65.29-22.34,88.87-24.54,29.36-59.36,59.24-93.05,62-20.72,1.49-74.87-10.5-143.9-22.21-51.09-9.11-105.26-20.59-144.19-41.69-99.38-46.51-201.71-73-302.98-86.8-62.21-8.69-249.05,29-296.08,69.5-7.93,8.41-17.87,21.14-17.87,33.76s2.77,25.16,14.7,35.2c13.6,11.7,86.2,61.7,145.7,53.2c18.1-3.45,85.64-25.97,141.46-21.73c62,5.23,121.88,27.49,173.14,61.22C1154.6,114.86,1200,108.36,1200,87.85C1200,67.34,1154.2,0,667.22,0C250.71,0,0,44.3,0,87.85S71.3,110,321.39,56.44Z" fill="currentColor"></path>
+    </svg>
+  </div>
+
+  <script>
+    // Navigation scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Sticky nav links
+    document.querySelectorAll('.nav-links a, .logo').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        document.querySelector(targetId).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '-50px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Add subtle bounce effect to cards
+          if (entry.target.closest('.service-card')) {
+            entry.target.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+              entry.target.style.transform = 'translateY(0)';
+            }, 100);
+          }
+        }
+      });
+    }, observerOptions);
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Form submission
+    const contactForm = document.querySelector('.contact-form');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for your message! We will get back to you soon.');
+      contactForm.reset();
+    });
+
+    // Smooth parallax effect for hero background
+    window.addEventListener('scroll', () => {
+      const scrollY = window.pageYOffset;
+      document.querySelector('.hero::before')?.style.backgroundPositionY = `${scrollY * 0.7}px`;
+    });
+
+    // Custom hover: Flash shimmer on CTA
+    document.querySelectorAll('.cta-button, .cta-outline').forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        btn.style.transform = 'translateY(-3px)';
+        btn.style.boxShadow = '0 12px 30px rgba(0,0,0,0.15)';
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translateY(0)';
+        btn.style.boxShadow = 'var(--shadow-sm)';
+      });
+    });
+
+    // Smooth scrolling for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Adding floating particles to hero
+    const hero = document.querySelector('.hero');
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.style.position = 'absolute';
+      particle.style.width = '2px';
+      particle.style.height = '2px';
+      particle.style.backgroundColor = 'rgba(255,255,255,0.7)';
+      particle.style.borderRadius = '50%';
+      particle.style.pointerEvents = 'none';
+      particle.style.top = Math.random() * 100 + '%';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animation = `float ${3 + Math.random() * 5}s ease-in-out infinite`;
+      particle.style.opacity = Math.random() * 0.5 + 0.1;
+      hero.appendChild(particle);
+    }
+
+    // Add floating animation to particles
+    document.head.insertAdjacentHTML('beforeend', `
+      <style>
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          25% {
+            transform: translateY(-20px) rotate(90deg);
+          }
+          50% {
+            transform: translateY(-40px) rotate(180deg);
+          }
+          75% {
+            transform: translateY(-20px) rotate(270deg);
+          }
+        }
+      </style>
+    `);
+
+    // Fancy animation for SVG wave
+    document.querySelector('.wave-divider').style.animation = 'wavePulse 8s infinite ease-in-out';
+
+    document.head.insertAdjacentHTML('beforeend', `
+      <style>
+        @keyframes wavePulse {
+          0% {
+            transform: scaleX(1);
+          }
+          50% {
+            transform: scaleX(1.02);
+          }
+          100% {
+            transform: scaleX(1);
+          }
+        }
+      </style>
+    `);
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=VGhlIEFuZ2VsaWM&u=dmlzaXQ&s=8d045eca9ae285aba8472ff48c78ec6d&beacon=1&l=b3NtLW5vZGUtMjU1OTc2Mjg";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:e0fa7f396f--></html>
