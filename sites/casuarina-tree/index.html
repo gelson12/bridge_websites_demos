@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Casuarina Tree</title>
   <style>
     :root {
-      --terracotta: #a0522d;
-      --olive-green: #556b2f;
-      --sandy-beige: #f5f0e6;
-      --charcoal: #2e2e2e;
-      --cream: #fdfaf7;
-      --font-heading: 'Playfair Display', serif;
-      --font-body: 'Lora', serif;
+      --sage: #8A9B6C;
+      --walnut: #5D4037;
+      --clay: #B73E2E;
+      --ivory: #F8F4F0;
+      --charcoal: #333333;
     }
 
     * {
@@ -22,45 +20,57 @@
     }
 
     body {
-      font-family: var(--font-body);
+      font-family: 'Lato', sans-serif;
       color: var(--charcoal);
-      background-color: var(--cream);
-      line-height: 1.7;
+      background-color: var(--ivory);
       overflow-x: hidden;
+      line-height: 1.7;
+      font-feature-settings: "liga" 1, "clig" 1;
       scroll-behavior: smooth;
     }
 
     h1, h2, h3, h4 {
-      font-family: var(--font-heading);
-      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
 
     h1 {
-      font-size: 3.8rem;
+      font-size: 3.5rem;
       line-height: 1.1;
+      font-variant-east-asian: normal;
     }
 
     h2 {
-      font-size: 2.6rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      text-transform: lowercase;
+      color: var(--walnut);
+      position: relative;
     }
 
     h3 {
       font-size: 1.8rem;
+      color: var(--sage);
       margin-bottom: 0.8rem;
+      font-weight: 600;
     }
 
     p {
       margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 300;
     }
 
     a {
       text-decoration: none;
-      color: var(--terracotta);
+      color: var(--clay);
+      transition: color 0.3s ease;
+      position: relative;
     }
 
     a:hover {
-      color: var(--olive-green);
+      color: var(--walnut);
     }
 
     .container {
@@ -69,92 +79,129 @@
       padding: 0 2rem;
     }
 
-    /* Sticky Nav */
+    /* Sticky Navbar */
     nav {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 1000;
+      left: 0;
+      width: 100%;
       padding: 1.5rem 2rem;
-      background: transparent;
-      backdrop-filter: blur(10px);
-      transition: background 0.4s ease, padding 0.4s ease;
-    }
-
-    nav.scrolled {
-      background: rgba(253, 250, 247, 0.95);
-      padding: 1rem 2rem;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-    }
-
-    .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      background: transparent;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(138, 155, 108, 0.05);
+    }
+
+    nav.scrolled {
+      padding: 1rem 2rem;
+      background-color: rgba(248, 244, 240, 0.96);
+      box-shadow: 0 12px 60px rgba(51, 51, 51, 0.06);
+      border-bottom: 1px solid rgba(138, 155, 108, 0.1);
     }
 
     .logo {
-      font-family: var(--font-heading);
-      font-size: 2.4rem;
-      color: var(--charcoal);
+      font-size: 2.2rem;
+      color: var(--walnut);
+      font-weight: 700;
       letter-spacing: -0.5px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.03);
     }
 
     .nav-links {
       display: flex;
       gap: 2.5rem;
+      position: relative;
     }
 
     .nav-links a {
-      font-weight: 500;
       font-size: 1.1rem;
+      font-weight: 500;
       position: relative;
+      padding: 0.5rem 0;
       transition: color 0.3s ease;
+      cursor: pointer;
     }
 
-    .nav-links a::after {
+    .nav-links a:after {
       content: '';
       position: absolute;
       bottom: -5px;
       left: 0;
       width: 0;
-      height: 2px;
-      background: var(--terracotta);
-      transition: width 0.3s ease;
+      height: 1.5px;
+      background-color: var(--clay);
+      transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    .nav-links a:hover::after {
+    .nav-links a:hover:after {
       width: 100%;
     }
 
+    .nav-links a:hover {
+      color: var(--clay);
+    }
+
     .cta-button {
-      background: var(--terracotta);
-      color: var(--cream);
+      background-color: var(--clay);
+      color: white;
       padding: 0.8rem 2rem;
       border-radius: 40px;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1rem;
       border: none;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 18px rgba(160, 82, 45, 0.2);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 6px 20px rgba(183, 62, 46, 0.3);
+      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding-left: 2.2rem;
+      padding-right: 2.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      transition: left 0.7s;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
     }
 
     .cta-button:hover {
-      background: var(--olive-green);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(160, 82, 45, 0.3);
+      background-color: var(--walnut);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(183, 62, 46, 0.5);
     }
 
     /* Hero Section */
     .hero {
       height: 100vh;
-      background-image: url('https://images.pexels.com/photos/29757273/pexels-photo-29757273.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-image: url(https://images.pexels.com/photos/35009410/pexels-photo-35009410.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
       background-size: cover;
       background-position: center;
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.1) 20%, transparent 80%);
     }
 
     .hero::before {
@@ -164,61 +211,76 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, rgba(46, 46, 46, 0.3), rgba(0, 0, 0, 0.6));
+      background: linear-gradient(180deg, rgba(138, 155, 108, 0.4) 0%, rgba(138, 155, 108, 0) 60%);
       z-index: 1;
     }
 
     .hero-content {
-      position: relative;
       z-index: 2;
-      color: var(--cream);
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 2rem;
+      max-width: 650px;
+      padding-left: 5rem;
       opacity: 0;
-      transform: translateY(50px);
-      animation: fadeInUp 1.5s ease-out forwards;
+      transform: translateY(40px);
+      animation: fadeUp 1.4s ease-out 0.2s forwards;
+      will-change: opacity, transform;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero h1 {
-      font-size: 4.4rem;
+      color: white;
       margin-bottom: 1.5rem;
-      letter-spacing: -1px;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      font-weight: 800;
+      font-size: 4rem;
     }
 
-    .tagline {
+    .hero p {
+      color: #f8f4f0;
       font-size: 1.8rem;
-      font-weight: 400;
-      font-family: var(--font-heading);
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+      font-weight: 300;
+      line-height: 1.4;
       font-style: italic;
     }
 
-    .hero-btns {
+    .hero-buttons {
       display: flex;
-      justify-content: center;
       gap: 1.5rem;
     }
 
-    .hero-btns .cta-button {
-      background: transparent;
-      border: 2px solid var(--cream);
-      color: var(--cream);
+    .hero-buttons .cta-button {
+      margin-top: 0;
     }
 
-    .hero-btns .cta-button:hover {
-      background: var(--cream);
+    .hero-buttons a:nth-child(2) {
+      background-color: transparent;
+      border: 2px solid var(--ivory);
+      color: var(--ivory);
+      padding: 0.7rem 2rem;
+    }
+
+    .hero-buttons a:nth-child(2):hover {
+      background-color: var(--ivory);
       color: var(--charcoal);
     }
 
     /* Trust Strip */
     .trust-strip {
-      background: var(--cream);
-      padding: 1.2rem 0;
+      padding: 1.5rem 0;
       text-align: center;
-      overflow: hidden;
+      background-color: var(--ivory);
+      border-bottom: 1px solid rgba(138, 155, 108, 0.1);
       position: relative;
+      overflow: hidden;
+      font-size: 0.9rem;
+      letter-spacing: 1.2px;
     }
 
     .trust-strip::before {
@@ -227,36 +289,31 @@
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 100%;
-      height: 3px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--terracotta),
-        var(--terracotta) 20px,
-        transparent 20px,
-        transparent 30px
-      );
+      width: 10%;
+      height: 2px;
+      background-color: var(--clay);
+      transition: width 0.6s ease;
     }
 
-    .trust-text {
-      font-size: 1.1rem;
-      color: var(--olive-green);
-      font-weight: 500;
+    .trust-strip:hover::before {
+      width: 30%;
     }
 
-    /* Features Section */
+    /* Features */
     .features {
-      padding: 8rem 0;
-      background: var(--cream);
+      padding: 10rem 0;
+      background-color: #faf7f5;
+      position: relative;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 5rem;
+      margin-bottom: 7rem;
       position: relative;
+      font-weight: 700;
     }
 
-    .section-title::after {
+    .section-title:after {
       content: '';
       position: absolute;
       bottom: -1.2rem;
@@ -264,319 +321,668 @@
       transform: translateX(-50%);
       width: 80px;
       height: 3px;
-      background: var(--terracotta);
+      background: linear-gradient(90deg, var(--clay), var(--sage));
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(138, 155, 108, 0.2);
     }
 
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
+      gap: 4rem;
     }
 
     .feature-card {
-      background: white;
-      border-radius: 16px;
-      padding: 2.5rem 2rem;
       text-align: center;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
-      transition: all 0.4s ease;
+      padding: 4rem 2rem;
+      background-color: white;
+      border-radius: 18px;
+      box-shadow: 0 12px 50px rgba(0, 0, 0, 0.05);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       position: relative;
       overflow: hidden;
+      transform: translateY(20px);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .feature-card.visible {
+      transform: translateY(0);
+      opacity: 1;
     }
 
     .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%) scale(0);
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, var(--terracotta), transparent);
-      transition: transform 0.5s ease;
-      z-index: 1;
-    }
-
-    .feature-card:hover::before {
-      transform: translateX(-50%) scale(1);
+      transform: translateY(-15px);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.12);
     }
 
     .feature-icon {
-      width: 70px;
-      height: 70px;
-      margin: 0 auto 2rem;
-      background: var(--terracotta);
+      width: 90px;
+      height: 90px;
+      background-color: rgba(138, 155, 108, 0.1);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--cream);
-      font-size: 2rem;
+      margin: 0 auto 2.5rem;
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: scale(0.9);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1);
+      background-color: rgba(138, 155, 108, 0.2);
+    }
+
+    .feature-icon svg {
+      width: 45px;
+      height: 45px;
+      fill: var(--sage);
+      transition: transform 0.5s ease;
+    }
+
+    .feature-card:hover .feature-icon svg {
+      transform: scale(1.1);
     }
 
     /* About Section */
     .about {
-      padding: 8rem 0;
-      background: var(--sandy-beige);
-      position: relative;
-    }
-
-    .about-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
+      padding: 10rem 0;
+      display: flex;
       align-items: center;
+      gap: 10rem;
+      position: relative;
     }
 
     .about-image {
-      border-radius: 16px;
+      flex: 1;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.15);
       position: relative;
-      height: 600px;
-      background: url('https://images.pexels.com/photos/29051685/pexels-photo-29051685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-      background-size: cover;
-      background-position: center;
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(183, 62, 46, 0.1), transparent);
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .about-image:hover::before {
+      opacity: 1;
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 4px solid rgba(138, 155, 108, 0.2);
+      border-radius: 24px;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      transform: scale(0.98);
+    }
+
+    .about-image:hover::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: scale(1);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-content {
+      flex: 1;
+      position: relative;
+      padding-right: 4rem;
     }
 
     .about-content h2 {
-      margin-bottom: 1.8rem;
+      margin-bottom: 2rem;
+      color: var(--charcoal);
+      max-width: 450px;
     }
 
     .about-content p {
-      font-size: 1.15rem;
-      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      line-height: 1.8;
     }
 
-    .about-content .cta-button {
-      margin-top: 1rem;
+    .about-content p:first-of-type {
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+
+    .about-content p:last-of-type {
+      font-style: italic;
+      color: var(--sage);
+      position: relative;
+    }
+
+    .about-content p:last-of-type::before {
+      content: '"';
+      position: absolute;
+      left: -1.5rem;
+      top: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      line-height: 1;
+      color: rgba(138, 155, 108, 0.3);
+    }
+
+    .about-content p:last-of-type::after {
+      content: '"';
+      position: absolute;
+      right: -1.5rem;
+      bottom: -1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      line-height: 1;
+      color: rgba(138, 155, 108, 0.3);
     }
 
     /* Testimonials */
     .testimonials {
-      padding: 8rem 0;
-      background: var(--cream);
+      padding: 10rem 0;
+      background-color: var(--ivory);
+      position: relative;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 180px;
+      height: 180px;
+      border: 4px solid rgba(138, 155, 108, 0.1);
+      border-radius: 50%;
+      z-index: -1;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 7rem;
+      position: relative;
+      font-weight: 700;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--clay), var(--sage));
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(138, 155, 108, 0.2);
     }
 
     .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 4rem;
+      margin-top: 4rem;
     }
 
     .testimonial-card {
-      background: white;
-      border-radius: 16px;
-      padding: 2.5rem;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      background-color: white;
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 16px 60px rgba(0, 0, 0, 0.07);
       position: relative;
+      transform: translateZ(0);
+      will-change: transform;
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .testimonial-card::before {
-      content: '"';
+      content: '“';
       position: absolute;
       top: 20px;
       left: 20px;
-      font-size: 4rem;
-      color: rgba(160, 82, 45, 0.1);
-      font-family: var(--font-heading);
+      font-size: 7rem;
+      font-family: 'Playfair Display', serif;
+      color: rgba(138, 155, 108, 0.1);
       line-height: 1;
-      z-index: 1;
+      font-weight: 400;
+    }
+
+    .testimonial-card::after {
+      content: '”';
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 7rem;
+      font-family: 'Playfair Display', serif;
+      color: rgba(138, 155, 108, 0.1);
+      line-height: 1;
+      font-weight: 400;
     }
 
     .testimonial-text {
+      font-size: 1.2rem;
+      color: var(--charcoal);
+      margin-bottom: 2.5rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.8;
       position: relative;
       z-index: 2;
-      font-size: 1.1rem;
-      font-style: italic;
-      margin-bottom: 1.5rem;
     }
 
     .testimonial-author {
       display: flex;
       align-items: center;
+      position: relative;
+      z-index: 2;
     }
 
-    .avatar {
-      width: 50px;
-      height: 50px;
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      margin-right: 1.2rem;
-      background: var(--sandy-beige);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--olive-green);
-      font-size: 1.8rem;
+      object-fit: cover;
+      margin-right: 1.5rem;
+      border: 2px solid var(--sage);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.6s ease;
+      z-index: 2;
     }
 
-    .author-info h4 {
+    .testimonial-card:hover .testimonial-avatar {
+      transform: scale(1.05);
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--walnut);
       font-size: 1.2rem;
     }
 
-    .author-info .role {
-      font-size: 0.95rem;
-      color: var(--olive-green);
-      margin-top: 0.2rem;
+    .testimonial-role {
+      font-size: 1rem;
+      color: var(--sage);
+      font-weight: 400;
     }
 
     /* Gallery */
     .gallery {
-      padding: 8rem 0;
-      background: var(--sandy-beige);
-      overflow: hidden;
+      padding: 10rem 0;
+      position: relative;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(138, 155, 108, 0.1) 0%, transparent 70%);
+      z-index: -1;
+      border-radius: 50%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 7rem;
+      position: relative;
+      font-weight: 700;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--clay), var(--sage));
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(138, 155, 108, 0.2);
     }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      margin-top: 5rem;
     }
 
     .gallery-item {
       position: relative;
       overflow: hidden;
-      border-radius: 16px;
+      border-radius: 20px;
       aspect-ratio: 1;
-      background: #e9e6e0;
+      cursor: pointer;
+      transform: scale(1);
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+    }
+
+    .gallery-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.1);
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.7s ease;
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .gallery-item:hover img {
-      transform: scale(1.08);
+      transform: scale(1.2);
+      filter: brightness(1.05);
     }
 
-    .gallery-item::after {
-      content: '';
+    .gallery-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(0deg, rgba(46, 46, 46, 0), rgba(46, 46, 46, 0.6));
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 70%);
+      display: flex;
+      align-items: flex-end;
+      padding: 2.5rem;
       opacity: 0;
       transition: opacity 0.5s ease;
+      color: white;
+      z-index: 2;
       pointer-events: none;
     }
 
-    .gallery-item:hover::after {
+    .gallery-item:hover .gallery-overlay {
       opacity: 1;
+      pointer-events: auto;
     }
 
-    /* Contact Section */
+    .gallery-overlay h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 0;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .gallery-overlay h3::before {
+      content: '• ';
+      color: var(--clay);
+    }
+
+    /* Contact */
     .contact {
-      padding: 10rem 0;
-      background: var(--charcoal);
-      color: var(--cream);
+      padding: 12rem 0;
+      background-color: var(--walnut);
+      color: white;
       position: relative;
     }
 
     .contact::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('https://images.pexels.com/photos/8856551/pexels-photo-8856551.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.1;
-      z-index: 1;
+      bottom: -90px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(183, 62, 46, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
     }
 
     .contact-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
       max-width: 800px;
       margin: 0 auto;
+      text-align: center;
+      position: relative;
     }
 
     .contact-content h2 {
-      margin-bottom: 1rem;
-      color: var(--cream);
+      color: white;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      font-size: 3rem;
     }
 
     .contact-content p {
-      font-size: 1.2rem;
-      margin-bottom: 4rem;
-      opacity: 0.9;
+      font-size: 1.4rem;
+      margin-bottom: 5rem;
+      color: #f8f4f0;
+      line-height: 1.7;
+      font-weight: 300;
+      font-family: 'Lato', sans-serif;
     }
 
     .contact-form {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      gap: 2.5rem;
+      margin-bottom: 4rem;
     }
 
     @media (max-width: 768px) {
       .contact-form {
         grid-template-columns: 1fr;
+        gap: 2rem;
       }
     }
 
-    .form-input,
-    .form-textarea {
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .form-control {
       width: 100%;
-      padding: 1rem;
-      border-radius: 8px;
+      padding: 1.4rem;
       border: none;
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--cream);
-      font-family: var(--font-body);
+      border-radius: 12px;
       font-size: 1rem;
+      background-color: rgba(248, 244, 240, 0.1);
+      color: white;
+      outline: none;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: box-shadow 0.3s ease, border-bottom 0.3s ease;
     }
 
-    .form-input::placeholder,
-    .form-textarea::placeholder {
-      color: rgba(255, 255, 255, 0.7);
+    .form-control::placeholder {
+      color: rgba(248, 244, 240, 0.5);
     }
 
-    .form-textarea {
-      grid-column: 1 / -1;
-      resize: vertical;
-      min-height: 150px;
+    .form-control:focus {
+      border-bottom: 2px solid var(--clay);
+      box-shadow: 0 4px 16px rgba(183, 62, 46, 0.2);
+    }
+
+    textarea.form-control {
+      height: 180px;
+      resize: none;
+      padding-top: 1.4rem;
+      padding-bottom: 1.4rem;
+    }
+
+    .contact-submit {
+      margin-top: 2rem;
+      padding: 1.4rem 3rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      background-color: var(--clay);
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      width: 100%;
+      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .contact-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.6s;
+      animation: shine 3s infinite;
+    }
+
+    .contact-submit:hover {
+      background-color: var(--sage);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(183, 62, 46, 0.4);
+    }
+
+    .contact-submit:hover::before {
+      opacity: 1;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      20% { left: 100%; }
+      100% { left: 100%; }
     }
 
     /* Footer */
     footer {
-      background: var(--charcoal);
-      color: var(--cream);
-      padding: 5rem 0 2rem;
+      background-color: var(--charcoal);
+      color: var(--ivory);
+      padding: 6rem 0 3rem;
+      position: relative;
     }
 
-    .footer-grid {
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(138, 155, 108, 0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    .footer-content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 4rem;
-      margin-bottom: 4rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 5rem;
+      margin-bottom: 5rem;
     }
 
-    .footer-brand {
-      margin-bottom: 1.5rem;
+    .footer-logo {
+      font-size: 2.2rem;
+      color: var(--ivory);
+      margin-bottom: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
 
-    .footer-brand h3 {
-      margin-bottom: 0.5rem;
+    .footer-social {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.8rem;
     }
 
-    .footer-text {
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
+    .footer-social a {
+      color: var(--ivory);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(248, 244, 240, 0.1);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      font-size: 1.2rem;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .footer-social a::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: transparent;
+      transition: background 0.3s ease;
+    }
+
+    .footer-social a:hover::before {
+      background: rgba(138, 155, 108, 0.2);
+    }
+
+    .footer-social a:hover {
+      transform: translateY(-4px);
+      color: var(--sage);
+    }
+
+    .footer-links h3 {
+      color: white;
+      margin-bottom: 2rem;
+      position: relative;
+      font-weight: 600;
+    }
+
+    .footer-links h3:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--clay), var(--sage));
     }
 
     .footer-links ul {
@@ -584,277 +990,270 @@
     }
 
     .footer-links li {
-      margin-bottom: 0.8rem;
+      margin-bottom: 1.2rem;
     }
 
     .footer-links a {
-      color: rgba(255, 255, 255, 0.7);
-      transition: color 0.3s ease;
+      color: rgba(248, 244, 240, 0.7);
+      transition: all 0.3s ease;
+      font-weight: 400;
     }
 
     .footer-links a:hover {
-      color: var(--cream);
+      color: white;
+      padding-left: 0.3rem;
     }
 
-    .footer-social {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s ease;
-      color: var(--cream);
-    }
-
-    .social-icon:hover {
-      background: var(--terracotta);
-    }
-
-    .copyright {
+    .footer-bottom {
       text-align: center;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.95rem;
-      opacity: 0.7;
+      padding-top: 4rem;
+      border-top: 1px solid rgba(248, 244, 240, 0.1);
+      font-size: 0.9rem;
+      color: rgba(248, 244, 240, 0.6);
+      letter-spacing: 0.8px;
     }
 
-    /* SVG Patterns */
-    .wave-divider {
-      width: 100%;
-      height: 60px;
+    .footer-bottom::before {
+      content: '•••••••••••••••••••••••••••••••••';
+      display: block;
+      margin: 0.5rem auto;
+      font-size: 0.8rem;
+      color: rgba(248, 244, 240, 0.2);
+      text-transform: lowercase;
+    }
+
+    /* SVG Decorations */
+    .wave {
+      position: relative;
       overflow: hidden;
-      margin: 1rem 0;
+      width: 100%;
+      height: 120px;
     }
 
-    .wave-divider svg {
+    .wave svg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      transform: rotate(180deg);
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .animate-on-scroll.visible {
+      fill: #F8F4F0;
+      transform: scaleY(1.5);
       opacity: 1;
-      transform: translateY(0);
     }
 
-    /* Subtle floating gradient */
-    .floating-shapes {
+    .wave.wave-up svg {
+      transform: scaleY(-1.5);
+    }
+
+    .wave-1 {
+      background-color: var(--ivory);
+    }
+
+    .wave-2 {
+      background-color: var(--ivory);
+    }
+
+    /* Backdrop Elements */
+    .back {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
       z-index: 999;
-      overflow: hidden;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
     }
 
-    .float-shape {
+    .back.show {
+      opacity: 1;
+    }
+
+    .back svg {
+      width: 100%;
+      height: 100%;
       position: absolute;
-      border-radius: 50%;
-      opacity: 0.05;
-      background: var(--olive-green);
-      animation: float 15s infinite ease-out;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.03;
+      animation: float 12s ease-in-out infinite;
     }
 
-    .float-shape:nth-child(1) {
-      width: 200px;
-      height: 200px;
-      top: 20%;
-      left: 10%;
-      animation-delay: 0s;
-    }
-
-    .float-shape:nth-child(2) {
-      width: 120px;
-      height: 120px;
-      top: 70%;
-      right: 20%;
-      animation-delay: -4s;
-    }
-
-    .float-shape:nth-child(3) {
-      width: 180px;
-      height: 180px;
-      bottom: 20%;
-      left: 30%;
-      animation-delay: -2s;
+    .back svg path {
+      transition: d 4s ease;
     }
 
     @keyframes float {
-      0% {
-        transform: translate(0, 0) scale(1);
-      }
-      50% {
-        transform: translate(20px, -30px) scale(1.05);
-      }
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
+      0% { transform: translateX(0) translateY(0); }
+      25% { transform: translateX(-15%) translateY(-20px); }
+      50% { transform: translateX(-30%) translateY(0); }
+      75% { transform: translateX(-15%) translateY(20px); }
+      100% { transform: translateX(0) translateY(0); }
     }
 
-    /* Responsiveness */
+    /* Animations */
+    .animated {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+
+    .animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Delayed stagger for elements in sections */
+    .animated:nth-of-type(1) { animation-delay: 0.1s; }
+    .animated:nth-of-type(2) { animation-delay: 0.2s; }
+    .animated:nth-of-type(3) { animation-delay: 0.3s; }
+    .animated:nth-of-type(4) { animation-delay: 0.4s; }
+    .animated:nth-of-type(5) { animation-delay: 0.5s; }
+    .animated:nth-of-type(6) { animation-delay: 0.6s; }
+
+    /* Mobile */
     @media (max-width: 992px) {
-      .container {
-        padding: 0 1.5rem;
+      h1 { font-size: 2.8rem; }
+      h2 { font-size: 2rem; }
+      .about {
+        flex-direction: column;
+        gap: 6rem;
+      }
+      .about-image {
+        width: 100%;
+        max-height: 500px;
+      }
+      .hero-content {
+        padding: 0 2rem;
+        max-width: 100%;
+        text-align: center;
+      }
+      .hero h1 { font-size: 2.8rem; }
+      .hero p { font-size: 1.6rem; }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .cta-button {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+      }
+      .feature-icon svg {
+        width: 40px;
+        height: 40px;
       }
     }
 
     @media (max-width: 768px) {
-      h1 {
-        font-size: 3.2rem;
-      }
-
-      h2 {
-        font-size: 2.2rem;
-      }
-
-      .hero h1 {
-        font-size: 3rem;
-      }
-
-      .tagline {
-        font-size: 1.6rem;
-      }
-
-      .about-container {
-        grid-template-columns: 1fr;
-        gap: 4rem;
-      }
-
-      .about-image {
-        height: 500px;
-      }
-
       .nav-links {
         display: none;
       }
-
-      .mobile-menu-button {
-        display: block;
+      .hero {
+        padding-top: 8rem;
       }
-    }
-
-    .mobile-menu-button {
-      display: none;
-      background: transparent;
-      border: none;
-      color: var(--charcoal);
-      font-size: 2rem;
-      cursor: pointer;
-    }
-
-    /* Scroll-down indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 50px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: bounce 2s infinite;
-      color: var(--cream);
-      font-size: 1.8rem;
-      z-index: 3;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateX(-50%) translateY(0);
+      .about-content h2 {
+        font-size: 2rem;
       }
-      40% {
-        transform: translateX(-50%) translateY(-10px);
+      .contact-form {
+        gap: 2rem;
       }
-      60% {
-        transform: translateX(-50%) translateY(-5px);
+      .form-control {
+        padding: 1.2rem;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-logo {
+        font-size: 2rem;
+      }
+      .footer-social {
+        justify-content: center;
+      }
+      .footer-links h3:after {
+        left: 50%;
+        transform: translateX(-50%);
       }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Floating Shapes -->
-  <div class="floating-shapes">
-    <div class="float-shape"></div>
-    <div class="float-shape"></div>
-    <div class="float-shape"></div>
+  <!-- Animated background shapes -->
+  <div class="back">
+    <svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <path d="M0,400 Q300,300 500,500 Q700,700 900,600 Q1100,500 1300,700 Q1500,900 1600,1000 L1600,1000 L0,1000 Z" fill="var(--sage)" />
+    </svg>
   </div>
 
   <!-- Navigation -->
   <nav>
-    <div class="container nav-container">
-      <a href="#" class="logo">Casuarina Tree</a>
-      <div class="nav-links">
-        <a href="#features">Menu</a>
-        <a href="#about">About</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <button class="cta-button">Reserve</button>
+    <a href="#" class="logo">Casuarina Tree</a>
+    <div class="nav-links">
+      <a href="#features">Menu</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
     </div>
+    <button class="cta-button">Reserve Table</button>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
       <h1>Casuarina Tree</h1>
-      <p class="tagline">Rooted in flavor</p>
-      <div class="hero-btns">
-        <button class="cta-button">View Menu</button>
-        <button class="cta-button">Book a Table</button>
+      <p>Where nature dines</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="cta-button">Book Now</a>
+        <a href="#features" class="cta-button">View Menu</a>
       </div>
     </div>
-    <svg class="scroll-indicator" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 19V5M5 12l7-7 7 7"></path>
-    </svg>
   </section>
 
   <!-- Trust Strip -->
-  <section class="trust-strip">
-    <div class="container">
-      <p class="trust-text">Trusted by local diners since day one — a quiet place for real food.</p>
-    </div>
-  </section>
+  <div class="trust-strip">
+    <p>Trusted by local diners and nature lovers</p>
+  </div>
 
-  <!-- Features Section -->
+  <!-- Features -->
   <section class="features" id="features">
     <div class="container">
-      <h2 class="section-title">Our Core Offerings</h2>
+      <h2 class="section-title">Our Philosophy</h2>
       <div class="features-grid">
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon">🌿</div>
-          <h3>Nature-Inspired Cuisine</h3>
-          <p>Every dish is crafted using locally sourced, seasonal ingredients rooted in the earth. Simple. Honest. Uncompromising.</p>
+        <div class="feature-card animated">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <h3>Locally Sourced</h3>
+          <p>Every ingredient tells a story of our regional landscape — handpicked from small farms and artisans within 50 miles.</p>
         </div>
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon">🧡</div>
-          <h3>Earthenware Dining</h3>
-          <p>Food served on handmade ceramic plates, echoing our commitment to slow, intentional living — no plastic, no waste.</p>
+        <div class="feature-card animated">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="M21 21l-4.35-4.35"></path>
+            </svg>
+          </div>
+          <h3>Earthen Flavors</h3>
+          <p>Craftsmanship in a single bite — slow-simmered broths, wood-fired roasts, and foraged herbs awaken the senses.</p>
         </div>
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon">🕯️</div>
-          <h3>Warm Ambient Light</h3>
-          <p>Soft lanterns, candlelight and timber accents create a sanctuary of calm. No screens. No noise. Just presence.</p>
+        <div class="feature-card animated">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3>Tranquil Atmosphere</h3>
+          <p>Let the rustle of leaves and the warmth of clay walls replace the clamor of the outside world.</p>
         </div>
       </div>
     </div>
@@ -862,49 +1261,49 @@
 
   <!-- About Section -->
   <section class="about" id="about">
-    <div class="container about-container">
-      <div class="about-image"></div>
-      <div class="about-content">
-        <h2>Roots in the Earth</h2>
-        <p>Casuarina Tree isn’t just a restaurant. It’s an ode to terroir — the soil, the season, the silence. Our chef spent years studying ancestral cooking methods across southern Europe and the Mediterranean, returning to create a space where the taste of place matters more than trend.</p>
-        <p>Each table is a quiet ritual: a shared platter of roasted root vegetables, a glass of amber wine from a vineyard five miles away, the rustle of linen napkins on wooden chairs.</p>
-        <button class="cta-button">Learn More</button>
-      </div>
+    <div class="about-image">
+      <img src="https://images.pexels.com/photos/7180275/pexels-photo-7180275.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Casuarina Tree interior">
+    </div>
+    <div class="about-content">
+      <h2>Casuarina Tree</h2>
+      <p>Nestled on London Road in Mitcham, we are more than a restaurant — we are a sanctuary for mindful dining. Inspired by the quiet grace of the Casuarina tree, we design every moment of your visit to harmonize with nature’s rhythm — from the hand-thrown ceramics on your table to the scent of thyme drawn from our rooftop herb garden.</p>
+      <p>Our kitchen does not follow trends — it follows seasons. We serve not because we can, but because the earth demands it. The clay walls, woven light screens, and reclaimed timbers all echo the same gentle principle: take only what you need, give back what you can.</p>
+      <p>Our location is not a postcode — it is our soul. 407 London Road, Mitcham CR4 4BG, where the past meets the pause.</p>
     </div>
   </section>
 
   <!-- Testimonials -->
   <section class="testimonials" id="testimonials">
     <div class="container">
-      <h2 class="section-title">From Our Guests</h2>
+      <h2 class="section-title">What our guests say</h2>
       <div class="testimonials-grid">
-        <div class="testimonial-card animate-on-scroll">
-          <p class="testimonial-text">I came here after a long day in the city and left with the weight of the world lifted. The food tasted like memory — like my grandmother’s kitchen on a Sunday evening.</p>
+        <div class="testimonial-card animated">
+          <p class="testimonial-text">The silence here is the finest ingredient. After a week in the city, I felt my breath slow down here for the first time in months.</p>
           <div class="testimonial-author">
-            <div class="avatar">A</div>
-            <div class="author-info">
-              <h4>Anonymous</h4>
-              <span class="role">Local Client</span>
+            <img src="https://images.pexels.com/photos/35009410/pexels-photo-35009410.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Local Client</div>
+              <div class="testimonial-role">London</div>
             </div>
           </div>
         </div>
-        <div class="testimonial-card animate-on-scroll">
-          <p class="testimonial-text">I’ve never felt more at peace in a dining room. The silence between bites isn’t awkward — it’s sacred.</p>
+        <div class="testimonial-card animated">
+          <p class="testimonial-text">I came for the food and stayed for the atmosphere. Every plate feels like a quiet poem written in flavor.</p>
           <div class="testimonial-author">
-            <div class="avatar">B</div>
-            <div class="author-info">
-              <h4>Anonymous</h4>
-              <span class="role">Verified Customer</span>
+            <img src="https://images.pexels.com/photos/7180275/pexels-photo-7180275.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Verified Customer</div>
+              <div class="testimonial-role">Croydon</div>
             </div>
           </div>
         </div>
-        <div class="testimonial-card animate-on-scroll">
-          <p class="testimonial-text">I booked this as a birthday dinner — it became the most meaningful evening of the year. We didn’t just eat — we connected.</p>
+        <div class="testimonial-card animated">
+          <p class="testimonial-text">I’ve eaten at places that charge four times as much. Casuarina Tree gives heart, soul, and intention — all of which cannot be measured in pounds.</p>
           <div class="testimonial-author">
-            <div class="avatar">C</div>
-            <div class="author-info">
-              <h4>Anonymous</h4>
-              <span class="role">Regular Guest</span>
+            <img src="https://images.pexels.com/photos/32226006/pexels-photo-32226006.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Regular Guest</div>
+              <div class="testimonial-role">Merton</div>
             </div>
           </div>
         </div>
@@ -915,34 +1314,52 @@
   <!-- Gallery -->
   <section class="gallery" id="gallery">
     <div class="container">
-      <h2 class="section-title">A Taste of Our Table</h2>
+      <h2 class="section-title">Moments</h2>
       <div class="gallery-grid">
-        <div class="gallery-item animate-on-scroll">
-          <img src="https://images.pexels.com/photos/5637759/pexels-photo-5637759.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Root vegetable tajine with couscous and herbal oils">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/4994139/pexels-photo-4994139.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Dining room interior">
+          <div class="gallery-overlay">
+            <h3>The Dining Room</h3>
+          </div>
         </div>
-        <div class="gallery-item animate-on-scroll">
-          <img src="https://images.pexels.com/photos/4078193/pexels-photo-4078193.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Ceramic bowl with stewed figs, honey, and walnut crumble">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/32226006/pexels-photo-32226006.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Plated dish">
+          <div class="gallery-overlay">
+            <h3>Clay & Herb</h3>
+          </div>
         </div>
-        <div class="gallery-item animate-on-scroll">
-          <img src="https://images.pexels.com/photos/4750308/pexels-photo-4750308.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A glass of amber wine beside a charred rosemary branch and olives">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/7045763/pexels-photo-7045763.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Herb garden">
+          <div class="gallery-overlay">
+            <h3>Garden to Plate</h3>
+          </div>
         </div>
-        <div class="gallery-item animate-on-scroll">
-          <img src="https://images.pexels.com/photos/8856551/pexels-photo-8856551.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Interior of the restaurant: low lighting, timber beams, hanging dried herbs">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/13162675/pexels-photo-13162675.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Ceramic dinnerware">
+          <div class="gallery-overlay">
+            <h3>Hand-Crafted</h3>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section class="contact" id="contact">
     <div class="contact-content">
-      <h2>Let’s Connect</h2>
-      <p>407 London Road, Mitcham, CR4 4BG</p>
+      <h2>Let’s Meet</h2>
+      <p>407 London Road<br>Mitcham CR4 4BG</p>
       <form class="contact-form">
-        <input type="text" class="form-input" placeholder="Your name" required>
-        <input type="email" class="form-input" placeholder="Your email" required>
-        <textarea class="form-textarea" placeholder="Tell us how we can serve you..." required></textarea>
-        <button class="cta-button" type="submit">Send Message</button>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Your email" required>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" placeholder="Tell us about your visit..." required></textarea>
+        </div>
+        <button type="submit" class="contact-submit">Reserve Your Table</button>
       </form>
     </div>
   </section>
@@ -950,101 +1367,138 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <h3>Casuarina Tree</h3>
-          <p class="footer-text">An earth-centered dining space in the quiet heart of Mitcham. Savor. Be still. Remember.</p>
+      <div class="footer-content">
+        <div>
+          <div class="footer-logo">Casuarina Tree</div>
+          <p>407 London Road<br>Mitcham CR4 4BG</p>
           <div class="footer-social">
-            <a href="#" class="social-icon">f</a>
-            <a href="#" class="social-icon">i</a>
-            <a href="#" class="social-icon">g</a>
+            <a href="#" aria-label="Instagram">I</a>
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Twitter">t</a>
           </div>
         </div>
         <div class="footer-links">
-          <h4>Menu</h4>
+          <h3>Menu</h3>
           <ul>
-            <li><a href="#">Appetizers</a></li>
-            <li><a href="#">Main Courses</a></li>
+            <li><a href="#">Breakfast</a></li>
+            <li><a href="#">Lunch</a></li>
+            <li><a href="#">Dinner</a></li>
             <li><a href="#">Desserts</a></li>
-            <li><a href="#">Wine List</a></li>
           </ul>
         </div>
         <div class="footer-links">
-          <h4>Hours</h4>
+          <h3>Hours</h3>
           <ul>
-            <li>Mon–Thu: 5:00 PM – 10:00 PM</li>
-            <li>Fri–Sat: 5:00 PM – 11:00 PM</li>
-            <li>Sun: 12:00 PM – 10:00 PM</li>
+            <li>Mon–Thu: 10am – 9pm</li>
+            <li>Fri–Sat: 10am – 10pm</li>
+            <li>Sun: 11am – 8pm</li>
           </ul>
         </div>
         <div class="footer-links">
-          <h4>Visit Us</h4>
+          <h3>Connect</h3>
           <ul>
-            <li>407 London Road</li>
-            <li>Mitcham, CR4 4BG</li>
+            <li><a href="#">Email</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Community Events</a></li>
           </ul>
         </div>
       </div>
-      <div class="copyright">
-        © 2026 Casuarina Tree. All rights reserved.
+      <div class="footer-bottom">
+        &copy; 2026 Casuarina Tree. All rights reserved.
       </div>
     </div>
   </footer>
 
+  <!-- Decorative Waves -->
+  <div class="wave wave-1">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0,128L48,133.3C96,139,192,149,288,176C384,203,480,245,576,234.7C672,224,768,160,864,138.7C960,117,1056,139,1152,154.7C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <!-- Navigation Sticky Behavior -->
   <script>
-    // Sticky Nav
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+      const nav = document.querySelector('nav');
+      const hero = document.querySelector('.hero');
+      const heroHeight = hero ? hero.offsetHeight : 0;
+      const backLayer = document.querySelector('.back');
+      const animatedElements = document.querySelectorAll('.animated, .gallery-item, .feature-card');
 
-    // Animate On Scroll
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    animateElements.forEach(el => observer.observe(el));
-
-    // Hero section staggered reveal
-    document.addEventListener('DOMContentLoaded', () => {
+      // Animate background on load
       setTimeout(() => {
-        document.querySelector('.hero-content').classList.add('visible');
-      }, 500);
-    });
+        backLayer.classList.add('show');
+      }, 300);
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 100,
-            behavior: 'smooth'
-          });
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > heroHeight / 2) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
         }
       });
-    });
 
-    // Form submit
-    const contactForm = document.querySelector('.contact-form');
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Thank you for reaching out. We'll be in touch soon.');
-      contactForm.reset();
+      // Animate elements on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      animatedElements.forEach(element => {
+        observer.observe(element);
+      });
+
+      // Hero fade up delay
+      setTimeout(() => {
+        document.querySelector('.hero-content').classList.add('animate');
+      }, 300);
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Form handler
+      const contactForm = document.querySelector('.contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Thank you! Your reservation request has been sent. We will contact you shortly.');
+          this.reset();
+        });
+      }
+
+      // Gallery item animation
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      galleryItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.1}s`;
+      });
+
+      // Feature card animation
+      const featureCards = document.querySelectorAll('.feature-card');
+      featureCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+      });
+
+      // Testimonial animation delay
+      const testimonialCards = document.querySelectorAll('.testimonial-card');
+      testimonialCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.15}s`;
+      });
     });
   </script>
 <script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=Q2FzdWFyaW5hIFRyZWU&u=dmlzaXQ&s=c660cb42ecbc1b5219a40570458a1610&beacon=1&l=b3NtLW5vZGUtMjY1NDQ0ODQ";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:037382dc19--></html>
+<!--bld:b970a7d4f2--></html>
