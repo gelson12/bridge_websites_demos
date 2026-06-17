@@ -3,20 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nail One</title>
+  <title>Nail One - Precision. Perfected.</title>
   <style>
     :root {
-      --primary-bg: #f5f5f5;
-      --text-dark: #2d2d2d;
-      --accent-1: #c9a9a6;
-      --accent-2: #8b7355;
-      --light-beige: #e8e0d5;
-      --font-main: 'Lato', sans-serif;
-      --font-sub: 'Open Sans', sans-serif;
-      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
-      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      --hero-gradient: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(201, 169, 166, 0.1));
+      --primary-light: #f8f4f1;
+      --primary: #e6e0d8;
+      --secondary: #8b7d6b;
+      --dark: #3a322d;
+      --accent: #c9b8a9;
+      --font-main: 'Montserrat', sans-serif;
+      --font-body: 'Lato', sans-serif;
     }
 
     * {
@@ -26,68 +22,80 @@
     }
 
     body {
-      font-family: var(--font-sub);
-      background-color: var(--primary-bg);
-      color: var(--text-dark);
+      font-family: var(--font-body);
+      color: var(--dark);
+      background-color: var(--primary-light);
       overflow-x: hidden;
       line-height: 1.6;
-      position: relative;
+      background-image: linear-gradient(135deg, #e6e0d8 10%, #f8f4f1 70%);
+      background-attachment: fixed;
     }
 
-    h1, h2, h3, h4, h5 {
+    h1, h2, h3, h4 {
       font-family: var(--font-main);
       font-weight: 700;
       letter-spacing: -0.5px;
-      position: relative;
+      font-smooth: always;
+      -webkit-font-smoothing: antialiased;
     }
 
     h1 {
       font-size: clamp(2.5rem, 6vw, 4rem);
       line-height: 1.1;
-      margin-bottom: 1rem;
     }
 
     h2 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      margin-bottom: 0.5rem;
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    .section {
+      padding: 8rem 5%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section--alt {
+      background: linear-gradient(135deg, var(--primary) 0%, #dcd5cc 100%);
     }
 
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 2rem;
+      position: relative;
+      z-index: 2;
     }
 
-    /* NAVIGATION */
+    /* STICKY NAV */
     nav {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
-      width: 100%;
-      padding: 1.5rem 2rem;
+      z-index: 1000;
+      background: rgba(248, 244, 241, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000;
-      background: transparent;
-      transition: var(--transition);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid rgba(230, 224, 216, 0.3);
     }
 
     nav.scrolled {
-      background: rgba(245, 245, 245, 0.95);
-      box-shadow: var(--shadow-md);
-      padding: 1rem 2rem;
+      padding: 0.75rem 5%;
+      background: rgba(248, 244, 241, 0.98);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
     }
 
     .logo {
       font-family: var(--font-main);
       font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--text-dark);
+      font-weight: 800;
+      color: var(--dark);
       text-decoration: none;
+      letter-spacing: -0.8px;
       position: relative;
+      z-index: 2;
     }
 
     .logo::after {
@@ -97,8 +105,9 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--accent-2);
-      transition: var(--transition);
+      background: var(--secondary);
+      transition: width 0.4s ease;
+      border-radius: 1px;
     }
 
     .logo:hover::after {
@@ -107,84 +116,86 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 2.5rem;
+      position: relative;
     }
 
     .nav-links a {
-      color: var(--text-dark);
+      color: var(--dark);
       text-decoration: none;
-      font-weight: 500;
       font-size: 0.95rem;
-      transition: var(--transition);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
       position: relative;
-      padding: 0.25rem 0;
-      border-radius: 4px;
+      padding: 0.5rem 0;
     }
 
-    .nav-links a:hover {
-      color: var(--accent-2);
-      background: rgba(201, 169, 166, 0.1);
-    }
-
-    .nav-links a::after {
+    .nav-links a::before {
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       width: 0;
       height: 2px;
-      background-color: var(--accent-2);
-      transition: var(--transition);
+      background: var(--accent);
+      transition: width 0.3s ease, left 0.3s ease;
+      border-radius: 1px;
     }
 
-    .nav-links a:hover::after {
+    .nav-links a:hover::before {
       width: 100%;
     }
 
-    .cta-button {
-      background-color: var(--accent-2);
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    .cta-btn {
+      background-color: var(--secondary);
       color: white;
-      padding: 0.7rem 1.8rem;
-      border: none;
-      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
       font-family: var(--font-main);
-      font-size: 0.95rem;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: none;
       cursor: pointer;
-      transition: var(--transition);
-      box-shadow: var(--shadow-sm);
-      outline: none;
+      transition: all 0.4s ease;
+      box-shadow: 0 5px 15px rgba(139, 125, 107, 0.2);
+      position: relative;
+      overflow: hidden;
     }
 
-    .cta-button:hover {
-      background-color: #7a6547;
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: var(--shadow-md);
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.8s;
     }
 
-    .cta-button.secondary {
-      background-color: transparent;
-      color: var(--text-dark);
-      border: 1px solid rgba(45, 45, 45, 0.2);
+    .cta-btn:hover::before {
+      left: 100%;
     }
 
-    .cta-button.secondary:hover {
-      background-color: rgba(201, 169, 166, 0.1);
-      border-color: var(--accent-1);
+    .cta-btn:hover {
+      background-color: var(--dark);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(139, 125, 107, 0.35);
     }
 
     /* HERO */
     .hero {
       height: 100vh;
-      width: 100%;
-      background-image: url('https://images.pexels.com/photos/6135674/pexels-photo-6135674.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-      background-size: cover;
-      background-position: center;
+      background: url('https://images.pexels.com/photos/6135674/pexels-photo-6135674.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') center/cover no-repeat;
       display: flex;
       align-items: center;
-      justify-content: center;
       position: relative;
       overflow: hidden;
     }
@@ -196,9 +207,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: var(--hero-gradient);
+      background: linear-gradient(135deg, rgba(58, 50, 45, 0.5), rgba(58, 50, 45, 0.8));
       z-index: 1;
-      pointer-events: none;
     }
 
     .hero::after {
@@ -208,263 +218,219 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjEiIGZpbGw9ImFscGhhKDAuMDUpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+');
-      opacity: 0.05;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="none"><path d="M0,100 Q50,180 100,100 T200,100" fill="none" stroke="%23c9b8a9" stroke-width="0.5" opacity="0.08"/></svg>') repeat-x;
+      opacity: 0.1;
+      bottom: 0;
+      background-size: 100% 10px;
       z-index: 1;
     }
 
     .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 0 5%;
       text-align: center;
       color: white;
-      z-index: 2;
       opacity: 0;
-      transform: translateY(40px);
-      animation: fadeInUp 1s ease-out 0.3s forwards;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      transform: translateY(50px);
+      animation: heroFadeIn 1.4s ease-out forwards;
+      animation-delay: 0.2s;
     }
 
     .hero h1 {
       color: white;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       font-weight: 800;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.15);
     }
 
     .hero p {
-      font-size: clamp(1.1rem, 3vw, 1.4rem);
-      margin-bottom: 2rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
       font-weight: 300;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      opacity: 0.9;
+      letter-spacing: -0.3px;
     }
 
-    .hero-buttons {
+    .hero-cta {
       display: flex;
       justify-content: center;
       gap: 1.5rem;
       flex-wrap: wrap;
       margin-top: 2rem;
-      animation: bounceInUp 1s 0.8s ease-out forwards;
     }
 
-    @keyframes bounceInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px) scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    .hero-cta .cta-btn {
+      background-color: var(--accent);
+      color: var(--dark);
+      border: 2px solid var(--accent);
     }
 
-    /* TRUST STRIP */
+    .hero-cta .cta-btn:hover {
+      background-color: transparent;
+      color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    /* TRUST */
     .trust-strip {
+      background-color: rgba(230, 224, 216, 0.5);
       padding: 1.5rem 0;
-      background: linear-gradient(90deg, rgba(201, 169, 166, 0.1), rgba(139, 115, 85, 0.1));
-      text-align: center;
-      font-size: 0.9rem;
-      color: #7a6547;
-      position: relative;
       overflow: hidden;
-    }
-
-    .trust-strip::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%) rotate(45deg);
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, rgba(201, 169, 166, 0.4), transparent 70%);
-      border-radius: 50%;
-      z-index: 1;
-    }
-
-    .trust-strip p {
-      margin: 0;
-      z-index: 2;
+      border-bottom: 1px solid rgba(230, 224, 216, 0.3);
       position: relative;
+    }
+
+    .trust-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .trust-item {
+      font-size: 0.95rem;
+      color: var(--secondary);
       font-weight: 500;
+      letter-spacing: 0.5px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+      padding: 0 1rem;
+    }
+
+    .trust-item::after {
+      content: '•';
+      color: var(--accent);
+      margin: 0 0.5rem;
+      font-size: 1.2rem;
+      opacity: 0.3;
+    }
+
+    .trust-item:last-child::after {
+      display: none;
     }
 
     /* SERVICES */
     .services {
-      padding: 8rem 0;
-      background-color: var(--primary-bg);
-      position: relative;
+      background: linear-gradient(to bottom, var(--primary-light) 0%, #f0eae4 100%);
     }
 
-    .services::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M5YTlhNiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTUwLDMwQzU1LDIwIDczLDM1IDYwLDUwQzQ1LDcwIDIwLDU1IDUwLDMwWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzlhOWE2IiBzdHJva2Utd2lkdGg9IjAuNSIvPjwvc3ZnPg==') center top / 100% auto;
-      z-index: 1;
-    }
-
-    .section-header {
+    .section-title {
       text-align: center;
-      margin-bottom: 5rem;
+      margin-bottom: 4rem;
       position: relative;
     }
 
-    .section-header h2 {
-      display: inline-block;
-      padding-bottom: 0.5rem;
-    }
-
-    .section-header h2::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: var(--accent-2);
-      margin: 1rem auto 0;
-      position: relative;
-    }
-
-    .section-header h2::before {
+    .section-title::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100px;
-      height: 50px;
-      background: linear-gradient(90deg, transparent, var(--accent-1), transparent);
-      opacity: 0.3;
-      border-radius: 50%;
-      z-index: -1;
-      animation: pulse 3s infinite;
-    }
-
-    @keyframes pulse {
-      0% { left: -100%; opacity: 0.3; }
-      50% { left: 100%; opacity: 0.1; }
-      100% { left: -100%; opacity: 0.3; }
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
     }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 3rem;
-      position: relative;
-      z-index: 2;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 4rem;
     }
 
     .service-card {
       background-color: white;
-      border-radius: 16px;
-      padding: 2.5rem 2rem;
+      padding: 3rem 2rem;
+      border-radius: 18px;
       text-align: center;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+      transition: all 0.5s ease;
+      cursor: default;
       opacity: 0;
-      transform: translateY(30px);
-      position: relative;
+      transform: translateY(50px) scale(0.95);
+      border: 1px solid rgba(230, 224, 216, 0.5);
       overflow: hidden;
-      z-index: 1;
-      border: 1px solid rgba(201, 169, 166, 0.1);
+      position: relative;
     }
 
     .service-card::before {
       content: '';
       position: absolute;
-      top: -10px;
+      top: 0;
       left: 0;
       width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, transparent, var(--accent-1), transparent);
+      height: 100%;
+      background: linear-gradient(180deg, transparent 0%, rgba(201, 184, 169, 0.1) 50%, transparent 100%);
       opacity: 0;
-      transition: var(--transition);
-      border-radius: 5px 5px 0 0;
-      z-index: -1;
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: var(--shadow-md);
-      border-color: rgba(201, 169, 166, 0.3);
+      transition: opacity 0.5s ease;
+      z-index: 1;
+      pointer-events: none;
     }
 
     .service-card:hover::before {
       opacity: 1;
-      width: 100%;
-      top: 0;
     }
 
-    .service-card svg {
-      fill: var(--accent-2);
-      width: 50px;
-      height: 50px;
-      margin-bottom: 1.5rem;
-      margin-left: auto;
-      margin-right: auto;
-      transition: var(--transition);
-      display: block;
+    .service-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
     }
 
-    .service-card:hover svg {
-      fill: #8b7355;
-      transform: scale(1.1);
-    }
-
-    .service-card h3 {
-      margin-bottom: 1rem;
-      color: var(--text-dark);
-      font-size: 1.4rem;
-      font-weight: 600;
-    }
-
-    .service-card p {
-      color: #555;
-      font-size: 0.95rem;
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
-    }
-
-    .service-card .icon-bg {
-      width: 60px;
-      height: 60px;
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--primary);
       border-radius: 50%;
-      background: rgba(201, 169, 166, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1.5rem;
+      margin: 0 auto 2.5rem;
+      color: var(--secondary);
+      transition: all 0.4s ease;
       position: relative;
-      transition: var(--transition);
-      overflow: hidden;
+      z-index: 2;
     }
 
-    .service-card:hover .icon-bg {
-      background: rgba(139, 115, 85, 0.15);
-      transform: scale(1.1);
+    .service-card:hover .service-icon {
+      transform: scale(1.1) rotate(5deg);
+      background-color: var(--accent);
+      color: var(--dark);
+    }
+
+    .service-icon svg {
+      width: 40px;
+      height: 40px;
+      transition: all 0.4s ease;
+    }
+
+    .service-card h3 {
+      margin-bottom: 1.5rem;
+      font-size: 1.7rem;
+      color: var(--dark);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .service-card:hover h3 {
+      color: var(--secondary);
+    }
+
+    .service-card p {
+      color: #4a423c;
+      margin-bottom: 1.5rem;
+      font-size: 1.02rem;
+      line-height: 1.7;
     }
 
     /* ABOUT */
     .about {
-      padding: 8rem 0;
-      background-color: white;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
+      background: linear-gradient(180deg, var(--primary) 0%, #dcd5cc 100%);
       position: relative;
     }
 
@@ -472,647 +438,728 @@
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
-      width: 100%;
+      right: 0;
+      width: 15%;
       height: 100%;
-      background: radial-gradient(circle at -10% 50%, rgba(201, 169, 166, 0.1), transparent 60%);
-      z-index: -1;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M5,50 Q50,10 95,50 T195,50" fill="none" stroke="%23c9b8a9" stroke-width="1" opacity="0.08"/></svg>') center/contain no-repeat;
+      opacity: 0.3;
+      pointer-events: none;
     }
 
-    .about::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: -40px;
-      width: 110px;
-      height: 110px;
-      background: radial-gradient(circle, rgba(139, 115, 85, 0.08), transparent 70%);
-      border-radius: 50%;
-      z-index: -1;
+    .about-container {
+      display: flex;
+      align-items: center;
+      gap: 8rem;
     }
 
     .about-image {
       flex: 1;
-      position: relative;
-      overflow: hidden;
       border-radius: 20px;
-      box-shadow: var(--shadow-md);
-      height: 80vh;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
+      position: relative;
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: all 0.8s ease;
       transform-style: preserve-3d;
-      perspective: 1000px;
-      border: 2px solid rgba(201, 169, 166, 0.1);
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: calc(100% + 20px);
+      height: calc(100% + 20px);
+      background: linear-gradient(180deg, rgba(201,184,169,0.2) 0%, transparent 100%);
+      z-index: -1;
+      border-radius: 20px;
+      pointer-events: none;
     }
 
     .about-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: var(--transition);
-      transform: translateZ(20px) scale(1);
+      transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: scale(1);
     }
 
     .about-image:hover img {
-      transform: translateZ(0) scale(1.08);
+      transform: scale(1.08);
     }
 
-    .about-image::after {
+    .about-content {
+      flex: 1;
+      opacity: 0;
+      transform: translateX(60px);
+      transition: all 0.8s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-content h2 {
+      margin-bottom: 2rem;
+      color: var(--dark);
+      font-weight: 700;
+    }
+
+    .about-content p {
+      margin-bottom: 2rem;
+      font-size: 1.15rem;
+      color: #4a423c;
+      line-height: 1.8;
+    }
+
+    .about-content .highlight {
+      position: relative;
+      display: inline;
+      padding: 0.2rem 0.5rem;
+      background: var(--accent);
+      border-radius: 100px;
+      color: var(--dark);
+      font-weight: 600;
+      font-style: italic;
+      margin: 0 0.2rem;
+      transform: translateY(-2px);
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      background: linear-gradient(to bottom, var(--primary-light) 0%, #ebe5de 100%);
+      padding: 10rem 5%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonials::after {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent);
-      z-index: 2;
-    }
-
-    .about-content {
-      flex: 1;
-      padding: 0 4rem;
-      position: relative;
-    }
-
-    .about-content h2 {
-      margin-bottom: 1.5rem;
-      color: var(--text-dark);
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    .about-content h2::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 3px;
-      background-color: var(--accent-2);
-      margin: 1.2rem auto 0;
-    }
-
-    .about-content p {
-      margin-bottom: 1.8rem;
-      color: #555;
-      font-size: 1.1rem;
-      line-height: 1.7;
-      font-weight: 300;
-    }
-
-    .about-content p:nth-child(2) {
-      font-style: italic;
-    }
-
-    /* TESTIMONIALS */
-    .testimonials {
-      padding: 8rem 0;
-      background-color: var(--primary-bg);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .testimonials::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 80px;
-      background: var(--hero-gradient);
-      border-radius: 50%;
-      opacity: 0.8;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,100 Q50,40 100,60 T200,90" fill="none" stroke="%23c9b8a9" stroke-width="0.6" opacity="0.15"/></svg>') repeat-x;
+      opacity: 0.5;
+      pointer-events: none;
       z-index: 1;
+      bottom: 0;
+      background-size: 300% 30px;
+      animation: wave 5s linear infinite;
     }
 
-    .testimonials::after {
-      content: '';
-      position: absolute;
-      bottom: -40px;
-      right: 50%;
-      transform: translateX(50%);
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, rgba(201, 169, 166, 0.7), transparent 70%);
-      border-radius: 50%;
-      z-index: 1;
+    @keyframes wave {
+      0% { background-position: 0 0; }
+      100% { background-position: 50% 0; }
     }
 
-    .testimonials .section-header h2::after {
-      background-color: var(--accent-1);
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
-      margin-top: 3rem;
+    .testimonials-container {
+      max-width: 1000px;
+      margin: 0 auto;
       position: relative;
       z-index: 2;
     }
 
     .testimonial {
       background-color: white;
-      border-radius: 18px;
-      padding: 2.5rem;
-      box-shadow: var(--shadow-sm);
+      padding: 3rem;
+      margin-bottom: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
       position: relative;
       opacity: 0;
-      transform: translateY(30px);
-      transition: var(--transition);
-      border: 1px solid rgba(201, 169, 166, 0.08);
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+      border: 1px solid rgba(230, 224, 216, 0.5);
       overflow: hidden;
     }
 
     .testimonial::before {
       content: '"';
+      font-size: 8rem;
+      font-family: Georgia, serif;
+      color: var(--accent);
+      opacity: 0.1;
       position: absolute;
-      top: 1.5rem;
-      left: 1.5rem;
-      font-size: 4rem;
-      color: rgba(201, 169, 166, 0.12);
-      font-family: serif;
+      top: 10px;
+      left: 20px;
       line-height: 1;
-      z-index: -1;
+      z-index: 0;
+      font-weight: 400;
+    }
+
+    .testimonial::after {
+      content: '';
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      z-index: 2;
+      opacity: 0.1;
     }
 
     .testimonial p {
+      margin-bottom: 2rem;
       font-style: italic;
-      margin-bottom: 1.8rem;
-      color: #444;
-      font-size: 1.05rem;
-      line-height: 1.6;
+      font-size: 1.2rem;
+      color: var(--dark);
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
     }
 
     .testimonial-author {
       display: flex;
       align-items: center;
-      margin-top: 1.5rem;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1;
     }
 
-    .testimonial-author img {
-      width: 50px;
-      height: 50px;
+    .testimonial-avatar {
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      margin-right: 1rem;
+      background-color: var(--primary);
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      border: 2px solid var(--accent);
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border: 2px solid rgba(201, 169, 166, 0.2);
-      transition: var(--transition);
     }
 
-    .testimonial:hover .testimonial-author img {
-      transform: scale(1.1);
+    .testimonial-author:hover .testimonial-avatar {
+      transform: scale(1.1) rotate(5deg);
     }
 
-    .testimonial-author h4 {
-      font-size: 1rem;
-      color: var(--text-dark);
-      margin-bottom: 0.2rem;
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--dark);
+      font-size: 1.1rem;
     }
 
-    .testimonial-author span {
+    .testimonial-title {
       font-size: 0.9rem;
-      color: #777;
+      color: var(--secondary);
       font-weight: 500;
+      letter-spacing: 0.5px;
     }
 
     /* GALLERY */
     .gallery {
-      padding: 8rem 0;
-      background-color: white;
+      background: linear-gradient(180deg, var(--primary) 0%, #dcd5cc 100%);
       position: relative;
     }
 
     .gallery::before {
       content: '';
       position: absolute;
-      top: -40px;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHBhdGggZD0iTTAsMDBMMTAwLDEwMCIgc3Ryb2tlPSIjYzlhOWE2IiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=') center top / 100% auto;
-      z-index: 1;
-    }
-
-    .gallery::after {
-      content: '';
-      position: absolute;
-      bottom: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 80px;
-      background: radial-gradient(circle at center, rgba(139, 115, 85, 0.1), transparent 70%);
-      border-radius: 50%;
-      z-index: 1;
-    }
-
-    .gallery .section-header h2::after {
-      background-color: var(--accent-2);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 4rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 16px;
-      box-shadow: var(--shadow-sm);
-      height: 320px;
-      cursor: pointer;
-      transition: var(--transition);
-      border: 1px solid rgba(139, 115, 85, 0.06);
-    }
-
-    .gallery-item::after {
-      content: '';
-      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, transparent, rgba(139, 115, 85, 0.2));
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" preserveAspectRatio="none"><path d="M0,40 Q50,50 100,40 T200,40" fill="none" stroke="%23c9b8a9" stroke-width="1" opacity="0.05"/></svg>') repeat-x;
+      background-size: 100% 60px;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .gallery-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .gallery-title::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+
+    .gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      height: 280px;
+      cursor: pointer;
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
       opacity: 0;
-      transition: var(--transition);
+      transform: scale(0.98);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.8s;
+      pointer-events: none;
       z-index: 2;
     }
 
-    .gallery-item:hover::after {
-      opacity: 1;
+    .gallery-item:hover {
+      transform: scale(1.04);
+      box-shadow: 0 25px 65px rgba(0, 0, 0, 0.12);
     }
 
-    .gallery-item:hover {
-      transform: translateY(-12px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-      border-color: rgba(139, 115, 85, 0.2);
+    .gallery-item:hover::before {
+      left: 100%;
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: var(--transition);
+      transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       transform: scale(1);
-      z-index: 1;
     }
 
     .gallery-item:hover img {
-      transform: scale(1.08) rotate(1deg);
+      transform: scale(1.12);
+    }
+
+    .gallery-item:hover::after {
+      content: 'Explore';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 1rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: white;
+      font-family: var(--font-main);
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s, transform 0.4s;
+      z-index: 3;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* CONTACT */
     .contact {
-      padding: 6rem 0;
-      background-color: var(--accent-1);
+      background: linear-gradient(to bottom, var(--primary-light) 0%, #ebe5de 100%);
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .contact h2 {
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+      font-weight: 700;
+    }
+
+    .contact p {
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+      color: #4a423c;
+      opacity: 0.9;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .form-group {
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.75rem;
+      color: var(--secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1.2rem;
+      border: 3px solid rgba(230, 224, 216, 0.5);
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background-color: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      outline: none;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 6px 25px rgba(201, 184, 169, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .btn-icon {
+      display: inline-block;
+      margin-left: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--dark);
+      color: white;
+      padding: 6rem 5% 2rem;
+      font-size: 0.95rem;
       position: relative;
       overflow: hidden;
     }
 
-    .contact::before {
+    .footer::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://images.pexels.com/photos/18730147/pexels-photo-18730147.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center;
-      background-size: cover;
-      opacity: 0.1;
-      z-index: 1;
-      filter: blur(10px);
-    }
-
-    .contact::after {
-      content: '';
-      position: absolute;
-      top: -40px;
-      right: -40px;
-      width: 80px;
-      height: 80px;
-      background: radial-gradient(circle, rgba(139, 115, 85, 0.1), transparent 70%);
-      border-radius: 50%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 200" preserveAspectRatio="none"><path d="M0,0 Q150,80 350,0 T700,0" fill="none" stroke="%23c9b8a9" stroke-width="1" opacity="0.1"/></svg>') repeat-x;
+      opacity: 0.2;
       z-index: 1;
     }
 
-    .contact::before {
-      opacity: 0.1;
-    }
-
-    .contact-content {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .contact-content h2 {
-      color: white;
-      margin-bottom: 1.5rem;
-      font-size: 2.8rem;
-      font-weight: 700;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .contact-content p {
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 3.5rem;
-      font-size: 1.2rem;
-      font-weight: 300;
-      line-height: 1.7;
-    }
-
-    .contact-form {
+    .footer-container {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-      position: relative;
-      z-index: 2;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 4rem;
     }
 
-    @media (max-width: 768px) {
-      .contact-form {
-        grid-template-columns: 1fr;
-      }
+    .footer-brand {
+      margin-bottom: 2rem;
     }
 
-    .contact-form input,
-    .contact-form textarea {
-      padding: 1.2rem;
-      border: none;
-      border-radius: 12px;
-      font-family: var(--font-sub);
+    .footer-brand h3 {
+      font-family: var(--font-main);
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.5px;
+    }
+
+    .footer-brand p {
+      color: #e6e0d8;
       font-size: 1rem;
-      outline: none;
-      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
-      background-color: rgba(255, 255, 255, 0.9);
-      transition: var(--transition);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      line-height: 1.6;
+      font-weight: 400;
     }
 
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
-      border-color: rgba(255, 255, 255, 0.4);
-    }
-
-    .contact-form textarea {
-      grid-column: 1 / -1;
-      height: 180px;
-      resize: vertical;
-    }
-
-    .contact-form button {
-      margin-top: 0.5rem;
-      padding: 1.2rem 2.2rem;
-      border: none;
-      border-radius: 30px;
-      background-color: var(--accent-2);
-      color: white;
+    .footer-column h4 {
       font-family: var(--font-main);
       font-weight: 600;
-      letter-spacing: 1px;
+      color: white;
+      margin-bottom: 1.5rem;
       text-transform: uppercase;
-      cursor: pointer;
-      transition: var(--transition);
-      font-size: 0.95rem;
-      box-shadow: var(--shadow-md);
-      outline: none;
-      border: none;
-    }
-
-    .contact-form button:hover {
-      background-color: #7a6547;
-      transform: translateY(-2px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    }
-
-    /* FOOTER */
-    footer {
-      background-color: var(--text-dark);
-      color: white;
-      padding: 6rem 0 3rem;
+      letter-spacing: 1px;
+      font-size: 1rem;
       position: relative;
     }
 
-    footer::before {
+    .footer-column h4::after {
       content: '';
       position: absolute;
-      top: -80px;
-      left: -40px;
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, rgba(201, 169, 166, 0.2), transparent 70%);
-      border-radius: 50%;
-      z-index: 1;
-    }
-
-    footer::after {
-      content: '';
-      position: absolute;
-      bottom: -60px;
-      right: -60px;
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, rgba(139, 115, 85, 0.2), transparent 70%);
-      border-radius: 50%;
-      z-index: 1;
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: 1fr 3fr 2fr;
-      gap: 4rem;
-      margin-bottom: 3rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-about p {
-      color: #ccc;
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-      font-size: 0.95rem;
-    }
-
-    .footer-links h3 {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-      color: white;
-      font-weight: 600;
-      position: relative;
-    }
-
-    .footer-links h3::after {
-      content: '';
-      display: block;
-      width: 30px;
+      bottom: -8px;
+      left: 0;
+      width: 25px;
       height: 3px;
-      background-color: var(--accent-1);
-      margin: 0.8rem auto 0;
+      background: var(--accent);
+      border-radius: 1.5px;
     }
 
-    .footer-links ul {
+    .footer-links {
       list-style: none;
     }
 
     .footer-links li {
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
+      position: relative;
     }
 
     .footer-links a {
-      color: #ccc;
+      color: #e6e0d8;
       text-decoration: none;
-      transition: var(--transition);
-      display: inline-block;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      padding: 0.3rem 0;
       position: relative;
-      padding-right: 10px;
     }
 
-    .footer-links a::after {
-      content: '→';
+    .footer-links a::before {
+      content: '';
       position: absolute;
-      right: 0;
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .footer-links a:hover::after {
-      opacity: 1;
-      transform: translateX(5px);
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+      opacity: 0.7;
     }
 
     .footer-links a:hover {
-      color: var(--accent-1);
+      color: var(--accent);
+    }
+
+    .footer-links a:hover::before {
+      width: 100%;
     }
 
     .footer-social {
       display: flex;
-      gap: 1.5rem;
-      margin-top: 1rem;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
     }
 
     .footer-social a {
-      color: #ccc;
-      font-size: 1.4rem;
-      transition: var(--transition);
-      display: inline-flex;
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
       text-decoration: none;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
     .footer-social a:hover {
-      color: var(--accent-1);
-      background: rgba(201, 169, 166, 0.15);
+      background-color: var(--accent);
+      color: var(--dark);
       transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(201,184,169,0.25);
     }
 
     .copyright {
+      margin-top: 4rem;
       text-align: center;
-      padding-top: 3rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.9rem;
-      color: #aaa;
-      position: relative;
-      z-index: 2;
-    }
-
-    .copyright::before {
-      content: '';
-      position: absolute;
-      top: -1px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 2px;
-      background: var(--accent-1);
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.85rem;
+      color: #e6e0d8;
+      font-weight: 300;
     }
 
     /* ANIMATIONS */
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+    @keyframes heroFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .animate-on-scroll.visible {
+    .animated-element {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .animated-element.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* HAMBURGER MENU */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background-color: var(--text-dark);
-      margin: 4px 0;
-      transition: var(--transition);
-    }
-
-    /* SCROLL TO TOP BUTTON */
-    #scrollToTopBtn {
+    /* PARTICLE BACKGROUND */
+    .particle-bg {
       position: fixed;
-      bottom: 3rem;
-      right: 2rem;
-      width: 50px;
-      height: 50px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+      pointer-events: none;
+      background: radial-gradient(circle at center, rgba(201, 184, 169, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background-color: var(--accent-2);
-      color: white;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      box-shadow: var(--shadow-md);
-      z-index: 1001;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-color: var(--accent);
+      opacity: 0.3;
+      animation: float 12s infinite ease-in-out;
     }
 
-    #scrollToTopBtn.visible {
-      opacity: 1;
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-150px) rotate(180deg);
+      }
+      100% {
+        transform: translateY(0) rotate(360deg);
+      }
     }
 
-    #scrollToTopBtn:hover {
-      transform: translateY(-5px) scale(1.1);
-      background-color: #7a6547;
+    /* TYPOGRAPHIC HIERARCHY */
+    h1 {
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      letter-spacing: -1px;
     }
 
     /* RESPONSIVE */
-    @media screen and (max-width: 1024px) {
+    @media (max-width: 1024px) {
+      .col-container {
+        flex-direction: column;
+      }
+
+      .about-container {
+        gap: 4rem;
+        flex-direction: column;
+      }
+
+      .about-image,
       .about-content {
-        padding: 0 2rem;
+        width: 100%;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .about-image {
+        margin-bottom: 3rem;
       }
     }
 
-    @media screen and (max-width: 768px) {
-      .container {
-        padding: 0 1.5rem;
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: clamp(2.2rem, 7vw, 3rem);
       }
 
-      .hero h1 {
-        font-size: clamp(2rem, 6vw, 3rem);
+      .hero p {
+        font-size: 1.15rem;
+      }
+
+      .about-container {
+        gap: 3rem;
+      }
+
+      .section {
+        padding: 6rem 3%;
+      }
+
+      .trust-item,
+      .service-card,
+      .testimonial,
+      .gallery-item,
+      .footer-column {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .testimonials {
+        padding: 7rem 3%;
+      }
+
+      .testimonial {
+        padding: 2rem 1.5rem;
+      }
+
+      .gallery-item {
+        height: 240px;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .footer-social {
+        justify-content: center;
+      }
+
+      .cta-btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .mobile-nav-open .hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 4px);
+      }
+
+      .mobile-nav-open .hamburger span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-nav-open .hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -5px);
       }
 
       .nav-links {
@@ -1121,295 +1168,285 @@
 
       .hamburger {
         display: flex;
-        position: absolute;
-        right: 2rem;
-        top: 1.5rem;
-      }
-
-      .cta-button {
-        display: none;
-      }
-
-      .about {
         flex-direction: column;
-        padding: 6rem 0;
+        cursor: pointer;
+        z-index: 2;
       }
 
-      .about-image {
-        margin-bottom: 2rem;
-        height: 40vh;
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: var(--dark);
+        margin: 3px 0;
+        transition: 0.3s;
       }
 
-      .about-content {
-        padding: 0 1rem;
-      }
-
-      .section-header h2 {
-        font-size: 2rem;
-      }
-
-      .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      }
-
-      .contact-form {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-content {
-        padding: 0 1.5rem;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        text-align: center;
-      }
-
-      .footer-about,
-      .footer-links,
-      .footer-social {
-        text-align: center;
-      }
-
-      .footer-links {
-        margin-top: 1rem;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .hero-buttons {
+      .mobile-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        transform: translateY(-100%);
+        transition: transform 0.5s ease;
+        overflow-y: auto;
+        padding: 6rem 5% 4rem;
       }
 
-      .cta-button {
+      .mobile-nav-open .mobile-nav {
+        transform: translateY(0);
+      }
+
+      .mobile-nav a {
+        display: block;
+        margin: 1.5rem 0;
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: var(--dark);
+        text-decoration: none;
+      }
+
+      .mobile-nav .cta-btn {
         width: 100%;
-        max-width: 200px;
-        margin-bottom: 1rem;
-      }
-
-      .service-card {
-        padding: 2rem 1.5rem;
-      }
-
-      .contact-form input,
-      .contact-form textarea {
-        padding: 1rem;
-      }
-
-      .contact-form button {
-        padding: 1rem 2rem;
-        font-size: 0.9rem;
-      }
-
-      .footer-social a {
-        width: 36px;
-        height: 36px;
-        font-size: 1.2rem;
+        text-align: center;
+        margin-top: 2.5rem;
+        padding: 1rem 1.2rem;
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <nav id="navbar">
-    <a href="#" class="logo">Nail One</a>
+  <nav id="mainNav">
+    <a href="#home" class="logo">Nail One</a>
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#about">About</a>
-      <a href="#testimonials">Testimonials</a>
       <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </div>
+    <a href="#contact" class="cta-btn">Book Now</a>
     <div class="hamburger" id="hamburger">
       <span></span>
       <span></span>
       <span></span>
     </div>
-    <button class="cta-button">Book Now</button>
   </nav>
 
-  <section class="hero">
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="cta-btn">Book Now</a>
+  </div>
+
+  <section class="hero" id="home">
     <div class="hero-content">
-      <h1>Nail One</h1>
-      <p>Precision in every stroke</p>
-      <div class="hero-buttons">
-        <button class="cta-button">Book Appointment</button>
-        <button class="cta-button secondary">View Gallery</button>
+      <h1>Beauty, Redefined</h1>
+      <p>Precision. Perfected.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="cta-btn">Book Consultation</a>
+        <a href="#gallery" class="cta-btn">View Gallery</a>
       </div>
     </div>
+    <div class="particle-bg" id="particleBg"></div>
   </section>
 
   <div class="trust-strip">
-    <p>Trusted by local clients. Expertise you can see.</p>
+    <div class="container trust-container">
+      <div class="trust-item">Trusted by local clients</div>
+      <div class="trust-item">Experienced & certified team</div>
+      <div class="trust-item">Hygienic, premium products</div>
+    </div>
   </div>
 
-  <section class="services" id="services">
+  <section class="services section" id="services">
     <div class="container">
-      <div class="section-header">
-        <h2>Our Services</h2>
-      </div>
+      <h2 class="section-title">Our Services</h2>
       <div class="services-grid">
-        <div class="service-card animate-on-scroll">
-          <div class="icon-bg">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M13.5,10.5C13.5,10.5 18,7.5 18,15.5C18,15.5 15.5,17 15.5,17C15.5,17 13.5,18.5 11.5,18.5C9.5,18.5 7.5,17 7.5,17C7.5,17 4.5,17 4.5,15.5C4.5,15.5 5.5,10.5 13.5,10.5Z"/>
-              <path d="M9,5C9,5 8.5,7.5 9,9C9.5,10.5 12,10.5 12,10.5C12,10.5 16,11 16,6C16,1 12,1 12,1C12,1 9.5,1.5 9,5Z"/>
-            </svg>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
           </div>
-          <h3>Acrylic Nails</h3>
-          <p>Custom sculpted acrylics that combine strength with elegance, perfectly suited to your lifestyle.</p>
+          <h3>Signature Manicure</h3>
+          <p>Our signature blend of hand care, precision shaping, and flawless polish application leaves your nails looking immaculate for weeks.</p>
         </div>
-        <div class="service-card animate-on-scroll">
-          <div class="icon-bg">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M15,6.5a1.5,1.5 0 1,0 -3,0a1.5,1.5 0 1,0 3,0z"/>
-              <path d="M17.75,4C17.75,4 12,4 12,11C12,14.75 12.75,17.5 17.75,17.5C22.75,17.5 23,11 23,11C23,11 11.75,11 20.25,6.5"/>
-              <path d="M8.25,7C8.25,13.5 7,14 3,14.5C-1,15 -1,11.5 5,8.5"/>
-              <path d="M19,14.5a3.5,3.5 0 1,0 -7,0a3.5,3.5 0 1,0 7,0z"/>
-            </svg>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l8-6 8 6M4 6l8 6 8-6"></path></svg>
           </div>
-          <h3>Gel Polish</h3>
-          <p>Long-lasting, glossy color that resists chipping, perfect for every season.</p>
+          <h3>Advanced Gel Nails</h3>
+          <p>Long-lasting, chip-resistant gel enhancements with custom designs, 3D embellishments, and a flawless high-gloss finish.</p>
         </div>
-        <div class="service-card animate-on-scroll">
-          <div class="icon-bg">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M11,4C6.5,4 8,6.5 4,11C8,15.5 6.5,18 11,18C15.5,18 17,15.5 21,11C17,6.5 18.5,4 11,4Z"/>
-              <path d="M13,11a2,2 0 1,1 -4,0a2,2 0 1,1 4,0z"/>
-              <path d="M15,13a2,2 0 1,1 -4,0a2,2 0 1,1 4,0z"/>
-              <path d="M17,15a2,2 0 1,1 -4,0a2,2 0 1,1 4,0z"/>
-            </svg>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12M8 12h8M8 18h12"></path></svg>
           </div>
-          <h3>Nail Art Design</h3>
-          <p>Hand-painted designs and intricate detailing, turning your nails into wearable art.</p>
+          <h3>Nail Repair & Restoration</h3>
+          <p>Professional repair of broken, thin, or damaged nails using medical-grade adhesives and techniques that promote healthy regrowth.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="about" id="about">
-    <div class="container">
+  <section class="about section section--alt" id="about">
+    <div class="container about-container">
       <div class="about-image">
-        <img src="https://images.pexels.com/photos/5484948/pexels-photo-5484948.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A serene nail salon setting with soft lighting and minimalist decor">
+        <img src="https://images.pexels.com/photos/7321737/pexels-photo-7321737.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Nail One technician at work in minimalist studio">
       </div>
       <div class="about-content">
-        <h2>Where Art Meets Precision</h2>
-        <p>Nail One is a sanctuary for elegance, where attention to detail transforms ordinary moments into extraordinary experiences. Founded on the belief that beauty is in the subtleties, we offer more than a manicure—we offer a ritual of self-care.</p>
-        <p>Our team brings years of expertise and a passion for perfection, crafting each nail with calm intention. We use only high-quality, ethically sourced products in a clean, serene environment designed for peace and presence.</p>
-        <a href="#contact" class="cta-button">Book Your Session</a>
+        <h2>Where Precision Meets <span class="highlight">Artistry</span></h2>
+        <p>Nail One was founded on the belief that beauty lies in the details. Every technique, every tool, every minute of our time is devoted to creating flawless nail art that feels as exquisite as it looks. Our studio offers a serene environment where comfort and <span class="highlight">cleanliness</span> are prioritized — a sanctuary for those who appreciate refinement.</p>
+        <p>We use only premium, non-yellowing polishes and ethically sourced products. Our technicians are certified in advanced nail science and trained in biomechanics to ensure your nails remain healthy while looking stunning.</p>
+        <p>Every appointment is a <span class="highlight">collaborative experience</span>. Your vision, refined by our expertise — beauty perfected, not mass-produced.</p>
       </div>
     </div>
   </section>
 
-  <section class="testimonials" id="testimonials">
-    <div class="container">
-      <div class="section-header">
-        <h2>What Our Clients Say</h2>
+  <section class="testimonials section" id="gallery">
+    <div class="container testimonials-container">
+      <h2 class="section-title">What Clients Say</h2>
+      <div class="testimonial">
+        <p>Everything was perfect — from the calming ambiance to the flawless finish. My nails have never looked so elegant. I’ll be back every two weeks.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">
+            <img src="https://images.pexels.com/photos/6135674/pexels-photo-6135674.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client portrait">
+          </div>
+          <div class="testimonial-name">Verified Customer</div>
+        </div>
       </div>
-      <div class="testimonials-grid">
-        <div class="testimonial animate-on-scroll">
-          <p>I’ve been to countless salons, but Nail One is the only one that truly understands precision. My nails have never looked this good.</p>
-          <div class="testimonial-author">
-            <img src="https://images.pexels.com/photos/6135674/pexels-photo-6135674.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client avatar">
-            <div>
-              <h4>Local Client</h4>
-              <span>Verified Customer</span>
-            </div>
+      <div class="testimonial">
+        <p>I’ve tried many salons, but Nail One truly stands out. Their attention to detail is insane — even the cuticle work is better than spa treatments I've paid three times the price for.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">
+            <img src="https://images.pexels.com/photos/7321737/pexels-photo-7321737.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client portrait">
           </div>
+          <div class="testimonial-name">Local Client</div>
         </div>
-        <div class="testimonial animate-on-scroll">
-          <p>The atmosphere is calming, the technicians are gentle, and every detail is flawless. I feel pampered every time I leave.</p>
-          <div class="testimonial-author">
-            <img src="https://images.pexels.com/photos/5484948/pexels-photo-5484948.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client avatar">
-            <div>
-              <h4>Local Client</h4>
-              <span>Verified Customer</span>
-            </div>
+      </div>
+      <div class="testimonial">
+        <p>The experience was so peaceful, and my nails still look brand new after three weeks. I don’t just get a manicure — I get an experience.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">
+            <img src="https://images.pexels.com/photos/20758448/pexels-photo-20758448.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client portrait">
           </div>
-        </div>
-        <div class="testimonial animate-on-scroll">
-          <p>My nails lasted three weeks without a single chip. My friend saw them and booked her own appointment right away.</p>
-          <div class="testimonial-author">
-            <img src="https://images.pexels.com/photos/7755241/pexels-photo-7755241.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client avatar">
-            <div>
-              <h4>Local Client</h4>
-              <span>Verified Customer</span>
-            </div>
-          </div>
+          <div class="testimonial-name">Regular Guest</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="gallery" id="gallery">
+  <section class="gallery section section--alt" id="gallery">
     <div class="container">
-      <div class="section-header">
-        <h2>Gallery</h2>
-      </div>
+      <h2 class="gallery-title">Our Work</h2>
       <div class="gallery-grid">
-        <div class="gallery-item animate-on-scroll">
-          <img src="https://images.pexels.com/photos/7755241/pexels-photo-7755241.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Minimalist French tip design with subtle shimmer">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/13068371/pexels-photo-13068371.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Glossy nude gel nails with subtle metallic accent">
         </div>
-        <div class="gallery-item animate-on-scroll">
-          <img src="https://images.pexels.com/photos/20758448/pexels-photo-20758448.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Soft pastel ombre nails with gold leaf accents">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/20758448/pexels-photo-20758448.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="French tip nails with hand-painted floral designs">
         </div>
-        <div class="gallery-item animate-on-scroll">
-          <img src="https://images.pexels.com/photos/7755218/pexels-photo-7755218.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Nail art featuring delicate floral patterns">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/16690918/pexels-photo-16690918.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Ombre sunset-colored nails with glitter gradient">
         </div>
-        <div class="gallery-item animate-on-scroll">
-          <img src="https://images.pexels.com/photos/18730147/pexels-photo-18730147.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Elegant almond-shaped nude polish with crystal details">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/36328527/pexels-photo-36328527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Minimalist square nails with single gold line art">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/13068371/pexels-photo-13068371.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Classic almond-shaped nails in soft rose">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/16690918/pexels-photo-16690918.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Glitter ombré nails with rhinestone accents">
         </div>
       </div>
     </div>
   </section>
 
-  <section class="contact" id="contact">
-    <div class="contact-content">
-      <h2>Let's Create Beautiful Nails Together</h2>
-      <p>Book your appointment today and experience precision, elegance, and care.</p>
+  <section class="contact section" id="contact">
+    <div class="container contact-container">
+      <h2>Let’s Create Something Beautiful</h2>
+      <p>Ready to elevate your nails? Book your consultation or appointment today.</p>
       <form class="contact-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Tell us about your desired look or any special requests..." required></textarea>
-        <button type="submit">Book Appointment</button>
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="First and last name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about your vision or request..."></textarea>
+        </div>
+        <button type="submit" class="cta-btn">Book Appointment</button>
       </form>
     </div>
   </section>
 
   <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-about">
-          <h3>Nail One</h3>
-          <p>Precision in every stroke — where elegance meets expertise in the heart of your local area.</p>
-        </div>
-        <div class="footer-links">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <h3>Nail One</h3>
+        <p>Precision. Perfected.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Hours</h4>
+        <ul class="footer-links">
+          <li>Mon–Thu: 10am – 7pm</li>
+          <li> Fri–Sat: 9am – 8pm</li>
+          <li>Sun: 11am – 6pm</li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Connect</h4>
         <div class="footer-social">
           <a href="#" aria-label="Instagram">IG</a>
           <a href="#" aria-label="Facebook">FB</a>
           <a href="#" aria-label="Pinterest">P</a>
         </div>
       </div>
-      <div class="copyright">
-        <p>&copy; 2026 Nail One. All rights reserved.</p>
-      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2026 Nail One. All rights reserved.</p>
     </div>
   </footer>
 
-  <button id="scrollToTopBtn">↑</button>
-
   <script>
-    // Smooth scrolling for anchor links
+    // Mobile Nav Toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', () => {
+      document.body.classList.toggle('mobile-nav-open');
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('mobile-nav-open');
+      });
+    });
+
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1425,8 +1462,8 @@
       });
     });
 
-    // Sticky nav on scroll
-    const navbar = document.getElementById('navbar');
+    // Navigation scroll effect
+    const navbar = document.getElementById('mainNav');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
@@ -1435,89 +1472,75 @@
       }
     });
 
-    // Hamburger menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    
-    hamburger.addEventListener('click', () => {
-      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-      hamburger.innerHTML = navLinks.style.display === 'flex' 
-        ? '<span></span><span></span><span></span>' 
-        : '<span style="transform: rotate(45deg);"></span><span style="transform: rotate(-45deg);"></span>';
-    });
-
-    // Reveal elements on scroll
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-
-    const observerOptions = {
-      threshold: 0.1
+    // Animate sections on scroll
+    const animateOnScroll = () => {
+      const animatedElements = document.querySelectorAll('.service-card, .about-image, .about-content, .testimonial, .gallery-item, .trust-item');
+      
+      animatedElements.forEach((element, index) => {
+        if (element.classList.contains('visible')) return;
+        
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+          element.classList.add('visible');
+          element.style.animationDelay = (index * 0.1 + 0.2) + 's';
+        }
+      });
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
 
-    animateElements.forEach(el => {
-      observer.observe(el);
-    });
+    // Floating particles
+    const particleBg = document.getElementById('particleBg');
+    const numParticles = 30;
 
-    // Scroll to top button
-    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-    
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        scrollToTopBtn.classList.add('visible');
-      } else {
-        scrollToTopBtn.classList.remove('visible');
-      }
-    });
-
-    scrollToTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
-    // Subtle parallax effect on hero background
-    window.addEventListener('mousemove', (e) => {
-      const hero = document.querySelector('.hero');
-      const xAxis = (window.innerWidth / 2 - e.pageX) / 20;
-      const yAxis = (window.innerHeight / 2 - e.pageY) / 20;
+    for (let i = 0; i < numParticles; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
       
-      hero.style.backgroundPositionX = `${xAxis}px`;
-      hero.style.backgroundPositionY = `${yAxis}px`;
+      // Random position
+      const x = Math.random() * 100;
+      const y = Math.random() * 80;
+      particle.style.left = x + '%';
+      particle.style.top = y + '%';
+      
+      // Random size
+      const size = Math.random() * 6 + 4;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      
+      // Random animation duration and delay
+      const duration = Math.random() * 20 + 15;
+      const delay = Math.random() * 10;
+      particle.style.animationDuration = duration + 's';
+      particle.style.animationDelay = delay + 's';
+      
+      particleBg.appendChild(particle);
+    }
+
+    // Contact form submission (prevent default)
+    const contactForm = document.querySelector('.contact-form');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for your message! Nail One will contact you soon.');
+      contactForm.reset();
     });
 
-    // Add active class to nav links when scrolling
-    const sections = document.querySelectorAll('section');
-    const navLinksList = document.querySelectorAll('.nav-links a');
-
-    window.addEventListener('scroll', () => {
-      let current = '';
-
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= sectionTop - 100) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navLinksList.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
+    // Wait for DOM to load before triggering animations
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(animateOnScroll, 300);
+      
+      // Add staggered animations for elements not triggered by scroll
+      setTimeout(() => {
+        document.querySelectorAll('.trust-item').forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('visible');
+          }, index * 200);
+        });
+      }, 1000);
     });
-
-    //capturing the nav menu's height for scroll offset
-    const navbarHeight = navbar.offsetHeight;
   </script>
 <script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=TmFpbCBPbmU&u=dmlzaXQ&s=06e0387904b818dc407c46d4ced27eb9&beacon=1&l=b3NtLW5vZGUtNDE5MzY0Njcy";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:26b83bfaec--></html>
+<!--bld:070e4d6e2c--></html>
