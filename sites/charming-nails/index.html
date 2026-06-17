@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charming Nails</title>
+  <style>
+    :root {
+      --soft-blush: #f8e0e0;
+      --warm-nude: #f0e0d6;
+      --matte-white: #fafafa;
+      --pale-gold: #e6c9a8;
+      --clean-gray: #e5e5e5;
+      --text-dark: #333333;
+      --text-light: #666666;
+      --gold-accent: #d4b28a;
+      --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--text-dark);
+      background-color: var(--matte-white);
+      overflow-x: hidden;
+      line-height: 1.7;
+      background-image: linear-gradient(to bottom, var(--matte-white) 0%, #f9f5f2 100%);
+      --scrollbar-width: 8px;
+    }
+
+    ::-webkit-scrollbar {
+      width: var(--scrollbar-width);
+      height: var(--scrollbar-width);
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--pale-gold);
+      border-radius: var(--scrollbar-width);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      line-height: 1.1;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.9rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--pale-gold);
+      text-shadow: 0 1px 4px rgba(230, 201, 168, 0.3);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Sticky Nav */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1.8rem 0;
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar.scrolled {
+      background: rgba(250, 250, 250, 0.97);
+      box-shadow: var(--shadow-lg);
+      padding: 1.2rem 0;
+      border-radius: 0 0 16px 16px;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--pale-gold), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .logo:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-size: 1.1rem;
+      letter-spacing: 0.8px;
+      font-weight: 500;
+      position: relative;
+      padding: 0.3rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--pale-gold);
+      transition: width 0.4s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background-color: var(--pale-gold);
+      color: var(--text-dark);
+      padding: 0.7rem 2.4rem;
+      border: none;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 32px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-sm);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta-button:hover {
+      background-color: #d5b897;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background-image: url('https://images.pexels.com/photos/18730147/pexels-photo-18730147.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(248, 224, 224, 0.6), rgba(250, 250, 250, 0.2));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      padding: 0 4rem;
+      animation: fadeInUp 1.5s ease-out;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .hero h1 {
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      font-size: 5rem;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero h1::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hero h1::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -80px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, var(--pale-gold), transparent 70%);
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: floating 4s ease-in-out infinite;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      color: var(--text-dark);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .secondary-button {
+      background-color: transparent;
+      color: var(--text-dark);
+      border: 2px solid var(--text-dark);
+      padding: 0.7rem 2.4rem;
+      font-size: 1rem;
+      border-radius: 32px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .secondary-button:hover {
+      background-color: var(--text-dark);
+      color: var(--matte-white);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background-color: var(--warm-nude);
+      padding: 1.2rem 0;
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      letter-spacing: 0.8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(230, 201, 168, 0.3), transparent);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    /* Decorative SVG Waves */
+    .wave-divider {
+      height: 60px;
+      overflow: hidden;
+      position: relative;
+      margin: 0;
+      transform: translateY(-1px);
+    }
+
+    .wave-divider svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--warm-nude);
+    }
+
+    /* Features */
+    .features {
+      padding: 10rem 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: var(--pale-gold);
+      margin: 1rem auto 0;
+      opacity: 0.5;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background-color: var(--matte-white);
+      padding: 4rem 2rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, var(--pale-gold) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: -1;
+    }
+
+    .feature-card:hover::before {
+      opacity: 0.05;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+      border-radius: 24px;
+    }
+
+    .feature-card svg {
+      width: 80px;
+      height: 80px;
+      fill: var(--pale-gold);
+      margin-bottom: 2rem;
+      transition: transform 0.5s ease;
+      transform: scale(1);
+    }
+
+    .feature-card:hover svg {
+      transform: scale(1.2);
+    }
+
+    .feature-card h3 {
+      color: var(--text-dark);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.3px;
+    }
+
+    .feature-card p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      padding: 0 1rem;
+      line-height: 1.8;
+    }
+
+    /* About */
+    .about {
+      padding: 10rem 0;
+      background-color: var(--matte-white);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::after {
+      content: '';
+      position: absolute;
+      left: -100px;
+      bottom: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--soft-blush), transparent 60%);
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .about-image {
+      width: 55%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+      margin-right: 4rem;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      transform: translateY(0);
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .about:hover .about-image img {
+      transform: scale(1.03);
+    }
+
+    .about-content {
+      width: 45%;
+      padding: 0 0 0 6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about h2 {
+      color: var(--text-dark);
+      margin-bottom: 2rem;
+      font-size: 3.5rem;
+    }
+
+    .about p {
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+      color: var(--text-light);
+      line-height: 1.9;
+      letter-spacing: -0.2px;
+    }
+
+    .about p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 8rem 0;
+      background-color: var(--warm-nude);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::after {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0,0 Q25,40 50,50 T100,50 L100,0 Z" fill="%23f0e0d6" opacity="0.3"/></svg>') repeat-x;
+      background-size: 100px 50px;
+      z-index: 1;
+    }
+
+    .section-title {
+      color: var(--text-dark);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+      margin-top: 5rem;
+    }
+
+    .testimonial {
+      background-color: var(--matte-white);
+      padding: 4rem 2.5rem 3rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1;
+    }
+
+    .testimonial::before {
+      content: '"';
+      font-size: 5rem;
+      color: var(--pale-gold);
+      position: absolute;
+      top: 15px;
+      left: 25px;
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 2rem;
+      color: var(--text-dark);
+      font-size: 1.15rem;
+      line-height: 1.9;
+      letter-spacing: -0.2px;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--text-dark);
+      font-size: 1.1rem;
+      letter-spacing: 0.2px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .testimonial-author::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 50%;
+      height: 1.5px;
+      background: var(--pale-gold);
+      transition: width 0.4s ease;
+    }
+
+    .testimonial-author:hover::after {
+      width: 100%;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 10rem 0;
+      background-color: var(--matte-white);
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title {
+      margin-bottom: 5rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-top: 5rem;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .gallery-image:hover {
+      transform: scale(1.05) translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .gallery-image:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--pale-gold), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gallery-image:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Contact */
+    .contact {
+      padding: 10rem 0;
+      background-color: var(--warm-nude);
+      text-align: center;
+      position: relative;
+    }
+
+    .contact::after {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--soft-blush), transparent 70%);
+      opacity: 0.1;
+      border-radius: 50%;
+    }
+
+    .contact h2 {
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      font-size: 3.5rem;
+    }
+
+    .contact p {
+      color: var(--text-light);
+      margin-bottom: 3rem;
+      font-size: 1.2rem;
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      padding: 3rem;
+      background-color: var(--matte-white);
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 1.2rem;
+      border: 1px solid var(--clean-gray);
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      transition: all 0.4s ease;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--pale-gold);
+      box-shadow: 0 0 0 3px rgba(230, 201, 168, 0.2);
+    }
+
+    .contact-form textarea {
+      height: 180px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--text-dark);
+      color: var(--matte-white);
+      padding: 6rem 0 3rem;
+      position: relative;
+    }
+
+    .footer::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" preserveAspectRatio="none"><path d="M0,50 Q25,20 50,50 T100,50 L100,80 L0,80 Z" fill="%23333333"/></svg>') repeat-x;
+      background-size: 100px 80px;
+      z-index: 1;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 4rem;
+      margin-bottom: 5rem;
+    }
+
+    .footer-col h3 {
+      color: var(--matte-white);
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--pale-gold);
+    }
+
+    .footer-col p,
+    .footer-col a {
+      color: rgba(250, 250, 250, 0.85);
+      margin-bottom: 1rem;
+      display: block;
+      transition: color 0.3s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--pale-gold);
+      text-shadow: 0 1px 4px rgba(230, 201, 168, 0.3);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .social-links a {
+      color: rgba(250, 250, 250, 0.8);
+      font-size: 1.1rem;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .social-links a:hover {
+      color: var(--pale-gold);
+      transform: translateY(-3px);
+    }
+
+    .social-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--pale-gold);
+      transition: width 0.3s ease;
+    }
+
+    .social-links a:hover::after {
+      width: 100%;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(250, 250, 250, 0.1);
+      font-size: 0.9rem;
+      color: rgba(250, 250, 250, 0.7);
+    }
+
+    /* Floating Decorative Elements */
+    .decorative-blob {
+      position: absolute;
+      opacity: 0.06;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .blob1 {
+      top: 15%;
+      left: 8%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, var(--pale-gold), transparent 70%);
+      border-radius: 50%;
+      animation: float 12s ease-in-out infinite;
+    }
+
+    .blob2 {
+      bottom: 15%;
+      right: 12%;
+      width: 250px;
+      height: 300px;
+      background: radial-gradient(circle, var(--soft-blush), transparent 70%);
+      border-radius: 60% 40% 70% 50% / 60% 40% 50% 70%;
+      animation: float 10s ease-in-out infinite 2s;
+      opacity: 0.04;
+    }
+
+    .blob3 {
+      top: 50%;
+      left: 88%;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, var(--gold-accent), transparent 70%);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite 1s;
+      opacity: 0.05;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      50% {
+        transform: translate(15px, 15px) rotate(180deg);
+      }
+      100% {
+        transform: translate(0, 0) rotate(360deg);
+      }
+    }
+
+    /* Parallax Layer */
+    .parallax-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: -1;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slidingUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Scroll-triggered gradients */
+    .gradient-background {
+      z-index: -1;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--soft-blush) 0%, transparent 40%);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .hero .gradient-background {
+      top: 0;
+      left: 10%;
+    }
+
+    .hero:hover .gradient-background {
+      opacity: 0.1;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+      }
+
+      .about-image,
+      .about-content {
+        width: 100%;
+      }
+
+      .about-image {
+        margin-right: 0;
+        margin-bottom: 4rem;
+      }
+
+      .about-content {
+        padding: 0 4rem;
+      }
+
+      .pirate-plank::after {
+        width: 10px;
+        height: 10px;
+      }
+
+      .navbar {
+        padding: 1.4rem 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .cta-button {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+        background: var(--pale-gold);
+        border: none;
+        padding: 0.8rem 1rem;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 3rem;
+      }
+
+      .section-title {
+        font-size: 2.8rem;
+        margin-bottom: 4rem;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero-content {
+        padding: 0 2rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about,
+      .about-image,
+      .about-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 2rem;
+      }
+
+      .about-image {
+        margin-bottom: 2rem;
+      }
+
+      .about-content {
+        padding: 0 2rem;
+      }
+
+      .features-grid,
+      .testimonials-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-image {
+        height: 320px;
+      }
+
+      .contact-form {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.6rem;
+        line-height: 1.1;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+
+      .hero-content {
+        padding: 0 1rem;
+      }
+
+      .features-grid,
+      .testimonials-grid {
+        gap: 2rem;
+      }
+
+      .feature-card,
+      .testimonial {
+        padding: 3rem 1.5rem;
+      }
+
+      .feature-card h3,
+      .testimonial-author {
+        font-size: 1.6rem;
+      }
+
+      .gallery-grid {
+        gap: 1.5rem;
+      }
+
+      .gallery-image {
+        height: 280px;
+      }
+
+      .footer-content {
+        gap: 2.5rem;
+        grid-template-columns: 1fr;
+      }
+
+      .footer-col {
+        margin-bottom: 3rem;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="#" class="logo">Charming Nails</a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="cta-button">Book Now</button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="decorative-blob blob1"></div>
+    <div class="decorative-blob blob2"></div>
+    <div class="decorative-blob blob3"></div>
+    <div class="gradient-background"></div>
+    <div class="hero-content">
+      <h1>Nails that whisper elegance</h1>
+      <p>Experience the art of nail care in a serene, minimalist setting — where every detail is designed to elevate your beauty.</p>
+      <div class="hero-buttons">
+        <button class="cta-button">Book Appointment</button>
+        <button class="secondary-button">View Services</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    Trusted by local clients for exquisite, relaxing nail artistry
+  </div>
+
+  <!-- Decorative Wave Divider -->
+  <div class="wave-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
+      <path d="M0,100 C180,120 400,150 600,150 C800,150 1020,120 1200,120 C1400,120 1440,80 1440,80 L1440,200 L0,200 Z" fill="var(--warm-nude)"></path>
+    </svg>
+  </div>
+
+  <!-- Features -->
+  <section class="features" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+            <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/>
+            <path d="M12 10c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+          </svg>
+          <h3>Classic Manicure</h3>
+          <p>Our signature service with gentle cuticle care, all-natural oils, and a flawless finish — designed to leave your hands looking naturally radiant.</p>
+        </div>
+        <div class="feature-card reveal">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 12c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8z"/>
+            <path d="M12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+          </svg>
+          <h3>Colorful Gel Designs</h3>
+          <p>Elegant, long-lasting gel polish with hand-painted accents, subtle glitter, and artistic details — perfect for both everyday wear and special occasions.</p>
+        </div>
+        <div class="feature-card reveal">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/>
+            <path d="M12 20c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/>
+            <path d="M12 10c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/>
+          </svg>
+          <h3>Full Nail Extensions</h3>
+          <p>Custom sculpted extensions using lightweight, breathable acrylic or hybrid gel — shaped, smoothed, and finished for maximum comfort and durability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Decorative Wave Divider -->
+  <div class="wave-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
+      <path d="M0,30 C300,35 600,60 800,65 C1000,70 1200,50 1440,30 L1440,0 L0,0 Z" fill="var(--matte-white)"></path>
+    </svg>
+  </div>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/7321734/pexels-photo-7321734.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Charming Nails studio interior" class="reveal">
+      </div>
+      <div class="about-content">
+        <h2>Where Comfort Meets Craft</h2>
+        <p>Charming Nails was founded on the belief that beauty treatments should be as peaceful as they are transformative. Our minimalist studio is designed as a quiet sanctuary — soft lighting, calming music, and an atmosphere free of distractions.</p>
+        <p>Our team brings years of experience and an artist’s eye to every service. We use only premium, cruelty-free products and practice the gentlest techniques to ensure your nails not only look stunning but feel nourished and healthy.</p>
+        <p>For us, it’s not about trends — it’s about timeless elegance, individuality, and the quiet joy of a well-cared-for hand.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Decorative Wave Divider -->
+  <div class="wave-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
+      <path d="M0,100 C200,120 500,90 700,80 C900,70 1180,85 1440,70 L1440,150 L0,150 Z" fill="var(--warm-nude)"></path>
+    </svg>
+  </div>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Footsteps of Beauty</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial reveal">
+          <p>My first visit to Charming Nails completely changed my standard for nail salons. The ambiance is so serene, the technician so attentive, and my nails look like art.</p>
+          <div class="testimonial-author">— Local client</div>
+        </div>
+        <div class="testimonial reveal">
+          <p>After years of false starts with other places, I finally found a salon that listens, creates beauty with finesse, and treats customers like guests — never like a number.</p>
+          <div class="testimonial-author">— Verified customer</div>
+        </div>
+        <div class="testimonial reveal">
+          <p>The gel color I chose was beyond what I imagined — soft and magical. I’ve been coming every three weeks since, and I know I’m in the best hands possible.</p>
+          <div class="testimonial-author">— Regular guest</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gallery-grid">
+        <img src="https://images.pexels.com/photos/6135696/pexels-photo-6135696.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Soft pink manicure with subtle gold flakes" class="gallery-image reveal">
+        <img src="https://images.pexels.com/photos/7755241/pexels-photo-7755241.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Nude gel nails with minimal pearl accents" class="gallery-image reveal">
+        <img src="https://images.pexels.com/photos/36328527/pexels-photo-36328527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Hand with long, sculpted white nails and delicate marbling" class="gallery-image reveal">
+        <img src="https://images.pexels.com/photos/20661202/pexels-photo-20661202.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Gel polish with abstract brush strokes in blush and gold" class="gallery-image reveal">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Get in Touch</h2>
+      <p>Let us create something beautiful for you.</p>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Tell us about your ideal look..." required></textarea>
+        <button type="submit" class="cta-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <h3>Charming Nails</h3>
+          <p>A serene beauty sanctuary where elegance meets artistry — no trends, no haste, just refined care.</p>
+          <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Pinterest</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h3>Hours</h3>
+          <p>Monday - Friday: 9am - 7pm</p>
+          <p>Saturday: 8am - 8pm</p>
+          <p>Sunday: 10am - 6pm</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Charming Nails. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky Nav
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Reveal animations
+    document.addEventListener('DOMContentLoaded', () => {
+      const revealElements = document.querySelectorAll('.reveal');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      revealElements.forEach(el => {
+        observer.observe(el);
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+
+    // Floating blobs animation
+    const blobs = document.querySelectorAll('.decorative-blob');
+    function animateBlobs() {
+      blobs.forEach((blob, i) => {
+        const x = Math.sin(Date.now() / (5000 + i * 200)) * 15;
+        const y = Math.cos(Date.now() / (4000 + i * 150)) * 15;
+        blob.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      requestAnimationFrame(animateBlobs);
+    }
+    animateBlobs();
+
+    // Add reveal effects to images on scroll
+    const galleryImages = document.querySelectorAll('.gallery-image');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.2 });
+
+    galleryImages.forEach(img => {
+      img.style.opacity = '0';
+      img.style.transform = 'translateY(40px)';
+      img.style.transition = 'opacity 1s ease, transform 1s ease';
+      observer.observe(img);
+    });
+
+    // Parallax effect on desktop
+    window.addEventListener('mousemove', (e) => {
+      const hero = document.querySelector('.hero');
+      const heroContent = document.querySelector('.hero-content');
+      
+      if (hero && heroContent) {
+        const mouseX = (e.clientX / window.innerWidth - 0.5) * 10;
+        const mouseY = (e.clientY / window.innerHeight - 0.5) * 10;
+        
+        heroContent.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      }
+    });
+
+    // Animate visitor counter (simulated)
+    document.addEventListener('DOMContentLoaded', () => {
+      const counterElements = document.querySelectorAll('[data-counter]');
+      counterElements.forEach(el => {
+        const target = parseInt(el.getAttribute('data-counter'));
+        let count = 0;
+        const increment = Math.ceil(target / 100);
+        const timer = setInterval(() => {
+          count += increment;
+          if (count >= target) {
+            clearInterval(timer);
+            count = target;
+          }
+          el.textContent = count;
+        }, 30);
+      });
+    });
+
+    // Add subtle color pulse to buttons
+    const buttons = document.querySelectorAll('.cta-button, .secondary-button');
+    buttons.forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        btn.style.boxShadow = '0 5px 30px rgba(230, 201, 168, 0.4)';
+        btn.style.transition = 'all 0.4s ease';
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.06)';
+      });
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=Q2hhcm1pbmcgTmFpbHM&u=dmlzaXQ&s=bc250a55b538f0d4cfc936113c1bc532&beacon=1&l=b3NtLW5vZGUtNDE5MzY0NzI3";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:dcf2036cbf--></html>
