@@ -2,21 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Metro by T-Mobile</title>
   <style>
     :root {
-      --blue: #00b4d8;
-      --black: #0d0d0d;
-      --white: #ffffff;
-      --gray: #f5f5f5;
-      --coral: #ff6b7e;
-      --font-heading: 'Montserrat', sans-serif;
-      --font-body: 'Open Sans', sans-serif;
-      --gradient-1: linear-gradient(135deg, rgba(0, 180, 216, 0.2), transparent);
-      --gradient-2: linear-gradient(45deg, transparent, rgba(255, 107, 126, 0.15), transparent);
-      --mesh: radial-gradient(circle at 30% 70%, rgba(0, 180, 216, 0.08), transparent 50%);
-      --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.59-17.73,250.45-10.06,60.93,5.91,113.16,20.68,154.49,37.77,72.31,26.34,132.34,90.54,178.88,161.93,14.83,25.59,22.74,57.88,29.01,87.24,11.79,54.38,17.78,121.53,14.42,185.36-2.97,62.28-12.57,124.06-36.42,182.26-25.07,63.81-67.72,117.11-125,154.05-27.98,16.44-60.51,28.5-95.71,38.97-10.68,3.11-21.58,6.42-32.67,9.58C383.47,1196.44,284.54,1108.25,178.77,1064.1c-30.95-13.66-61.79-32.9-92.11-56.12C41.3,977.28-4.79,879.29,7.45,765.32c11.31-110.56,50.62-211.13,105-273.38,56.43-65.07,125.4-112.83,193.14-124.15,92.8-16.95,188.77,2.29,260.89,79.2' fill='%23f5f5f5'%3E%3C/path%3E%3C/svg%3E");
+      --primary: #00bfff;
+      --secondary: #4ce48b;
+      --accent: #ff6b81;
+      --light: #ffffff;
+      --dark: #333333;
+      --gray: #555555;
+      --bg-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     }
 
     * {
@@ -26,177 +22,142 @@
     }
 
     body {
-      font-family: var(--font-body);
-      color: var(--black);
+      font-family: 'Open Sans', sans-serif;
+      color: var(--dark);
       overflow-x: hidden;
-      background-color: var(--white);
-      background-image: var(--mesh);
-      background-attachment: fixed;
-      background-position: center;
-      z-index: 0;
+      background-color: var(--light);
+      line-height: 1.6;
+      font-size: 16px;
     }
 
     h1, h2, h3, h4, h5 {
-      font-family: var(--font-heading);
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       line-height: 1.2;
-      background: linear-gradient(90deg, var(--blue), var(--coral));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
 
-    /* Sticky Nav */
+    /* Navigation */
     nav {
       position: sticky;
       top: 0;
-      z-index: 3000;
-      padding: 1.5rem 5%;
+      background: transparent;
+      padding: 1.2rem 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: transparent;
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.07);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     nav.scrolled {
-      background: rgba(13, 13, 13, 0.9);
-      border-radius: 0 0 24px 24px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-      padding: 1rem 5%;
-      animation: navFloat 1.5s ease-out;
-    }
-
-    @keyframes navFloat {
-      0% { transform: translateY(-10px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+      padding: 0.8rem 0;
     }
 
     .logo {
       font-size: 2rem;
       font-weight: 800;
-      color: var(--blue);
-      letter-spacing: -0.5px;
+      color: var(--primary);
+      text-decoration: none;
       position: relative;
-      z-index: 10;
-      overflow: hidden;
+      transition: color 0.3s;
     }
 
     .logo::after {
       content: '';
       position: absolute;
-      bottom: -10px;
+      bottom: -8px;
       left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--blue), var(--coral));
-      border-radius: 2px;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      z-index: -1;
+      width: 0;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 50%;
+      transition: width 0.4s ease;
     }
 
     .logo:hover::after {
-      transform: scaleX(1);
+      width: 100%;
     }
 
     .nav-links {
       display: flex;
       gap: 2rem;
-      position: relative;
     }
 
     .nav-links a {
+      color: var(--dark);
+      text-decoration: none;
       font-weight: 600;
       font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       position: relative;
+      transition: color 0.3s;
       padding: 0.5rem 0;
-      color: rgba(255, 255, 255, 0.85);
-    }
-
-    .nav-links a::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--blue), var(--coral));
-      transform: translateX(-50%);
-      transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .nav-links a:hover {
-      color: var(--white);
+      color: var(--primary);
     }
 
-    .nav-links a:hover::before {
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover::after {
       width: 100%;
     }
 
     .cta-button {
-      background: var(--coral);
-      color: var(--white);
-      padding: 0.8rem 1.8rem;
+      background: linear-gradient(135deg, var(--primary), #00a0e0);
+      color: white;
       border: none;
+      padding: 0.7rem 1.8rem;
       border-radius: 50px;
-      font-weight: 700;
       font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      box-shadow: 0 6px 24px rgba(255, 107, 126, 0.45);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-      transform: rotate(30deg);
-      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      z-index: -1;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 6px 20px rgba(0, 191, 255, 0.3);
+      transform: translateY(0);
     }
 
     .cta-button:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 12px 36px rgba(255, 107, 126, 0.6);
-    }
-
-    .cta-button:hover::before {
-      left: 100%;
-      top: 100%;
+      background: linear-gradient(135deg, #00a0e0, #0088cc);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 191, 255, 0.4);
     }
 
     /* Hero */
     .hero {
-      height: 100vh;
+      position: relative;
+      height: 90vh;
       background-image: url('https://images.pexels.com/photos/28919439/pexels-photo-28919439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
       background-size: cover;
       background-position: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--white);
+      color: white;
       text-align: center;
-      position: relative;
       overflow: hidden;
       clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
     }
@@ -208,37 +169,17 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, rgba(13, 13, 13, 0.5) 30%, rgba(13, 13, 13, 0.8) 70%);
+      background: rgba(0, 0, 0, 0.45);
       z-index: 1;
     }
 
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background: var(--wave);
-      background-size: 120% 100%;
-      background-repeat: repeat-x;
-      z-index: 2;
-      animation: wave 8s ease-in-out infinite;
-    }
-
-    @keyframes wave {
-      0%, 100% { background-position: 0 0; }
-      50% { background-position: 100% 0; }
-    }
-
     .hero-content {
-      z-index: 3;
+      z-index: 2;
       max-width: 800px;
-      padding: 0 2rem;
+      padding: 2rem;
       opacity: 0;
-      transform: translateY(80px);
-      animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-      animation-delay: 0.3s;
+      transform: translateY(40px);
+      animation: fadeInUp 1.4s ease-out forwards 0.3s;
     }
 
     @keyframes fadeInUp {
@@ -249,522 +190,437 @@
     }
 
     .hero h1 {
-      font-size: 5rem;
-      margin-bottom: 1.2rem;
-      letter-spacing: -1.5px;
+      font-size: 4.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+      text-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
       line-height: 1.1;
+      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero p {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       margin-bottom: 3rem;
       font-weight: 300;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero-buttons {
       display: flex;
-      gap: 1.5rem;
       justify-content: center;
+      gap: 1.5rem;
       flex-wrap: wrap;
+      margin-top: 2rem;
     }
 
-    .hero-buttons .cta-button {
-      margin-top: 0;
-      min-width: 180px;
-    }
-
-    .hero-buttons a:nth-child(2) {
+    .secondary-button {
       background: transparent;
-      border: 2px solid var(--white);
-      color: var(--white);
-      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      display: inline-block;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 50px;
     }
 
-    .hero-buttons a:nth-child(2):hover {
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 0 0 2px var(--white);
+    .secondary-button:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: white;
+      transform: translateY(-4px);
     }
 
     /* Trust Strip */
     .trust-strip {
-      background: var(--black);
-      color: var(--white);
-      padding: 1.2rem 5%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1.5rem 0;
       text-align: center;
-      font-size: 0.95rem;
-      display: flex;
-      justify-content: center;
-      gap: 5rem;
-      flex-wrap: wrap;
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: 0.8px;
       position: relative;
-      z-index: 2;
-      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
     }
 
     .trust-strip::before {
       content: '';
       position: absolute;
-      top: -5px;
-      left: 20%;
-      width: 60%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      animation: shimmer 3s infinite;
     }
 
-    .trust-item {
-      min-width: 150px;
-      padding: 0 1rem;
+    @keyframes shimmer {
+      from { left: -100%; }
+      to { left: 100%; }
+    }
+
+    /* Services */
+    .services {
+      padding: 8rem 0;
+      background-color: var(--light);
       position: relative;
-      overflow: hidden;
     }
 
-    .trust-item::after {
+    .services::before {
       content: '';
       position: absolute;
       top: 0;
-      right: -150%;
-      width: 150%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      transform: skewX(-15deg);
-      transition: right 0.8s ease;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(to bottom, var(--bg-gradient), transparent);
       z-index: -1;
     }
 
-    .trust-item:hover::after {
-      right: 150%;
-    }
-
-    /* Features */
-    .features {
-      padding: 8rem 5%;
-      background: var(--gray);
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
       position: relative;
     }
 
-    .section-title {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 5rem;
-      color: var(--black);
+    .section-header h2 {
+      font-size: 3.2rem;
+      color: var(--dark);
       position: relative;
       display: inline-block;
+      padding-bottom: 1.5rem;
     }
 
-    .section-title::after {
+    .section-header h2::after {
       content: '';
       position: absolute;
-      bottom: -10px;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 200px;
+      width: 120px;
       height: 4px;
-      background: linear-gradient(90deg, var(--blue), var(--coral));
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       border-radius: 2px;
+      box-shadow: 0 4px 12px rgba(0, 191, 255, 0.2);
     }
 
-    .features-grid {
+    .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 4rem;
-      position: relative;
-      z-index: 2;
     }
 
-    .feature-card {
-      background: var(--white);
+    .service-card {
+      background: white;
       border-radius: 24px;
       padding: 3rem 2.5rem;
       text-align: center;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       position: relative;
       overflow: hidden;
-      transform: translateY(40px);
-      opacity: 0;
-    }
-
-    .feature-card:nth-child(1) { animation-delay: 0.1s; }
-    .feature-card:nth-child(2) { animation-delay: 0.2s; }
-    .feature-card:nth-child(3) { animation-delay: 0.3s; }
-
-    .feature-card.show {
+      cursor: pointer;
+      border: 1px solid rgba(0, 0, 0, 0.03);
       transform: translateY(0);
-      opacity: 1;
     }
 
-    .feature-card::before {
+    .service-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-card::before {
       content: '';
       position: absolute;
       top: -50%;
       left: -50%;
       width: 200%;
       height: 200%;
-      background: var(--gradient-1);
+      background: linear-gradient(45deg, transparent, rgba(0, 191, 255, 0.08), transparent);
       transform: rotate(45deg);
-      transition: all 0.8s ease;
-      z-index: -1;
+      transition: 0.5s;
+      z-index: 1;
     }
 
-    .feature-card:hover::before {
-      left: 100%;
-      top: 100%;
+    .service-card:hover::before {
+      animation: shine 2s infinite;
     }
 
-    .feature-card:hover {
-      transform: translateY(-16px) scale(1.02);
-      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.15);
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
     }
 
-    .feature-icon {
-      width: 90px;
-      height: 90px;
-      margin: 0 auto 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--blue);
-      border-radius: 50%;
-      color: var(--white);
-      font-size: 2.5rem;
-      transition: all 0.8s ease;
-      position: relative;
-      overflow: hidden;
+    .service-icon {
+      font-size: 4.5rem;
+      color: var(--primary);
+      margin-bottom: 1.8rem;
+      display: inline-block;
+      transition: transform 0.4s;
     }
 
-    .feature-icon::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      width: 110px;
-      height: 110px;
-      border: 4px solid var(--coral);
-      border-radius: 50%;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-
-    .feature-card:hover .feature-icon::before {
-      opacity: 0.2;
-    }
-
-    .feature-card:hover .feature-icon {
-      background: var(--coral);
+    .service-card:hover .service-icon {
       transform: scale(1.1);
-      box-shadow: 0 0 30px rgba(255, 107, 126, 0.4);
     }
 
-    .feature-card h3 {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.3;
+    .service-card h3 {
+      font-size: 2rem;
+      margin-bottom: 1.3rem;
+      color: var(--dark);
+      line-height: 1.2;
     }
 
-    .feature-card p {
-      color: #555;
+    .service-card p {
+      color: var(--gray);
       line-height: 1.8;
-      font-size: 1.1rem;
+      font-weight: 400;
     }
 
     /* About */
     .about {
-      padding: 10rem 5%;
-      display: flex;
-      align-items: center;
-      gap: 6rem;
-      background: var(--black);
-      color: var(--white);
+      padding: 8rem 0;
+      background: var(--bg-gradient);
       position: relative;
-      overflow: hidden;
     }
 
     .about::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: 0;
-      width: 100%;
-      height: 200%;
-      background: var(--gradient-2);
-      transform: rotate(-10deg);
-      opacity: 0.1;
-      z-index: -1;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(0,191,255,0.05)" /><circle cx="30" cy="70" r="1.5" fill="rgba(76,228,139,0.05)" /><circle cx="60" cy="20" r="0.8" fill="rgba(255,107,129,0.05)" /></svg>');
+      opacity: 0.5;
+    }
+
+    .about-container {
+      display: flex;
+      align-items: center;
+      gap: 6rem;
     }
 
     .about-image {
       flex: 1;
-      border-radius: 36px;
+      border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
-      transform: scale(1);
-      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      transform: translateY(0);
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      z-index: 2;
-      border: 8px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .about-image::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: linear-gradient(135deg, transparent, rgba(0, 0, 0, 0.6), transparent);
-      opacity: 0;
-      transition: opacity 0.7s ease;
-      border-radius: 36px;
-    }
-
-    .about-image:hover {
-      transform: scale(1.05);
-    }
-
-    .about-image:hover::after {
-      opacity: 1;
     }
 
     .about-image img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 1.2s cubic-bezier(0.17, 0.67, 0.25, 0.98);
+      height: auto;
+      display: block;
+      transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(1.1);
     }
 
-    .about-image:hover img {
-      transform: scale(1.08);
+    .about-container:hover .about-image img {
+      transform: scale(1.05);
+      filter: brightness(1.2);
+    }
+
+    .about-container:hover .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, transparent, rgba(0, 191, 255, 0.1), transparent);
+      mask-image: linear-gradient(180deg, transparent, #000);
+      animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+      to { opacity: 0.8; }
     }
 
     .about-content {
       flex: 1;
-      position: relative;
-      z-index: 2;
     }
 
-    .about h2 {
-      font-size: 3.8rem;
+    .about-content h2 {
+      font-size: 3.2rem;
       margin-bottom: 2rem;
+      color: var(--dark);
       line-height: 1.2;
     }
 
-    .about p {
-      font-size: 1.3rem;
-      line-height: 1.9;
+    .about-content p {
       margin-bottom: 2.5rem;
-      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.8;
+      font-size: 1.15rem;
+      color: var(--gray);
     }
 
-    .about p:nth-child(2) {
-      margin-top: -1rem;
+    .about-content .cta-button {
+      margin-top: 1rem;
     }
 
     /* Testimonials */
     .testimonials {
-      padding: 8rem 5%;
-      background: var(--gray);
+      padding: 8rem 0;
+      background: var(--light);
       position: relative;
-    }
-
-    .testimonials::after {
-      content: '';
-      position: absolute;
-      top: -50px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      height: 8px;
-      background: linear-gradient(90deg, var(--blue), transparent);
-      border-radius: 4px;
-      opacity: 0.2;
-      z-index: -1;
     }
 
     .testimonials::before {
       content: '';
       position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
       width: 100px;
       height: 100px;
+      background: radial-gradient(circle, rgba(0, 191, 255, 0.08) 0%, transparent 70%);
       border-radius: 50%;
-      background: var(--coral);
-      opacity: 0.05;
       z-index: -1;
     }
 
-    .section-title {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 6rem;
-      color: var(--black);
-      position: relative;
-      display: inline-block;
+    .testimonials::after {
+      content: '';
+      position: absolute;
+      bottom: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(76, 228, 139, 0.06) 0%, transparent 80%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .section-header.h2.testimonials {
+      margin-bottom: 4rem;
     }
 
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 4rem;
-      position: relative;
-      z-index: 2;
     }
 
     .testimonial {
-      background: var(--white);
+      background: white;
+      padding: 3rem;
       border-radius: 24px;
-      padding: 3.5rem 3rem 2.5rem;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
-      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
       position: relative;
-      overflow: hidden;
-      transform: translateY(60px);
-      opacity: 0;
-    }
-
-    .testimonial.show {
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-left: 6px solid var(--primary);
+      transition: all 0.4s;
       transform: translateY(0);
-      opacity: 1;
     }
 
-    .testimonial:nth-child(1) { animation-delay: 0.1s; }
-    .testimonial:nth-child(2) { animation-delay: 0.2s; }
-    .testimonial:nth-child(3) { animation-delay: 0.3s; }
+    .testimonial:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    }
 
     .testimonial::before {
       content: """;
+      font-size: 6rem;
+      color: rgba(0, 191, 255, 0.1);
       position: absolute;
-      top: 30px;
-      left: 30px;
-      font-size: 10rem;
-      font-family: serif;
-      color: var(--blue);
-      opacity: 0.08;
+      top: 1.5rem;
+      left: 2.5rem;
       line-height: 1;
-      z-index: -1;
+      font-family: Georgia, serif;
     }
 
-    .testimonial p {
-      font-size: 1.2rem;
+    .testimonial-text {
       margin-bottom: 2.5rem;
       font-style: italic;
-      color: #444;
-      line-height: 1.8;
+      color: var(--gray);
+      line-height: 1.9;
+      font-size: 1.15rem;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .testimonial-author {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      font-weight: 600;
+      color: var(--dark);
     }
 
-    .testimonial-avatar {
-      width: 70px;
-      height: 70px;
+    .testimonial-author img {
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      overflow: hidden;
-      border: 4px solid var(--blue);
-    }
-
-    .testimonial-avatar img {
-      width: 100%;
-      height: 100%;
+      margin-right: 1.5rem;
       object-fit: cover;
+      border: 3px solid var(--primary);
+      box-shadow: 0 4px 12px rgba(0, 191, 255, 0.2);
     }
 
-    .testimonial-name {
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
-
-    .testimonial-role {
-      font-size: 1rem;
-      color: #777;
+    .testimonial-author span {
+      font-size: 1.1rem;
+      line-height: 1;
     }
 
     /* Gallery */
     .gallery {
-      padding: 8rem 5%;
-      background: var(--black);
-      color: var(--white);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+      padding: 8rem 0;
+      background: var(--bg-gradient);
     }
 
-    .gallery::before {
+    .gallery::after {
       content: '';
       position: absolute;
-      bottom: -100px;
+      top: 0;
       left: 0;
       width: 100%;
-      height: 200px;
-      background: var(--wave);
-      background-size: 120% 100%;
-      background-repeat: repeat-x;
-      z-index: -1;
-      animation: wave 8s ease-in-out infinite reverse;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><circle cx="40" cy="40" r="1" fill="rgba(0,191,255,0.02)" /><circle cx="160" cy="70" r="0.8" fill="rgba(76,228,139,0.02)" /><circle cx="100" cy="150" r="1" fill="rgba(255,107,129,0.02)" /><circle cx="170" cy="160" r="1.2" fill="rgba(0,191,255,0.02)" /></svg>');
+      opacity: 0.6;
+      pointer-events: none;
     }
 
-    .gallery h2 {
-      position: relative;
-      display: inline-block;
-    }
-
-    .gallery h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--blue), var(--coral));
-      border-radius: 2px;
+    .section-header {
+      margin-bottom: 4rem;
     }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
-      margin-top: 4rem;
-      position: relative;
-      z-index: 2;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
     }
 
     .gallery-item {
-      border-radius: 20px;
+      border-radius: 24px;
       overflow: hidden;
+      height: 350px;
       position: relative;
-      height: 300px;
       cursor: pointer;
-      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-      transform: translateY(40px);
-      opacity: 0;
-    }
-
-    .gallery-item.show {
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      transition: all 0.6s ease;
       transform: translateY(0);
-      opacity: 1;
     }
 
-    .gallery-item:nth-child(1) { animation-delay: 0.1s; }
-    .gallery-item:nth-child(2) { animation-delay: 0.2s; }
-    .gallery-item:nth-child(3) { animation-delay: 0.3s; }
-    .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+    .gallery-item:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+    }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 1.2s cubic-bezier(0.17, 0.67, 0.25, 0.98);
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .gallery-item:hover img {
@@ -778,36 +634,22 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to top, rgba(13, 13, 13, 0.85), transparent);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
       opacity: 0;
-      transition: opacity 0.6s ease;
+      transition: opacity 0.5s;
+      z-index: 2;
     }
 
     .gallery-item:hover::after {
       opacity: 1;
     }
 
-    .gallery-item h3 {
-      position: absolute;
-      bottom: 2rem;
-      left: 1.5rem;
-      font-size: 1.6rem;
-      color: var(--white);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.7s ease;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-    }
-
-    .gallery-item:hover h3 {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     /* Contact */
     .contact {
-      padding: 10rem 5%;
-      background: var(--gray);
+      padding: 8rem 0 10rem;
+      background: linear-gradient(135deg, var(--primary), #0096e7);
+      color: white;
+      text-align: center;
       position: relative;
       overflow: hidden;
     }
@@ -815,614 +657,660 @@
     .contact::before {
       content: '';
       position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: var(--blue);
-      opacity: 0.02;
-      z-index: -1;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+      animation: pulse 8s infinite;
     }
 
-    .contact::after {
-      content: '';
-      position: absolute;
-      right: 50px;
-      top: 100px;
-      width: 200px;
-      height: 150px;
-      background: var(--gradient-1);
-      border-radius: 50%;
-      opacity: 0.1;
-      z-index: -1;
+    @keyframes pulse {
+      0% { transform: scale(0.8); }
+      100% { transform: scale(1.2); }
+    }
+
+    .contact h2 {
+      font-size: 3.8rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .contact p {
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 300;
     }
 
     .contact-form {
       max-width: 700px;
       margin: 0 auto;
-      background: var(--white);
-      padding: 5rem 4rem;
-      border-radius: 36px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.1);
-      transform: translateY(60px);
-      opacity: 0;
-      animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-      animation-delay: 0.1s;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 32px;
+      padding: 4rem;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .form-group {
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: left;
+      position: relative;
     }
 
     .form-group label {
       display: block;
       margin-bottom: 0.8rem;
       font-weight: 600;
-      color: #333;
-      font-size: 1rem;
-      letter-spacing: 0.5px;
+      color: var(--dark);
+      font-size: 1.2rem;
+      letter-spacing: -0.2px;
     }
 
     .form-group input,
     .form-group textarea {
       width: 100%;
       padding: 1.2rem;
-      border: none;
-      border-radius: 12px;
-      font-family: var(--font-body);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 14px;
+      font-family: 'Open Sans', sans-serif;
       font-size: 1rem;
-      transition: all 0.5s ease;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+      transition: all 0.4s;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
     }
 
     .form-group input:focus,
     .form-group textarea:focus {
-      border-color: var(--blue);
+      border-color: var(--primary);
       outline: none;
-      box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.15);
-      transform: translateY(-1px);
+      box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.3);
+      transform: translateY(-2px);
     }
 
     .form-group textarea {
-      min-height: 150px;
+      min-height: 180px;
       resize: vertical;
-      font-size: 1rem;
-      line-height: 1.6;
+    }
+
+    .btn-large {
+      background: linear-gradient(135deg, var(--primary), #00a0e0);
+      color: white;
+      border: none;
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      margin-top: 1rem;
+      color: white;
+    }
+
+    .btn-large:hover {
+      background: linear-gradient(135deg, #00a0e0, #0088cc);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(0, 191, 255, 0.4);
     }
 
     /* Footer */
     footer {
-      background: var(--black);
-      color: var(--white);
-      padding: 6rem 5% 4rem;
+      background: var(--dark);
+      color: white;
+      padding: 5rem 0 3rem;
       position: relative;
       overflow: hidden;
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 5rem;
-      margin-bottom: 5rem;
-      position: relative;
-      z-index: 2;
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      background: linear-gradient(to right, rgba(0, 191, 255, 0.1), transparent, rgba(76, 228, 139, 0.1));
+      z-index: -1;
     }
 
-    .footer-column h3 {
-      font-size: 1.6rem;
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-col h3 {
+      font-size: 1.7rem;
       margin-bottom: 2rem;
-      color: var(--blue);
       position: relative;
       padding-bottom: 1rem;
     }
 
-    .footer-column h3::after {
+    .footer-col h3::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--coral);
-      border-radius: 2px;
-    }
-
-    .footer-column p,
-    .footer-column a {
-      display: block;
-      margin-bottom: 1rem;
-      color: #ccc;
-      font-size: 0.95rem;
-      opacity: 0.85;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-
-    .footer-column a:hover {
-      color: var(--blue);
-      transform: translateX(5px);
-      opacity: 1;
-    }
-
-    .social-icons {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .social-icons a {
-      background: rgba(255, 255, 255, 0.1);
       width: 50px;
-      height: 50px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+
+    .footer-col p,
+    .footer-col ul {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul a {
+      color: #ccc;
+      text-decoration: none;
+      transition: all 0.3s;
+      padding: 0.2rem 0;
+      display: inline-block;
+      position: relative;
+    }
+
+    .footer-col ul a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      transition: width 0.3s;
+    }
+
+    .footer-col ul a:hover::after {
+      width: 100%;
+    }
+
+    .footer-col ul a:hover {
+      color: var(--primary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      color: var(--white);
-      font-size: 1.3rem;
+      text-decoration: none;
+      color: white;
+      transition: all 0.4s;
+      font-weight: 600;
+      font-size: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .social-icons a:hover {
-      background: var(--blue);
+    .social-links a:hover {
+      background: var(--primary);
       transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 10px 30px rgba(0, 180, 216, 0.4);
-      color: var(--white);
+      border-color: rgba(0, 191, 255, 0.5);
+      box-shadow: 0 8px 25px rgba(0, 191, 255, 0.3);
     }
-
-    .social-icons a:nth-child(1):hover { color: var(--white); }
-    .social-icons a:nth-child(2):hover { color: var(--white); }
-    .social-icons a:nth-child(3):hover { color: var(--white); }
-    .social-icons a:nth-child(4):hover { color: var(--white); }
 
     .copyright {
       text-align: center;
-      padding-top: 4rem;
+      padding-top: 2.5rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       font-size: 0.9rem;
-      color: #999;
-      position: relative;
-      z-index: 2;
+      color: #aaa;
+      letter-spacing: 0.3px;
     }
 
-    .copyright::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--blue), transparent);
-      opacity: 0.3;
-    }
-
-    /* Swaying Background Elements */
-    .sway-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .sway-bg-shape {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--coral);
-      opacity: 0.03;
-      animation: sway 10s infinite ease-in-out;
-    }
-
-    .sway-bg-shape:nth-child(1) {
-      width: 280px;
-      height: 280px;
-      top: 25%;
-      left: 12%;
-      animation-delay: 0s;
-    }
-
-    .sway-bg-shape:nth-child(2) {
-      width: 180px;
-      height: 180px;
-      bottom: 15%;
-      right: 18%;
-      animation-delay: 2.5s;
-    }
-
-    .sway-bg-shape:nth-child(3) {
-      width: 150px;
-      height: 150px;
-      top: 70%;
-      left: 90%;
-      animation-delay: 4s;
-    }
-
-    .sway-bg-shape:nth-child(4) {
-      width: 80px;
-      height: 80px;
-      top: 40%;
-      right: 4%;
-      animation-delay: 7s;
-    }
-
-    @keyframes sway {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-40px) rotate(220deg); }
-    }
-
-    /* Animated Floating Shapes */
-    .floating-shapes {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-
+    /* Floating Shapes */
     .floating-shape {
-      position: absolute;
+      position: fixed;
+      z-index: -1;
+      opacity: 0.08;
+      pointer-events: none;
       border-radius: 50%;
-      background: var(--blue);
-      opacity: 0.05;
-      animation: FLOAT 18s infinite alternate ease-in-out;
     }
 
-    .floating-shape:nth-child(1) {
-      width: 110px;
-      height: 110px;
-      top: 15%;
-      right: 5%;
-      animation-delay: 0s;
+    .shape-1 {
+      top: 10%;
+      left: 5%;
+      width: 200px;
+      height: 200px;
+      background: var(--secondary);
+      border-radius: 50%;
+      animation: float1 12s infinite alternate;
     }
 
-    .floating-shape:nth-child(2) {
-      width: 70px;
-      height: 70px;
-      bottom: 20%;
-      left: 10%;
-      animation-delay: 3s;
+    .shape-2 {
+      bottom: 15%;
+      right: 10%;
+      width: 170px;
+      height: 170px;
+      background: var(--accent);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      animation: float2 14s infinite alternate;
     }
 
-    .floating-shape:nth-child(3) {
-      width: 90px;
-      height: 90px;
-      top: 60%;
-      right: 30%;
-      animation-delay: 6s;
+    .shape-3 {
+      top: 50%;
+      left: 80%;
+      width: 140px;
+      height: 220px;
+      background: var(--primary);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: float3 16s infinite alternate;
     }
 
-    @keyframes FLOAT {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      100% { transform: translate(50px, -80px) rotate(10deg); }
+    @keyframes float1 {
+      from { transform: translate(0, 0); }
+      to { transform: translate(20px, -20px); }
+    }
+
+    @keyframes float2 {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-15px, 20px); }
+    }
+
+    @keyframes float3 {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-20px, 25px); }
     }
 
     /* Responsive */
-    @media (max-width: 900px) {
-      .hero h1 { font-size: 3.5rem; }
+    @media (max-width: 992px) {
+      .hero h1 { font-size: 3.8rem; }
       .hero p { font-size: 1.5rem; }
-      .about { flex-direction: column; }
-      .about-image { margin-bottom: 4rem; }
-      nav { padding: 1rem 5%; }
-      .nav-links { display: none; }
-      .trust-strip { gap: 3rem; }
-      .section-title { font-size: 2.8rem; }
-      .about h2 { font-size: 2.8rem; }
-      .testimonial p { font-size: 1.1rem; }
-      .gallery-grid { gap: 2rem; }
-      .gallery-item h3 { font-size: 1.3rem; }
-      .feature-card h3 { font-size: 1.5rem; }
-      .contact-form { padding: 3.5rem 2.5rem; }
-      .footer-grid { gap: 3rem; }
+      .about-container { flex-direction: column; }
+      .about-image { margin-bottom: 3rem; }
+      .section-header h2 { font-size: 2.8rem; }
+      .contact h2 { font-size: 3.2rem; }
+      .contact p { font-size: 1.4rem; }
     }
 
-    @media (max-width: 700px) {
-      .hero { padding: 0 1rem; }
-      .hero h1 { font-size: 2.8rem; }
+    @media (max-width: 768px) {
+      .hero { height: 80vh; }
+      .hero h1 { font-size: 3rem; }
       .hero p { font-size: 1.3rem; }
-      .hero-buttons { flex-direction: column; }
-      .hero-buttons .cta-button { width: 100%; margin-top: 1rem; }
-      .feature-card { padding: 2rem 1.5rem; }
-      .testimonial { padding: 2.5rem 1.5rem; }
-      .contact-form { padding: 3rem 2rem; }
+      .section-header h2 { font-size: 2.5rem; }
+      .contact h2 { font-size: 2.8rem; }
+      .contact p { font-size: 1.2rem; }
+      .nav-links { display: none; }
+      .container { padding: 0 1.5rem; }
+      .services, .about, .testimonials, .gallery, .contact, footer { padding: 6rem 0; }
+      .footer-col h3 { font-size: 1.6rem; }
     }
 
-    @media (max-width: 500px) {
-      .trust-strip { flex-direction: column; align-items: center; gap: 1.5rem; }
-      .trust-item { min-width: 100%; }
-      .hero h1 { font-size: 2.4rem; }
-      .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
-      .section-title { font-size: 2.2rem; }
-      .about h2 { font-size: 2.2rem; }
-      .gallery-grid { gap: 1.5rem; }
-      .gallery-item { height: 250px; }
-      .gallery-item h3 { font-size: 1.2rem; }
-      .feature-card h3 { font-size: 1.4rem; }
-      .footer-column h3 { font-size: 1.4rem; }
+    @media (max-width: 576px) {
+      .hero { height: 70vh; }
+      .hero h1 { font-size: 2.5rem; line-height: 1.1; }
+      .hero p { font-size: 1.2rem; }
+      .hero-content { padding: 0.5rem; }
+      .section-header h2 { font-size: 2.2rem; }
+      .service-card { padding: 2rem; }
+      .service-card h3 { font-size: 1.6rem; }
+      .service-icon { font-size: 3.8rem; }
+      .testimonial { padding: 2.5rem; }
+      .testimonial-text { font-size: 1.1rem; }
+      .testimonial-author img { width: 50px; height: 50px; margin-right: 1rem; }
+      .contact-form { padding: 2.5rem; }
+      .contact-form .btn-large { padding: 1rem 2rem; font-size: 1.1rem; }
+      .footer-container { gap: 2rem; }
+      .social-links a { width: 40px; height: 40px; font-size: 1.1rem; }
+    }
+
+    /* Animation for scroll reveal */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .scroll-reveal.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Scroll reveal stagger */
+    .scroll-reveal:nth-child(2) {
+      transition-delay: 0.1s;
+    }
+    .scroll-reveal:nth-child(3) {
+      transition-delay: 0.2s;
+    }
+    .scroll-reveal:nth-child(4) {
+      transition-delay: 0.3s;
+    }
+
+    /* SVG Shapes for Decorative Elements */
+    .decoration-shape {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .shape-triangle {
+      width: 0;
+      height: 0;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 50px solid var(--primary);
+      opacity: 0.05;
+    }
+
+    .shape-wave-green {
+      width: 100%;
+      height: 40px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.13,29.11,160.07,26.84C231.98,76.15,257.14,46.15,305,25.71a25.46,25.46,0,0,0,15.44-16.27C351.92,10.14,372.48,2,386.37,4.23c42.79,4.22,59.86,18.83,77.85,41.58a33.34,33.34,0,0,1,7,5.87l26.31,19.22c3.83,2.8,8.57,8.09,8.56,24.24.07,35.88,1.9,57.07,20.24,60.76C493.72,119.76,482.87,118.3,471.22,117c-4.48-.44-8.97-.89-13.45-1.36C447.39,115.22,423.44,113,396,113H181.6c-22.86,0-42-11.56-54.21-34-9.16-16.51-12.81-37.09-12.19-59.74C119.07,19.64,132.54,6.26,145.21,3.6C171.64,0,198,1.23,224.32,3.46c141.74,11.93,283.5,40.84,444.54,35.13Z" fill="rgba(76,228,139,0.1)"/></svg>');
+      background-size: 300% 100%;
+      animation: wave 12s linear infinite;
+    }
+
+    @keyframes wave {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 0; }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
   <nav id="mainNav">
-    <a href="#" class="logo">Metro by T-Mobile</a>
-    <div class="nav-links">
-      <a href="#features">Services</a>
-      <a href="#about">About</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
+    <div class="container">
+      <a href="#" class="logo">Metro by T-Mobile</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="cta-button">Get Started</a>
     </div>
-    <button class="cta-button">Buy Now</button>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
+  <section id="home" class="hero">
     <div class="hero-content">
-      <h1>Unlocked. Unstoppable.</h1>
-      <p>Get powerful phones, unlimited data, and zero fees — all without contracts. Metro by T-Mobile: connectivity that works as hard as you do.</p>
+      <h1>Unlimited. Uncomplicated.</h1>
+      <p>Real plans, real value. No hidden fees. Just fast, unlimited service for you and your family.</p>
       <div class="hero-buttons">
-        <a href="#contact" class="cta-button">Get Started</a>
-        <a href="#gallery" class="cta-button">View Plans</a>
+        <a href="#contact" class="cta-button">Find Your Plan</a>
+        <a href="#services" class="secondary-button">Explore Plans</a>
       </div>
     </div>
   </section>
 
-  <!-- Trust Strip -->
   <div class="trust-strip">
-    <div class="trust-item">Trusted by over 10M+ urban customers</div>
-    <div class="trust-item">No contracts. No surprise fees.</div>
-    <div class="trust-item">24/7 support, wherever you are</div>
+    Trusted by thousands of customers who demand more for less.
   </div>
 
-  <!-- Features -->
-  <section class="features" id="features">
-    <h2 class="section-title">Simple Plans, Powerful Phones</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">📱</div>
-        <h3>Unlimited Talk & Text</h3>
-        <p>Stay connected with unlimited nationwide calling and texting — no throttling, no limits.</p>
+  <section id="services" class="services scroll-reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2>Powerful Plans. Simple Prices.</h2>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🌐</div>
-        <h3>5G Access</h3>
-        <p>Experience lightning-fast internet speeds with access to T-Mobile’s nationwide 5G network.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">💼</div>
-        <h3>No Contracts</h3>
-        <p>Change, upgrade, or cancel anytime. No early termination fees — freedom, guaranteed.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section class="about" id="about">
-    <div class="about-image">
-      <img src="https://images.pexels.com/photos/6969953/pexels-photo-6969953.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Metro by T-Mobile store interior with modern devices">
-    </div>
-    <div class="about-content">
-      <h2>Mobile Service for Real Life</h2>
-      <p>We believe everyone deserves fast, reliable mobile service without paying a premium. Metro by T-Mobile brings the power of T-Mobile’s network to everyday people: simple plans, no commitment, and phones that keep up with your hustle. Whether you're navigating the city or working remotely, we’ve got your connection covered — without the clutter.</p>
-      <p>Founded as a reimagined vision of mobile connectivity, we focus on what matters: speed, simplicity, and transparency. No fine print. No hidden charges. Just service that lets you live life, not pay bills.</p>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="testimonials" id="testimonials">
-    <h2 class="section-title">Real Stories, Real Connections</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial">
-        <p>Switched to Metro last year and my bill dropped by 60%. The network is solid in my neighborhood — no more dropped calls during meetings.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">
-            <img src="https://images.pexels.com/photos/28919439/pexels-photo-28919439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Verified customer">
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
           </div>
-          <div>
-            <div class="testimonial-name">Kim T.</div>
-            <div class="testimonial-role">Verified customer</div>
-          </div>
+          <h3>Unlimited Talk & Text</h3>
+          <p>Stay connected with unlimited calling and texting — no throttling, no surprises, just clarity.</p>
         </div>
-      </div>
-      <div class="testimonial">
-        <p>Finally, a plan with honest pricing. I got my new phone for $10/month and no pressure to upgrade. My kid loves the hotspot too!</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">
-            <img src="https://images.pexels.com/photos/6969953/pexels-photo-6969953.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Verified customer">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 6v6l4 2"></path>
+            </svg>
           </div>
-          <div>
-            <div class="testimonial-name">Jamal R.</div>
-            <div class="testimonial-role">Verified customer</div>
-          </div>
+          <h3>High-Speed Data</h3>
+          <p>Streaming, browsing, gaming — all on lightning-fast 5G with no caps on speed.</p>
         </div>
-      </div>
-      <div class="testimonial">
-        <p>Customer service actually answered me without a 20-minute wait. Genius move, Metro. I’m in.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">
-            <img src="https://images.pexels.com/photos/5253002/pexels-photo-5253002.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Verified customer">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 11c3.866 0 7 3.134 7 7v1h-14v-1c0-3.866 3.134-7 7-7z"></path>
+              <path d="M9 12h.01M15 12h.01"></path>
+            </svg>
           </div>
-          <div>
-            <div class="testimonial-name">Dana L.</div>
-            <div class="testimonial-role">Verified customer</div>
-          </div>
+          <h3>0% APR Financing</h3>
+          <p>Get the latest smartphone freedom — pay over time with zero interest and flexible options.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Gallery -->
-  <section class="gallery" id="gallery">
-    <h2 class="section-title">See What’s Inside</h2>
-    <p>Our latest collection: phones designed for life in motion.</p>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/30780455/pexels-photo-30780455.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Metro by T-Mobile compact phone on a modern desk">
-        <h3>Urban Echo</h3>
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/5253002/pexels-photo-5253002.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Metro by T-mobile phone beside coffee cup">
-        <h3>Tech Backed</h3>
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/33092906/pexels-photo-33092906.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Metro by T-Mobile phone in hand against urban setting">
-        <h3>Built for Commute</h3>
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/7859172/pexels-photo-7859172.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Metro by T-Mobile phone with active screen in subway">
-        <h3>Always Connected</h3>
+  <section id="about" class="about scroll-reveal">
+    <div class="container">
+      <div class="about-container">
+        <div class="about-image">
+          <img src="https://images.pexels.com/photos/3183138/pexels-photo-3183138.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Metro by T-Mobile family enjoying mobile technology" />
+        </div>
+        <div class="about-content">
+          <h2>Who We Are</h2>
+          <p>Metro by T-Mobile is built for real people — not corporations. Our mission is to make great wireless service accessible to everyone. We believe in fairness, transparency, and stopping the jargon. Whether you’re a student, parent, or retiree, we’ve got simple, powerful plans that fit your life — not the other way around.</p>
+          <p>No long-term contracts. No overage fees. No credit checks. Just unlimited everything — the way you deserve it.</p>
+          <a href="#contact" class="cta-button">Join Thousands Today</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section class="contact" id="contact">
-    <div class="contact-form">
-      <h2 class="section-title">Let’s Get You Connected</h2>
-      <div class="form-group">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" placeholder="Enter your full name">
+  <section id="testimonials" class="testimonials scroll-reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2>As Seen by Real Customers</h2>
       </div>
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="you@example.com">
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p class="testimonial-text">I switched from a big carrier and saved $100 a month. After 8 months, my phone still works perfect. I’m never going back.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/28919439/pexels-photo-28919439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Verified customer" />
+            <span>Verified Customer</span>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">Finally, a company that doesn’t hide things. My plan is exactly what I need — no upsells, no changing prices. My kids use it too.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/3183138/pexels-photo-3183138.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Verified customer" />
+            <span>Local Parent</span>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">I’m on a fixed income. I found affordable, reliable coverage without sacrifice. Metro gave me back my peace of mind.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/8374274/pexels-photo-8374274.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Verified customer" />
+            <span>Senior Customer</span>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="message">What are you looking for?</label>
-        <textarea id="message" placeholder="Tell us about your needs — unlimited data? New phone? Family plan?"></textarea>
-      </div>
-      <button class="cta-button">Request Info</button>
     </div>
   </section>
 
-  <!-- Footer -->
+  <section id="gallery" class="gallery scroll-reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2>Life Through Metro</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/4559664/pexels-photo-4559664.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Family using smartphones outdoors" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/8374274/pexels-photo-8374274.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Teenager streaming on mobile device" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/13886741/pexels-photo-13886741.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Woman working remotely outdoors" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/6214394/pexels-photo-6214394.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Senior learning to use phone" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact scroll-reveal">
+    <div class="container">
+      <h2>Ready to simplify your mobile life?</h2>
+      <p>Let us help you find the perfect plan — in minutes, not hours.</p>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="First and Last" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Tell Us What You Need</label>
+          <textarea id="message" placeholder="Unlimited? Budget-friendly? Family plan? We're here to help..." required></textarea>
+        </div>
+        <button type="submit" class="btn-large">Get Started Today</button>
+      </form>
+    </div>
+  </section>
+
   <footer>
-    <div class="footer-grid">
-      <div class="footer-column">
-        <h3>Metro by T-Mobile</h3>
-        <p>Unlocked. Unstoppable. Uncomplicated.</p>
-        <div class="social-icons">
-          <a href="#" aria-label="Twitter">𝕏</a>
-          <a href="#" aria-label="Instagram">📷</a>
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="YouTube">▶️</a>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>Metro by T-Mobile</h3>
+          <p>Real wireless, fair and simple. No contracts. No credit checks. Just fast, unlimited service for everyone.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">F</a>
+            <a href="#" aria-label="Instagram">I</a>
+            <a href="#" aria-label="Twitter">T</a>
+            <a href="#" aria-label="YouTube">Y</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Plans</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Network Status</a></li>
+            <li><a href="#">Device Compatibility</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Acceptable Use</a></li>
+            <li><a href="#">Carrier Information</a></li>
+          </ul>
         </div>
       </div>
-      <div class="footer-column">
-        <h3>Shop</h3>
-        <a href="#">Featured Phones</a>
-        <a href="#">Plans</a>
-        <a href="#">Add-Ons</a>
-        <a href="#">Trade-In</a>
+      <div class="copyright">
+        &copy; 2026 Metro by T-Mobile. All rights reserved. Metro by T-Mobile is a brand owned by T-Mobile USA, Inc.
       </div>
-      <div class="footer-column">
-        <h3>Support</h3>
-        <a href="#">Help Center</a>
-        <a href="#">FAQs</a>
-        <a href="#">Payment Options</a>
-        <a href="#">Find a Store</a>
-      </div>
-      <div class="footer-column">
-        <h3>Company</h3>
-        <a href="#">About Us</a>
-        <a href="#">Careers</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-      </div>
-    </div>
-    <div class="copyright">
-      © 2026 Metro by T-Mobile. All rights reserved. T-Mobile and the T-Mobile logo are trademarks of T-Mobile USA, Inc.
     </div>
   </footer>
 
-  <!-- Animated Background Elements -->
-  <div class="sway-background">
-    <div class="sway-bg-shape"></div>
-    <div class="sway-bg-shape"></div>
-    <div class="sway-bg-shape"></div>
-    <div class="sway-bg-shape"></div>
-  </div>
+  <div class="floating-shape shape-1"></div>
+  <div class="floating-shape shape-2"></div>
+  <div class="floating-shape shape-3"></div>
 
-  <div class="floating-shapes">
-    <div class="floating-shape"></div>
-    <div class="floating-shape"></div>
-    <div class="floating-shape"></div>
-  </div>
+  <div class="decoration-shape shape-wave-green" style="bottom: 0; left: 0; position: fixed; z-index: 1;"></div>
 
   <script>
-    // Sticky Navigation on Scroll
-    const nav = document.getElementById('mainNav');
+    // Sticky Nav
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
+      const nav = document.getElementById('mainNav');
+      if (window.scrollY > 100) {
         nav.classList.add('scrolled');
       } else {
         nav.classList.remove('scrolled');
       }
     });
 
-    // Formal scroll-reveal animations
+    // Scroll Reveal
     document.addEventListener('DOMContentLoaded', () => {
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px'
-      };
-
-      const observer = new IntersectionObserver((entries) => {
+      const revealElements = document.querySelectorAll('.scroll-reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('show');
+            entry.target.classList.add('appear');
           }
         });
-      }, observerOptions);
+      }, { threshold: 0.1 });
 
-      // Observe key elements
-      document.querySelectorAll('.feature-card, .testimonial, .gallery-item').forEach(el => {
-        observer.observe(el);
-      });
-
-      // Animate each feature card with stagger delay
-      document.querySelectorAll('.feature-card').forEach((card, index) => {
-        card.style.transitionDelay = `${index * 0.1}s`;
-      });
-
-      // Animate gallery items with stagger delay
-      document.querySelectorAll('.gallery-item').forEach((item, index) => {
-        item.style.transitionDelay = `${index * 0.1}s`;
-      });
-
-      // Animate testimonials with stagger delay
-      document.querySelectorAll('.testimonial').forEach((test, index) => {
-        test.style.transitionDelay = `${index * 0.1}s`;
-      });
+      revealElements.forEach(el => revealObserver.observe(el));
     });
 
-    // Smooth Scroll to Anchor
+    // Hero Animations
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+      setTimeout(() => {
+        heroContent.style.opacity = '1';
+        heroContent.style.transform = 'translateY(0)';
+      }, 300);
+    }
+
+    // Smooth Scrolling for Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
           window.scrollTo({
-            top: targetElement.offsetTop - 90,
+            top: targetElement.offsetTop - 80,
             behavior: 'smooth'
           });
         }
       });
     });
+
+    // Form Submission
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! We’ll be in touch soon.');
+        this.reset();
+      });
+    }
   </script>
 <script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=TWV0cm8gYnkgVC1Nb2JpbGU&u=dmlzaXQ&s=d0c3fa4fa412937556ff88d3607ca6b2&beacon=1&l=b3NtLW5vZGUtNDE5MzYzNjc2";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:4a1785af6a--></html>
+<!--bld:a3707534c5--></html>
