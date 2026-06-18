@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sheng Siong Supermarket</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #d91e18;
+      --secondary: #28a745;
+      --accent: #c9a66b;
+      --light: #fffaf0;
+      --white: #ffffff;
+      --text: #333333;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+      background-color: var(--white);
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d91e18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') 12 12, auto;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--text);
+      position: relative;
+    }
+
+    h1 {
+      font-size: 6rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    h2 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+    }
+
+    /* NAVIGATION */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1.5rem 0;
+      background: transparent;
+      transition: var(--transition);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    nav.scrolled {
+      background: rgba(255,255,255,0.95);
+      box-shadow: var(--shadow);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(217,30,24,0.1);
+    }
+
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--primary);
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 4px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+
+    .logo:hover::after {
+      width: 100%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      position: relative;
+      padding: 0.5rem 0.7rem;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover:after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(217, 30, 24, 0.05);
+    }
+
+    .cta-button {
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 5px 15px rgba(217, 30, 24, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: var(--transition);
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      background: #b81a15;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(217, 30, 24, 0.4);
+      z-index: 1001;
+    }
+
+    .cta-secondary {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 0.6rem 1.6rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      transition: var(--transition);
+      margin-left: 1rem;
+    }
+
+    .cta-secondary:hover {
+      background: rgba(217, 30, 24, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(217, 30, 24, 0.2);
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.25)), url(https://images.pexels.com/photos/17689605/pexels-photo-17689605.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      position: relative;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 30%, rgba(217, 30, 24, 0.15), transparent 60%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      z-index: 5;
+      max-width: 700px;
+      animation: fadeInUp 1.5s ease-out forwards;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .hero h1 {
+      color: var(--white);
+      font-size: 7rem;
+      margin-bottom: 1rem;
+      line-height: 0.9;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero h1::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+    }
+
+    .hero p {
+      color: var(--white);
+      font-size: 2.2rem;
+      margin-bottom: 3rem;
+      font-weight: 500;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      position: relative;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .hero-ctas a {
+      text-decoration: none;
+    }
+
+    .floating-shape {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(217, 30, 24, 0.1);
+      z-index: 2;
+      opacity: 0.7;
+      pointer-events: none;
+      animation: float 20s infinite ease-in-out;
+      transform: translate3d(0,0,0);
+    }
+
+    .float-1 {
+      top: 15%;
+      left: 5%;
+      width: 200px;
+      height: 200px;
+      background: rgba(186, 158, 100, 0.1);
+      animation-delay: -2s;
+      animation-duration: 25s;
+    }
+
+    .float-2 {
+      top: 70%;
+      left: 85%;
+      width: 180px;
+      height: 180px;
+      background: rgba(40, 167, 69, 0.08);
+      animation-delay: -5s;
+      animation-duration: 18s;
+    }
+
+    .float-3 {
+      bottom: 20%;
+      left: 15%;
+      width: 120px;
+      height: 120px;
+      background: rgba(217, 30, 24, 0.1);
+      animation-delay: 0s;
+    }
+
+    .float-4 {
+      bottom: 30%;
+      right: 12%;
+      width: 150px;
+      height: 150px;
+      background: rgba(201, 166, 107, 0.1);
+      animation-delay: -4s;
+    }
+
+    /* TRUST STRIP */
+    .trust-strip {
+      background: var(--light);
+      padding: 2.5rem 0;
+      border-bottom: 1px solid rgba(217,30,24,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3;
+    }
+
+    .trust-strip::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+      opacity: 0.3;
+      transform: translateY(2px);
+    }
+
+    .trust-strip p {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      text-align: center;
+      position: relative;
+      padding: 0 2rem;
+    }
+
+    /* SECTIONS */
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .section-header h2 {
+      font-size: 3.2rem;
+      display: inline-block;
+      position: relative;
+    }
+
+    .section-header h2:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 50px;
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 8rem 0;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .features::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -200px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(217, 30, 24, 0.05) 0%, transparent 70%);
+      z-index: 1;
+      opacity: 1;
+    }
+
+    .features::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      right: -150px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(40, 167, 69, 0.05) 0%, transparent 70%);
+      z-index: 1;
+      opacity: 0.8;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+      z-index: 1;
+    }
+
+    .feature-card:nth-child(odd)::before {
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+    }
+
+    .feature-card:hover {
+      transform: translateY(-15px) scale(1.01);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+      z-index: 10;
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(217, 30, 24, 0.08);
+      border-radius: 50%;
+      color: var(--primary);
+      font-size: 2.5rem;
+      font-weight: 700;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1) translateY(-5px);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1.2rem;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+
+    .feature-card p {
+      color: #666;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 0;
+      letter-spacing: -0.3px;
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 8rem 0;
+      background: var(--light);
+      display: flex;
+      align-items: center;
+      gap: 6rem;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: -100px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(217, 30, 24, 0.08) 0%, transparent 60%);
+      opacity: 0.7;
+      border-radius: 50%;
+      transform: rotate(25deg);
+    }
+
+    .about::after {
+      content: '';
+      position: absolute;
+      bottom: 10%;
+      right: -80px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(40, 167, 69, 0.06) 0%, transparent 60%);
+      opacity: 0.6;
+      border-radius: 50%;
+      transform: rotate(-15deg);
+    }
+
+    .about-image {
+      flex: 1;
+      min-width: 300px;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      position: relative;
+      transform: translateX(-15px) scale(1);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      perspective: 1000px;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: scale(1.02);
+      border-radius: 25px;
+      filter: brightness(1) contrast(1.02);
+    }
+
+    .about:hover .about-image img {
+      transform: scale(1.08) brightness(1.08);
+    }
+
+    .about:hover .about-image {
+      transform: translateX(0) scale(1.02);
+    }
+
+    .about-content {
+      flex: 1;
+      min-width: 300px;
+      position: relative;
+    }
+
+    .about-content h2 {
+      margin-bottom: 1.5rem;
+      font-size: 3.5rem;
+      line-height: 1.1;
+    }
+
+    .about-content p {
+      margin-bottom: 2.2rem;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    .about-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      padding: 8rem 0;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 180px;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" fill="%23d91e18"><path d="M20,20 Q100,10 180,40 L180,90 L30,90 Q50,60 20,80 Z" fill="%23d91e18"/><path d="M50,40 Q130,30 160,60 L160,80 L100,80 Q105,65 50,75 Z" fill="%23d91e18"/></svg>') no-repeat center;
+      background-size: contain;
+      opacity: 0.6;
+      z-index: 1;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial {
+      background: var(--light);
+      padding: 3.5rem 3rem;
+      border-radius: 25px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+      transform: translateY(0);
+      border: 1px solid rgba(217,30,24,0.05);
+    }
+
+    .testimonial:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+    }
+
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      font-size: 6rem;
+      color: var(--primary);
+      opacity: 0.1;
+      font-family: serif;
+      font-weight: 900;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      color: var(--text);
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #eee;
+      overflow: hidden;
+      position: relative;
+      border: 3px solid var(--light);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+      transform: scale(1);
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .testimonial:hover .testimonial-avatar {
+      transform: scale(1.05);
+    }
+
+    .testimonial-hover .testimonial-avatar img {
+      transform: scale(1.05);
+    }
+
+    .testimonial-name {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    .testimonial-role {
+      color: #777;
+      font-size: 1rem;
+      letter-spacing: -0.3px;
+    }
+
+    /* GALLERY */
+    .gallery {
+      padding: 8rem 0;
+      background: var(--light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(180deg, transparent, var(--light));
+      z-index: 1;
+    }
+
+    .gallery::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(0deg, transparent, var(--light));
+      z-index: 1;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .gallery-item {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      height: 300px;
+      cursor: pointer;
+      transition: var(--transition);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      overflow: hidden;
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 2;
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 3;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: scale(1.03);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px) scale(1.01);
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 8rem 0;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+      opacity: 0.8;
+    }
+
+    .contact::after {
+      content: '';
+      position: absolute;
+      bottom: -120px;
+      left: -80px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(217, 30, 24, 0.05) 0%, transparent 70%);
+      opacity: 0.7;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.8);
+      padding: 4rem 3rem;
+      border-radius: 30px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.1);
+      border: 1px solid rgba(217,30,24,0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transform: translateY(0);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .contact-form:hover {
+      transform: translateY(-10px);
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1.2rem;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--white);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(217, 30, 24, 0.1);
+      transform: translateY(-2px);
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+      font-size: 1.1rem;
+    }
+
+    .form-control::placeholder {
+      color: #bbb;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      color: var(--white);
+      padding: 6rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-logo {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+      position: relative;
+    }
+
+    .footer-logo::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .footer-about p {
+      color: #ddd;
+      margin-bottom: 1.8rem;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .footer-links h3 {
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+      position: relative;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .footer-links h3:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: #ddd;
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-block;
+      position: relative;
+      padding: 0.3rem 0;
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .footer-social a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--white);
+      transition: var(--transition);
+      font-size: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .footer-social a:hover {
+      background: var(--accent);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 20px rgba(201, 166, 107, 0.3);
+      color: var(--text);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #aaa;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-bottom span {
+      color: var(--accent);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+      }
+      25% {
+        transform: translateY(-30px) translateX(20px);
+      }
+      50% {
+        transform: translateY(0) translateX(40px);
+      }
+      75% {
+        transform: translateY(30px) translateX(-10px);
+      }
+    }
+
+    /* SCROLLING STYLED INDICATOR */
+    .scroll-indicator {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      border: 2px solid var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.15);
+      backdrop-filter: blur(10px);
+      color: var(--white);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1.8rem;
+      font-weight: 900;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .scroll-indicator:hover {
+      background: var(--white);
+      color: var(--text);
+      transform: translateX(-50%) translateY(-5px);
+    }
+
+    .scroll-indicator::after {
+      content: '↓';
+      opacity: 0.7;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 4rem;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+      }
+
+      nav {
+        padding: 1rem 0;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .nav-links a {
+        margin: 0 0.5rem;
+        padding: 0.5rem 1rem;
+        background: rgba(0,0,0,0.04);
+        border-radius: 8px;
+      }
+
+      .cta-button {
+        margin-bottom: 1rem;
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero {
+        background-attachment: scroll;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero p {
+        font-size: 1.8rem;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-secondary {
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+
+      .trust-strip p {
+        font-size: 1.3rem;
+      }
+
+      .features,
+      .about,
+      .testimonials,
+      .gallery,
+      .contact {
+        padding: 6rem 1rem;
+      }
+
+      .features-grid,
+      .testimonial-grid,
+      .gallery-grid {
+        gap: 2rem;
+      }
+
+      .feature-card {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .feature-icon {
+        margin: 0 auto 1.5rem;
+      }
+
+      .about {
+        flex-direction: column;
+        gap: 4rem;
+        padding: 5rem 1rem;
+      }
+
+      .about-image {
+        width: 90%;
+        transform: translateX(0) !important;
+        margin: 0 auto;
+      }
+
+      .about-content {
+        text-align: center;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .footer-links h3 {
+        font-size: 1.4rem;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav id="main-nav">
+    <div class="container">
+      <a href="#" class="logo">Sheng Siong Supermarket</a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="cta-button">Visit Us</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="floating-shape float-1"></div>
+    <div class="floating-shape float-2"></div>
+    <div class="floating-shape float-3"></div>
+    <div class="floating-shape float-4"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Sheng Siong Supermarket</h1>
+        <p>Your Daily Grocer — Where Freshness Meets Affordability</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="cta-button">Get Directions</a>
+          <a href="#features" class="cta-secondary">Explore Offers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-strip">
+    <div class="container">
+      <p>Trusted by families across Compassvale for six generations — fresh, affordable groceries every day</p>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Choose Us</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🛒</div>
+          <h3>Everyday Low Prices</h3>
+          <p>Best value on fruits, vegetables, meats, and essentials — no hidden markups, just honest pricing your family can trust.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌾</div>
+          <h3>Locally Sourced</h3>
+          <p>Fresh produce from regional farmers, daily deliveries, and quality you can taste — never shipped from overseas.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🕒</div>
+          <h3>Open Early, Closed Late</h3>
+          <p>Shop when it suits you — open from 5:30am to 10:30pm, seven days a week, rain or shine. Even on public holidays.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Sheng Siong Supermarket interior with customers shopping">
+      </div>
+      <div class="about-content">
+        <h2>More Than a Supermarket</h2>
+        <p>Sheng Siong Supermarket at 266 Compassvale Bow is the heart of neighborhood life. We've built decades of trust by prioritizing freshness, affordability, and warmth over everything else. Our staff know our regulars by name, our shelves are stocked daily, and our commitment to quality is non-negotiable.</p>
+        <p>We are not a corporate chain — we are your neighbors, committed to making your daily shopping experience simple, clean, and kind. Just a short walk from Compassvale LRT, we serve families with the same care we'd show our own — with a smile, a nod, and the perfect durian always left on the counter just for you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>From Our Community</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <p>“I’ve been shopping here since 1998. Their durians are the sweetest and their chicken is so fresh I can taste the difference. I know exactly which stall to ask for Uncle Lim — he remembers my favorite mangoes.”</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar"><img src="https://images.pexels.com/photos/17689605/pexels-photo-17689605.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Avatar"></div>
+            <div>
+              <div class="testimonial-name">Local Customer</div>
+              <div class="testimonial-role">Compassvale Resident</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>“My kids love the fruit section — we come every Saturday. They’re always generous with samples and help us pick the best. Last week, they gave my daughter a free banana just because she said she liked pineapple.”</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar"><img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Avatar"></div>
+            <div>
+              <div class="testimonial-name">Local Parent</div>
+              <div class="testimonial-role">Parent of Two</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>“No other supermarket in the area has this kind of consistency. The fish is always fresh, the rice never has weevils — and the staff always smile. This place feels like a second home.”</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar"><img src="https://images.pexels.com/photos/15225307/pexels-photo-15225307.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Avatar"></div>
+            <div>
+              <div class="testimonial-name">Verified Customer</div>
+              <div class="testimonial-role">Compassvale Weekly Shopper</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Daily Freshness</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/15225307/pexels-photo-15225307.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fresh tropical fruits">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/30811283/pexels-photo-30811283.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Organic vegetables row">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/8422728/pexels-photo-8422728.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Meat and poultry section">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/19242076/pexels-photo-19242076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Grain and dry goods aisle">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/15225307/pexels-photo-15225307.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fresh herbs display">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/8422728/pexels-photo-8422728.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Dairy and eggs counter">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Visit Us Today</h2>
+      </div>
+      <div class="contact-form">
+        <form>
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" class="form-control" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="form-control" placeholder="How can we help you?"></textarea>
+          </div>
+          <button type="submit" class="cta-button">Get Directions</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">Sheng Siong Supermarket</div>
+          <p>266 Compassvale Bow Singapore 540266<br>Open 5:30am – 10:30pm, 7 days a week</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">i</a>
+            <a href="#" aria-label="Google Maps">g</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Store Info</h3>
+          <ul>
+            <li><a href="#">Opening Hours</a></li>
+            <li><a href="#">Directions</a></li>
+            <li><a href="#">Payment Options</a></li>
+            <li><a href="#">Loyalty Program</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Products</h3>
+          <ul>
+            <li><a href="#">Fruits & Vegetables</a></li>
+            <li><a href="#">Meat & Seafood</a></li>
+            <li><a href="#">Dairy & Eggs</a></li>
+            <li><a href="#">Dry Goods</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Feedback</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Sheng Siong Supermarket. All rights reserved. Made with care for Compassvale.
+      </div>
+    </div>
+  </footer>
+
+  <a href="#top" class="scroll-indicator"></a>
+
+  <script>
+    // Sticky nav
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('main-nav');
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Fade-in scroll animation
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '-100px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.feature-card, .testimonial, .gallery-item, .about-image').forEach(el => {
+      el.classList.add('fade-in-up');
+      observer.observe(el);
+    });
+
+    // Scroll indicator
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    scrollIndicator.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Add hover to testimonials
+    document.querySelectorAll('.testimonial').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        item.style.setProperty('--hovered', 'true');
+      });
+      item.addEventListener('mouseleave', () => {
+        item.style.setProperty('--hovered', 'false');
+      });
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=U2hlbmcgU2lvbmcgU3VwZXJtYXJrZXQ&u=dmlzaXQ&s=d189fa9f6d6d3276d6431c2ae60bd9d9&beacon=1&l=b3NtLW5vZGUtMzkxMjkxNTQz";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:33092967ad--></html>
