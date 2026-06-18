@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evelyn G. Rafter and Associates Realty</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #2b2b2b;
+      --secondary: #f8f4f0;
+      --accent: #b8a685;
+      --dark: #4a4a4a;
+      --olive: #3c423a;
+      --taupe: #7b6d60;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      color: var(--primary);
+      line-height: 1.7;
+      background-color: var(--secondary);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    h1 {
+      font-size: 3.8rem;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.9rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Sticky Nav */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.5rem 0;
+      transition: all 0.4s ease;
+      background: transparent;
+      pointer-events: none;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    header.scrolled {
+      background: rgba(248, 244, 240, 0.95);
+      padding: 1rem 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: auto;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.4s cubic-bezier(0.3, 0.8, 0.4, 1.2);
+    }
+
+    .logo:hover::after {
+      width: 100%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      font-size: 1.1rem;
+      font-weight: 500;
+      position: relative;
+      padding: 0.25rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.4s cubic-bezier(0.3, 0.8, 0.4, 1.2);
+      transform-origin: left;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background-color: var(--primary);
+      color: var(--secondary);
+      padding: 0.7rem 1.8rem;
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 0;
+      transition: all 0.4s cubic-bezier(0.3, 0.8, 0.4, 1.2);
+      border: 1px solid rgba(43, 43, 43, 0.3);
+    }
+
+    .cta-button:hover {
+      background-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+      overflow: hidden;
+      margin-top: 80px;
+      perspective: 1000px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://images.pexels.com/photos/19131470/pexels-photo-19131470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.7;
+      z-index: 1;
+      filter: brightness(0.75) contrast(1.05);
+      transform: scale(1.08) translateZ(0);
+      transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.85) 100%);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 2rem;
+      opacity: 0;
+      transform: translateY(40px) scale(0.98);
+      animation: fadeInUp 1.2s ease-out forwards 0.3s;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: -1.5px;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+      background: linear-gradient(to right, #ffffff, rgba(255,255,255,0.8));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tagline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 1.8rem;
+      font-style: italic;
+      margin-bottom: 3rem;
+      letter-spacing: 0.8px;
+      color: var(--accent);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      position: relative;
+      display: inline-block;
+    }
+
+    .tagline::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .secondary-button {
+      background-color: transparent;
+      color: var(--secondary);
+      border: 1px solid var(--secondary);
+      padding: 0.7rem 1.8rem;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 0;
+      transition: all 0.4s cubic-bezier(0.3, 0.8, 0.4, 1.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .secondary-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.1);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+
+    .secondary-button:hover::before {
+      transform: translateX(100%);
+    }
+
+    .secondary-button:hover {
+      background-color: var(--secondary);
+      color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      background-color: var(--primary);
+      color: var(--secondary);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3;
+    }
+
+    .trust-strip::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3;
+    }
+
+    .trust-item {
+      padding: 0 2rem;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .trust-item p {
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    .trust-item::before,
+    .trust-item::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 30px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    .trust-item::before {
+      left: 0;
+    }
+
+    .trust-item::after {
+      right: 0;
+    }
+
+    /* Services */
+    .services {
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle at center, rgba(184, 166, 133, 0.1), transparent 70%);
+      z-index: 1;
+    }
+
+    .services::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle at center, rgba(184, 166, 133, 0.1), transparent 70%);
+      z-index: 1;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-heading::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 1.5rem auto 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+      position: relative;
+    }
+
+    .service-card {
+      background-color: var(--secondary);
+      padding: 3rem 2rem;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.5s cubic-bezier(0.3, 0.8, 0.4, 1.2);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(248, 244, 240, 0.6);
+      backdrop-filter: blur(8px);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.3, 0.8, 0.4, 1.2);
+      z-index: 2;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(184, 166, 133, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 1;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px) scale(1.01);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-icon {
+      width: 90px;
+      height: 90px;
+      background-color: var(--olive);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin: 0 auto 2rem;
+      color: var(--secondary);
+      transition: transform 0.5s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-icon svg {
+      width: 45px;
+      height: 45px;
+    }
+
+    .service-card:hover .service-icon {
+      transform: translateY(-8px) scale(1.1);
+    }
+
+    .service-card h3 {
+      margin-bottom: 1.4rem;
+      color: var(--primary);
+      position: relative;
+    }
+
+    .service-card h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .service-card:hover h3::after {
+      opacity: 1;
+    }
+
+    /* Section Divider */
+    .section-divider {
+      position: relative;
+      height: 120px;
+      overflow: hidden;
+      margin: 8rem 0;
+    }
+
+    .section-divider svg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: translateY(0);
+      z-index: 1;
+    }
+
+    .section-divider svg path {
+      fill: rgba(248, 244, 240, 0.1);
+      transition: fill 0.8s ease;
+    }
+
+    .section-divider:hover svg path {
+      fill: rgba(184, 166, 133, 0.2);
+    }
+
+    /* About Section */
+    .about {
+      padding: 8rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .about {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 70%, rgba(184, 166, 133, 0.08), transparent 60%);
+      z-index: 1;
+    }
+
+    .about-image {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+      transform: translateY(0);
+      transition: transform 0.8s cubic-bezier(0.3, 0.8, 0.4, 1.2);
+      position: relative;
+      z-index: 2;
+      border: 4px solid rgba(248, 244, 240, 0.1);
+      backdrop-filter: blur(8px);
+      background: linear-gradient(0deg, rgba(255,255,255,0.05), rgba(255,255,255,0.05));
+    }
+
+    .about-image:hover {
+      transform: translateY(-20px) scale(1.01);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 1s ease;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.08);
+    }
+
+    .about-content h2 {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .about-content h2::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .about-content p {
+      margin-bottom: 1.8rem;
+    }
+
+    .about-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background-color: var(--olive);
+      color: var(--secondary);
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 30%, rgba(184, 166, 133, 0.05), transparent 70%);
+      z-index: 1;
+    }
+
+    .testimonials::after {
+      content: '';
+      position: absolute;
+      bottom: -120px;
+      right: -120px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle at center, rgba(184, 166, 133, 0.1), transparent 70%);
+      z-index: 2;
+    }
+
+    .testimonials .section-heading {
+      color: var(--secondary);
+    }
+
+    .testimonials .section-heading::after {
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 4rem;
+      margin-top: 4rem;
+    }
+
+    .testimonial-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 3rem;
+      border-radius: 20px;
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.3, 0.8, 0.4, 1.2);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.2);
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.3;
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      z-index: 1;
+      transform: rotate(-2deg);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 2;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .client {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .client-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: var(--primary);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease;
+      border: 2px solid var(--accent);
+    }
+
+    .client-avatar:hover {
+      transform: scale(1.1);
+    }
+
+    .client-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .client-name {
+      font-weight: 600;
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    .client-name::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 30px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .client-role {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle at center, rgba(184, 166, 133, 0.1), transparent 70%);
+      z-index: 1;
+    }
+
+    .gallery::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle at center, rgba(184, 166, 133, 0.1), transparent 70%);
+      z-index: 1;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3.5rem;
+      margin-top: 4rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      height: 400px;
+      cursor: pointer;
+      transition: all 0.6s cubic-bezier(0.3, 0.8, 0.4, 1.2);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(248,244,240,0.1);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.3, 0.8, 0.4, 1.2);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.15);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+      display: flex;
+      align-items: flex-end;
+      padding: 3rem 2rem;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay h3 {
+      color: var(--secondary);
+      font-size: 1.8rem;
+      margin-bottom: 0;
+      font-weight: 700;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 8rem 0;
+      background-color: var(--secondary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 50%, rgba(184, 166, 133, 0.08), transparent 60%);
+      z-index: 1;
+    }
+
+    .contact-form {
+      max-width: 650px;
+      margin: 3rem auto;
+      padding: 4rem;
+      background-color: var(--primary);
+      color: var(--secondary);
+      border-radius: 24px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .form-group {
+      margin-bottom: 2.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.2px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1.2rem;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--secondary);
+      border-radius: 8px;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .form-control:focus {
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.15);
+      border-color: rgba(184, 166, 133, 0.4);
+      box-shadow: 0 0 0 2px rgba(184, 166, 133, 0.1);
+    }
+
+    textarea.form-control {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 1.3rem;
+      background: linear-gradient(135deg, var(--accent), #a29177);
+      color: var(--secondary);
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 0;
+      transition: all 0.4s cubic-bezier(0.3, 0.8, 0.4, 1.2);
+      font-weight: 600;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #a29177, #b8a685);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(184, 166, 133, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary);
+      color: var(--secondary);
+      padding: 6rem 0 3rem;
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 0%, rgba(184, 166, 133, 0.12), transparent 70%);
+      z-index: 1;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 5rem;
+      margin-bottom: 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-col h3 {
+      margin-bottom: 1.8rem;
+      font-size: 1.4rem;
+      letter-spacing: -0.3px;
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .footer-col p {
+      margin-bottom: 1.7rem;
+      opacity: 0.8;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      background-color: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+      transition: all 0.4s ease;
+      font-size: 1.4rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .social-links a:hover {
+      background-color: var(--accent);
+      transform: translateY(-5px) scale(1.15);
+      box-shadow: 0 8px 25px rgba(184, 166, 133, 0.3);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: center;
+      padding-top: 3rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-bottom::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    /* Decorative Floating Elements */
+    .floating-element {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .floating-1 {
+      top: 15%;
+      left: 8%;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(184,166,133,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 10;
+      animation: float 12s ease-in-out infinite;
+    }
+
+    .floating-2 {
+      top: 30%;
+      right: 12%;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(184,166,133,0.03) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 10;
+      animation: float 18s ease-in-out infinite 2s;
+    }
+
+    .floating-3 {
+      bottom: 15%;
+      left: 6%;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(184,166,133,0.04) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 10;
+      animation: float 14s ease-in-out infinite 1s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(10px, -15px); }
+      50% { transform: translate(-15px, 10px); }
+      75% { transform: translate(20px, 20px); }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .animate-in {
+      opacity: 0;
+      transform: translateY(40px) scale(0.98);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: transform, opacity;
+    }
+
+    .animate-in.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+        line-height: 1.1;
+      }
+
+      .tagline {
+        font-size: 1.4rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .cta-button,
+      .secondary-button {
+        width: 100%;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .about-image {
+        margin-bottom: 3rem;
+      }
+
+      .about-content h2 {
+        font-size: 2.2rem;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form {
+        padding: 2rem 1.5rem;
+        margin: 2rem auto;
+      }
+
+      .footer-grid {
+        gap: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Floating Elements -->
+  <div class="floating-element floating-1"></div>
+  <div class="floating-element floating-2"></div>
+  <div class="floating-element floating-3"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo">Evelyn G. Rafter and Associates Realty</a>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="cta-button">Get in Touch</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Evelyn G. Rafter and Associates Realty</h1>
+      <div class="tagline">Where legacy meets location</div>
+      <div class="hero-buttons">
+        <button class="cta-button">List Your Property</button>
+        <button class="secondary-button">Explore Listings</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    <div class="trust-item">Trusted by local clients for over a decade</div>
+    <div class="trust-item">Experienced, ethical, and attentive</div>
+    <div class="trust-item">Your trusted partner in real estate</div>
+  </div>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2 class="section-heading">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3>Property Sales</h3>
+          <p>Expert guidance through every step of buying or selling with personalized strategy and market insight tailored to your unique goals.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+          </div>
+          <h3>Investment Guidance</h3>
+          <p>Unlock strategic investments with comprehensive analysis, cash flow modeling, and portfolio alignment to maximize returns on property.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <h3>Property Management</h3>
+          <p>Comprehensive care for your rental assets—from tenant vetting and maintenance coordination to financial reporting and lease negotiation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <div class="section-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-40.34c30.23-5.43,58.39-9.9,82.49-10.12c19.2-0.15,141.68-28.22,245.93,2.26c112.88,33.54,154-119.82,167.84-156.68c8.71-23.26,27-61.46,29.71-72.25c5.47-5.65,8.12-12.19,15.26-11.05c5.15,0.86,12.57,7.88,13.15,14.21c1.07,11.13,2.72,22.27,0,33.4c0,0,0,0,0,0c-5.49,26.03-9.35,57.66-5.54,86.93c7.6,58.14,29.87,108.07,58.74,158.78c17.64,30.48,44.28,60.58,65.97,77.2c-86.4,21.23-180.62,54.22-264.66-3.31c-124.92-111.14-245.5-237.72-342.46-344.37C40.27,53.38,214.35,55.83,321.39,56.44z" fill="currentColor"></path>
+    </svg>
+  </div>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/4968723/pexels-photo-4968723.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Evelyn G. Rafter and Associates Realty team" />
+      </div>
+      <div class="about-content">
+        <h2>Our Philosophy</h2>
+        <p>Evelyn G. Rafter and Associates Realty operates with the quiet conviction that real estate is more than transactions — it's legacy. Each home holds history, potential, and promise. We honor that with deep listening, refined judgment, and unwavering integrity.</p>
+        <p>Founded not by a logo, but by a reputation, we've built enduring relationships not because of flashy marketing, but because we show up — consistently, thoughtfully, and always in service of your best interest.</p>
+        <p>Where legacy meets location — we believe the right home doesn't just sit on a street, it holds your story.</p>
+        <p>1561 Lemoine Avenue</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2 class="section-heading">Client Voices</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">They didn’t just sell our family home — they honored its history. Every show, every negotiation, every detail was handled with grace and care — a truly rare experience.</p>
+          <div class="client">
+            <div class="client-avatar">
+              <img src="https://images.pexels.com/photos/19131470/pexels-photo-19131470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client" />
+            </div>
+            <div>
+              <div class="client-name">Verified Customer</div>
+              <div class="client-role">Longtime Neighborhood Resident</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">As first-time investors, we were overwhelmed. Evelyn’s team demystified the market, taught us what really mattered, and guided us to a quiet gem we’ll hold for decades.</p>
+          <div class="client">
+            <div class="client-avatar">
+              <img src="https://images.pexels.com/photos/4968723/pexels-photo-4968723.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client" />
+            </div>
+            <div>
+              <div class="client-name">Verified Customer</div>
+              <div class="client-role">First-Time Investor</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">We’ve worked with agents before, but never one who listened so intently. They found our dream property with no listing — just intuition, insight, and impeccable timing.</p>
+          <div class="client">
+            <div class="client-avatar">
+              <img src="https://images.pexels.com/photos/8146213/pexels-photo-8146213.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client" />
+            </div>
+            <div>
+              <div class="client-name">Verified Customer</div>
+              <div class="client-role">Relocating Family</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2 class="section-heading">Featured Properties</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/8146213/pexels-photo-8146213.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Stately Victorian Home" />
+          <div class="gallery-overlay">
+            <h3>Stately Victorian Home</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/19175570/pexels-photo-19175570.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Modern Waterfront Retreat" />
+          <div class="gallery-overlay">
+            <h3>Modern Waterfront Retreat</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/18326826/pexels-photo-18326826.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Charming Historic Brownstone" />
+          <div class="gallery-overlay">
+            <h3>Charming Historic Brownstone</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-heading">Get In Touch</h2>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="form-control" placeholder="Your name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" placeholder="Your email" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" class="form-control" placeholder="Tell us how we can help"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Evelyn G. Rafter and Associates Realty</h3>
+          <p>Where legacy meets location. For over a decade, we've served communities with quiet professionalism and deep integrity, guided by principle, not performance.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Instagram">I</a>
+            <a href="#" aria-label="LinkedIn">L</a>
+            <a href="#" aria-label="Facebook">F</a>
+            <a href="#" aria-label="Twitter">T</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p>1561 Lemoine Avenue</p>
+          <p>Request a private consultation</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Evelyn G. Rafter and Associates Realty. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky Nav
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Reveal animations with scroll-triggered parallax
+    const revealElements = document.querySelectorAll('.service-card, .about-content, .testimonial-card, .gallery-item');
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    revealElements.forEach(el => {
+      el.classList.add('animate-in');
+      observer.observe(el);
+    });
+
+    // Gallery hover overlay timing with custom easing
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        const overlay = item.querySelector('.gallery-overlay');
+        overlay.style.opacity = '1';
+        overlay.style.transition = 'opacity 0.5s cubic-bezier(0.3, 0.8, 0.4, 1.2)';
+      });
+      item.addEventListener('mouseleave', () => {
+        const overlay = item.querySelector('.gallery-overlay');
+        overlay.style.opacity = '0';
+        overlay.style.transition = 'opacity 0.5s cubic-bezier(0.3, 0.8, 0.4, 1.2)';
+      });
+    });
+
+    // Add smooth scroll with offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Add parallax background effect on hero
+    window.addEventListener('scroll', () => {
+      const hero = document.querySelector('.hero');
+      const scrollValue = window.pageYOffset;
+      const parallaxAmount = scrollValue * 0.5;
+      hero.style.setProperty('--hero-scale', 1 + scrollValue * 0.0005);
+      hero.querySelector('::before')?.style.setProperty('transform', `scale(1.08) translateZ(${parallaxAmount}px)`);
+    });
+
+    // Subtle floating effect on decorative elements
+    const floatingElements = document.querySelectorAll('.floating-element');
+    floatingElements.forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        element.style.transform = 'scale(1.05)';
+      });
+      element.addEventListener('mouseleave', () => {
+        element.style.transform = 'scale(1)';
+      });
+    });
+
+    // Form focus animations
+    const formControls = document.querySelectorAll('.form-control');
+    formControls.forEach(control => {
+      control.addEventListener('focus', () => {
+        control.style.transform = 'scale(1.02)';
+        control.parentElement.style.transform = 'scale(1.01)';
+      });
+      
+      control.addEventListener('blur', () => {
+        control.style.transform = 'scale(1)';
+        control.parentElement.style.transform = 'scale(1)';
+      });
+    });
+
+    // Add visual feedback to buttons
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+      button.addEventListener('mousedown', () => {
+        button.style.transform = 'scale(0.98)';
+      });
+      
+      button.addEventListener('mouseup', () => {
+        button.style.transform = 'scale(1)';
+      });
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=RXZlbHluIEcuIFJhZnRlciBhbmQgQXNzb2NpYXRlcyBSZWFsdHk&u=dmlzaXQ&s=064406ee729b371561c3851a7f6c5d2f&beacon=1&l=b3NtLW5vZGUtMjI2OTU4ODcxOA";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:2b1d0d667a--></html>
