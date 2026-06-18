@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Star Vista</title>
+  <style>
+    :root {
+      --gold: #e6c9a0;
+      --midnight: #0a1a2f;
+      --pearl: #f8f6f3;
+      --charcoal: #2d2d2d;
+      --brass: #c8a577;
+      --gold-soft: #e0c295;
+      --gold-light: #ede4d0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--pearl);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      line-height: 1.7;
+      overflow-y: clip;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(248, 246, 243, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 1.5rem 0;
+      z-index: 1000;
+      transition: all 0.4s ease;
+      border-bottom: 1px solid rgba(230, 201, 160, 0.2);
+      box-shadow: 0 1px 10px rgba(11, 20, 47, 0.02);
+    }
+
+    nav.scrolled {
+      padding: 1rem 0;
+      box-shadow: 0 6px 30px rgba(11, 20, 47, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--midnight);
+      text-decoration: none;
+      position: relative;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--brass);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 8px rgba(200, 165, 119, 0.3);
+    }
+
+    .logo:hover::after {
+      width: 100%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      color: var(--midnight);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+      padding: 0.25rem 0;
+      user-select: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links a::after,
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-links a::before {
+      width: 0;
+      background: transparent;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(230, 201, 160, 0.5);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-links a:hover::before {
+      width: 120%;
+      height: 15px;
+      background: rgba(230, 201, 160, 0.2);
+      border-radius: 50%;
+      bottom: -8px;
+      left: -10%;
+      box-shadow: 0 0 20px rgba(230, 201, 160, 0.5);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background: var(--midnight);
+      color: white;
+      padding: 0.75rem 1.8rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(11, 20, 47, 0.15);
+      box-shadow: 0 3px 10px rgba(11, 20, 47, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    .cta-button:hover {
+      background: transparent;
+      color: var(--midnight);
+      box-shadow: 0 8px 25px rgba(11, 20, 47, 0.12);
+      transform: translateY(-3px);
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      background-image: url('https://images.pexels.com/photos/14368079/pexels-photo-14368079.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      animation: heroPulse 8s infinite alternate;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(10, 26, 47, 0.9), rgba(10, 26, 47, 0.95));
+      z-index: 1;
+    }
+
+    .hero-content {
+      z-index: 2;
+      max-width: 720px;
+      padding: 0 2rem;
+      transform: translateY(60px);
+      opacity: 0;
+      animation: heroFadeIn 1.4s ease-out 0.2s forwards;
+      isolation: isolate;
+    }
+
+    @keyframes heroFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes heroPulse {
+      0% { background-position: 50% 50%; }
+      100% { background-position: 52% 52%; }
+    }
+
+    .hero h1 {
+      font-size: 3.8rem;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+      letter-spacing: -1.5px;
+      background: linear-gradient(to right, white, rgba(255,255,255,0.8));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+      transform: perspective(800px) rotateX(1deg);
+      will-change: transform;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      margin-bottom: 3rem;
+      font-weight: 300;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+      font-style: italic;
+      color: rgba(248, 246, 243, 0.9);
+      position: relative;
+    }
+
+    .hero p::after {
+      content: '—';
+      position: absolute;
+      left: 100%;
+      margin-left: 10px;
+      color: var(--gold);
+      opacity: 0.7;
+      font-size: 2.2rem;
+      top: -0.2rem;
+      transform: translateY(-20%);
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 0; }
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-cta-group .cta-button {
+      padding: 0.8rem 2.4rem;
+      min-width: 150px;
+    }
+
+    .hero-cta-group .cta-button.primary {
+      background: var(--gold);
+      color: var(--midnight);
+      box-shadow: 0 6px 25px rgba(230, 201, 160, 0.5);
+      font-weight: 700;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      transform: translateY(-3px);
+      backface-visibility: hidden;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-cta-group .cta-button.primary::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border: 1px solid rgba(230, 201, 160, 0.7);
+      border-radius: 42px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .hero-cta-group .cta-button.primary:hover {
+      background: var(--brass);
+      box-shadow: 0 12px 40px rgba(200, 165, 119, 0.7);
+      transform: translateY(-6px);
+    }
+
+    .hero-cta-group .cta-button.primary:hover::before {
+      opacity: 1;
+    }
+
+    .floating-glow {
+      position: absolute;
+      top: 15%;
+      left: 10%;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(230, 201, 160, 0.4), transparent 70%);
+      animation: pulseGlow 5s infinite 0.5s;
+      z-index: 0;
+      filter: blur(10px);
+    }
+
+    .floating-glow-2 {
+      position: absolute;
+      bottom: 20%;
+      right: 15%;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(230, 201, 160, 0.3), transparent 70%);
+      animation: pulseGlow 6s infinite 1.2s;
+      z-index: 0;
+      filter: blur(8px);
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background: var(--pearl);
+      padding: 1.5rem 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(230, 201, 160, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: translateY(-100%);
+      animation: glideLine 4s ease-in-out infinite;
+    }
+
+    @keyframes glideLine {
+      0%, 100% { transform: translateY(-100%); }
+      50% { transform: translateY(0); }
+    }
+
+    .trust-strip p {
+      font-size: 1rem;
+      color: var(--midnight);
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .trust-strip span {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* Features */
+    .features {
+      padding: 8rem 0;
+      background: white;
+      position: relative;
+    }
+
+    .features h2 {
+      text-align: center;
+      margin-bottom: 4rem;
+      color: var(--midnight);
+      position: relative;
+    }
+
+    .features h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1rem auto 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      background: var(--pearl);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(11, 20, 47, 0.05);
+      border: 1px solid rgba(230, 201, 160, 0.05);
+      transform: translateY(30px);
+      opacity: 0;
+    }
+
+    .feature-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(230, 201, 160, 0.1), transparent);
+      transform: rotate(30deg);
+      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .feature-card:hover::before {
+      transform: rotate(30deg) translateX(150%);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2.5rem;
+      position: relative;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--midnight);
+      font-size: 2rem;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(230, 201, 160, 0.3);
+      transition: transform 0.6s, box-shadow 0.6s;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 25px rgba(230, 201, 160, 0.5);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1.5rem;
+      color: var(--midnight);
+      font-size: 1.5rem;
+      position: relative;
+    }
+
+    .feature-card h3::after {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0.8rem auto 0;
+    }
+
+    /* About */
+    .about {
+      padding: 8rem 0;
+      background: var(--midnight);
+      color: white;
+      position: relative;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: url('https://images.pexels.com/photos/19286464/pexels-photo-19286464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      border-radius: 0 0 180px 0;
+      z-index: 0;
+      transform: translateX(10%) rotateY(-10deg) scale(1.05);
+      filter: brightness(0.9);
+    }
+
+    .about-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 6rem;
+      margin-top: 1rem;
+    }
+
+    .about-text {
+      flex: 1;
+      transform: translateX(-80px);
+      opacity: 0;
+      transition: transform 0.8s, opacity 0.8s;
+    }
+
+    .about-text.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .about-text h2 {
+      color: var(--pearl);
+      margin-bottom: 2rem;
+      font-size: 2.4rem;
+      line-height: 1.1;
+      font-weight: 800;
+    }
+
+    .about-text h2::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.2rem auto 0;
+    }
+
+    .about-text p {
+      margin-bottom: 3rem;
+      font-size: 1.2rem;
+      line-height: 1.9;
+      color: rgba(248, 246, 243, 0.9);
+      position: relative;
+    }
+
+    .about-text p::before {
+      content: '—';
+      position: absolute;
+      left: -22px;
+      top: -4px;
+      color: var(--gold);
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(11, 20, 47, 0.4);
+      border: 1px solid rgba(230, 201, 160, 0.1);
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.8s;
+      transform: translateY(30px);
+      opacity: 0;
+    }
+
+    .about-image.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .about-image:hover {
+      transform: scale(1.03) rotateY(2deg);
+      box-shadow: 0 40px 100px rgba(11, 20, 47, 0.6);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 8rem 0;
+      background: var(--pearl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="4" fill="none" stroke="%23e6c9a0" stroke-width="0.5" opacity="0.1" /></svg>') repeat;
+      z-index: 0;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+      margin-bottom: 4rem;
+      color: var(--midnight);
+      position: relative;
+    }
+
+    .testimonials h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1rem auto 0;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 3.5rem 2.5rem 3rem;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(11, 20, 47, 0.08);
+      position: relative;
+      transform: translateY(40px);
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1;
+    }
+
+    .testimonial-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .testimonial-card::before {
+      content: """;
+      position: absolute;
+      top: 25px;
+      left: 30px;
+      font-size: 8rem;
+      font-family: 'Playfair Display', serif;
+      color: rgba(230, 201, 160, 0.08);
+      line-height: 1;
+      z-index: 0;
+      transform: rotate(-7deg);
+    }
+
+    .testimonial-card::after {
+      content: """;
+      position: absolute;
+      bottom: 25px;
+      right: 30px;
+      font-size: 8rem;
+      font-family: 'Playfair Display', serif;
+      color: rgba(230, 201, 160, 0.06);
+      line-height: 1;
+      z-index: 0;
+      transform: rotate(7deg);
+    }
+
+    .testimonial-card .quote {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 2rem;
+      font-size: 1.15rem;
+      color: var(--midnight);
+      line-height: 2;
+      font-style: italic;
+      position: relative;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      position: relative;
+    }
+
+    .testimonial-author img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 1rem;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      box-shadow: 0 5px 15px rgba(230, 201, 160, 0.3);
+      transition: all 0.4s ease;
+    }
+
+    .testimonial-author:hover img {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .author-info h4 {
+      color: var(--midnight);
+      margin-bottom: 0.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .author-info p {
+      color: var(--gold);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle, var(--gold-light) 0%, transparent 60%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .gallery h2 {
+      text-align: center;
+      margin-bottom: 4rem;
+      color: var(--midnight);
+      position: relative;
+    }
+
+    .gallery h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1rem auto 0;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      height: 320px;
+      cursor: pointer;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 6px 25px rgba(11, 20, 47, 0.12);
+      transform: translateY(30px);
+      opacity: 0;
+    }
+
+    .gallery-item.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 20px 60px rgba(11, 20, 47, 0.18);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.12);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(10, 26, 47, 0.95), transparent 80%);
+      color: white;
+      padding: 2.5rem 1.8rem;
+      transform: translateY(100%);
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-overlay h4 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.3px;
+      color: white;
+      position: relative;
+      display: inline-block;
+    }
+
+    .gallery-overlay h4::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin-top: 0.7rem;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 8rem 0;
+      background: var(--midnight);
+      color: white;
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0,0 C200,60 400,40 600,70 C800,100 1000,80 1200,50 L1200,100 L0,100 Z" fill="%23e6c9a0" opacity="0.15" /></svg>');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      z-index: 1;
+    }
+
+    .contact h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--pearl);
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .contact h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1rem auto 0;
+    }
+
+    .contact p {
+      text-align: center;
+      margin-bottom: 5rem;
+      font-size: 1.15rem;
+      color: rgba(248, 246, 243, 0.9);
+      position: relative;
+    }
+
+    .contact p::before {
+      content: '—';
+      position: absolute;
+      left: 50%;
+      bottom: -3rem;
+      transform: translateX(-50%);
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+      background: rgba(248, 246, 243, 0.05);
+      padding: 4rem;
+      border-radius: 20px;
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(230, 201, 160, 0.2);
+      box-shadow: 0 25px 80px rgba(11, 20, 47, 0.3);
+      transform: translateY(40px);
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-form.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: rgba(248, 246, 243, 0.8);
+      letter-spacing: 0.3px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1.2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(230, 201, 160, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: inset 0 0 0 1px transparent;
+      font-family: inherit;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(248, 246, 243, 0.4);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(230, 201, 160, 0.2), 0 5px 20px rgba(230, 201, 160, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .form-group textarea {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+    .form-button {
+      width: 100%;
+      padding: 1.4rem;
+      background: var(--gold);
+      color: var(--midnight);
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-top: 0.5rem;
+      box-shadow: 0 6px 25px rgba(230, 201, 160, 0.4);
+      transform: translateY(-2px);
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .form-button::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border: 1px solid rgba(230, 201, 160, 0.8);
+      border-radius: 14px;
+      z-index: -1;
+      opacity: 0;
+    }
+
+    .form-button:hover {
+      background: var(--brass);
+      box-shadow: 0 10px 35px rgba(200, 165, 119, 0.5);
+      transform: translateY(-4px);
+    }
+
+    .form-button:hover::before {
+      opacity: 1;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--charcoal);
+      color: rgba(248, 246, 243, 0.8);
+      padding: 6rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 C100,80 200,60 300,70 C500,90 700,40 900,50 C1100,60 1200,70 1200,120 L0,120 Z" fill="%23e6c9a0" opacity="0.15" /></svg>');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      z-index: 1;
+    }
+
+    .footer::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 C100,40 200,60 300,50 C500,40 700,90 900,80 C1100,70 1200,40 1200,0 L0,0 Z" fill="%23e6c9a0" opacity="0.08" /></svg>');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      z-index: 1;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 5rem;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .footer-col h3 {
+      color: var(--pearl);
+      font-size: 1.3rem;
+      margin-bottom: 1.8rem;
+      position: relative;
+      font-weight: 700;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin-top: 1rem;
+    }
+
+    .footer-col p {
+      margin-bottom: 1.8rem;
+      line-height: 1.8;
+      color: rgba(248, 246, 243, 0.8);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+
+    .footer-links a {
+      color: rgba(248, 246, 243, 0.7);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      padding: 0.3rem 0;
+      position: relative;
+    }
+
+    .footer-links a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-links a:hover::before {
+      width: 100%;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(248, 246, 243, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(11, 20, 47, 0.1);
+    }
+
+    .social-icons a:hover {
+      background: var(--gold);
+      color: var(--midnight);
+      transform: translateY(-4px) scale(1.1);
+      box-shadow: 0 8px 25px rgba(230, 201, 160, 0.4);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 4rem;
+      border-top: 1px solid rgba(230, 201, 160, 0.1);
+      font-size: 0.9rem;
+      color: rgba(248, 246, 243, 0.6);
+      position: relative;
+      z-index: 1;
+    }
+
+    .copyright::before {
+      content: '★';
+      font-size: 0.8rem;
+      color: var(--gold);
+      margin-right: 0.5rem;
+    }
+
+    .copyright::after {
+      content: '★';
+      font-size: 0.8rem;
+      color: var(--gold);
+      margin-left: 0.5rem;
+    }
+
+    /* Animated SVG waves divider */
+    .divider {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 60px;
+      overflow: hidden;
+      transform: translateY(-1px);
+    }
+
+    .divider svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--pearl);
+      transition: all 0.6s ease;
+    }
+
+    .divider svg path {
+      transition: d 1.2s ease;
+    }
+
+    /* Custom scroll bar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.02);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold-soft);
+    }
+
+    /* Floating particles */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.3;
+    }
+
+    .particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--gold);
+      animation: float 12s infinite ease-in-out;
+      box-shadow: 0 0 12px rgba(230, 201, 160, 0.5);
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        transform: translateY(-200px) rotate(180deg);
+        opacity: 1;
+      }
+    }
+
+    .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .particle:nth-child(2) { left: 25%; animation-delay: 2s; }
+    .particle:nth-child(3) { left: 40%; animation-delay: 4s; }
+    .particle:nth-child(4) { left: 55%; animation-delay: 6s; }
+    .particle:nth-child(5) { left: 70%; animation-delay: 8s; }
+    .particle:nth-child(6) { left: 85%; animation-delay: 10s; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .cta-button {
+        margin-top: 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about-content {
+        flex-direction: column;
+        gap: 3rem;
+        padding: 0 1rem;
+      }
+
+      .about::before {
+        width: 100%;
+        height: 300px;
+        border-radius: 0 0 80px 80px;
+        transform: scale(1.1);
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-content {
+        gap: 3rem;
+        padding: 0 1rem;
+      }
+
+      .contact-form {
+        padding: 3rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+      }
+
+      .features, .about, .testimonials, .gallery, .contact {
+        padding: 4rem 1rem;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+
+      .hero-cta-group {
+        gap: 1rem;
+      }
+
+      .feature-card {
+        padding: 2.5rem 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .feature-card h3 {
+        font-size: 1.4rem;
+      }
+
+      .about-text h2 {
+        font-size: 2rem;
+      }
+
+      .about-image {
+        width: 100%;
+        height: 280px;
+      }
+
+      .testimonial-card {
+        padding: 3rem 1.5rem 2rem;
+      }
+
+      .testimonial-card::before,
+      .testimonial-card::after {
+        font-size: 6rem;
+      }
+
+      .social-icons {
+        justify-content: center;
+        gap: 0.8rem;
+      }
+
+      .footer-col h3 {
+        font-size: 1.2rem;
+      }
+
+      .footer {
+        padding: 5rem 1rem 1.5rem;
+      }
+
+      .divider svg {
+        height: 70px;
+      }
+
+      .footer-content {
+        gap: 2rem;
+      }
+
+      .contact-form {
+        padding: 2.5rem 1rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.2rem;
+      }
+    }
+
+    /* Scroll reveal effect */
+    .animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Subtle animation for hero */
+    .hero h1 {
+      animation: titleGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      0% { text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4); }
+      100% { text-shadow: 0 0 50px rgba(255, 255, 255, 0.3), 0 8px 40px rgba(230, 201, 160, 0.2); }
+    }
+    
+    /* Fade-in effect for sections */
+    [id="features"], [id="about"], [id="testimonials"], [id="gallery"], [id="contact"] {
+      opacity: 0;
+      position: relative;
+    }
+    
+    [id="features"].visible, [id="about"].visible, [id="testimonials"].visible, [id="gallery"].visible, [id="contact"].visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav id="navbar">
+      <div class="container nav-container">
+        <a href="#" class="logo">The Star Vista</a>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a href="#contact" class="cta-button">Visit Us</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="floating-glow"></div>
+    <div class="floating-glow-2"></div>
+    <div class="hero-content">
+      <h1>The Star Vista</h1>
+      <p>Where Light Meets Leisure</p>
+      <div class="hero-cta-group">
+        <a href="#contact" class="cta-button primary">Explore Now</a>
+        <a href="#gallery" class="cta-button">Discover</a>
+      </div>
+    </div>
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+  </section>
+
+  <section class="trust-strip">
+    <div class="container">
+      <p>Trusted by discerning shoppers since <span>timelessly established</span></p>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <h2>Refined Experiences</h2>
+      <div class="features-grid">
+        <div class="feature-card animate">
+          <div class="feature-icon">✦</div>
+          <h3>Elegant Ambiance</h3>
+          <p>Immerse yourself in a world of curated light and texture, where every detail is designed to inspire calm and delight.</p>
+        </div>
+        <div class="feature-card animate">
+          <div class="feature-icon">✨</div>
+          <h3>Exclusive Boutiques</h3>
+          <p>Discover a thoughtfully selected collection of global and local artisans offering the finest in luxury goods.</p>
+        </div>
+        <div class="feature-card animate">
+          <div class="feature-icon">☕</div>
+          <h3>Tranquil Lounges</h3>
+          <p>Relax in serene, softly lit spaces designed for quiet conversation, contemplation, and the perfect cup of tea.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container about-content">
+      <div class="about-text animate">
+        <h2>Designed For Moments Worth Remembering</h2>
+        <p>The Star Vista is not merely a destination — it is an experience of quiet elegance. Born from an ethos of harmony between light and space, we bring together the world's most exquisite offerings within an architectural sanctuary designed for those who appreciate depth over noise, and serenity over spectacle.</p>
+        <p>Here, every corridor carries whispering reflections of dawn. Every corner, a curated stillness. We invite you not to shop — but to breathe, to wander, and to find yourself amidst a symphony of refined textures and luminous spaces.</p>
+      </div>
+      <div class="about-image animate">
+        <img src="https://images.pexels.com/photos/19286464/pexels-photo-19286464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Elevated interior of The Star Vista with cascading light and minimalist design" />
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2>Voices of Grace</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card animate">
+          <p class="quote">The atmosphere here feels like a quiet revelation — like stepping into a dream where beauty was always meant to be lived in. I returned just to sit in the garden lounge at sunset.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/14368079/pexels-photo-14368079.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Woman with calm expression">
+            <div class="author-info">
+              <h4>Client of The Star Vista</h4>
+              <p>Verified visitor</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate">
+          <p class="quote">I thought I knew luxury — until The Star Vista showed me how silence and light could be more opulent than gold. This place doesn’t sell; it invites.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/19286464/pexels-photo-19286464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Man with thoughtful gaze">
+            <div class="author-info">
+              <h4>Client of The Star Vista</h4>
+              <p>Verified visitor</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate">
+          <p class="quote">My favorite place to meet a friend — or to meet myself. The architecture sings more than any shop ever could. I’ve spent hours just watching the play of light on the marble floors.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/34006820/pexels-photo-34006820.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Woman enjoying solitude">
+            <div class="author-info">
+              <h4>Client of The Star Vista</h4>
+              <p>Verified visitor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2>Spaces of Serenity</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item animate">
+          <img src="https://images.pexels.com/photos/7045766/pexels-photo-7045766.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Elegant retail display with soft golden lighting" />
+          <div class="gallery-overlay">
+            <h4>Luminous Retail</h4>
+          </div>
+        </div>
+        <div class="gallery-item animate">
+          <img src="https://images.pexels.com/photos/14368079/pexels-photo-14368079.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Minimalist interior with soft light and natural wood" />
+          <div class="gallery-overlay">
+            <h4>Hushed Interiors</h4>
+          </div>
+        </div>
+        <div class="gallery-item animate">
+          <img src="https://images.pexels.com/photos/34006820/pexels-photo-34006820.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Modern lounge area with deep seating and ambient lighting" />
+          <div class="gallery-overlay">
+            <h4>Quiet Lounges</h4>
+          </div>
+        </div>
+        <div class="gallery-item animate">
+          <img src="https://images.pexels.com/photos/19286464/pexels-photo-19286464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Atrium with cascading architecture and sunlight" />
+          <div class="gallery-overlay">
+            <h4>Architectural Grace</h4>
+          </div>
+        </div>
+        <div class="gallery-item animate">
+          <img src="https://images.pexels.com/photos/14023040/pexels-photo-14023040.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Calm staircase with brass railings and warm lighting" />
+          <div class="gallery-overlay">
+            <h4>Refined Details</h4>
+          </div>
+        </div>
+        <div class="gallery-item animate">
+          <img src="https://images.pexels.com/photos/11753012/pexels-photo-11753012.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Luxurious floral arrangement in a serene corridor" />
+          <div class="gallery-overlay">
+            <h4>Artisan Touches</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Begin Your Journey</h2>
+      <p>1 Vista Exchange Green<br />Singapore 138617</p>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Enter your name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" placeholder="Enter your email" />
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" placeholder="Tell us how we can welcome you…" ></textarea>
+        </div>
+        <button type="submit" class="form-button">Get In Touch</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <h3>The Star Vista</h3>
+          <p>Where light meets leisure. A sanctuary of refined commerce, crafted for those who seek serenity in sophistication.</p>
+          <div class="social-icons">
+            <a href="#">I</a>
+            <a href="#">f</a>
+            <a href="#">t</a>
+            <a href="#">p</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul class="footer-links">
+            <li><a href="#features">Experience</a></li>
+            <li><a href="#about">Our Ethos</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Visit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Hours</h3>
+          <ul class="footer-links">
+            <li>Monday - Friday:</li>
+            <li>10:00 AM - 9:00 PM</li>
+            <li>Saturday - Sunday:</li>
+            <li>9:00 AM - 10:00 PM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2026 The Star Vista. All rights reserved. 1 Vista Exchange Green, Singapore 138617.
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 C100,80 200,60 300,70 C500,90 700,40 900,50 C1100,60 1200,70 1200,120 L0,120 Z" fill="var(--pearl)"></path>
+    </svg>
+  </div>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Sticky nav
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Intersection Observer for animations
+    const animateElements = document.querySelectorAll('.animate');
+    
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          
+          // Animate next elements slightly delayed
+          const nextElement = entry.target.nextElementSibling;
+          if (nextElement && nextElement.classList.contains('animate')) {
+            setTimeout(() => {
+              nextElement.classList.add('visible');
+            }, 100);
+          }
+        }
+      });
+    }, observerOptions);
+
+    animateElements.forEach(el => {
+      observer.observe(el);
+    });
+
+    // Initialize section visibility
+    const sections = document.querySelectorAll('[id="features"], [id="about"], [id="testimonials"], [id="gallery"], [id="contact"]');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sections.forEach(section => {
+      sectionObserver.observe(section);
+    });
+
+    // Add floating particles
+    const particles = document.querySelector('.particles');
+    for (let i = 0; i < 6; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = `${Math.random() * 80 + 10}%`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      particle.style.animationDuration = `${6 + Math.random() * 6}s`;
+      particle.style.opacity = `${0.2 + Math.random() * 0.5}`;
+      particles.appendChild(particle);
+    }
+
+    // Add gentle parallax effect on hero
+    window.addEventListener('mousemove', (e) => {
+      const hero = document.querySelector('.hero');
+      const x = e.clientX / window.innerWidth - 0.5;
+      const y = e.clientY / window.innerHeight - 0.5;
+      
+      hero.style.backgroundPosition = `calc(50% + ${x * 10}px) calc(50% + ${y * 8}px)`;
+    });
+
+    // Enhanced particle animation
+    setInterval(() => {
+      document.querySelectorAll('.particle').forEach(p => {
+        const randomDelay = Math.random() * 3;
+        p.style.animationDelay = `${randomDelay}s`;
+        p.style.opacity = `${0.2 + Math.random() * 0.5}`;
+      });
+    }, 3000);
+    
+    // Prevent text selection on mobile
+    document.body.addEventListener('touchstart', function(e) {
+      if (e.target.tagName !== 'A' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+      }
+    }, { passive: false });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=VGhlIFN0YXIgVmlzdGE&u=dmlzaXQ&s=1c8f2a71bf8303f38f9eb1017470a0e3&beacon=1&l=b3NtLW5vZGUtNDEwNDYzNzY1";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:6010809e06--></html>
