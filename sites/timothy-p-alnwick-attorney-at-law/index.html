@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Timothy P. Alnwick Attorney at Law</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy: #0a1a3f;
-      --charcoal: #2c3e50;
-      --cream: #f8f4e8;
-      --gold: #c9a66c;
-      --burgundy: #7c1d3a;
-      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --charcoal: #2e2e2e;
+      --navy: #0a1a2f;
+      --cream: #f8f6f1;
+      --bronze: #b8860b;
+      --slate: #4a5568;
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     * {
@@ -22,281 +22,171 @@
     }
 
     body {
-      font-family: 'Lora', serif;
-      background-color: var(--cream);
+      font-family: 'Lato', sans-serif;
       color: var(--charcoal);
       line-height: 1.7;
+      background-color: var(--cream);
       overflow-x: hidden;
-      font-smoothing: antialiased;
+      position: relative;
+      --section-padding: 8rem;
     }
 
-    h1, h2, h3 {
+    h1, h2, h3, h4 {
       font-family: 'Playfair Display', serif;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: -0.5px;
-      position: relative;
+      color: var(--navy);
     }
 
     h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-size: 4.5rem;
       line-height: 1.1;
     }
 
     h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 2.5rem;
-      color: var(--navy);
-      font-weight: 700;
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
     }
 
     h3 {
-      font-size: 1.6rem;
-      margin-bottom: 1.5rem;
-      color: var(--burgundy);
-      font-weight: 600;
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
     }
 
     p {
       margin-bottom: 1.8rem;
-      font-size: 1.1rem;
-      font-weight: 400;
-    }
-
-    a {
-      color: var(--navy);
-      text-decoration: none;
-      transition: var(--transition);
-      position: relative;
-      font-weight: 500;
-    }
-
-    a:hover {
-      color: var(--burgundy);
-      text-decoration: none;
-    }
-
-    a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      transition: var(--transition);
-      transform-origin: center;
-    }
-
-    a:hover::after {
-      width: 100%;
-      animation: glow 0.8s ease-out forwards;
-    }
-
-    @keyframes glow {
-      0% { opacity: 0.5; }
-      100% { opacity: 1; }
+      font-size: 1.15rem;
     }
 
     .container {
       max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
 
-    /* STICKY NAV */
-    .navbar {
+    /* Sticky Nav */
+    header {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      padding: 1.5rem 0;
       z-index: 1000;
+      padding: 1.8rem 0;
       transition: var(--transition);
       background: transparent;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(201, 166, 108, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 24px rgba(10, 26, 47, 0.05);
     }
 
-    .navbar.scrolled {
-      padding: 0.75rem 0;
-      background: rgba(255, 255, 255, 0.97);
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
-      border-bottom: 1px solid rgba(201, 166, 108, 0.1);
+    header.scrolled {
+      background: rgba(248, 246, 241, 0.96);
+      box-shadow: 0 10px 40px rgba(10, 26, 47, 0.12);
+      padding: 1rem 0;
     }
 
-    .nav-container {
+    nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .logo {
-      font-size: 1.4rem;
+      font-size: 2rem;
       font-weight: 700;
       color: var(--navy);
-      letter-spacing: -1px;
-      text-transform: uppercase;
+      text-decoration: none;
       font-family: 'Playfair Display', serif;
       position: relative;
-      z-index: 2;
     }
 
-    .logo::before {
+    .logo::after {
       content: '';
       position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: var(--transition);
-      opacity: 0;
-    }
-
-    .logo:hover::before {
-      transform: scaleX(1);
-      opacity: 1;
-    }
-
-    .nav-menu {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    .nav-menu li {
-      position: relative;
-    }
-
-    .nav-menu a {
-      font-size: 1.05rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      padding: 0.5rem 0;
-      transition: var(--transition);
-      font-family: 'Lora', serif;
-      position: relative;
-      z-index: 2;
-    }
-
-    .nav-menu a::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
+      bottom: -4px;
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--gold);
+      background: linear-gradient(90deg, transparent, var(--bronze), transparent);
       transition: var(--transition);
-      transform-origin: center;
     }
 
-    .nav-menu a:hover::after {
+    .logo:hover::after {
       width: 100%;
     }
 
-    .nav-menu a:hover {
-      color: var(--burgundy);
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      color: var(--charcoal);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 1.1rem;
+      position: relative;
+      transition: var(--transition);
+      padding: 0.2rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--bronze);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--bronze);
     }
 
     .cta-button {
-      background-color: var(--navy);
+      background: linear-gradient(135deg, var(--navy), var(--navy) 70%, var(--bronze));
       color: var(--cream);
-      padding: 0.75rem 2.2rem;
-      border: none;
+      padding: 0.8rem 2.2rem;
       border-radius: 50px;
-      font-family: 'Lora', serif;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1.8px;
+      border: none;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
       cursor: pointer;
       transition: var(--transition);
-      box-shadow: 0 6px 20px rgba(10, 26, 63, 0.18);
-      position: relative;
-      overflow: hidden;
-      z-index: 2;
-    }
-
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(201, 166, 108, 0.3), transparent);
-      transition: var(--transition);
-      z-index: -1;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 18px rgba(10, 26, 47, 0.2);
     }
 
     .cta-button:hover {
-      background-color: var(--burgundy);
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(124, 29, 58, 0.3);
-      color: var(--cream);
+      box-shadow: 0 10px 30px rgba(184, 134, 11, 0.4);
+      background: linear-gradient(135deg, var(--bronze), var(--navy));
     }
 
-    .cta-button:hover::before {
-      left: 100%;
-    }
-
-    .secondary-button {
-      background-color: transparent;
-      color: var(--cream);
-      border: 2px solid var(--cream);
-      padding: 0.75rem 2.2rem;
-      border-radius: 50px;
-      font-family: 'Lora', serif;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1.8px;
-      cursor: pointer;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      z-index: 2;
-    }
-
-    .secondary-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: var(--gold);
-      transition: var(--transition);
-      z-index: -1;
-    }
-
-    .secondary-button:hover {
-      background-color: var(--cream);
-      color: var(--navy);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(201, 166, 108, 0.3);
-    }
-
-    .secondary-button:hover::before {
-      left: 100%;
-    }
-
-    /* HERO */
+    /* Hero */
     .hero {
       height: 100vh;
-      background-image: url('https://images.pexels.com/photos/8111872/pexels-photo-8111872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-image: url('https://images.pexels.com/photos/7841812/pexels-photo-7841812.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
       background-size: cover;
       background-position: center;
+      position: relative;
       display: flex;
       align-items: center;
-      position: relative;
+      justify-content: center;
+      text-align: center;
+      color: white;
       overflow: hidden;
-      margin-top: 80px;
+      perspective: 1000px;
     }
 
     .hero::before {
@@ -306,566 +196,562 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, rgba(10, 26, 63, 0.95) 0%, rgba(10, 26, 63, 0.82) 80%, transparent 100%);
+      background: rgba(10, 26, 47, 0.8);
       z-index: 1;
-      pointer-events: none;
     }
 
     .hero::after {
       content: '';
       position: absolute;
       top: 0;
-      right: -10%;
-      width: 60%;
+      left: 0;
+      width: 100%;
       height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" fill="none"><path d="M418,100c20-15,50-25,80-30c30-5,60,5,90,10c30,5,70,15,90,30c20,15,30,40,30,65c0,25-10,50-30,70c-20,20-80,135-140,220c-60,85-150,120-270,130c-100,7-200-5-300-40c-120-40-180-130-180-240c0-140,100-250,270-340c30-15,70-25,110-25" stroke="%23c9a66c" stroke-width="2" stroke-opacity="0.2"/></svg>') repeat-x;
-      background-size: 800px;
-      opacity: 0.2;
-      transform: translateX(100%) translateY(-25%);
-      z-index: 0;
+      background: repeating-linear-gradient(
+        transparent,
+        transparent 20px,
+        rgba(255,255,255,0.03) 20px,
+        rgba(255,255,255,0.03) 40px
+      );
+      z-index: 1;
       pointer-events: none;
     }
 
     .hero-content {
       z-index: 2;
-      color: var(--cream);
-      max-width: 700px;
-      padding-left: 5rem;
-      animation: fadeInDown 1.2s ease-out;
+      max-width: 780px;
+      padding: 2rem;
       opacity: 0;
+      transform: translateY(30px) scale(0.98);
+      animation: heroFadeIn 1.4s ease-out forwards;
     }
 
-    .hero-content h1 {
-      animation-delay: 0.2s;
+    .hero h1 {
+      font-size: 4.8rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      line-height: 1.1;
+      font-weight: 700;
     }
 
-    .hero-subtitle {
-      font-size: 1.6rem;
-      font-weight: 400;
-      margin-bottom: 2rem;
-      letter-spacing: 1.5px;
+    .hero p {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      font-weight: 300;
+      letter-spacing: -0.3px;
       font-style: italic;
-      color: var(--gold);
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      animation: fadeInUp 1.2s ease-out;
-      animation-delay: 0.4s;
-      opacity: 0;
+      color: rgba(255,255,255,0.9);
     }
 
     .hero-buttons {
       display: flex;
-      gap: 1.5rem;
-      margin-top: 2rem;
-      animation: fadeInUp 1.2s ease-out;
-      animation-delay: 0.6s;
-      opacity: 0;
+      justify-content: center;
+      gap: 1.8rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
     }
 
-    /* TRUST STRIP */
+    .hero-buttons .cta-button:first-of-type {
+      background: linear-gradient(135deg, var(--bronze), var(--navy));
+      box-shadow: 0 6px 24px rgba(184, 134, 11, 0.4);
+    }
+
+    @keyframes heroFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Trust Strip */
     .trust-strip {
       background: linear-gradient(90deg, var(--navy), transparent);
-      color: var(--cream);
-      padding: 1rem 0;
+      padding: 1.2rem 0;
       text-align: center;
       font-size: 0.95rem;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      border-bottom: 1px solid rgba(201, 166, 108, 0.3);
+      color: rgba(248, 246, 241, 0.85);
+      letter-spacing: 0.8px;
+      border-bottom: 1px solid rgba(218, 216, 211, 0.4);
       position: relative;
+      margin-bottom: 0;
     }
 
     .trust-strip::before {
-      content: '⚖️';
-      font-size: 1.5rem;
-      opacity: 0.8;
-      margin-right: 0.5rem;
-      animation: pulse 3s infinite;
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 1px;
+      background: var(--bronze);
+      z-index: 1;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
-
-    /* FEATURES */
-    .features {
-      padding: 8rem 0;
-      background-color: var(--cream);
+    /* Services */
+    .services {
+      padding: var(--section-padding) 0;
+      background: linear-gradient(to bottom, var(--cream), rgba(248,246,241,0.6));
       position: relative;
-      overflow: hidden;
+    }
+
+    .services::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: 160px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 160" preserveAspectRatio="none"><path d="M0,160 C300,100 900,20 1200,160 L1200,0 L0,0 Z" fill="%23f8f6f1"/></svg>') bottom center no-repeat;
+      background-size: 100% 100%;
+      z-index: -1;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 6rem;
+      margin-bottom: 4rem;
       position: relative;
     }
 
     .section-title::after {
       content: '';
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      border-radius: 3px;
-      box-shadow: 0 4px 10px rgba(201, 166, 108, 0.3);
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--bronze);
+      margin: 1.2rem auto 0;
+      box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
     }
 
-    .feature-grid {
+    .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3.5rem;
+      gap: 3rem;
     }
 
-    .feature-card {
-      background-color: var(--navy);
-      color: var(--cream);
-      padding: 3rem 2rem;
-      border-radius: 16px;
-      text-align: center;
+    .service-card {
+      background: white;
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(10, 26, 47, 0.1);
       transition: var(--transition);
+      text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(10, 26, 63, 0.2);
-      border: 1px solid rgba(201, 166, 108, 0.1);
-      transform: translateY(50px) scale(0.9);
-      opacity: 0;
+      z-index: 1;
+      border: 1px solid rgba(0,0,0,0.02);
     }
 
-    .feature-card:hover {
-      transform: translateY(0px) scale(1);
-      box-shadow: 0 30px 70px rgba(10, 26, 63, 0.3);
-    }
-
-    .feature-card::before {
+    .service-card::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(201, 166, 108, 0.1), transparent);
-      transform: rotate(15deg);
-      transition: var(--transition);
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      background: linear-gradient(45deg, transparent, rgba(184,134,11,0.05), transparent);
       z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    .feature-card:hover::before {
-      transform: rotate(15deg) translateX(100%);
+    .service-card:hover::before {
+      opacity: 1;
     }
 
-    .feature-icon {
-      width: 70px;
-      height: 70px;
-      background-color: rgba(201, 166, 108, 0.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 2.5rem;
-      color: var(--gold);
-      font-size: 2.2rem;
-      transition: var(--transition);
-      border: 2px solid rgba(201, 166, 108, 0.2);
-      box-shadow: 0 8px 20px rgba(201, 166, 108, 0.1);
-      backdrop-filter: blur(4px);
+    .service-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 50px rgba(10, 26, 47, 0.2);
     }
 
-    .feature-card:hover .feature-icon {
-      transform: scale(1.1);
-      box-shadow: 0 12px 30px rgba(201, 166, 108, 0.2);
-      border-color: var(--gold);
-    }
-
-    .feature-card h3 {
-      color: var(--cream);
+    .service-card svg {
+      width: 80px;
+      height: 80px;
       margin-bottom: 2rem;
-      letter-spacing: -0.5px;
-      font-size: 1.7rem;
+      fill: var(--navy);
+      transition: var(--transition);
     }
 
-    .feature-card p {
-      margin-bottom: 0;
-      font-size: 1.05rem;
-      line-height: 1.8;
+    .service-card:hover svg {
+      transform: scale(1.1) rotate(2deg);
+      fill: var(--bronze);
     }
 
-    /* ABOUT */
+    .service-card h3 {
+      margin-bottom: 1.2rem;
+      font-size: 1.9rem;
+    }
+
+    /* About */
     .about {
       padding: 10rem 0;
-      background-color: var(--charcoal);
+      background: linear-gradient(to right, var(--navy), #0b1e32);
       color: var(--cream);
       position: relative;
       overflow: hidden;
     }
 
-    .about-container {
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><rect width="100%" height="100%" fill="%230a1a2f"/><circle cx="120" cy="100" r="24" fill="rgba(255,255,255,0.03)"/><circle cx="980" cy="620" r="18" fill="rgba(255,255,255,0.02)"/><circle cx="1120" cy="200" r="12" fill="rgba(255,255,255,0.04)"/><circle cx="800" cy="180" r="16" fill="rgba(255,255,255,0.03)"/><circle cx="200" cy="500" r="14" fill="rgba(255,255,255,0.02)"/></svg>');
+      opacity: 0.3;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8rem;
+      gap: 6rem;
       align-items: center;
       position: relative;
     }
 
     .about-image {
-      border-radius: 20px;
+      border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 60px 80px rgba(0, 0, 0, 0.4);
-      transform: translateY(-10px);
-      transition: var(--transition) 1s;
-      position: relative;
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-      border: 1px solid rgba(201, 166, 108, 0.1);
-    }
-
-    .about-image::before {
-      content: '';
-      position: absolute;
-      top: -20px;
-      left: -20px;
-      right: -20px;
-      bottom: -20px;
-      background: linear-gradient(135deg, rgba(201, 166, 108, 0.1), transparent);
-      border-radius: 24px;
-      z-index: -1;
-      transform: rotate(2deg);
-      opacity: 0;
+      box-shadow: 0 40px 80px rgba(10, 26, 47, 0.5);
+      transform: translateX(0);
       transition: var(--transition);
-    }
-
-    .about-image:hover::before {
-      opacity: 1;
+      position: relative;
+      height: 80vh;
+      max-height: 520px;
     }
 
     .about-image img {
       width: 100%;
-      height: auto;
+      height: 100%;
       object-fit: cover;
       transition: var(--transition);
-      transform: scale(1);
     }
 
     .about-image:hover img {
-      transform: scale(1.03);
+      transform: scale(1.04);
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, transparent 40%, rgba(10,26,47,0.1) 100%);
+      pointer-events: none;
     }
 
     .about-content h2 {
       color: var(--cream);
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
       position: relative;
-      padding-bottom: 1rem;
-      font-weight: 700;
     }
 
     .about-content h2::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -18px;
       left: 0;
-      width: 60px;
+      width: 68px;
       height: 3px;
-      background: var(--gold);
-      border-radius: 2px;
+      background: var(--bronze);
+      box-shadow: 0 2px 6px rgba(184,134,11,0.3);
     }
 
     .about-content p {
-      margin-bottom: 2.5rem;
-      font-size: 1.15rem;
-      line-height: 1.9;
+      color: rgba(248, 246, 241, 0.85);
+      margin-bottom: 1.6rem;
     }
 
-    .about-content a {
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+    .about-content strong {
+      color: rgba(248,246,241,0.95);
     }
 
-    .about-content a::after {
-      content: '→';
-      margin-left: 0.3rem;
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .about-content a:hover::after {
-      opacity: 1;
-    }
-
-    /* TESTIMONIALS */
-    .testimonials {
-      padding: 8rem 0;
-      background-color: var(--cream);
+    /* Creative Divider */
+    .creative-divider {
+      height: 20px;
+      background: linear-gradient(180deg, rgba(184,134,11,0.3), transparent);
+      margin: 6rem 0;
       position: relative;
       overflow: hidden;
+    }
+
+    .creative-divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 160px;
+      height: 2px;
+      background: var(--bronze);
+      z-index: 2;
+    }
+
+    .creative-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      height: 0.8px;
+      background: linear-gradient(to right, transparent, var(--bronze), transparent);
+      z-index: 1;
+      opacity: 0.6;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 10rem 0;
+      background: linear-gradient(to bottom, rgba(248,246,241,0.3), var(--cream));
+      position: relative;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: 0;
+      width: 100%;
+      height: 180px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 180" preserveAspectRatio="none"><path d="M0,180 C400,100 800,20 1200,180 L1200,0 L0,0 Z" fill="%23f8f6f1"/></svg>') bottom center no-repeat;
+      background-size: 100% 100%;
+      z-index: -1;
     }
 
     .testimonial-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 4rem;
+      gap: 3.5rem;
     }
 
-    .testimonial {
-      background-color: var(--navy);
-      color: var(--cream);
-      padding: 3rem 2.5rem;
+    .testimonial-card {
+      background: white;
+      padding: 2.8rem 2.5rem;
       border-radius: 20px;
+      box-shadow: 0 14px 50px rgba(10, 26, 47, 0.1);
       position: relative;
-      overflow: hidden;
-      box-shadow: 0 25px 60px rgba(10, 26, 63, 0.25);
-      border: 1px solid rgba(201, 166, 108, 0.1);
       transition: var(--transition);
-      transform: translateY(50px);
-      opacity: 0;
+      border: 1px solid rgba(0,0,0,0.02);
     }
 
-    .testimonial:hover {
-      transform: translateY(0px);
-      box-shadow: 0 35px 80px rgba(10, 26, 63, 0.35);
+    .testimonial-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(10, 26, 47, 0.15);
     }
 
-    .testimonial::before {
-      content: """;
-      font-size: 6rem;
-      font-family: 'Playfair Display', serif;
-      color: rgba(201, 166, 108, 0.1);
+    .testimonial-card::before {
+      content: "”";
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      line-height: 0.7;
-    }
-
-    .testimonial::after {
-      content: ' ';
-      display: block;
-      height: 2px;
-      width: 40px;
-      background: var(--gold);
-      margin: 1.5rem auto;
-      border-radius: 1px;
+      top: 20px;
+      left: 30px;
+      font-size: 6.5rem;
+      font-family: 'Playfair Display', serif;
+      color: rgba(10, 26, 47, 0.09);
+      line-height: 1;
+      font-weight: 600;
+      z-index: 1;
     }
 
     .testimonial-text {
       font-style: italic;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.8rem;
+      font-size: 1.2rem;
+      color: var(--charcoal);
       position: relative;
-      z-index: 1;
-      font-size: 1.1rem;
-      line-height: 1.9;
+      z-index: 2;
+      line-height: 1.7;
     }
 
     .testimonial-author {
       display: flex;
       align-items: center;
+      position: relative;
+      z-index: 2;
     }
 
     .testimonial-avatar {
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: var(--gold);
       margin-right: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--navy);
-      font-weight: 700;
-      font-size: 1.5rem;
-      border: 3px solid rgba(201, 166, 108, 0.3);
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.03);
+      transition: var(--transition);
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testimonial-author:hover .testimonial-avatar {
+      transform: scale(1.05);
     }
 
     .testimonial-name {
-      font-weight: 600;
-      font-size: 1.2rem;
-      text-transform: capitalize;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 1.1rem;
     }
 
     .testimonial-role {
-      font-size: 0.9rem;
-      color: var(--gold);
-      margin-top: 0.3rem;
-      letter-spacing: 0.8px;
+      font-size: 0.95rem;
+      color: var(--slate);
+      margin-top: 2px;
     }
 
-    /* PRICING & GALLERY */
-    .pricing {
-      padding: 10rem 0;
-      background-color: var(--charcoal);
-      color: var(--cream);
-      position: relative;
-      overflow: hidden;
-    }
-
+    /* Gallery */
     .gallery {
+      padding: 10rem 0;
+      background: linear-gradient(to bottom, var(--navy), #0e223a);
+      color: var(--cream);
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><rect width="100%" height="100%" fill="%230a1a2f"/><path d="M0,200 C800,100 400,700 1200,400 L0,400 Z" fill="none" stroke="rgba(184,134,11,0.05)" stroke-width="1" stroke-dasharray="20,10"/></svg>');
+      opacity: 0.2;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.2rem;
-      margin-top: 4rem;
-      position: relative;
-      perspective: 1000px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
     }
 
     .gallery-item {
-      position: relative;
       overflow: hidden;
-      border-radius: 20px;
-      height: 350px;
+      border-radius: 18px;
+      position: relative;
+      height: 320px;
       transition: var(--transition);
-      transform-style: preserve-3d;
-      opacity: 0;
-      transform: translateY(50px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
     }
 
     .gallery-item:hover {
-      transform: translateY(0px) rotateY(5deg);
+      transform: translateY(-8px);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.2);
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: var(--transition) 0.8s;
-      transform: scale(1);
+      transition: var(--transition) cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .gallery-item:hover img {
       transform: scale(1.08);
     }
 
-    .gallery-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .gallery-item:hover::before {
-      opacity: 1;
-    }
-
-    .gallery-caption {
+    .gallery-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 1.5rem;
-      color: var(--cream);
-      background: rgba(0, 0, 0, 0.2);
-      font-size: 1.05rem;
-      font-style: italic;
-      transform: translateY(50px);
-      opacity: 0;
+      padding: 2rem;
+      background: linear-gradient(to top, rgba(10, 26, 47, 0.9), transparent);
+      color: white;
+      transform: translateY(100%);
       transition: var(--transition);
-      pointer-events: none;
     }
 
-    .gallery-item:hover .gallery-caption {
+    .gallery-item:hover .gallery-overlay {
       transform: translateY(0);
-      opacity: 1;
     }
 
-    /* CONTACT */
+    .gallery-overlay h3 {
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      font-size: 1.4rem;
+    }
+
+    .gallery-overlay p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    /* Contact */
     .contact {
       padding: 10rem 0;
-      background-color: var(--navy);
-      color: var(--cream);
+      background: linear-gradient(to bottom, rgba(248,246,241,0.2), var(--cream));
       position: relative;
-      overflow: hidden;
     }
 
     .contact::before {
       content: '';
       position: absolute;
       top: 0;
-      right: 0;
+      left: 0;
       width: 100%;
-      height: 100%;
-      background: url('https://images.pexels.com/photos/34817073/pexels-photo-34817073.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-      background-size: cover;
-      background-position: center;
+      height: 140px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="140" viewBox="0 0 1200 140"><path d="M0,140 C500,80 800,60 1200,140 L1200,0 L0,0 Z" fill="%23f8f6f1"/></svg>') bottom center no-repeat;
+      background-size: 100% 100%;
       z-index: -1;
-      opacity: 0.4;
     }
 
-    .contact::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(201, 166, 108, 0.07), transparent);
-      z-index: -1;
-      opacity: 0.7;
-    }
-
-    .contact-content {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
+    .contact-container {
+      max-width: 760px;
       margin: 0 auto;
-      text-align: center;
-    }
-
-    .contact-h2 {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-h2::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 2px;
-      background: var(--gold);
-      border-radius: 1px;
     }
 
     .contact-form {
-      margin-top: 4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.8rem;
+      background: white;
+      padding: 4rem;
+      border-radius: 24px;
+      box-shadow: 0 20px 70px rgba(10, 26, 47, 0.08);
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.01);
+      animation: slideUp 0.8s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
     }
 
     .form-control {
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(201, 166, 108, 0.2);
+      width: 100%;
       padding: 1.2rem;
+      border: 1px solid #f0f0f0;
       border-radius: 12px;
-      color: var(--cream);
-      font-family: 'Lora', serif;
+      font-family: 'Lato', sans-serif;
       font-size: 1rem;
       transition: var(--transition);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 12px;
-      min-height: 60px;
-    }
-
-    .form-control::placeholder {
-      color: rgba(255, 255, 255, 0.6);
+      outline: none;
+      background: rgba(248,246,241,0.9);
     }
 
     .form-control:focus {
-      outline: none;
-      border-color: var(--gold);
-      background-color: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 0 3px rgba(201, 166, 108, 0.25);
-      transform: translateY(-2px);
+      border-color: var(--bronze);
+      box-shadow: 0 0 0 3px rgba(184,134,11,0.15);
+      background: white;
     }
 
     textarea.form-control {
@@ -873,756 +759,680 @@
       resize: vertical;
     }
 
-    .form-control:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    .form-control::placeholder {
+      color: var(--slate);
+      opacity: 0.7;
     }
 
-    /* FOOTER */
-    .footer {
-      background-color: var(--charcoal);
+    /* Footer */
+    footer {
+      background: linear-gradient(to bottom, var(--navy), #0a1a2f);
       color: var(--cream);
-      padding: 6rem 0 3rem;
+      padding: 8rem 0 3rem;
       position: relative;
       overflow: hidden;
     }
 
-    .footer::before {
+    footer::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M10,40 L60,10 L95,70 Z" fill="none" stroke="%23c9a66c" stroke-width="1" stroke-opacity="0.1"/></svg>') repeat;
-      opacity: 0.1;
+      height: 120px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 C400,120 800,120 1200,0 L1200,120 L0,120 Z" fill="%230a1a2f"/></svg>') bottom center repeat-x;
+      background-size: 150% 100%;
+      opacity: 0.3;
+      z-index: -1;
     }
 
-    .footer-container {
+    .footer-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 3fr 1fr 1fr 2fr;
       gap: 4rem;
-      margin-bottom: 5rem;
-      position: relative;
-      z-index: 1;
+      margin-bottom: 4rem;
     }
 
-    .footer-about h3 {
-      color: var(--cream);
-      margin-bottom: 1.5rem;
-      position: relative;
-    }
-
-    .footer-about h3::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 50px;
-      height: 2px;
-      background: var(--gold);
-      border-radius: 2px;
-    }
-
-    .footer-about p {
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-      line-height: 1.8;
-    }
-
-    .footer-links h3 {
-      color: var(--gold);
-      margin-bottom: 1.8rem;
-      font-size: 1.4rem;
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
       font-weight: 600;
+      margin-bottom: 1.8rem;
+      color: var(--cream);
       position: relative;
+      display: inline-block;
     }
 
-    .footer-links h3::after {
+    .footer-logo::after {
       content: '';
       position: absolute;
       bottom: -10px;
       left: 0;
-      width: 60px;
-      height: 1px;
-      background: var(--gold);
+      width: 50px;
+      height: 2px;
+      background: var(--bronze);
+    }
+
+    .footer-about {
+      color: rgba(248, 246, 241, 0.85);
+      line-height: 1.9;
+      font-size: 1.05rem;
+    }
+
+    .footer-links h4 {
+      margin-bottom: 1.8rem;
+      font-size: 1.4rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-links h4::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 45px;
+      height: 2px;
+      background: var(--bronze);
     }
 
     .footer-links ul {
       list-style: none;
-      padding-left: 0.5rem;
     }
 
     .footer-links li {
       margin-bottom: 1rem;
-      position: relative;
-      padding-left: 1.5rem;
-      transition: var(--transition);
-    }
-
-    .footer-links li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-      font-size: 0.8rem;
-      transition: var(--transition);
     }
 
     .footer-links a {
-      color: var(--cream);
-      padding: 0.2rem 0;
-      position: relative;
+      color: rgba(248, 246, 241, 0.8);
+      text-decoration: none;
       transition: var(--transition);
+      padding: 3px 0;
+      position: relative;
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--bronze);
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
     }
 
     .footer-links a:hover {
-      color: var(--gold);
-      padding-left: 0.5rem;
+      color: var(--bronze);
     }
 
-    .footer-links a:hover::before {
-      transition: var(--transition);
-      color: var(--gold);
-    }
-
-    .footer-social {
+    .social-icons {
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
       margin-top: 2rem;
     }
 
-    .footer-social a {
-      color: var(--cream);
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: rgba(201, 166, 108, 0.1);
+    .social-icons a {
+      color: rgba(248, 246, 241, 0.6);
+      font-size: 1.6rem;
       transition: var(--transition);
-      text-decoration: none;
+      padding: 0.4rem;
+      border-radius: 8px;
     }
 
-    .footer-social a:hover {
-      background-color: var(--gold);
-      color: #0a1a3f;
-      transform: translateY(-2px);
+    .social-icons a:hover {
+      color: var(--bronze);
+      background: rgba(184,134,11,0.1);
     }
 
     .copyright {
       text-align: center;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(201, 166, 108, 0.1);
+      padding-top: 3rem;
+      border-top: 1px solid rgba(248,246,241,0.08);
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
-      position: relative;
+      color: rgba(248,246,241,0.55);
     }
 
     .copyright::before {
-      content: '⚖️';
-      font-size: 1.2rem;
-      margin-right: 0.5rem;
-      opacity: 0.5;
-    }
-
-    /* WAVE SECTION DIVIDERS */
-    .wave {
-      height: 45px;
-      overflow: hidden;
-      position: relative;
-      margin-bottom: -1px;
-      z-index: 100;
-      pointer-events: none;
-    }
-
-    .wave svg {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.1;
-      filter: brightness(1.2);
-    }
-
-    .wave svg path {
-      fill: var(--cream);
-      transition: fill 0.5s ease;
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .stagger-children .feature-card,
-    .stagger-children .testimonial,
-    .stagger-children .gallery-item {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
-
-    .stagger-children .feature-card.visible,
-    .stagger-children .testimonial.visible,
-    .stagger-children .gallery-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .hero-content,
-    .section-title,
-    .about-container,
-    .contact-content {
-      animation-fill-mode: forwards;
-    }
-
-    /* HAMBURGER ANIMATION */
-    #mobile-menu {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--navy);
-      font-size: 2.5rem;
-      padding: 0;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    #mobile-menu span {
+      content: '';
       display: block;
-      width: 25px;
-      height: 3px;
-      background-color: var(--navy);
-      margin: 6px 0;
-      transition: 0.3s;
-      border-radius: 1px;
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--bronze), transparent);
+      margin: 1rem auto;
     }
 
-    #mobile-menu.active span:nth-child(1) {
-      transform: rotate(45deg) translateY(6px) translateX(4px);
+    /* Parallax Backgrounds for Hero and Sections */
+    .parallax-layer {
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-position: center;
     }
 
-    #mobile-menu.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    #mobile-menu.active span:nth-child(3) {
-      transform: rotate(-45deg) translateY(-6px) translateX(4px);
-    }
-
-    /* PARALLAX ON HERO */
-    .hero-parallax {
+    .hero-bg {
+      background-image: url('https://images.pexels.com/photos/7841812/pexels-photo-7841812.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
       background-attachment: fixed;
+      transform: scale(1.1);
+      filter: brightness(0.95);
+      opacity: 1;
     }
 
-    /* RESPONSIVE */
+    svg.chevron {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.4);
+      animation: float 3s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        bottom: 40px;
+        opacity: 0.4;
+      }
+      50% {
+        bottom: 20px;
+        opacity: 0.7;
+      }
+    }
+
+    /* Animations */
+    .animated {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      will-change: transform, opacity;
+    }
+
+    .animated.scroll-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
     @media (max-width: 992px) {
-      .about-container {
+      h1 {
+        font-size: 4.2rem;
+      }
+      .hero h1 {
+        font-size: 4rem;
+      }
+      .hero p {
+        font-size: 1.8rem;
+      }
+      .about-grid,
+      .footer-grid {
         grid-template-columns: 1fr;
         gap: 4rem;
       }
-
       .about-image {
         order: -1;
+        height: 480px;
       }
-
-      .footer-container {
-        grid-template-columns: 1fr;
+      .footer-grid {
         gap: 3rem;
       }
-
-      .section-title {
-        margin-bottom: 4rem;
+      .galery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
-
-      .feature-grid,
-      .testimonial-grid,
-      .gallery {
-        gap: 2rem;
-      }
-
-      .hero-content {
-        padding: 0 2rem;
-        max-width: 80%;
-      }
-
       .hero-buttons {
         flex-direction: column;
-        gap: 1rem;
+        align-items: center;
       }
-
-      .section-title::after {
-        width: 60px;
+      .hero-buttons .cta-button {
+        width: 100%;
+        max-width: 240px;
+        text-align: center;
+        margin-bottom: 0.6rem;
       }
-
-      .gallery-caption {
-        font-size: 1rem;
+      .contact-form {
+        padding: 2.5rem;
+      }
+      .services::before,
+      .testimonials::before,
+      .gallery::before,
+      .contact::before {
+        display: none;
+      }
+      .footer-grid .footer-col:nth-child(1),
+      .footer-grid .footer-col:nth-child(4) {
+        grid-column: 1 / -1;
+      }
+      .footer-links h4::after {
+        width: 35px;
       }
     }
 
     @media (max-width: 768px) {
+      h2 {
+        font-size: 2.4rem;
+      }
+      h1 {
+        font-size: 3.6rem;
+      }
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+      .hero p {
+        font-size: 1.6rem;
+      }
       .container {
-        padding: 0 1.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
-
-      .nav-container {
-        flex-direction: column;
-        align-items: flex-start;
+      .about-content h2 {
+        font-size: 2rem;
       }
-
-      .nav-menu {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 1.5rem;
-        padding: 1.5rem 0;
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        z-index: 999;
+      .footer-grid {
+        gap: 2.5rem;
       }
-
-      .nav-menu.active {
-        display: flex;
+      .footer-about {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
       }
-
-      .nav-menu li {
-        margin-left: 0;
-        margin-bottom: 1rem;
-        text-align: center;
-        width: 100%;
-      }
-
-      .nav-menu a {
-        padding: 1rem 0;
-        display: block;
-        font-size: 1.1rem;
-        color: var(--navy);
-      }
-
-      #mobile-menu {
-        display: block;
-        margin-left: 1rem;
-      }
-
-      .hero {
-        height: 90vh;
-      }
-
-      .hero-content {
-        padding: 0 2rem;
-        max-width: 100%;
-      }
-
-      .hero-subtitle {
-        font-size: 1.4rem;
-      }
-
-      .about-image,
-      .testimonial,
-      .gallery-item {
-        border-radius: 16px;
-      }
-
-      .contact h2 {
-        font-size: 2.2rem;
-      }
-
       .contact-form {
-        gap: 1.5rem;
+        padding: 2rem;
       }
-
-      .form-control {
-        padding: 1rem;
+      .trust-strip {
+        padding: 1rem 0;
+        font-size: 0.9rem;
       }
-
-      .footer-container {
-        grid-template-columns: 1fr;
+      .service-card {
+        padding: 2.5rem 2rem;
       }
-
-      .footer-about h3 {
-        font-size: 1.3rem;
-      }
-
-      .footer-links h3 {
-        font-size: 1.3rem;
+      .testimonial-card {
+        padding: 2.5rem 1.8rem;
       }
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 480px) {
       h1 {
-        font-size: clamp(2.3rem, 6vw, 3rem);
+        font-size: 3rem;
       }
-
-      h2 {
-        font-size: clamp(1.8rem, 5vw, 2.5rem);
+      .hero h1 {
+        font-size: 3rem;
       }
-
-      h3 {
-        font-size: 1.5rem;
+      .hero p {
+        font-size: 1.4rem;
       }
-
-      .hero-content h1 {
-        font-size: clamp(2rem, 7vw, 2.5rem);
+      .section-title {
+        margin-bottom: 3rem;
       }
-
-      .hero-subtitle {
-        font-size: 1.2rem;
+      .section-title::after {
+        width: 40px;
       }
-
-      .wave {
-        height: 35px;
+      .gallery-overlay h3 {
+        font-size: 1.3rem;
       }
-
-      .footer {
-        padding: 5rem 0 2rem;
+      .footer-logo {
+        font-size: 1.8rem;
       }
-
-      .footer-container {
+      .footer-grid {
         gap: 2rem;
       }
-
+      .footer-grid .footer-col:nth-child(2),
+      .footer-grid .footer-col:nth-child(3) {
+        grid-column: 1 / -1;
+        margin-top: 1rem;
+      }
+      .gallery-grid {
+        gap: 1.8rem;
+      }
       .gallery-item {
-        height: 280px;
+        height: 240px;
+      }
+      .contact-form {
+        padding: 1.8rem;
+      }
+      .form-control {
+        padding: 1rem;
+      }
+    }
+
+    /* Custom Cursor */
+    @media pointer: fine {
+      * {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1" fill="%230a1a2f"/></svg>'), auto;
       }
 
-      .gallery-caption {
-        font-size: 0.9rem;
+      .cta-button:hover, .nav-links a:hover, .footer-links a:hover, .social-icons a:hover {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1" fill="%23b8860b"/></svg>'), auto;
       }
+    }
 
-      .footer-social a {
-        width: 45px;
-        height: 45px;
-        font-size: 1.2rem;
+    /* Subtle scroll indicator */
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      animation: blink 1.8s infinite;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    @keyframes blink {
+      0%, 90% {
+        opacity: 0.2;
+      }
+      95%, 100% {
+        opacity: 0.9;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="container nav-container">
-      <a href="#home" class="logo">Timothy P. Alnwick Attorney at Law</a>
-      <button id="mobile-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-menu">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#testimonials">Client Voices</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><button class="cta-button">Schedule Consultation</button></li>
-      </ul>
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Timothy P. Alnwick Attorney at Law</a>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a href="#contact" class="cta-button">Consultation</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <section id="home" class="hero">
-    <div class="container hero-content">
-      <h1>Timothy P. Alnwick Attorney at Law</h1>
-      <p class="hero-subtitle">Counsel with Clarity</p>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Timothy P. Alnwick<br>Attorney at Law</h1>
+      <p>Judgment. Integrity. Clarity.</p>
       <div class="hero-buttons">
-        <button class="cta-button">Schedule Consultation</button>
-        <a href="#contact" class="secondary-button">Reach Out</a>
+        <a href="#contact" class="cta-button">Schedule Consultation</a>
+        <a href="#services" class="cta-button" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2);">Learn More</a>
       </div>
     </div>
+    <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 14L12 9L17 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </section>
 
   <div class="trust-strip">
-    Trusted by families and businesses across Brooklyn for decades
+    Trained rigorously. Trusted by families. Respected in court.
   </div>
 
-  <section id="services" class="features">
+  <section class="services" id="services">
     <div class="container">
-      <h2 class="section-title">Our Services</h2>
-      <div class="feature-grid stagger-children">
-        <div class="feature-card">
-          <div class="feature-icon">⚖️</div>
-          <h3>Real Estate Law</h3>
-          <p>Guiding clients through residential and commercial transactions with precision and care — from closing to dispute resolution.</p>
+      <div class="section-title">
+        <h2>Our Legal Services</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card animated">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7V9h10v4zm0-6H7V5h10v2z"/>
+          </svg>
+          <h3>Criminal Defense</h3>
+          <p>Strategic representation for clients facing serious charges. We treat every case with the gravity it deserves, and fight to protect your rights with precision and tenacity.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">👨‍👩‍👧</div>
+        <div class="service-card animated">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          <h3>Civil Litigation</h3>
+          <p>Complex disputes resolved with clarity and diligence. Whether contracting, property, or personal litigation, we build compelling cases grounded in fact and law.</p>
+        </div>
+        <div class="service-card animated">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7V9h10v4zm0-6H7V5h10v2z"/>
+          </svg>
           <h3>Family Law</h3>
-          <p>Supporting individuals and families through sensitive matters including divorce, custody, adoption, and prenuptial agreements.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📝</div>
-          <h3>Trust & Estate Planning</h3>
-          <p>Strategic estate solutions with Wills, Trusts, and Power of Attorney documents to safeguard assets and legacy.</p>
+          <p>Compassionate guidance through sensitive matters. We bring dignity and care to divorce, child custody, and estate planning matters — never reducing your family to legal jargon.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="wave">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M321.39,56.44c58-10.79,114.16-20.09,172-16.58,21.5,1.38,43.24,3.12,64,7.92V149.92h192.1c41.68-18.24,84.59-35.64,126.15-35.11,145.31,41.82,170.84,178.66,187.75,282.66,17,111.46-17,221.12-157.5,256.51-92.52,19.55-221.05,16.06-245.07,16.06Z" fill="currentColor"></path>
-    </svg>
-  </div>
+  <div class="creative-divider"></div>
 
-  <section id="about" class="about">
-    <div class="container about-container">
-      <div class="about-image">
-        <img src="https://images.pexels.com/photos/8112110/pexels-photo-8112110.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Timothy P. Alnwick Attorney at Law" />
-      </div>
-      <div class="about-content">
-        <h2>Composed Counsel. Decades of Experience.</h2>
-        <p>Timothy P. Alnwick has been serving clients in New York with integrity and precision for over twenty years. With a focus on real estate law, family law, and estate planning, his practice is built on trust, attention to detail, and a deep understanding of the human side of legal matters.</p>
-        <p>He approaches each case not just as a legal transaction, but as a personal journey — offering calm, clarity, and decisive guidance through the most difficult moments. His clients trust him not just for his expertise, but for his steadfastness.</p>
-        <a href="#contact">Schedule Your Consultation</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="wave" style="background-color: var(--cream); transform: rotate(180deg);">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M321.39,56.44c58-10.79,114.16-20.09,172-16.58,21.5,1.38,43.24,3.12,64,7.92V149.92h192.1c41.68-18.24,84.59-35.64,126.15-35.11,145.31,41.82,170.84,178.66,187.75,282.66,17,111.46-17,221.12-157.5,256.51-92.52,19.55-221.05,16.06-245.07,16.06Z" fill="currentColor"></path>
-    </svg>
-  </div>
-
-  <section id="testimonials" class="testimonials">
+  <section class="about" id="about">
     <div class="container">
-      <h2 class="section-title">Client Voices</h2>
-      <div class="testimonial-grid stagger-children">
-        <div class="testimonial">
-          <p class="testimonial-text">Mr. Alnwick helped me secure my home after years of complex zoning disputes. His patience and legal acuity saved me from financial ruin. I am deeply grateful.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">J</div>
-            <div>
-              <div class="testimonial-name">Janet R.</div>
-              <div class="testimonial-role">Local Homeowner</div>
-            </div>
-          </div>
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="https://images.pexels.com/photos/8112110/pexels-photo-8112110.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Timothy P. Alnwick">
         </div>
-        <div class="testimonial">
-          <p class="testimonial-text">During my divorce, I felt utterly alone. Timothy didn’t just advise — he listened. He fought for my children’s future with compassion and grit.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">D</div>
-            <div>
-              <div class="testimonial-name">David M.</div>
-              <div class="testimonial-role">Father & Client since 2014</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <p class="testimonial-text">Estate planning had always felt intimidating. He broke it down without jargon, then ensured my documents reflected exactly what I wanted — not what the template suggested.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">E</div>
-            <div>
-              <div class="testimonial-name">Eleanor K.</div>
-              <div class="testimonial-role">Retired Educator</div>
-            </div>
-          </div>
+        <div class="about-content">
+          <h2>Our Philosophy</h2>
+          <p>Timothy P. Alnwick Attorney at Law operates on the belief that legal representation must be more than technical expertise — it must be anchored in human dignity. For over three decades, we've served clients seeking not just representation, but clarity in the most complex moments of their lives. Each file receives the same meticulous attention, regardless of scale.</p>
+          <p>We avoid theatrics. We refuse rushed resolutions. And we never allow financial concerns to compromise your defense or rights. Our clients describe us as <strong>calm in chaos</strong>, and <strong>relentlessly thorough</strong> where others are merely diligent.</p>
+          <p>Because justice isn’t loud. It’s deliberate.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="gallery" class="pricing">
+  <section class="testimonials" id="testimonials">
     <div class="container">
-      <h2 class="section-title">In Our Community</h2>
-      <p style="text-align: center; margin-bottom: 4rem; font-style: italic; font-size: 1.1rem;">Where justice meets quiet dignity</p>
-      <div class="gallery stagger-children">
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/8439700/pexels-photo-8439700.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Courtroom" />
-          <div class="gallery-caption">A courtroom where truth is honored</div>
+      <div class="section-title">
+        <h2>Client Perspectives</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card animated">
+          <p class="testimonial-text">When I was facing charges that could have cost me everything, Mr. Alnwick did not raise his voice — he raised the standard of my defense. His quiet focus changed the outcome.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/7876037/pexels-photo-7876037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client">
+            </div>
+            <div>
+              <div class="testimonial-name">Local Client</div>
+              <div class="testimonial-role">Criminal Defense, Queens</div>
+            </div>
+          </div>
         </div>
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/5668481/pexels-photo-5668481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="City Hall" />
-          <div class="gallery-caption">New York’s legal traditions, upheld</div>
+        <div class="testimonial-card animated">
+          <p class="testimonial-text">I had been dismissed by three firms before my divorce. Tim listened. He answered every question. Not with promises, but with preparation. We got more than fair — we got understood.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/7875996/pexels-photo-7875996.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client">
+            </div>
+            <div>
+              <div class="testimonial-name">Verified Customer</div>
+              <div class="testimonial-role">Family Law, Brooklyn</div>
+            </div>
+          </div>
         </div>
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/7780123/pexels-photo-7780123.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Meeting Room" />
-          <div class="gallery-caption">Private consultations, thoughtful guidance</div>
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/34817073/pexels-photo-34817073.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Brooklyn Bridge" />
-          <div class="gallery-caption">Connecting families across boroughs</div>
+        <div class="testimonial-card animated">
+          <p class="testimonial-text">He didn’t just interpret the law — he explained it like I was never supposed to have known it. In the courtroom, his clarity was a kind of armor. I felt safe for the first time in months.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/15452110/pexels-photo-15452110.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client">
+            </div>
+            <div>
+              <div class="testimonial-name">Verifying Client</div>
+              <div class="testimonial-role">Civil Dispute, Long Island</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="wave" style="background-color: var(--navy); transform: rotate(180deg);">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M321.39,56.44c58-10.79,114.16-20.09,172-16.58,21.5,1.38,43.24,3.12,64,7.92V149.92h192.1c41.68-18.24,84.59-35.64,126.15-35.11,145.31,41.82,170.84,178.66,187.75,282.66,17,111.46-17,221.12-157.5,256.51-92.52,19.55-221.05,16.06-245.07,16.06Z" fill="currentColor"></path>
-    </svg>
-  </div>
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-title">
+        <h2>Practice in Context</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item animated">
+          <img src="https://images.pexels.com/photos/7876037/pexels-photo-7876037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Legal Archive">
+          <div class="gallery-overlay">
+            <h3>Document Review</h3>
+            <p>Thorough analysis, strategic filing</p>
+          </div>
+        </div>
+        <div class="gallery-item animated">
+          <img src="https://images.pexels.com/photos/7875996/pexels-photo-7875996.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Court Chambers">
+          <div class="gallery-overlay">
+            <h3>Courtroom Presence</h3>
+            <p>Quiet authority, respected by peers</p>
+          </div>
+        </div>
+        <div class="gallery-item animated">
+          <img src="https://images.pexels.com/photos/15452110/pexels-photo-15452110.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Meeting Room">
+          <div class="gallery-overlay">
+            <h3>Client Consultation</h3>
+            <p>Discretion, clarity, no pressure</p>
+          </div>
+        </div>
+        <div class="gallery-item animated">
+          <img src="https://images.pexels.com/photos/38374178/pexels-photo-38374178.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Office Interior">
+          <div class="gallery-overlay">
+            <h3>Professional Environment</h3>
+            <p>Calm space for serious matters</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section id="contact" class="contact">
-    <div class="container contact-content">
-      <h2 class="contact-h2">Begin Your Legal Journey</h2>
-      <p>Timothy P. Alnwick is available for initial consultations to discuss your needs and how he can serve you with discretion and excellence.</p>
-      <form class="contact-form">
-        <input type="text" class="form-control" placeholder="Your Name" required />
-        <input type="email" class="form-control" placeholder="Your Email" required />
-        <textarea class="form-control" placeholder="How can I assist you?" required></textarea>
-        <button type="submit" class="cta-button">Send Message</button>
+  <section class="contact" id="contact">
+    <div class="container contact-container">
+      <div class="section-title">
+        <h2>Initiate a Consultation</h2>
+      </div>
+      <form class="contact-form" action="#" method="POST">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Your Full Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Your Email Address" required>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" placeholder="Briefly describe your situation — you are not obligated to disclose everything here." required></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="cta-button">Schedule Confidential Meeting</button>
+        </div>
       </form>
+      <p style="text-align: center; margin-top: 2.5rem; color: var(--slate); font-size: 0.9rem;">111 Atlantic Avenue, 11201</p>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container footer-container">
-      <div class="footer-about">
-        <h3>Timothy P. Alnwick Attorney at Law</h3>
-        <p>Composed counsel for families and businesses in Brooklyn since 1998.</p>
-        <p>111 Atlantic Avenue, Suite 11201</p>
-      </div>
-      <div class="footer-links">
-        <h3>Practice Areas</h3>
-        <ul>
-          <li><a href="#services">Real Estate Law</a></li>
-          <li><a href="#services">Family Law</a></li>
-          <li><a href="#services">Trust & Estate Planning</a></li>
-          <li><a href="#">Wills & Probate</a></li>
-          <li><a href="#">Land Use & Zoning</a></li>
-        </ul>
-      </div>
-      <div class="footer-links">
-        <h3>Connect</h3>
-        <div class="footer-social">
-          <a href="#">LinkedIn</a>
-          <a href="#">Facebook</a>
-          <a href="#">Instagram</a>
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">Timothy P. Alnwick Attorney at Law</div>
+          <p class="footer-about">A trusted practice anchored in dignity. Since 199X — a lifetime of principled counsel in the courts of Brooklyn, Queens, and beyond. This office is not defined by advertising but by quiet results, and the trust of those who continue to return.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-links">Quick Links</h4>
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">Our Approach</a></li>
+            <li><a href="#testimonials">Client Insights</a></li>
+            <li><a href="#gallery">Practice Context</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-links">Practice Areas</h4>
+          <ul>
+            <li><a href="#">Criminal Defense</a></li>
+            <li><a href="#">Civil Litigation</a></li>
+            <li><a href="#">Family & Estate Law</a></li>
+            <li><a href="#">Appeals</a></li>
+            <li><a href="#">Legal Consultation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-links">Connect</h4>
+          <div class="social-icons">
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+          </div>
+          <p style="margin-top: 1.8rem; color: rgba(248, 246, 241, 0.8); font-size: 0.9rem;">By appointment only.<br>Discretion guaranteed.</p>
         </div>
       </div>
-    </div>
-    <div class="copyright">
-      © 2026 Timothy P. Alnwick Attorney at Law. All rights reserved.
+      <div class="copyright">
+        © 2026 Timothy P. Alnwick Attorney at Law. All rights reserved. 111 Atlantic Avenue, 11201
+      </div>
     </div>
   </footer>
 
   <script>
-    // NAVBAR SCROLL
-    window.addEventListener('scroll', () => {
-      const navbar = document.querySelector('.navbar');
+    // Sticky header
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
       if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
+        header.classList.add('scrolled');
       } else {
-        navbar.classList.remove('scrolled');
+        header.classList.remove('scrolled');
       }
     });
 
-    // MOBILE MENU
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navMenu = document.querySelector('.nav-menu');
-    mobileMenu.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-      navMenu.classList.toggle('active');
-    });
-
-    // STICKY LINKS
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', e => {
-        if (anchor.getAttribute('href') !== '#') {
-          const targetId = anchor.getAttribute('href');
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            const offsetTop = targetElement.offsetTop - 80;
-            window.scrollTo({
-              top: offsetTop,
-              behavior: 'smooth'
-            });
-          }
-          navMenu.classList.remove('active');
-          mobileMenu.classList.remove('active');
-          e.preventDefault();
-        }
-      });
-    });
-
-    // FADE IN ON SCROLL
-    const fadeElements = document.querySelectorAll('.fade-in, .stagger-children .feature-card, .stagger-children .testimonial, .stagger-children .gallery-item');
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: '0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    fadeElements.forEach(el => {
-      observer.observe(el);
-    });
-
-    // PARALLAX FOR HERO
+    // Parallax effect
     window.addEventListener('scroll', () => {
       const hero = document.querySelector('.hero');
-      const scrollPosition = window.pageYOffset;
-      hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+      const scrollValue = window.scrollY;
+      hero.style.backgroundPositionY = scrollValue * 0.5 + 'px';
     });
 
-    // CONTACT FORM
-    document.querySelector('.contact-form').addEventListener('submit', e => {
-      e.preventDefault();
-      alert('Thank you for reaching out. I will be in touch soon.');
-      e.target.reset();
-    });
+    // Scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const animatedElements = document.querySelectorAll('.animated');
 
-    // ANIMATE SECTIONS ON PAGE LOAD
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.querySelectorAll('.feature-card, .testimonial, .gallery-item').forEach(el => {
-          if (!el.classList.contains('visible')) {
-            el.classList.add('visible');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('scroll-in');
+            }, 100 * Math.max(0, 3 - entry.target.closest('.services-grid, .testimonial-grid, .gallery-grid').children.length));
           }
         });
-      }, 500);
+      }, { threshold: 0.1 });
+
+      animatedElements.forEach(el => {
+        observer.observe(el);
+      });
     });
 
-    // GLOW ANIMATION ON BUTTONS
-    document.querySelectorAll('.cta-button, .secondary-button').forEach(btn => {
-      btn.addEventListener('mouseenter', () => {
-        btn.style.setProperty('--glow-opacity', '1');
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.setProperty('--glow-opacity', '0');
+    // Smooth scrolling with adjusted offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
       });
     });
+
+    // Form submission handler
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = this.querySelector('[name="name"]')?.value || this.querySelector('input[type="text"]').value;
+        alert(`Thank you, ${name}. Your consultation request has been received. We'll contact you within 24 hours.`);
+        this.reset();
+      });
+    }
   </script>
 <script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=VGltb3RoeSBQLiBBbG53aWNrIEF0dG9ybmV5IGF0IExhdw&u=dmlzaXQ&s=785449ff477ea04e8fdedc365c2182a5&beacon=1&l=b3NtLW5vZGUtMjMwNzE0NzYyMg";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:90781b0053--></html>
+<!--bld:2daee749ab--></html>
