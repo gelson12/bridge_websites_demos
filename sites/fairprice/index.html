@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FairPrice - Your neighborhood grocery, done right</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FairPrice - Everyday value. Every day.</title>
   <style>
     :root {
-      --primary-white: #fdfbf7;
-      --soft-green: #d0e8d3;
-      --muted-wood: #a89483;
-      --teal-accent: #008080;
-      --cream: #f8f4f0;
-      --text-dark: #333333;
-      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
-      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.05);
-      --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.03);
+      --primary: #2E8B57;
+      --light: #F5F5DC;
+      --gray: #D3D3D3;
+      --dark-green: #6B8E23;
+      --white: #FFFFFF;
     }
 
     * {
@@ -24,136 +20,106 @@
     }
 
     body {
-      font-family: 'Lato', sans-serif;
-      color: var(--text-dark);
-      background-color: var(--primary-white);
-      overflow-x: hidden;
+      font-family: 'Open Sans', sans-serif;
+      color: #333;
       line-height: 1.6;
-      scroll-behavior: smooth;
+      overflow-x: hidden;
+      background-color: var(--white);
     }
 
     h1, h2, h3, h4 {
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 600;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
       letter-spacing: -0.5px;
-      backface-visibility: hidden;
     }
 
     h1 {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      line-height: 1.1;
+      font-size: 3.5rem;
+      line-height: 1.2;
     }
 
     h2 {
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      position: relative;
-      display: inline-block;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--teal-accent);
-      border-radius: 2px;
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
     }
 
     h3 {
       font-size: 1.8rem;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
 
     p {
       font-size: 1.1rem;
       margin-bottom: 1.5rem;
-      color: #444;
-      font-weight: 400;
     }
 
     a {
-      color: var(--teal-accent);
+      color: var(--primary);
       text-decoration: none;
       transition: color 0.3s ease;
     }
 
     a:hover {
-      color: #005f5f;
+      color: var(--dark-green);
     }
 
     .container {
+      width: 90%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 2rem;
-      position: relative;
+      padding: 0 20px;
     }
 
-    /* NAVIGATION */
-    nav {
+    /* Sticky Navbar */
+    .navbar {
       position: sticky;
       top: 0;
-      background: transparent;
-      padding: 1.5rem 0;
       z-index: 1000;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: transparent;
+      padding: 1rem 0;
+      transition: background 0.4s ease;
     }
 
-    nav.scrolled {
-      background: rgba(253, 251, 247, 0.95);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
-      padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    .navbar.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 0.8rem 0;
     }
 
-    .nav-container {
+    .navbar .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
     }
 
     .logo {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      letter-spacing: -0.8px;
-      position: relative;
-      transition: transform 0.3s ease;
-    }
-
-    .logo:hover {
-      transform: scale(1.05);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
-      align-items: center;
+      gap: 2rem;
     }
 
     .nav-links a {
-      font-weight: 500;
-      font-size: 1rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       position: relative;
-      padding: 0.5rem 0;
-      transition: color 0.3s ease;
     }
 
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -5px;
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--teal-accent);
+      background-color: var(--primary);
       transition: width 0.3s ease;
     }
 
@@ -162,67 +128,35 @@
     }
 
     .cta-button {
-      background-color: var(--teal-accent);
-      color: white;
-      padding: 0.75rem 2rem;
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1.1rem;
       border: none;
-      border-radius: 32px;
-      font-size: 1rem;
-      font-weight: 600;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 5px 20px rgba(0, 128, 128, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.6s;
-    }
-
-    .cta-button:hover::before {
-      left: 100%;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .cta-button:hover {
-      background-color: #005f5f;
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0, 128, 128, 0.3);
+      background-color: var(--dark-green);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(46, 139, 87, 0.3);
     }
 
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    .hamburger span {
-      height: 3px;
-      width: 25px;
-      background: var(--text-dark);
-      margin: 4px 0;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* HERO */
+    /* Hero */
     .hero {
       height: 100vh;
-      background-image: url('https://images.pexels.com/photos/18530592/pexels-photo-18530592.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-image: url('https://images.pexels.com/photos/33690927/pexels-photo-33690927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
       background-size: cover;
       background-position: center;
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
-      perspective: 1000px;
     }
 
     .hero::before {
@@ -232,825 +166,441 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.9) 70%);
+      background: linear-gradient(rgba(46, 139, 87, 0.6), rgba(46, 139, 87, 0.2));
       z-index: 1;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 120px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,120 C300,80 500,20 800,80 C1100,140 1200,80 1200,80 L1200,120 L0,120 Z' fill='%23fdfbf7'/%3E%3C/svg%3E") bottom repeat-x;
-      z-index: 2;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      padding-left: 4rem;
+      color: var(--white);
       max-width: 600px;
-      opacity: 0;
-      transform: translateY(40px) scale(0.95);
-      animation: heroFadeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-      will-change: transform, opacity;
+      animation: fadeInUp 1.2s ease-out;
     }
 
     .hero h1 {
-      color: #111;
-      font-size: 4.8rem;
-      line-height: 1.1;
+      color: var(--white);
       margin-bottom: 1.5rem;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.05);
-      position: relative;
-    }
-
-    .hero h1::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 0;
-      width: 80px;
-      height: 8px;
-      background: var(--teal-accent);
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,128,128,0.3);
+      font-size: 4rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
     }
 
     .hero p {
-      color: #222;
-      font-size: 1.8rem;
-      margin-bottom: 3rem;
-      font-weight: 400;
-      opacity: 0.9;
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
     }
 
     .hero-buttons {
       display: flex;
       gap: 1rem;
-      margin-top: 0.5rem;
     }
 
-    .hero-buttons .cta-button:nth-child(2) {
-      background-color: transparent;
-      border: 2px solid var(--teal-accent);
-      color: var(--teal-accent);
-      padding: 0.75rem 2.25rem;
+    .hero-buttons .cta-button {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--primary);
+      border: 2px solid rgba(255, 255, 255, 0.9);
     }
 
-    .hero-buttons .cta-button:nth-child(2):hover {
-      background-color: var(--teal-accent);
-      color: white;
+    .hero-buttons .cta-button:hover {
+      background-color: var(--white);
+      color: var(--primary);
+      border-color: var(--white);
     }
 
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .hamburger span {
-      height: 3px;
-      width: 25px;
-      background: var(--text-dark);
-      margin: 4px 0;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* TRUST STRIP */
+    /* Trust Strip */
     .trust-strip {
-      background: linear-gradient(90deg, var(--cream), var(--primary-white));
-      padding: 3rem 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 6rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .trust-strip::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C300,80 500,0 800,80 C1100,0 1200,80 1200,0 L1200,80 L0,80 Z' fill='%23ffffff'/%3E%3C/svg%3E") top repeat-x;
-      z-index: 1;
-    }
-
-    .trust-strip::after {
-      content: '';
-      position: absolute;
-      bottom: -40px;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80' preserveAspectRatio='none'%3E%3Cpath d='M0,80 C300,0 500,80 800,0 C1100,80 1200,0 1200,80 L1200,0 L0,0 Z' fill='%23fdfbf7'/%3E%3C/svg%3E") bottom repeat-x;
-      z-index: 1;
-    }
-
-    .trust-item {
+      background-color: var(--light);
+      padding: 1.5rem 0;
       text-align: center;
-      color: var(--text-dark);
+      font-weight: 600;
       font-size: 1.1rem;
-      font-weight: 500;
-      padding: 1rem 2rem;
-      background: rgba(255,255,255,0.6);
-      border-radius: 25px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      color: var(--primary);
+      border-bottom: 1px solid var(--gray);
     }
 
-    .trust-item::before {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 8px;
-      height: 8px;
-      background: var(--teal-accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
+    /* Services */
+    .services {
+      padding: 6rem 0;
+      background-color: var(--white);
     }
 
-    .trust-item::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%) rotate(180deg);
-      width: 20px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--teal-accent), transparent);
-      opacity: 0.3;
-    }
-
-    /* FEATURES */
-    .features {
-      padding: 8rem 0;
-      position: relative;
-    }
-
-    .features::before {
-      content: '';
-      position: absolute;
-      top: -80px;
-      left: 0;
-      width: 100%;
-      height: 150px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C300,60 500,140 800,80 C1100,140 1200,60 1200,100 L1200,150 L0,150 Z' fill='%23fdfbf7'/%3E%3C/svg%3E") bottom repeat-x;
-      z-index: 1;
-    }
-
-    .features::after {
-      content: '';
-      position: absolute;
-      bottom: -80px;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80' preserveAspectRatio='none'%3E%3Cpath d='M0,50 C300,100 500,30 800,50 C1100,70 1200,100 1200,50 L1200,80 L0,80 Z' fill='%23fdfbf7'/%3E%3C/svg%3E") top repeat-x;
-      z-index: 1;
-    }
-
-    .features .container {
-      position: relative;
-      z-index: 2;
-    }
-
-    .features h2 {
+    .section-header {
       text-align: center;
       margin-bottom: 4rem;
     }
 
-    .features-grid {
+    .section-header h2 {
+      color: var(--primary);
+    }
+
+    .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 4rem;
-      padding: 2rem 0;
+      gap: 2.5rem;
     }
 
-    .feature-card {
-      background-color: white;
-      padding: 3rem 2.5rem;
-      border-radius: 28px;
+    .service-card {
+      background-color: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
       text-align: center;
-      box-shadow: var(--shadow-md);
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      opacity: 0;
-      transform: translateY(50px);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.4);
-      background: linear-gradient(to bottom, #ffffff, #faf9f7);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 1px solid var(--gray);
     }
 
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0,128,128,0.05), transparent);
-      transition: left 0.8s;
-      z-index: -1;
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(46, 139, 87, 0.1);
     }
 
-    .feature-card:hover::before {
-      left: 100%;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-15px) scale(1.02);
-      box-shadow: var(--shadow-lg);
-      border-color: rgba(0,128,128,0.1);
-    }
-
-    .feature-icon {
-      width: 90px;
-      height: 90px;
-      margin: 0 auto 2.5rem;
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: rgba(46, 139, 87, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--soft-green);
-      border-radius: 50%;
-      color: var(--teal-accent);
-      font-size: 2.5rem;
-      font-weight: 600;
-      box-shadow: 0 10px 30px rgba(208,232,211,0.5);
-      transition: all 0.3s ease;
-      border: 4px solid rgba(255,255,255,0.7);
+      margin: 0 auto 1.5rem;
+      color: var(--primary);
+      font-size: 2rem;
     }
 
-    .feature-card:hover .feature-icon {
-      transform: scale(1.15);
-      color: var(--text-dark);
+    .service-card h3 {
+      margin-bottom: 1rem;
+      color: var(--primary);
     }
 
-    /* ABOUT */
+    /* About */
     .about {
-      padding: 8rem 0;
-      background-color: var(--cream);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .about::before {
-      content: '';
-      position: absolute;
-      top: -80px;
-      left: 0;
-      width: 100%;
-      height: 150px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M0,50 C300,100 500,30 800,50 C1100,70 1200,100 1200,50 L1200,150 L0,150 Z' fill='%23fdfbf7'/%3E%3C/svg%3E") bottom repeat-x;
-      z-index: 1;
-    }
-
-    .about::after {
-      content: '';
-      position: absolute;
-      bottom: -80px;
-      left: 0;
-      width: 100%;
-      height: 120px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,50 C200,0 400,100 600,50 C800,0 1000,100 1200,50 L1200,120 L0,120 Z' fill='%23fdfbf7'/%3E%3C/svg%3E") top repeat-x;
-      z-index: 1;
-    }
-
-    .about-container {
+      padding: 6rem 0;
+      background-color: var(--light);
       display: flex;
       align-items: center;
-      gap: 6rem;
     }
 
     .about-image {
       flex: 1;
-      border-radius: 32px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
-      position: relative;
-      opacity: 0;
-      transform: translateX(-80px);
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      height: 550px;
-    }
-
-    .about-image::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, rgba(0,128,128,0.1), rgba(0,128,128,0));
-      z-index: 1;
-      transition: opacity 0.6s;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     }
 
     .about-image img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      height: auto;
+      transition: transform 0.6s ease;
     }
 
     .about-image:hover img {
-      transform: scale(1.08) rotateX(2deg);
-    }
-
-    .about-image:hover::before {
-      opacity: 0;
+      transform: scale(1.05);
     }
 
     .about-content {
       flex: 1;
-      opacity: 0;
-      transform: translateX(80px);
-      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      padding-left: 4rem;
     }
 
     .about-content h2 {
-      margin-bottom: 1.8rem;
-      position: relative;
-    }
-
-    .about-content h2::after {
-      width: 100px;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
     }
 
     .about-content p {
       margin-bottom: 2rem;
-      line-height: 1.8;
-      font-weight: 400;
     }
 
-    /* TESTIMONIALS */
+    /* Testimonials */
     .testimonials {
-      padding: 8rem 0;
-      position: relative;
+      padding: 6rem 0;
+      background-color: var(--white);
     }
 
-    .testimonials::before {
-      content: '';
-      position: absolute;
-      top: -80px;
-      left: 0;
-      width: 100%;
-      height: 200px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath d='M0,180 C200,200 400,100 600,160 C800,220 1000,120 1200,160 L1200,200 L0,200 Z' fill='%23fdfbf7'/%3E%3C/svg%3E") bottom repeat-x;
-      z-index: 1;
-    }
-
-    .testimonials h2 {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .testimonials h2::after {
-      width: 120px;
-    }
-
-    .testimonial-grid {
+    .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 4rem;
-      margin-top: 3rem;
+      gap: 2.5rem;
     }
 
     .testimonial-card {
-      background-color: white;
-      padding: 3rem 2.5rem;
-      border-radius: 32px;
-      box-shadow: var(--shadow-md);
+      background-color: var(--light);
+      padding: 2.5rem;
+      border-radius: 16px;
+      border-left: 5px solid var(--primary);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
       position: relative;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.4);
-      background: linear-gradient(to bottom, #ffffff, #f5f3f0);
-      transform-style: preserve-3d;
     }
 
     .testimonial-card::before {
       content: """;
       position: absolute;
-      top: 25px;
-      left: 25px;
-      font-size: 4.5rem;
+      top: 20px;
+      left: 20px;
+      font-size: 6rem;
+      color: rgba(46, 139, 87, 0.1);
       font-family: Georgia, serif;
-      color: var(--soft-green);
       line-height: 1;
-      opacity: 0.15;
-      transform: rotate(180deg);
-      z-index: 1;
     }
 
-    .testimonial-card::after {
-      content: """;
-      position: absolute;
-      bottom: 25px;
-      right: 25px;
-      font-size: 5rem;
-      font-family: Georgia, serif;
-      color: var(--soft-green);
-      line-height: 1;
-      opacity: 0.1;
-      z-index: 1;
-    }
-
-    .testimonial-text {
+    .testimonial-content {
       font-style: italic;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.5rem;
       color: #444;
-      position: relative;
-      padding: 1rem;
-      background: rgba(255,255,255,0.8);
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
     }
 
     .testimonial-author {
       display: flex;
       align-items: center;
-      position: relative;
-      z-index: 2;
     }
 
-    .avatar {
-      width: 60px;
-      height: 60px;
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      margin-right: 1.5rem;
-      background-color: var(--soft-green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-dark);
-      font-weight: bold;
-      font-size: 1.5rem;
-      border: 3px solid rgba(255,255,255,0.7);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
+      background-color: var(--gray);
+      margin-right: 1rem;
+      overflow: hidden;
     }
 
-    .testimonial-card:hover .avatar {
-      transform: scale(1.1);
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .author-info h4 {
-      margin-bottom: 0.25rem;
-      font-size: 1.3rem;
+    .testimonial-name {
+      font-weight: 700;
+      color: var(--primary);
     }
 
-    .author-info p {
-      color: #666;
-      font-size: 1rem;
-      margin: 0;
-      font-weight: 500;
-    }
-
-    /* GALLERY */
+    /* Gallery */
     .gallery {
-      padding: 8rem 0;
-      background-color: var(--primary-white);
+      padding: 6rem 0;
+      background-color: var(--light);
       position: relative;
     }
 
     .gallery::before {
       content: '';
       position: absolute;
-      top: -80px;
-      left: 0;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
       width: 100%;
-      height: 200px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath d='M0,180 C200,200 400,100 600,160 C800,220 1000,120 1200,160 L1200,200 L0,200 Z' fill='%23fdfbf7'/%3E%3C/svg%3E") bottom repeat-x;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0,0V80L600,90L1200,80V0H0Z" fill="%23f5f5dc"/></svg>') repeat-x;
+      background-size: 1200px 100px;
       z-index: 1;
     }
 
-    .gallery::after {
-      content: '';
-      position: absolute;
-      bottom: -80px;
-      left: 0;
-      width: 100%;
-      height: 120px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C200,40 400,80 600,60 C800,40 1000,80 1200,60 L1200,120 L0,120 Z' fill='%23fdfbf7'/%3E%3C/svg%3E") top repeat-x;
-      z-index: 1;
+    .gallery-content {
+      position: relative;
+      z-index: 2;
     }
 
-    .gallery h2 {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .gallery-container {
+    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
     }
 
     .gallery-item {
-      border-radius: 24px;
+      position: relative;
+      border-radius: 12px;
       overflow: hidden;
       height: 300px;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    }
-
-    .gallery-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, rgba(0,128,128,0.1), rgba(0,128,128,0));
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.5s;
-    }
-
-    .gallery-item:hover::before {
-      opacity: 1;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.6s ease;
     }
 
     .gallery-item:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+      transform: translateY(-10px) scale(1.02);
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.8s ease;
     }
 
     .gallery-item:hover img {
-      transform: scale(1.15) rotateX(5deg);
+      transform: scale(1.1);
     }
 
-    /* CONTACT */
+    /* Contact */
     .contact {
-      padding: 8rem 0;
-      background-color: var(--cream);
-      position: relative;
-    }
-
-    .contact h2 {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .contact h2::after {
-      width: 100px;
+      padding: 6rem 0;
+      background-color: var(--white);
     }
 
     .contact-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: white;
-      padding: 4rem 3rem;
-      border-radius: 32px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      position: relative;
-      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
     }
 
-    .contact-container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0,128,128,0.03), transparent);
-      transition: left 0.7s;
-      z-index: 1;
+    .contact-info {
+      flex: 1;
+      padding-right: 4rem;
     }
 
-    .contact-container:hover::before {
-      left: 100%;
+    .contact-info h2 {
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 2rem;
+    }
+
+    .contact-form {
+      flex: 1;
     }
 
     .form-group {
-      margin-bottom: 2rem;
-      position: relative;
+      margin-bottom: 1.5rem;
     }
 
-    .form-group label {
-      display: block;
-      margin-bottom: 0.75rem;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #555;
-    }
-
-    .form-group input,
-    .form-group textarea {
+    .form-control {
       width: 100%;
-      padding: 1rem 1.25rem;
-      border: 2px solid rgba(200,200,200,0.3);
-      border-radius: 16px;
-      font-family: 'Lato', sans-serif;
+      padding: 1rem;
+      border: 1px solid var(--gray);
+      border-radius: 8px;
       font-size: 1rem;
-      transition: all 0.3s ease;
-      background: transparent;
-      resize: none;
+      transition: border-color 0.3s ease;
     }
 
-    .form-group input:focus,
-    .form-group textarea:focus {
+    .form-control:focus {
       outline: none;
-      border-color: var(--teal-accent);
-      box-shadow: 0 0 0 3px rgba(0,128,128,0.1);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(46, 139, 87, 0.2);
     }
 
-    .form-btn {
-      width: 100%;
-      padding: 1.25rem 2rem;
-      font-size: 1.1rem;
-      margin-top: 1rem;
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
     }
 
-    /* FOOTER */
-    footer {
-      background-color: var(--muted-wood);
-      color: white;
-      padding: 6rem 0 3rem;
-      position: relative;
-      overflow: hidden;
+    /* Footer */
+    .footer {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 4rem 0 2rem;
     }
 
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80' preserveAspectRatio='none'%3E%3Cpath d='M0,80 C200,0 400,80 600,40 C800,0 1000,80 1200,40 L1200,80 L0,80 Z' fill='%23a89483'/%3E%3C/svg%3E") bottom repeat-x;
-      z-index: 1;
-    }
-
-    .footer-container {
+    .footer-content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 4rem;
-      margin-bottom: 4rem;
-      position: relative;
-      z-index: 2;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
     }
 
-    .footer-col h3 {
-      font-size: 1.6rem;
-      margin-bottom: 2rem;
-      position: relative;
-      display: inline-block;
-    }
-
-    .footer-col h3::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 50px;
-      height: 4px;
-      background: rgba(255,255,255,0.3);
-      border-radius: 3px;
-    }
-
-    .footer-col p,
-    .footer-col a {
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 800;
       margin-bottom: 1rem;
-      display: block;
-      color: rgba(255,255,255,0.8);
-      font-size: 0.95rem;
-      font-weight: 400;
+    }
+
+    .footer-brand {
+      color: var(--white);
+    }
+
+    .footer-text {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1rem;
+    }
+
+    .footer-links h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
       transition: color 0.3s ease;
-      position: relative;
-      padding-left: 0;
-      padding-right: 0;
     }
 
-    .footer-col a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: rgba(255,255,255,0.5);
-      transition: width 0.3s ease;
+    .footer-links a:hover {
+      color: var(--light);
     }
 
-    .footer-col a:hover::after {
-      width: 100%;
-    }
-
-    .footer-col a:hover {
-      color: white;
-    }
-
-    .social-links {
+    .footer-social {
       display: flex;
       gap: 1.5rem;
-      margin-top: 1.5rem;
     }
 
-    .social-links a {
-      color: white;
-      font-size: 1.8rem;
-      transition: transform 0.3s ease, color 0.3s ease;
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      transition: background-color 0.3s ease;
     }
 
-    .social-links a:hover {
-      color: rgba(255,255,255,0.8);
-      transform: translateY(-3px);
+    .social-link:hover {
+      background-color: rgba(255, 255, 255, 0.2);
     }
 
-    .copyright {
+    .footer-bottom {
       text-align: center;
       padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
       font-size: 0.9rem;
-      color: rgba(255,255,255,0.6);
-      font-weight: 400;
     }
 
-    /* ANIMATIONS */
-    @keyframes heroFadeIn {
+    /* Animations */
+    @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(40px) scale(0.95);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
       }
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(0.8); opacity: 1; }
-      50% { transform: scale(1.2); opacity: 0.8; }
-    }
-
-    /* REVEAL ANIMATIONS */
-    .reveal {
+    .animate-on-scroll {
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateY(30px);
       transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: transform, opacity;
     }
 
-    .reveal.visible {
+    .animate-on-scroll.appear {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      h1 {
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero h1 {
         font-size: 3.5rem;
       }
-      .hero h1 {
-        font-size: 3.2rem;
+      .about,
+      .about-content {
+        margin-bottom: 4rem;
       }
-      .hero p {
-        font-size: 1.5rem;
-      }
-      .hero-content {
+      .about-content {
         padding-left: 2rem;
       }
-      .about-container {
-        gap: 3rem;
-      }
-      .about-image {
-        height: 500px;
-      }
-      .footer-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 3rem;
+      .contact-info {
+        padding-right: 2rem;
       }
     }
 
@@ -1059,403 +609,282 @@
         font-size: 3rem;
       }
       h2 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
       }
       .hero h1 {
         font-size: 2.8rem;
-        line-height: 1.2;
       }
       .hero p {
-        font-size: 1.4rem;
-      }
-      .nav-container {
-        flex-direction: column;
-        gap: 1rem;
+        font-size: 1.2rem;
       }
       .nav-links {
         display: none;
-        flex-direction: column;
-        width: 100%;
-        text-align: center;
-        background-color: var(--primary-white);
-        padding: 1rem;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        border-radius: 16px;
-        margin-top: 0.5rem;
-        border: 1px solid rgba(0,0,0,0.05);
-        background: rgba(253,251,247,0.98);
       }
-      .nav-links.show {
-        display: flex;
-        z-index: 1002;
-      }
-      .hamburger {
-        display: flex;
-        z-index: 1003;
-      }
-      .about-container {
-        flex-direction: column;
-        text-align: center;
+      .mobile-menu {
+        display: block;
+        font-size: 2rem;
+        cursor: pointer;
       }
       .about-image {
         margin-bottom: 2rem;
-        height: 400px;
-        transform: translateY(0);
-        transition-delay: 0.2s;
       }
       .about-content {
-        transform: translateY(0);
-        transition-delay: 0.4s;
-        padding: 0 1rem;
-      }
-      .testimonial-grid,
-      .features-grid,
-      .gallery-container {
-        grid-template-columns: 1fr;
-      }
-      .trust-item {
-        margin: 0 1rem;
-        padding: 1.2rem 1.5rem;
-      }
-      .trust-strip {
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-      .hero-buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 300px;
-        margin: 2rem auto 0;
-      }
-      .hero-buttons .cta-button {
-        width: 100%;
-        margin-bottom: 1rem;
-        font-size: 1rem;
-        padding: 0.8rem 1.8rem;
+        padding-left: 0;
       }
       .contact-container {
-        padding: 3rem 1.8rem;
-        margin-top: 1rem;
+        flex-direction: column;
       }
-      .logo {
-        font-size: 1.8rem;
+      .contact-info {
+        padding-right: 0;
+        margin-bottom: 3rem;
       }
     }
 
     @media (max-width: 576px) {
-      .container {
-        padding: 0 1rem;
-      }
-      h1 {
+      .hero h1 {
         font-size: 2.5rem;
       }
-      h2 {
-        font-size: 2rem;
+      .hero-buttons {
+        flex-direction: column;
       }
-      .hero h1 {
-        font-size: 2.3rem;
+      .cta-button {
+        padding: 0.8rem 1.5rem;
       }
-      .hero p {
-        font-size: 1.3rem;
+      .services-grid,
+      .testimonials-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
       }
-      .hero-content {
-        padding-left: 1rem;
-        padding-right: 1rem;
+      .footer-content {
+        gap: 2rem;
       }
-      .feature-icon {
-        width: 70px;
-        height: 70px;
-        font-size: 2rem;
-      }
-      .feature-card {
-        padding: 2.2rem 1.5rem;
-      }
-      .footer-col h3 {
-        font-size: 1.4rem;
-      }
-      .footer-col p,
-      .footer-col a {
-        font-size: 0.9rem;
-      }
-      .social-links a {
-        font-size: 1.5rem;
-      }
-      .testimonial-card {
-        padding: 2.5rem 1.5rem;
-      }
-      .avatar {
-        width: 50px;
-        height: 50px;
-        font-size: 1.3rem;
-      }
-    }
-
-    .hidden {
-      visibility: hidden;
-      opacity: 0;
-    }
-
-    /* Loading Animation */
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-
-    .skeleton {
-      background: linear-gradient(90deg, #f8f5f1, #f3f0eb, #f8f5f1);
-      background-size: 400% 100%;
-      animation: shimmer 1.5s infinite linear;
     }
   </style>
 </head>
 <body>
-  <nav id="mainNav">
-    <div class="container nav-container">
+  <nav class="navbar">
+    <div class="container">
       <a href="#" class="logo">FairPrice</a>
-      <div class="nav-links" id="navLinks">
-        <a href="#features">Products</a>
-        <a href="#about">About Us</a>
-        <a href="#testimonials">Reviews</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
         <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
       </div>
       <button class="cta-button">Shop Now</button>
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
     </div>
   </nav>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>FairPrice</h1>
-      <p>Your neighborhood grocery, done right</p>
-      <div class="hero-buttons">
-        <button class="cta-button">Open Now</button>
-        <button class="cta-button">Browse Products</button>
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>FairPrice</h1>
+        <p>Everyday value. Every day.</p>
+        <div class="hero-buttons">
+          <button class="cta-button">Shop Online</button>
+          <button class="cta-button">Find a Store</button>
+        </div>
       </div>
     </div>
   </section>
 
   <div class="trust-strip">
-    <div class="trust-item">Trusted by local families</div>
-    <div class="trust-item">Fresh produce daily</div>
-    <div class="trust-item">Serving our community since day one</div>
+    Trusted by local customers for everyday value
   </div>
 
-  <section class="features" id="features">
+  <section id="services" class="services">
     <div class="container">
-      <h2>What We Offer</h2>
-      <div class="features-grid">
-        <div class="feature-card reveal">
-          <div class="feature-icon">🥬</div>
+      <div class="section-header">
+        <h2>Our Services</h2>
+        <p>Quality groceries you can trust, all under one roof.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">🛒</div>
           <h3>Fresh Produce</h3>
-          <p>Hand-selected fruit and vegetables from local farmers, delivered daily to ensure peak freshness and flavor.</p>
+          <p>Locally sourced fruits and vegetables sourced daily, picked at peak ripeness for maximum flavor.</p>
         </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon">🍯</div>
-          <h3>Local Specialties</h3>
-          <p>Specialty cheeses, artisanal bread, and handcrafted jams from makers you know and trust right in our region.</p>
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">🥩</div>
+          <h3>Meat & Seafood</h3>
+          <p>High-quality, ethically raised meats and sustainably caught seafood, always fresh and properly stored.</p>
         </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon">💰</div>
-          <h3>Everyday Fair Pricing</h3>
-          <p>No gimmicks, no hidden markups. You pay what's fair — for both you and our suppliers.</p>
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">🛒</div>
+          <h3>Everyday Low Prices</h3>
+          <p>No haggling, no coupons needed—every day, every item, our best price guaranteed.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="about" id="about">
-    <div class="container about-container">
-      <div class="about-image reveal">
-        <img src="https://images.pexels.com/photos/8475152/pexels-photo-8475152.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="FairPrice interior with friendly staff and shoppers" />
-      </div>
-      <div class="about-content reveal">
-        <h2>Our Story</h2>
-        <p>FairPrice was born from a simple idea: that grocery shopping should feel personal, honest, and efficient — not transactional or overwhelming. Founded by neighbors for neighbors, we believe in knowing the people who grow your food and supporting local livelihoods every step of the way.</p>
-        <p>When you walk into FairPrice, you're greeted by name. Our staff aren't just employees — they're your friends and neighbors who understand your needs before you even ask. From the crisp lettuces in our produce aisle to the homemade bread in our bakery, every item is curated with care.</p>
-        <p>This isn't just a store. It's your community center, your local landmark, and your daily ritual. We're proud to be the place you depend on, and grateful you choose us.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="testimonials" id="testimonials">
+  <section id="about" class="about">
     <div class="container">
-      <h2>What Our Community Says</h2>
-      <div class="testimonial-grid">
-        <div class="testimonial-card reveal">
-          <p class="testimonial-text">I’ve shopped here for years — they always have the right apples, and the staff remembers my daughter’s allergy. I feel seen here.</p>
+      <div class="about-image animate-on-scroll">
+        <img src="https://images.pexels.com/photos/8422731/pexels-photo-8422731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="FairPrice store interior with happy customers">
+      </div>
+      <div class="about-content animate-on-scroll">
+        <h2>Welcome to FairPrice</h2>
+        <p>Founded with one simple belief: that quality groceries should be affordable for everyone. We’re not a chain—we’re your neighborhood supermarket, dedicated to serving our local community with honesty, consistency, and warmth.</p>
+        <p>Our staff are your neighbors. Our shelves hold products carefully selected by people who know the value of good food. Every aisle is designed for ease, every price for fairness.</p>
+        <p>No fancy gimmicks. Just real food, real value, and real service—every day.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Our Customers Say</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card animate-on-scroll">
+          <p class="testimonial-content">The prices are unmatched and the staff always remembers my name. I’ve been shopping here for over 15 years — I wouldn’t go anywhere else.</p>
           <div class="testimonial-author">
-            <div class="avatar">J</div>
-            <div class="author-info">
-              <h4>Jennifer T.</h4>
-              <p>Verified customer</p>
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/33690927/pexels-photo-33690927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer">
+            </div>
+            <div class="testimonial-name">Local Client</div>
+          </div>
+        </div>
+        <div class="testimonial-card animate-on-scroll">
+          <p class="testimonial-content">I started shopping here after budgeting became tight. Not just because of the prices, but because the food is always fresh and the store is clean and welcoming.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/8422731/pexels-photo-8422731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer">
+            </div>
+            <div class="testimonial-name">Verified Customer</div>
+          </div>
+        </div>
+        <div class="testimonial-card animate-on-scroll">
+          <p class="testimonial-content">They have the best selection of international staples on this side of town. My kids love the fresh bread and fruits. It’s more than a supermarket — it’s a community.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer">
+            </div>
+            <div class="testimonial-name">Loyal Patron</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <div class="gallery-content">
+        <div class="section-header">
+          <h2>Shop Inside</h2>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item animate-on-scroll">
+            <img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fresh produce aisle at FairPrice">
+          </div>
+          <div class="gallery-item animate-on-scroll">
+            <img src="https://images.pexels.com/photos/35285857/pexels-photo-35285857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Bakery section at FairPrice">
+          </div>
+          <div class="gallery-item animate-on-scroll">
+            <img src="https://images.pexels.com/photos/37594412/pexels-photo-37594412.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Dairy and refrigerated section at FairPrice">
+          </div>
+          <div class="gallery-item animate-on-scroll">
+            <img src="https://images.pexels.com/photos/26950736/pexels-photo-26950736.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Checkout counter with friendly staff at FairPrice">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-container">
+        <div class="contact-info animate-on-scroll">
+          <h2>Get in Touch</h2>
+          <p>Visit us at our local branch or reach out for questions about our products, hours, or special orders.</p>
+          <p>We’re here to serve you with honesty, fairness, and a smile.</p>
+        </div>
+        <div class="contact-form animate-on-scroll">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="cta-button">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">FairPrice</div>
+          <p class="footer-text">Everyday value. Every day.</p>
+          <p class="footer-text">Your trusted local supermarket, dedicated to quality, fairness, and community.</p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Our Services</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <div class="footer-social">
+              <a href="#" class="social-link">f</a>
+              <a href="#" class="social-link">i</a>
+              <a href="#" class="social-link">t</a>
+              <a href="#" class="social-link">in</a>
             </div>
           </div>
         </div>
-        <div class="testimonial-card reveal">
-          <p class="testimonial-text">No one else makes me feel so good about what I’m buying. I know exactly where my eggs came from. That’s real.</p>
-          <div class="testimonial-author">
-            <div class="avatar">M</div>
-            <div class="author-info">
-              <h4>Mark R.</h4>
-              <p>Local homeowner</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card reveal">
-          <p class="testimonial-text">My son loves the samples in aisle 4. We come every Saturday. FairPrice feels like family.</p>
-          <div class="testimonial-author">
-            <div class="avatar">S</div>
-            <div class="author-info">
-              <h4>Sarah L.</h4>
-              <p>Single mom</p>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>
-
-  <section class="gallery" id="gallery">
-    <div class="container">
-      <h2 style="text-align: center; margin-bottom: 3rem;">A Glimpse Inside</h2>
-      <div class="gallery-container">
-        <div class="gallery-item reveal">
-          <img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fresh vegetables at FairPrice supermarket" />
-        </div>
-        <div class="gallery-item reveal">
-          <img src="https://images.pexels.com/photos/9705821/pexels-photo-9705821.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Organic dairy section at FairPrice" />
-        </div>
-        <div class="gallery-item reveal">
-          <img src="https://images.pexels.com/photos/4971924/pexels-photo-4971924.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Clean, well-stocked shelves at FairPrice" />
-        </div>
-        <div class="gallery-item reveal">
-          <img src="https://images.pexels.com/photos/37539928/pexels-photo-37539928.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Warm, inviting checkout area with smiling staff" />
-        </div>
+      <div class="footer-bottom">
+        © 2026 FairPrice. All rights reserved.
       </div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <div class="container">
-      <h2>Get in Touch</h2>
-      <div class="contact-container reveal">
-        <form>
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" placeholder="Jane Doe" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="jane@example.com" required />
-          </div>
-          <div class="form-group">
-            <label for="message">Your Message</label>
-            <textarea id="message" placeholder="Hi FairPrice, I'd love to know about your weekly specials..." required></textarea>
-          </div>
-          <button type="submit" class="cta-button form-btn">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container footer-container">
-      <div class="footer-col">
-        <h3>FairPrice</h3>
-        <p>Your neighborhood grocery, done right. Fresh, fair, and friendly — a place where community matters.</p>
-        <div class="social-links">
-          <a href="#">Facebook</a>
-          <a href="#">Instagram</a>
-          <a href="#">Email</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h3>Quick Links</h3>
-        <a href="#features">Products</a>
-        <a href="#about">About Us</a>
-        <a href="#testimonials">Reviews</a>
-        <a href="#gallery">Gallery</a>
-      </div>
-      <div class="footer-col">
-        <h3>Hours</h3>
-        <p>Monday - Friday: 7am - 9pm</p>
-        <p>Saturday - Sunday: 8am - 10pm</p>
-        <p>Every holiday: 8am - 8pm</p>
-      </div>
-    </div>
-    <div class="copyright">
-      &copy; 2026 FairPrice. All rights reserved. | Designed with care for our community.
     </div>
   </footer>
 
   <script>
-    // Sticky Nav
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('mainNav');
+    // Sticky Navbar
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
       if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
+        navbar.classList.add('scrolled');
       } else {
-        nav.classList.remove('scrolled');
+        navbar.classList.remove('scrolled');
       }
     });
 
-    // Mobile Menu Toggle
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
+    // Scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('appear');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      animateElements.forEach(el => {
+        observer.observe(el);
+      });
     });
 
-    // Reveal Animations
-    const revealElements = document.querySelectorAll('.reveal');
-
-    const revealOnScroll = () => {
-      revealElements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        if (elementPosition < windowHeight - 100) {
-          element.classList.add('visible');
-        }
-      });
-    };
-
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('load', revealOnScroll);
-
-    // Hero staggered reveal
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-      heroContent.style.animationDelay = '0.2s';
-    }
-
-    // Add parallax effect to hero
-    window.addEventListener('scroll', () => {
-      const hero = document.querySelector('.hero');
-      const scrollValue = window.scrollY;
-      hero.style.backgroundPositionY = scrollValue * 0.5 + 'px';
-    });
-
-    // Form submit interaction
-    const form = document.querySelector('form');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const message = document.getElementById('message').value;
-        alert('Thank you for your message! We’ll get back to you soon.');
-        form.reset();
-      });
-    }
-
-    // Smooth scroll for navigation
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1463,48 +892,12 @@
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
           window.scrollTo({
-            top: targetElement.offsetTop - 70,
+            top: targetElement.offsetTop - 80,
             behavior: 'smooth'
           });
         }
-        if (navLinks.classList.contains('show')) {
-          navLinks.classList.remove('show');
-        }
       });
     });
-
-    // Add animation delay for testimonial cards
-    document.querySelectorAll('.testimonial-card').forEach((card, index) => {
-      card.style.animationDelay = `${index * 0.2}s`;
-    });
-
-    // Add animation delay for feature cards
-    document.querySelectorAll('.feature-card').forEach((card, index) => {
-      card.style.animationDelay = `${index * 0.15}s`;
-    });
-
-    // Add animation delay for gallery items
-    document.querySelectorAll('.gallery-item').forEach((item, index) => {
-      item.style.animationDelay = `${index * 0.1}s`;
-    });
-
-    // Contact section delay
-    const contactContainer = document.querySelector('.contact-container');
-    if (contactContainer) {
-      contactContainer.style.animationDelay = '0.4s';
-    }
-
-    // Add fade-in animation to the footer
-    const footer = document.querySelector('footer');
-    if (footer) {
-      window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        const windowHeight = window.innerHeight;
-        if (scrollPosition > document.body.scrollHeight - windowHeight - 500) {
-          footer.style.opacity = 1;
-        }
-      });
-    }
   </script>
-<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=RmFpclByaWNl&u=dmlzaXQ&s=d7dca772c59ddc180354b3deb104a107&beacon=1&l=b3NtLW5vZGUtMzcwNzUwMzEz";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:5e7a7d85ae--></html>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=RmFpclByaWNl&u=dmlzaXQ&s=d7dca772c59ddc180354b3deb104a107&beacon=1&l=b3NtLW5vZGUtMzY5MTI4MTcx";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:239a4c299c--></html>
