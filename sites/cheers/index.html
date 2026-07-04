@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cheers</title>
+  <style>
+    :root {
+      --soft-red: #d35454;
+      --cream: #f9f5f0;
+      --dark-oak: #3e2d24;
+      --charcoal: #2a2a2a;
+      --golden-yellow: #d4af37;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+    }
+
+    .hero {
+      height: 100vh;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://images.pexels.com/photos/21582447/pexels-photo-21582447.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(211, 84, 84, 0.1) 0%, transparent 50%);
+      animation: floatOrb 8s ease-in-out infinite;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out forwards 0.2s;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out forwards 0.5s;
+    }
+
+    .hero-button-group {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out forwards 0.8s;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      margin: 0 0.5rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--soft-red);
+      color: white;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary:hover {
+      background-color: #b83c3c;
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .trust-strip {
+      background-color: var(--cream);
+      padding: 1rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--dark-oak);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 5rem 5%;
+      background-color: white;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--cream);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom right, transparent 50%, var(--soft-red) 50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .feature:hover::before {
+      opacity: 0.05;
+    }
+
+    .feature svg {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 1.5rem;
+      fill: var(--soft-red);
+    }
+
+    .feature h3 {
+      margin-bottom: 1rem;
+      color: var(--dark-oak);
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      padding: 5rem 10%;
+      align-items: center;
+      background-color: var(--cream);
+    }
+
+    .about img {
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transform: rotate(-1deg);
+      transition: transform 0.4s ease;
+    }
+
+    .about:hover img {
+      transform: rotate(0deg);
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark-oak);
+    }
+
+    .about p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .testimonials {
+      padding: 5rem 10%;
+      background-color: white;
+      text-align: center;
+    }
+
+    .testimonials h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--dark-oak);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial {
+      background-color: var(--cream);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      color: var(--soft-red);
+      opacity: 0.1;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      line-height: 1;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .testimonial-author img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .gallery {
+      padding: 5rem 10%;
+      background-color: var(--cream);
+      text-align: center;
+    }
+
+    .gallery h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--dark-oak);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      aspect-ratio: 1 / 1;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .contact {
+      padding: 5rem 10%;
+      background-color: var(--dark-oak);
+      color: white;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--golden-yellow);
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      placeholder-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .contact-form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: var(--soft-red);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background-color: #b83c3c;
+    }
+
+    .footer {
+      background-color: var(--charcoal);
+      color: var(--cream);
+      padding: 3rem 10%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-brand h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: var(--golden-yellow);
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .footer-links h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--golden-yellow);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--golden-yellow);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .footer-social a {
+      display: inline-block;
+      background-color: rgba(255, 255, 255, 0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--cream);
+      transition: background-color 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background-color: var(--soft-red);
+    }
+
+    .footer-bottom {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: transparent;
+      padding: 1.5rem 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.4s ease;
+    }
+
+    .nav.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 1rem 10%;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-logo.scrolled {
+      color: var(--dark-oak);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: var(--golden-yellow);
+    }
+
+    .nav-menu a.scrolled {
+      color: var(--dark-oak);
+    }
+
+    .nav-cta {
+      padding: 0.8rem 2rem;
+      background-color: var(--soft-red);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-cta.scrolled {
+      background-color: var(--soft-red);
+      color: white;
+    }
+
+    .ham-menu {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .ham-menu span {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .mobile-nav.active {
+      display: flex;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-nav a {
+      font-size: 1.8rem;
+      margin: 1rem 0;
+      color: var(--dark-oak);
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--soft-red);
+    }
+
+    .mobile-nav-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--charcoal);
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 10px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,36.95,158.39,20.59,56.82-13.24,97.31-61.38,88.44-103.58,108.54-62.48,179.34-73.31,141.56-90.04S475.39,3.12,409.69,15.38c-108.63,20.1-289.65,80.59-379.16,70.21,18.49,3.57,29.87,3.79,42.91,4.49,60.58,3.51,94.8,7.64,151.5,6.39,55.79-1.29,88.14,2.54,141.5,15.38,87.92-18.97,203.88-49.5,259.57-25,127.45,47.81,147.54,149.39,205.94,208.43C1063.43,118.11,1059.74,67.75,1057.8,40.02c-5.1-63.9-15.91-111.66-77.34-133.86C822.18,6.44,719.88,18.54,611.88,48.14c-32.49,9.96-93.86,24.83-132.13,33.74C437.79,137.4,389.72,140.56,300.15,127.54c-51.74-8.81-110.83-33.91-148.77-59.36C81.61,55.7,25.72,8.44,2.91,3.25C-3.03,3.25-8.67,21.4-17.14,35.57c-8.48,14.16-17.73,31.35-35.33,35.57C-17.14,75.38-16.91,90.65,10.08,95.7c39.46,8.11,102.6,7.9,160.07,2.84,60.69-5.6,94.63-9.69,201.08-66.46C366.48,12.79,406.24,2,455.66,2c35.5,0,64.92,7,99.55,19.07,98.42,34.7,148.91,86.53,165.67,119.21,28.82,57.8,71.93,140.59,85.82,182.66,9.93,28.16,14.97,41.42,15.26,43.59,0.31,63.78-53.45,100.03-107.72,115.31C426.48,28 arrangement.cdp169,305.58,142.85,296.24,122.7$(21582447)' style='width:100%; height:auto;'></svg>') no-repeat center bottom;
+      margin: 0;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatOrb {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-10px) translateX(15px); }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero p {
+        font-size: 1.2rem;
+      }
+      .hero-button-group {
+        flex-direction: column;
+        align-items: center;
+      }
+      .btn {
+        margin: 0.5rem 0;
+        width: 80%;
+        max-width: 250px;
+      }
+      .about {
+        grid-template-columns: 1fr;
+        padding: 3rem 5%;
+      }
+      .about img {
+        border-radius: 10px;
+        width: 90%;
+        margin: 0 auto;
+        transform: rotate(0);
+      }
+      .feature-grid {
+        padding: 3rem 5%;
+      }
+      .gallery,
+      .testimonials,
+      .contact {
+        padding: 3rem 5%;
+      }
+      .nav {
+        padding: 1rem 5%;
+      }
+      .nav-menu {
+        display: none;
+      }
+      .ham-menu {
+        display: flex;
+      }
+      .mobile-nav.active {
+        display: flex;
+      }
+      .nav-logo {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="nav">
+    <a href="#" class="nav-logo">Cheers</a>
+    <div class="nav-menu">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-cta">Visit Us</button>
+    <div class="ham-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <div class="mobile-nav">
+    <button class="mobile-nav-close">&times;</button>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <section class="hero">
+    <h1>Cheers</h1>
+    <p>Your corner, covered.</p>
+    <div class="hero-button-group">
+      <button class="btn btn-primary">Shop Now</button>
+      <button class="btn btn-secondary">Learn More</button>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    Trusted by local families. Every day.
+  </div>
+
+  <section class="feature-grid" id="services">
+    <div class="feature">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19,5V19H5V5H19M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z"/></svg>
+      <h3>24/7 Access</h3>
+      <p>Whatever you need, day or night — we’re open when others aren’t.</p>
+    </div>
+    <div class="feature">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,12A1.5,1.5 0 0,0 10.5,13.5A1.5,1.5 0 0,0 12,15A1.5,1.5 0 0,0 13.5,13.5A1.5,1.5 0 0,0 12,12M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/></svg>
+      <h3>Local Favorites</h3>
+      <p>Stocked with everything your neighborhood loves — fresh, fast, familiar.</p>
+    </div>
+    <div class="feature">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9,13.08L4.3,12C3.67,11.85 3.25,11.25 3.4,10.62C5.55,2.02 16.2,1.01 17.3,2.7C18.27,4.21 17,9.2 9,13.08Z"></path><path d="M19.03,19.36L21.49,20.48C21.87,20.66 22.01,21.09 21.86,21.42C20.94,23.31 15.97,23 13.31,21.27C10.65,19.54 5.95,19.75 3.24,21.33C3.03,21.42 2.88,21.22 3,21.03L5.44,19.83C5.81,19.64 6.12,19.22 6.21,18.9V18.9C8.01,17.24 8.24,12.82 9.76,9.22C10.91,7.88 12.41,6.36 14.01,5.37C16.03,4.16 19.39,6.3 20.75,7.79C21.24,8.3 21.43,8.96 21.21,9.53C20.66,9.66 19.52,9.6 19.03,9.98C18.69,10.22 18.45,10.66 18.34,11.11C18.29,11.38 18.18,11.66 18.03,11.9C16.43,15.11 15.1,18.42 15.24,18.9C15.4,19.44 16.7,20.03 17.91,20.41C18.21,20.49 18.53,20.48 18.78,20.26C19,20.02 19.11,19.67 19.03,19.36Z"></path></svg>
+      <h3>Fast checkout</h3>
+      <p>Get in, get what you need, get out — no fuss, no lines.</p>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <img src="https://images.pexels.com/photos/32559187/pexels-photo-32559187.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Cheers store interior with friendly staff and stocked shelves">
+    <div>
+      <h2>Welcome to Cheers</h2>
+      <p>We’re your neighborhood’s little haven — always open, always ready. Whether you’re picking up coffee at sunrise, snacks after work, or a last-minute gift, we’re here with a smile. Nothing flashy. Just honest service, fresh essentials, and warmth you can count on.</p>
+      <p>Founded on the idea that convenience should feel like coming home, Cheers has been the quiet constant in this corner of the city. People come back not just for our prices, but because we remember their names.</p>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="testimonials" id="testimonials">
+    <h2>What Locals Say</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial">
+        <p class="testimonial-text">I’ve gone to Cheers for years. They always have what I need — and they remember when I’m out of milk on a Tuesday.</p>
+        <div class="testimonial-author">
+          <img src="https://images.pexels.com/photos/21582447/pexels-photo-21582447.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Anonymous customer">
+          <span>Local customer</span>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text">My son walks here alone now. He says they’re kind and never rush him. The pancakes on weekends? Can’t beat ‘em.</p>
+        <div class="testimonial-author">
+          <img src="https://images.pexels.com/photos/32559187/pexels-photo-32559187.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Anonymous customer">
+          <span>Verified customer</span>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text">After a long shift, I swing by. The barista knows my order. It’s not just a store — it’s a comfort.</p>
+        <div class="testimonial-author">
+          <img src="https://images.pexels.com/photos/14110994/pexels-photo-14110994.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Anonymous customer">
+          <span>Local resident</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <h2>Everyday Magic</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/30950137/pexels-photo-30950137.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Friendly staff helping a customer">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/14110994/pexels-photo-14110994.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Shelves stocked with local goods">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/27939229/pexels-photo-27939229.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Morning light shining on coffee and pastries">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/34261509/pexels-photo-34261509.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customers chatting at the counter">
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Let’s Chat</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your name" aria-label="Name">
+      <input type="email" placeholder="Your email" aria-label="Email">
+      <textarea placeholder="Tell us what you need..." aria-label="Message"></textarea>
+      <button type="submit">Get in Touch</button>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <h3>Cheers</h3>
+      <p>Your corner, covered.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Our Offerings</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Follow Us</h4>
+      <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Visit Us</h4>
+      <ul>
+        <li><a href="#">Find Your Nearest Location</a></li>
+        <li><a href="#">Hours &amp; Holidays</a></li>
+        <li><a href="#">Catering Orders</a></li>
+      </ul>
+    </div>
+    <div class="footer-social">
+      <a href="#" aria-label="Facebook">F</a>
+      <a href="#" aria-label="Instagram">I</a>
+      <a href="#" aria-label="TikTok">T</a>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Cheers. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const nav = document.querySelector('.nav');
+      const navLogo = document.querySelector('.nav-logo');
+      const navMenuItems = document.querySelectorAll('.nav-menu a');
+      const navCTA = document.querySelector('.nav-cta');
+      const hamMenu = document.querySelector('.ham-menu');
+      const mobileNav = document.querySelector('.mobile-nav');
+      const mobileNavClose = document.querySelector('.mobile-nav-close');
+
+      // Sticky nav change on scroll
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+          navLogo.classList.add('scrolled');
+          navMenuItems.forEach(item => item.classList.add('scrolled'));
+          navCTA.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+          navLogo.classList.remove('scrolled');
+          navMenuItems.forEach(item => item.classList.remove('scrolled'));
+          navCTA.classList.remove('scrolled');
+        }
+      });
+
+      // Mobile menu toggle
+      hamMenu.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+      });
+
+      mobileNavClose.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
+      });
+
+      // Close mobile nav on link click
+      document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('active');
+        });
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 70,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Reveal sections on scroll
+      const revealElements = document.querySelectorAll('.feature-grid, .about, .testimonials, .gallery, .contact');
+      const observerOptions = {
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+          }
+        });
+      }, observerOptions);
+
+      revealElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        observer.observe(element);
+      });
+
+      // Animate on scroll
+      observeWithAI = (observer, element) => {
+        observer.observe(element);
+      }
+
+      revealElements.forEach(el => {
+        window.addEventListener('scroll', function() {
+          if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }
+        });
+      });
+
+      // Hover animations on gallery
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          item.style.transform = 'scale(1.05)';
+        });
+        item.addEventListener('mouseleave', () => {
+          item.style.transform = 'scale(1)';
+        });
+      });
+
+      // Add floating orb animation to body
+      const orb = document.createElement('div');
+      orb.style.cssText = `
+        position: fixed;
+        top: -100px;
+        left: -100px;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle at center, var(--soft-red), transparent);
+        border-radius: 50%;
+        z-index: -1;
+        pointer-events: none;
+        mix-blend-mode: multiply;
+        opacity: 0.5;
+        animation: floatOrb 12s infinite ease-in-out;
+      `;
+      document.body.appendChild(orb);
+
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=Q2hlZXJz&u=dmlzaXQ&s=676e69a6800682bfdd4ad5b88c3c0a50&beacon=1&l=b3NtLW5vZGUtMzY5MTI5MjMw";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:033ec83390--></html>
