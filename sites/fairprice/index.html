@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FairPrice - Everyday value. Every day.</title>
+  <title>FairPrice — Everyday value, every day</title>
   <style>
     :root {
-      --primary: #2E8B57;
-      --light: #F5F5DC;
-      --gray: #D3D3D3;
-      --dark-green: #6B8E23;
-      --white: #FFFFFF;
+      --primary-green: #4a9d6b;
+      --cream-white: #fefaf5;
+      --warm-gray: #e6e0d5;
+      --earth-brown: #6d5a48;
+      --accent-teal: #00b8a4;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --border-radius: 12px;
     }
 
     * {
@@ -22,80 +25,67 @@
     body {
       font-family: 'Open Sans', sans-serif;
       color: #333;
+      background-color: var(--cream-white);
       line-height: 1.6;
       overflow-x: hidden;
-      background-color: var(--white);
     }
 
     h1, h2, h3, h4 {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-
-    h1 {
-      font-size: 3.5rem;
       line-height: 1.2;
     }
 
+    h1 {
+      font-size: 4rem;
+    }
+
     h2 {
-      font-size: 2.8rem;
-      margin-bottom: 1.5rem;
+      font-size: 2.75rem;
     }
 
     h3 {
       font-size: 1.8rem;
-      margin-bottom: 1rem;
     }
 
     p {
-      font-size: 1.1rem;
       margin-bottom: 1.5rem;
+      color: #444;
     }
 
     a {
-      color: var(--primary);
       text-decoration: none;
-      transition: color 0.3s ease;
+      color: var(--primary-green);
+      transition: all 0.3s ease;
     }
 
     a:hover {
-      color: var(--dark-green);
+      color: var(--accent-teal);
     }
 
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Sticky Navbar */
-    .navbar {
+    /* --- Sticky Nav --- */
+    nav {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: transparent;
-      padding: 1rem 0;
-      transition: background 0.4s ease;
-    }
-
-    .navbar.scrolled {
-      background-color: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      padding: 0.8rem 0;
-    }
-
-    .navbar .container {
+      padding: 1.5rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: transparent;
+      transition: background 0.4s ease, padding 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1rem 5%;
+      box-shadow: var(--shadow-md);
     }
 
     .logo {
-      font-size: 1.8rem;
+      font-size: 2.1rem;
       font-weight: 800;
-      color: var(--primary);
+      color: var(--earth-brown);
       letter-spacing: -0.5px;
     }
 
@@ -107,8 +97,7 @@
     .nav-links a {
       font-weight: 600;
       font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      color: #444;
       position: relative;
     }
 
@@ -119,7 +108,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background-color: var(--primary);
+      background-color: var(--accent-teal);
       transition: width 0.3s ease;
     }
 
@@ -128,35 +117,39 @@
     }
 
     .cta-button {
-      background-color: var(--primary);
-      color: var(--white);
+      background-color: var(--primary-green);
+      color: white;
       padding: 0.8rem 2rem;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 1.1rem;
+      border-radius: 50px;
+      font-weight: 600;
       border: none;
       cursor: pointer;
+      font-size: 1rem;
       transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      box-shadow: var(--shadow-sm);
     }
 
     .cta-button:hover {
-      background-color: var(--dark-green);
+      background-color: var(--accent-teal);
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(46, 139, 87, 0.3);
+      box-shadow: var(--shadow-md);
     }
 
-    /* Hero */
+    /* --- Hero --- */
     .hero {
       height: 100vh;
+      width: 100%;
       background-image: url('https://images.pexels.com/photos/33690927/pexels-photo-33690927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
       background-size: cover;
       background-position: center;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
+      text-align: center;
       position: relative;
       overflow: hidden;
+      color: white;
     }
 
     .hero::before {
@@ -166,131 +159,181 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(rgba(46, 139, 87, 0.6), rgba(46, 139, 87, 0.2));
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
       z-index: 1;
     }
 
     .hero-content {
-      position: relative;
       z-index: 2;
-      color: var(--white);
-      max-width: 600px;
-      animation: fadeInUp 1.2s ease-out;
+      max-width: 800px;
+      padding: 0 2rem;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero h1 {
-      color: var(--white);
-      margin-bottom: 1.5rem;
-      font-size: 4rem;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      color: white;
     }
 
     .hero p {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       margin-bottom: 2rem;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
     }
 
     .hero-buttons {
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
+      justify-content: center;
     }
 
     .hero-buttons .cta-button {
-      background-color: rgba(255, 255, 255, 0.9);
-      color: var(--primary);
-      border: 2px solid rgba(255, 255, 255, 0.9);
+      background-color: white;
+      color: var(--earth-brown);
     }
 
     .hero-buttons .cta-button:hover {
-      background-color: var(--white);
-      color: var(--primary);
-      border-color: var(--white);
+      background-color: var(--cream-white);
+      color: var(--accent-teal);
+      transform: scale(1.05);
     }
 
-    /* Trust Strip */
+    /* --- Trust Strip --- */
     .trust-strip {
-      background-color: var(--light);
-      padding: 1.5rem 0;
-      text-align: center;
-      font-weight: 600;
+      background-color: var(--warm-gray);
+      padding: 2rem 5%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 3rem;
       font-size: 1.1rem;
-      color: var(--primary);
-      border-bottom: 1px solid var(--gray);
+      color: var(--earth-brown);
     }
 
-    /* Services */
-    .services {
-      padding: 6rem 0;
-      background-color: var(--white);
-    }
-
-    .section-header {
+    .trust-item {
       text-align: center;
+    }
+
+    .trust-item:not(:last-child)::after {
+      content: '|';
+      margin: 0 1.5rem;
+      color: var(--primary-green);
+    }
+
+    /* --- Features --- */
+    .features {
+      padding: 8rem 5%;
+      background-color: white;
+      text-align: center;
+    }
+
+    .section-heading {
       margin-bottom: 4rem;
+      position: relative;
+      font-size: 2.75rem;
+      color: var(--earth-brown);
     }
 
-    .section-header h2 {
-      color: var(--primary);
+    .section-heading::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--accent-teal);
     }
 
-    .services-grid {
+    .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
     }
 
-    .service-card {
-      background-color: var(--white);
-      border-radius: 16px;
-      padding: 2rem;
+    .feature-card {
+      background-color: var(--cream-white);
+      padding: 2.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-md);
+      transition: all 0.4s ease;
       text-align: center;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      border: 1px solid var(--gray);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(46, 139, 87, 0.1);
+    .feature-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: var(--shadow-md);
     }
 
-    .service-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background-color: rgba(46, 139, 87, 0.1);
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(74, 157, 107, 0.05), rgba(0, 184, 164, 0.05));
+      z-index: -1;
+      border-radius: var(--border-radius);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1.5rem;
-      color: var(--primary);
-      font-size: 2rem;
+      background-color: rgba(74, 157, 107, 0.1);
+      border-radius: 50%;
     }
 
-    .service-card h3 {
+    .feature-icon svg {
+      fill: var(--primary-green);
+    }
+
+    .feature-card h3 {
       margin-bottom: 1rem;
-      color: var(--primary);
+      color: var(--earth-brown);
     }
 
-    /* About */
+    /* --- About --- */
     .about {
-      padding: 6rem 0;
-      background-color: var(--light);
+      padding: 8rem 5%;
+      background-color: var(--cream-white);
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
 
     .about-image {
       flex: 1;
-      border-radius: 16px;
+      min-width: 300px;
+      border-radius: var(--border-radius);
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow-md);
+      position: relative;
     }
 
     .about-image img {
       width: 100%;
       height: auto;
+      display: block;
       transition: transform 0.6s ease;
     }
 
@@ -300,11 +343,13 @@
 
     .about-content {
       flex: 1;
-      padding-left: 4rem;
+      min-width: 300px;
+      padding-left: 5rem;
+      padding-right: 1rem;
     }
 
     .about-content h2 {
-      color: var(--primary);
+      color: var(--earth-brown);
       margin-bottom: 1.5rem;
     }
 
@@ -312,213 +357,194 @@
       margin-bottom: 2rem;
     }
 
-    /* Testimonials */
+    /* --- Testimonials --- */
     .testimonials {
-      padding: 6rem 0;
-      background-color: var(--white);
+      padding: 8rem 5%;
+      background-color: white;
+      text-align: center;
     }
 
-    .testimonials-grid {
+    .testimonial-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem;
+      gap: 3rem;
+      margin-top: 4rem;
     }
 
     .testimonial-card {
-      background-color: var(--light);
+      background-color: var(--cream-white);
       padding: 2.5rem;
-      border-radius: 16px;
-      border-left: 5px solid var(--primary);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-md);
       position: relative;
+      text-align: left;
     }
 
     .testimonial-card::before {
-      content: """;
+      content: '"';
       position: absolute;
       top: 20px;
       left: 20px;
       font-size: 6rem;
-      color: rgba(46, 139, 87, 0.1);
       font-family: Georgia, serif;
+      color: rgba(74, 157, 107, 0.1);
       line-height: 1;
     }
 
-    .testimonial-content {
+    .testimonial-text {
+      margin-bottom: 2rem;
       font-style: italic;
-      margin-bottom: 1.5rem;
-      color: #444;
+      color: #333;
     }
 
     .testimonial-author {
       display: flex;
       align-items: center;
+      gap: 1rem;
     }
 
-    .testimonial-avatar {
+    .testimonial-author img {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background-color: var(--gray);
-      margin-right: 1rem;
-      overflow: hidden;
-    }
-
-    .testimonial-avatar img {
-      width: 100%;
-      height: 100%;
       object-fit: cover;
+      border: 2px solid var(--primary-green);
     }
 
-    .testimonial-name {
-      font-weight: 700;
-      color: var(--primary);
+    .author-name {
+      font-weight: 600;
+      color: var(--earth-brown);
     }
 
-    /* Gallery */
+    .author-role {
+      font-size: 0.9rem;
+      color: var(--primary-green);
+    }
+
+    /* --- Gallery --- */
     .gallery {
-      padding: 6rem 0;
-      background-color: var(--light);
-      position: relative;
-    }
-
-    .gallery::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      height: 100px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0,0V80L600,90L1200,80V0H0Z" fill="%23f5f5dc"/></svg>') repeat-x;
-      background-size: 1200px 100px;
-      z-index: 1;
-    }
-
-    .gallery-content {
-      position: relative;
-      z-index: 2;
+      padding: 8rem 5%;
+      background-color: var(--cream-white);
+      text-align: center;
     }
 
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
+      margin-top: 4rem;
     }
 
     .gallery-item {
       position: relative;
-      border-radius: 12px;
       overflow: hidden;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-sm);
       height: 300px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      transition: transform 0.6s ease;
+      cursor: pointer;
+      transition: transform 0.4s ease;
     }
 
     .gallery-item:hover {
-      transform: translateY(-10px) scale(1.02);
+      transform: scale(1.05);
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.8s ease;
+      transition: transform 0.6s ease;
     }
 
     .gallery-item:hover img {
       transform: scale(1.1);
     }
 
-    /* Contact */
+    /* --- Contact --- */
     .contact {
-      padding: 6rem 0;
-      background-color: var(--white);
+      padding: 8rem 5%;
+      background-color: var(--primary-green);
+      color: white;
+      text-align: center;
     }
 
-    .contact-container {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .contact-info {
-      flex: 1;
-      padding-right: 4rem;
-    }
-
-    .contact-info h2 {
-      color: var(--primary);
+    .contact h2 {
       margin-bottom: 2rem;
-    }
-
-    .contact-info p {
-      margin-bottom: 2rem;
+      font-size: 2.75rem;
     }
 
     .contact-form {
-      flex: 1;
+      max-width: 700px;
+      margin: 3rem auto;
+      background-color: white;
+      padding: 3rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-md);
     }
 
     .form-group {
       margin-bottom: 1.5rem;
+      text-align: left;
     }
 
-    .form-control {
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--earth-brown);
+    }
+
+    .form-group input,
+    .form-group textarea {
       width: 100%;
       padding: 1rem;
-      border: 1px solid var(--gray);
-      border-radius: 8px;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-family: 'Open Sans', sans-serif;
       font-size: 1rem;
-      transition: border-color 0.3s ease;
     }
 
-    .form-control:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(46, 139, 87, 0.2);
-    }
-
-    textarea.form-control {
+    .form-group textarea {
       min-height: 150px;
-      resize: vertical;
     }
 
-    /* Footer */
-    .footer {
-      background-color: var(--primary);
-      color: var(--white);
-      padding: 4rem 0 2rem;
+    .contact-button {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: var(--border-radius);
+      background-color: var(--primary-green);
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-button:hover {
+      background-color: var(--accent-teal);
+    }
+
+    /* --- Footer --- */
+    footer {
+      background-color: var(--earth-brown);
+      color: white;
+      padding: 4rem 5% 2rem;
     }
 
     .footer-content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 3rem;
       margin-bottom: 3rem;
     }
 
-    .footer-logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-
-    .footer-brand {
-      color: var(--white);
-    }
-
-    .footer-text {
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 1rem;
-    }
-
-    .footer-links h3 {
-      font-size: 1.5rem;
+    .footer-section h3 {
       margin-bottom: 1.5rem;
-      color: var(--white);
+      font-size: 1.5rem;
     }
 
-    .footer-links ul {
+    .footer-links {
       list-style: none;
     }
 
@@ -527,377 +553,381 @@
     }
 
     .footer-links a {
-      color: rgba(255, 255, 255, 0.8);
+      color: #ddd;
       transition: color 0.3s ease;
     }
 
     .footer-links a:hover {
-      color: var(--light);
+      color: var(--accent-teal);
     }
 
-    .footer-social {
-      display: flex;
-      gap: 1.5rem;
+    .social-icons a {
+      display: inline-block;
+      margin-right: 1rem;
+      color: #ddd;
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
     }
 
-    .social-link {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--white);
-      transition: background-color 0.3s ease;
+    .social-icons a:hover {
+      color: var(--accent-teal);
     }
 
-    .social-link:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .footer-bottom {
+    .copyright {
       text-align: center;
-      padding-top: 2rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
-      color: rgba(255, 255, 255, 0.6);
+      padding-top: 2rem;
       font-size: 0.9rem;
+      color: #bbb;
     }
 
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-on-scroll {
+    /* --- Animations --- */
+    .section-animated {
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    .animate-on-scroll.appear {
+    .section-animated.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* Responsive */
-    @media (max-width: 992px) {
-      .hero h1 {
-        font-size: 3.5rem;
-      }
-      .about,
-      .about-content {
-        margin-bottom: 4rem;
-      }
-      .about-content {
-        padding-left: 2rem;
-      }
-      .contact-info {
-        padding-right: 2rem;
-      }
+    /* --- Mobile Responsive --- */
+    @media (max-width: 1024px) {
+      h1 { font-size: 3.5rem; }
+      h2 { font-size: 2.5rem; }
+      h3 { font-size: 1.6rem; }
     }
 
     @media (max-width: 768px) {
-      h1 {
-        font-size: 3rem;
-      }
-      h2 {
-        font-size: 2.5rem;
-      }
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-      .hero p {
-        font-size: 1.2rem;
+      h1 { font-size: 3rem; }
+      h2 { font-size: 2.2rem; }
+      nav {
+        padding: 1rem 3%;
       }
       .nav-links {
         display: none;
       }
-      .mobile-menu {
-        display: block;
-        font-size: 2rem;
-        cursor: pointer;
+      .hero h1 {
+        font-size: 3rem;
       }
-      .about-image {
-        margin-bottom: 2rem;
+      .hero p {
+        font-size: 1.3rem;
       }
-      .about-content {
-        padding-left: 0;
-      }
-      .contact-container {
+      .about {
         flex-direction: column;
       }
-      .contact-info {
-        padding-right: 0;
+      .about-content {
+        padding: 0 2rem;
+        text-align: center;
+        margin-top: 3rem;
+      }
+      .about-image {
         margin-bottom: 3rem;
+      }
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+      .contact-form {
+        padding: 2rem;
       }
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 480px) {
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; }
       .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
       }
       .hero-buttons {
         flex-direction: column;
+        gap: 1rem;
       }
-      .cta-button {
-        padding: 0.8rem 1.5rem;
-      }
-      .services-grid,
-      .testimonials-grid,
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
-      .footer-content {
-        gap: 2rem;
+      .contact-button {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="container">
-      <a href="#" class="logo">FairPrice</a>
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <button class="cta-button">Shop Now</button>
+  <nav id="mainNav">
+    <div class="logo">FairPrice</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
     </div>
+    <button class="cta-button">Shop Now</button>
   </nav>
 
-  <section id="home" class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h1>FairPrice</h1>
-        <p>Everyday value. Every day.</p>
-        <div class="hero-buttons">
-          <button class="cta-button">Shop Online</button>
-          <button class="cta-button">Find a Store</button>
-        </div>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>FairPrice</h1>
+      <p>Everyday value, every day</p>
+      <div class="hero-buttons">
+        <button class="cta-button">Explore Products</button>
+        <button class="cta-button">Find a Store</button>
       </div>
     </div>
   </section>
 
-  <div class="trust-strip">
-    Trusted by local customers for everyday value
-  </div>
+  <section class="trust-strip">
+    <div class="trust-item">Trusted by local families</div>
+    <div class="trust-item">Fresh, daily deliveries</div>
+    <div class="trust-item">Affordable prices with quality</div>
+    <div class="trust-item">Friendly local service</div>
+  </section>
 
-  <section id="services" class="services">
-    <div class="container">
-      <div class="section-header">
-        <h2>Our Services</h2>
-        <p>Quality groceries you can trust, all under one roof.</p>
+  <section class="features" id="features">
+    <h2 class="section-heading">Our Core Values</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 16V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Everyday Low Prices</h3>
+        <p>Discover consistently low prices across hundreds of products without compromise on quality.</p>
       </div>
-      <div class="services-grid">
-        <div class="service-card animate-on-scroll">
-          <div class="service-icon">🛒</div>
-          <h3>Fresh Produce</h3>
-          <p>Locally sourced fruits and vegetables sourced daily, picked at peak ripeness for maximum flavor.</p>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 4C17.1046 4 18 4.89543 18 6V18C18 19.1046 17.1046 20 16 20H8C6.89543 20 6 19.1046 6 18V6C6 4.89543 6.89543 4 8 4H16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 4V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 4V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 18V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 18V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 12H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
-        <div class="service-card animate-on-scroll">
-          <div class="service-icon">🥩</div>
-          <h3>Meat & Seafood</h3>
-          <p>High-quality, ethically raised meats and sustainably caught seafood, always fresh and properly stored.</p>
+        <h3>Fresh & Local Produce</h3>
+        <p>Support local farmers with daily fresh fruit, vegetables, dairy and meats delivered from nearby.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
-        <div class="service-card animate-on-scroll">
-          <div class="service-icon">🛒</div>
-          <h3>Everyday Low Prices</h3>
-          <p>No haggling, no coupons needed—every day, every item, our best price guaranteed.</p>
-        </div>
+        <h3>Everyday Value</h3>
+        <p>Quality you trust at prices that make sense — no hidden markups, just honest savings.</p>
       </div>
     </div>
   </section>
 
-  <section id="about" class="about">
-    <div class="container">
-      <div class="about-image animate-on-scroll">
-        <img src="https://images.pexels.com/photos/8422731/pexels-photo-8422731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="FairPrice store interior with happy customers">
-      </div>
-      <div class="about-content animate-on-scroll">
-        <h2>Welcome to FairPrice</h2>
-        <p>Founded with one simple belief: that quality groceries should be affordable for everyone. We’re not a chain—we’re your neighborhood supermarket, dedicated to serving our local community with honesty, consistency, and warmth.</p>
-        <p>Our staff are your neighbors. Our shelves hold products carefully selected by people who know the value of good food. Every aisle is designed for ease, every price for fairness.</p>
-        <p>No fancy gimmicks. Just real food, real value, and real service—every day.</p>
-      </div>
+  <section class="about" id="about">
+    <div class="about-image">
+      <img src="https://images.pexels.com/photos/9050560/pexels-photo-9050560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="FairPrice store interior with smiling staff and customers">
+    </div>
+    <div class="about-content">
+      <h2>More Than a Supermarket</h2>
+      <p>FairPrice has been a neighborhood cornerstone since our first local customer walked through our doors. We're not just about groceries — we're about building community. Our team knows you by name, remembers your favorite items, and always goes the extra mile to help.</p>
+      <p>Our shelves are stocked with local produce, responsibly sourced pantry staples, and household essentials you can trust. We believe in transparency, affordability, and service — and we show it every day.</p>
     </div>
   </section>
 
-  <section id="testimonials" class="testimonials">
-    <div class="container">
-      <div class="section-header">
-        <h2>What Our Customers Say</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card animate-on-scroll">
-          <p class="testimonial-content">The prices are unmatched and the staff always remembers my name. I’ve been shopping here for over 15 years — I wouldn’t go anywhere else.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <img src="https://images.pexels.com/photos/33690927/pexels-photo-33690927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer">
-            </div>
-            <div class="testimonial-name">Local Client</div>
-          </div>
-        </div>
-        <div class="testimonial-card animate-on-scroll">
-          <p class="testimonial-content">I started shopping here after budgeting became tight. Not just because of the prices, but because the food is always fresh and the store is clean and welcoming.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <img src="https://images.pexels.com/photos/8422731/pexels-photo-8422731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer">
-            </div>
-            <div class="testimonial-name">Verified Customer</div>
-          </div>
-        </div>
-        <div class="testimonial-card animate-on-scroll">
-          <p class="testimonial-content">They have the best selection of international staples on this side of town. My kids love the fresh bread and fruits. It’s more than a supermarket — it’s a community.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer">
-            </div>
-            <div class="testimonial-name">Loyal Patron</div>
+  <section class="testimonials" id="testimonials">
+    <h2 class="section-heading">What Our Customers Say</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">I’ve tried every supermarket in town. FairPrice is the only one that feels like home. Their prices are unreal and the staff actually care.</p>
+        <div class="testimonial-author">
+          <img src="https://images.pexels.com/photos/33690927/pexels-photo-33690927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer photo">
+          <div>
+            <div class="author-name">Sarah J.</div>
+            <div class="author-role">Local client</div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="gallery" class="gallery">
-    <div class="container">
-      <div class="gallery-content">
-        <div class="section-header">
-          <h2>Shop Inside</h2>
+      <div class="testimonial-card">
+        <p class="testimonial-text">Every visit feels like a treat — not just for the savings, but for the warmth. Everyone smiles here. That’s rare.</p>
+        <div class="testimonial-author">
+          <img src="https://images.pexels.com/photos/9050560/pexels-photo-9050560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer photo">
+          <div>
+            <div class="author-name">Michael T.</div>
+            <div class="author-role">Verified customer</div>
+          </div>
         </div>
-        <div class="gallery-grid">
-          <div class="gallery-item animate-on-scroll">
-            <img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fresh produce aisle at FairPrice">
-          </div>
-          <div class="gallery-item animate-on-scroll">
-            <img src="https://images.pexels.com/photos/35285857/pexels-photo-35285857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Bakery section at FairPrice">
-          </div>
-          <div class="gallery-item animate-on-scroll">
-            <img src="https://images.pexels.com/photos/37594412/pexels-photo-37594412.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Dairy and refrigerated section at FairPrice">
-          </div>
-          <div class="gallery-item animate-on-scroll">
-            <img src="https://images.pexels.com/photos/26950736/pexels-photo-26950736.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Checkout counter with friendly staff at FairPrice">
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">I’ve been shopping here for 7 years. Nothing has changed — and I wouldn’t want it to. Quality. Price. Kindness.</p>
+        <div class="testimonial-author">
+          <img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer photo">
+          <div>
+            <div class="author-name">Aisha R.</div>
+            <div class="author-role">Loyal patron</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="contact">
-    <div class="container">
-      <div class="contact-container">
-        <div class="contact-info animate-on-scroll">
-          <h2>Get in Touch</h2>
-          <p>Visit us at our local branch or reach out for questions about our products, hours, or special orders.</p>
-          <p>We’re here to serve you with honesty, fairness, and a smile.</p>
-        </div>
-        <div class="contact-form animate-on-scroll">
-          <form>
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" placeholder="Your Email" required>
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" placeholder="Your Message" required></textarea>
-            </div>
-            <button type="submit" class="cta-button">Send Message</button>
-          </form>
-        </div>
+  <section class="gallery" id="gallery">
+    <h2 class="section-heading">In Store</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/4971924/pexels-photo-4971924.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fresh fruit section at FairPrice">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Organic produce aisle">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/35285844/pexels-photo-35285844.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Clean checkout counters">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/19242076/pexels-photo-19242076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer selecting dairy products">
       </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-about">
-          <div class="footer-logo">FairPrice</div>
-          <p class="footer-text">Everyday value. Every day.</p>
-          <p class="footer-text">Your trusted local supermarket, dedicated to quality, fairness, and community.</p>
-        </div>
-        <div class="footer-links">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Our Services</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h3>Connect</h3>
-          <div class="social-links">
-            <div class="footer-social">
-              <a href="#" class="social-link">f</a>
-              <a href="#" class="social-link">i</a>
-              <a href="#" class="social-link">t</a>
-              <a href="#" class="social-link">in</a>
-            </div>
-          </div>
+  <section class="contact" id="contact">
+    <h2>Ready to Visit Us?</h2>
+    <form class="contact-form">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" placeholder="How can we help you today?"></textarea>
+      </div>
+      <button type="submit" class="contact-button">Get In Touch</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>FairPrice</h3>
+        <p>Everyday value, every day. We believe in quality local groceries at honest prices — no marketing gimmicks, just trust and community.</p>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">i</a>
+          <a href="#" aria-label="Twitter">t</a>
         </div>
       </div>
-      <div class="footer-bottom">
-        © 2026 FairPrice. All rights reserved.
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </div>
+      <div class="footer-section">
+        <h3>Shop Hours</h3>
+        <ul class="footer-links">
+          <li>Monday - Friday: 7am - 10pm</li>
+          <li>Saturday: 6am - 11pm</li>
+          <li>Sunday: 7am - 9pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2026 FairPrice. All Rights Reserved.
     </div>
   </footer>
 
   <script>
-    // Sticky Navbar
-    window.addEventListener('scroll', function() {
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-
-    // Scroll animations
-    document.addEventListener('DOMContentLoaded', function() {
-      const animateElements = document.querySelectorAll('.animate-on-scroll');
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('appear');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      animateElements.forEach(el => {
-        observer.observe(el);
-      });
-    });
-
-    // Smooth scrolling for anchor links
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
           window.scrollTo({
-            top: targetElement.offsetTop - 80,
+            top: targetElement.offsetTop - 70,
             behavior: 'smooth'
           });
         }
       });
     });
+
+    // Sticky nav with scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('mainNav');
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Section animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.section-animated').forEach(element => {
+      observer.observe(element);
+    });
+
+    // Initialize visible sections on load
+    document.querySelectorAll('.section-animated').forEach(element => {
+      if (element.getBoundingClientRect().top < window.innerHeight * 0.8) {
+        element.classList.add('visible');
+      }
+    });
+
+    // Hero staggered reveal
+    document.addEventListener('DOMContentLoaded', () => {
+      const heroContent = document.querySelector('.hero-content');
+      const heroButtons = document.querySelector('.hero-buttons');
+      
+      setTimeout(() => {
+        heroContent.classList.add('visible');
+      }, 300);
+
+      setTimeout(() => {
+        const buttonElements = heroButtons.children;
+        for (let i = 0; i < buttonElements.length; i++) {
+          buttonElements[i].classList.add('visible');
+          buttonElements[i].style.transitionDelay = (i * 0.2) + 's';
+        }
+      }, 500);
+    });
+
+    // Contact form submission (prevent default)
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your message! We’ll get back to you soon.');
+        contactForm.reset();
+      });
+    }
   </script>
-<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=RmFpclByaWNl&u=dmlzaXQ&s=d7dca772c59ddc180354b3deb104a107&beacon=1&l=b3NtLW5vZGUtMzY5MTI4MTcx";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:239a4c299c--></html>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=RmFpclByaWNl&u=dmlzaXQ&s=d7dca772c59ddc180354b3deb104a107&beacon=1&l=b3NtLW5vZGUtMzY5MTI4MDU1";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:7bf72b09d7--></html>
