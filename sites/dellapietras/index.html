@@ -1,145 +1,928 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Dellapietras</title>
-<meta name="description" content="Quality you can count on">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Dellapietras">
-<meta property="og:description" content="Quality you can count on">
-<meta property="og:image" content="https://images.pexels.com/photos/7385395/pexels-photo-7385395.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Dellapietras">
-<meta name="twitter:description" content="Quality you can count on">
-<meta name="twitter:image" content="https://images.pexels.com/photos/7385395/pexels-photo-7385395.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{--bg:#0e0c0a;--ink:#f6efe6;--mut:#b6a892;--acc:#e0a060;--card:#171310;--line:rgba(224,160,96,.18)}
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
-  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.05}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
-  nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;
-      padding:18px 28px;backdrop-filter:blur(10px);background:rgba(14,12,10,.55);border-bottom:1px solid var(--line)}
-  nav .brand{font-family:'Fraunces';font-weight:700;font-size:20px;letter-spacing:.3px}
-  nav .links{display:flex;gap:26px;font-size:14px;color:var(--mut)}
-  nav .links a:hover{color:var(--acc)}
-  @media(max-width:720px){nav .links{display:none}}
-  .hero{position:relative;min-height:100vh;display:flex;align-items:center;isolation:isolate}
-  .hero .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;
-            transform:scale(1.05);animation:zoom 18s ease-in-out infinite alternate}
-  .hero::after{content:'';position:absolute;inset:0;z-index:-1;
-            background:linear-gradient(180deg,rgba(14,12,10,.55),rgba(14,12,10,.82) 70%,var(--bg))}
-  @keyframes zoom{to{transform:scale(1.16)}}
-  .hero .inner{padding:120px 0 80px}
-  .eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--acc);
-           margin-bottom:22px;opacity:0;animation:rise .9s .1s forwards}
-  .hero h1{font-size:clamp(44px,9vw,104px);letter-spacing:-.02em;opacity:0;animation:rise 1s .25s forwards}
-  .hero p.tag{margin-top:18px;font-size:clamp(18px,2.4vw,26px);color:var(--mut);max-width:620px;
-              opacity:0;animation:rise 1s .45s forwards}
-  .btn{display:inline-block;margin-top:38px;padding:15px 34px;border-radius:100px;background:var(--acc);color:#221606;
-       font-weight:700;letter-spacing:.02em;opacity:0;animation:rise 1s .6s forwards;transition:transform .25s,box-shadow .25s}
-  .btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(224,160,96,.6)}
-  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
-  section{padding:104px 0}
-  .lead{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
-  .about h2{font-size:clamp(32px,5vw,56px);max-width:14ch;letter-spacing:-.02em}
-  .about p{margin-top:22px;font-size:19px;color:var(--mut);max-width:60ch}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  @media(max-width:820px){.grid3{grid-template-columns:1fr}}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 30px;transition:transform .3s,border-color .3s}
-  .card:hover{transform:translateY(-6px);border-color:var(--acc)}
-  .card-no{font-family:'Fraunces';font-size:34px;color:var(--acc);opacity:.7}
-  .card h3{font-size:23px;margin:10px 0 8px}
-  .card p{color:var(--mut);font-size:15.5px}
-  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  @media(max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}}
-  .gal figure{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
-  .gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-  .gal figure:hover img{transform:scale(1.08)}
-  .gal .ph{width:100%;height:100%;background:linear-gradient(135deg,#1d1712,#0e0c0a)}
-  .contact{background:linear-gradient(180deg,var(--bg),#15110d)}
-  .contact .row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-  @media(max-width:820px){.contact .row{grid-template-columns:1fr}}
-  .contact h2{font-size:clamp(30px,4.5vw,50px);letter-spacing:-.02em}
-  .contact p{color:var(--mut);margin-top:18px;font-size:18px;max-width:46ch}
-  form{display:grid;gap:14px}
-  input,textarea{background:#100d0a;border:1px solid var(--line);border-radius:12px;padding:15px 16px;color:var(--ink);
-                 font-family:inherit;font-size:15px}
-  input:focus,textarea:focus{outline:none;border-color:var(--acc)}
-  textarea{min-height:120px;resize:vertical}
-  form .btn{margin-top:6px;animation:none;opacity:1;border:none;cursor:pointer;font-size:15px}
-  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:13.5px;border-top:1px solid var(--line)}
-  footer .big{font-family:'Fraunces';font-size:26px;color:var(--ink);margin-bottom:10px}
-  .badge{display:inline-block;margin-top:14px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-         color:var(--acc);opacity:.8}
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--d,0ms),transform .7s var(--d,0ms)}
-  .reveal.in{opacity:1;transform:none}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dellapietras</title>
+  <style>
+    :root {
+      --burnt-umber: #654321;
+      --deep-crimson: #8B0000;
+      --ivory: #FFFFF0;
+      --charred-black: #1A120C;
+      --aged-bronze: #9E7B5B;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      color: var(--charred-black);
+      background-color: var(--ivory);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    h1 {
+      font-size: 4.5rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 3.2rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+    }
+
+    a {
+      color: var(--deep-crimson);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--burnt-umber);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Sticky Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: transparent;
+      padding: 1.5rem 0;
+      transition: all 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(255, 255, 240, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      padding: 1rem 0;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--charred-black);
+      letter-spacing: -1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-size: 1.1rem;
+      font-family: 'Lora', serif;
+      font-weight: 500;
+    }
+
+    .cta-button {
+      background-color: var(--deep-crimson);
+      color: var(--ivory);
+      padding: 0.7rem 2rem;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta-button:hover {
+      background-color: var(--burnt-umber);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(139, 0, 0, 0.2);
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background-image: url('https://images.pexels.com/photos/37120986/pexels-photo-37120986.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(26,18,12,0.95), rgba(139,0,0,0.6));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: var(--ivory);
+      max-width: 700px;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+      text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .hero-buttons .cta-button {
+      background-color: rgba(255, 255, 240, 0.9);
+      color: var(--burnt-umber);
+      border: 2px solid var(--aged-bronze);
+      padding: 0.8rem 2.2rem;
+    }
+
+    .hero-buttons .cta-button:hover {
+      background-color: var(--ivory);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(26, 18, 12, 0.25);
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background-color: var(--burnt-umber);
+      color: var(--ivory);
+      padding: 1rem 0;
+      text-align: center;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .trust-strip span {
+      margin: 0 1rem;
+    }
+
+    /* Services */
+    .services {
+      padding: 6rem 0;
+      background-color: var(--ivory);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--aged-bronze);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .service-card {
+      background: var(--ivory);
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s ease;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, transparent, rgba(255, 255, 240, 0.2));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem;
+      background-color: rgba(158, 123, 91, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--deep-crimson);
+      font-size: 3rem;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1);
+    }
+
+    .service-card h3 {
+      margin-bottom: 1rem;
+      color: var(--charred-black);
+    }
+
+    /* About */
+    .about {
+      padding: 6rem 0;
+      background-color: var(--charred-black);
+      color: var(--ivory);
+    }
+
+    .about-container {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transform: perspective(1000px) rotateY(-5deg);
+      transition: transform 0.5s ease;
+    }
+
+    .about-image:hover {
+      transform: perspective(1000px) rotateY(0deg);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-content {
+      flex: 1;
+    }
+
+    .about-content h2 {
+      color: var(--ivory);
+      margin-bottom: 1.5rem;
+      font-size: 3.5rem;
+    }
+
+    .about-content p {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* Social Proof */
+    .testimonials {
+      padding: 6rem 0;
+      background-color: var(--ivory);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .testimonial {
+      background: var(--burnt-umber);
+      color: var(--ivory);
+      padding: 2.5rem;
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: """;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 8rem;
+      color: rgba(255, 255, 240, 0.1);
+      font-family: serif;
+      line-height: 1;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--aged-bronze);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--ivory);
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .testimonial-role {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 6rem 0;
+      background-color: var(--charred-black);
+      color: var(--ivory);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      height: 300px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 6rem 0;
+      background-color: var(--ivory);
+    }
+
+    .contact-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .contact h2 {
+      margin-bottom: 2rem;
+      color: var(--charred-black);
+      font-size: 3.5rem;
+    }
+
+    .contact-form {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 3rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--charred-black);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--aged-bronze);
+      border-radius: 8px;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--deep-crimson);
+      box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+    }
+
+    .contact-btn {
+      margin-top: 2rem;
+      background-color: var(--deep-crimson);
+      color: var(--ivory);
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .contact-btn:hover {
+      background-color: var(--burnt-umber);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--charred-black);
+      color: var(--ivory);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-section h3 {
+      color: var(--aged-bronze);
+      margin-bottom: 1.5rem;
+      font-size: 1.4rem;
+    }
+
+    .footer-section p {
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: var(--ivory);
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 240, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--aged-bronze);
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-icon:hover {
+      background-color: var(--aged-bronze);
+      color: var(--ivory);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(158, 123, 91, 0.2);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* SVG Waves */
+    .wave {
+      width: 100%;
+      margin: -1px 0 0;
+      display: block;
+      margin-bottom: 0;
+      height: 60px;
+      background-repeat: no-repeat;
+      background-position: bottom;
+      background-size: 100% 100%;
+    }
+
+    .wave1 {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M321.39 54.0147C-26.7035 91.9055 -29.9696 107.505 227.759 110.076C726.352 112.647 896.292 58.8712 1171.93 26.1055C1447.57 -6.66028 1489.93 24.7245 1426.67 173.61' stroke='var(--burnt-umber)' stroke-width='6' stroke-linecap='square' stroke-dasharray='10 10'/%3E%3C/svg%3E");
+    }
+
+    .wave2 {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M321.39 54.0147C-26.7035 91.9055 -29.9696 107.505 227.759 110.076C726.352 112.647 896.292 58.8712 1171.93 26.1055C1447.57 -6.66028 1489.93 24.7245 1426.67 173.61' stroke='var(--aged-bronze)' stroke-width='6' stroke-linecap='square' stroke-dasharray='12 8'/%3E%3C/svg%3E");
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 3rem; }
+      h2 { font-size: 2.5rem; }
+      .nav-container { flex-direction: column; }
+      .nav-links { margin-top: 1rem; }
+      .hero h1 { font-size: 3rem; }
+      .hero p { font-size: 1.2rem; }
+      .about-container { flex-direction: column; }
+      .about-image { margin-bottom: 2rem; }
+      .section-title { margin-bottom: 3rem; }
+      .contact h2 { font-size: 2.8rem; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2.5rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1rem; }
+      .section-title h2 { font-size: 2rem; }
+      .service-card { padding: 2rem 1.5rem; }
+      .testimonial { padding: 2rem; }
+    }
+
+    /* Animation for intersection observer */
+    .fade-in-trigger {
+      height: 1px;
+      width: 100%;
+      margin: 0;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<nav>
-  <a class="brand" href="#top">Dellapietras</a>
-  <div class="links">
-    <a href="#top">Home</a><a href="#about">About</a><a href="#services">Services</a>
-    <a href="#gallery">Gallery</a><a href="#contact">Contact</a>
-  </div>
-</nav>
-<header class="hero" id="top">
-  <div class="bg" style="background-image:url('https://images.pexels.com/photos/7385395/pexels-photo-7385395.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940')"></div>
-  <div class="wrap inner">
-    <span class="eyebrow"></span>
-    <h1>Dellapietras</h1>
-    <p class="tag">Quality you can count on</p>
-    <a class="btn" href="#contact">Get in touch</a>
-  </div>
-</header>
-<section class="about wrap" id="about">
-  <div class="lead">About us</div>
-  <h2 class="reveal">Quality you can count on</h2>
-  <p class="reveal" style="--d:120ms">We're a local favourite, proud to serve our community with care and a personal touch. Come and see what makes us different.</p>
-</section>
-<section class="wrap" id="services">
-  <div class="lead">What we offer</div>
-  <div class="grid3"><div class="card reveal"><div class="card-no">01</div><h3>Crafted with care</h3><p>Every detail handled by people who take pride in their work.</p></div>
-<div class="card reveal"><div class="card-no">02</div><h3>Local &amp; personal</h3><p>A warm welcome and service that remembers your name.</p></div>
-<div class="card reveal"><div class="card-no">03</div><h3>Trusted quality</h3><p>The standard our regulars keep coming back for.</p></div></div>
-</section>
-<section class="wrap" id="gallery">
-  <div class="lead">A look inside</div>
-  <div class="gal"><figure class="reveal" style="--d:0ms"><img loading="lazy" src="https://images.pexels.com/photos/6659343/pexels-photo-6659343.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Dellapietras"></figure>
-<figure class="reveal" style="--d:60ms"><img loading="lazy" src="https://images.pexels.com/photos/34417195/pexels-photo-34417195.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Dellapietras"></figure>
-<figure class="reveal" style="--d:120ms"><img loading="lazy" src="https://images.pexels.com/photos/18008026/pexels-photo-18008026.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Dellapietras"></figure>
-<figure class="reveal" style="--d:180ms"><img loading="lazy" src="https://images.pexels.com/photos/8050435/pexels-photo-8050435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Dellapietras"></figure>
-<figure class="reveal" style="--d:240ms"><img loading="lazy" src="https://images.pexels.com/photos/18000843/pexels-photo-18000843.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Dellapietras"></figure>
-<figure class="reveal" style="--d:300ms"><img loading="lazy" src="https://images.pexels.com/photos/6659343/pexels-photo-6659343.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Dellapietras"></figure></div>
-</section>
-<section class="contact" id="contact">
-  <div class="wrap row">
-    <div>
-      <div class="lead">Contact</div>
-      <h2 class="reveal">Come say hello</h2>
-      <p class="reveal" style="--d:120ms">We'd love to welcome you. Find us, call us, or drop by.</p>
+  <nav id="mainNav">
+    <div class="container nav-container">
+      <div class="logo">Dellapietras</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="cta-button">Order Now</button>
     </div>
-    <form class="reveal" style="--d:200ms" onsubmit="return false">
-      <input placeholder="Your name"><input type="email" placeholder="Your email">
-      <textarea placeholder="Your message"></textarea>
-      <button class="btn" type="submit">Send</button>
-    </form>
+  </nav>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Dellapietras</h1>
+      <p>Where Meat Has Memory</p>
+      <div class="hero-buttons">
+        <button class="cta-button">Visit Us</button>
+        <button class="cta-button">View Cuts</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <span>Locally Sourced</span> <span>Handcrafted Daily</span> <span>Trusted Since Day One</span>
   </div>
-</section>
-<footer>
-  <div class="big">Dellapietras</div>
-  <div></div>
-  <div class="badge">★ Website preview crafted by Bridge Digital Solutions</div>
-</footer>
-<script>
-  const io=new IntersectionObserver((es)=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.14});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
+
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Artisan Cuts</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🥩</div>
+          <h3>Prime Cuts</h3>
+          <p>Each steak is hand-selected from heritage-breed animals raised with care. Our dry-aging process brings out deep, complex flavors you won't find elsewhere.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🧱</div>
+          <h3>Whole Animal Butchery</h3>
+          <p>We honor the entire animal by crafting every part with precision. From nose to tail, our butchers transform each cut with tradition and reverence.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📦</div>
+          <h3>Local Delivery</h3>
+          <p>Our cuts arrive frozen at peak freshness, packed in recycled insulation with dry ice. Hand-delivered by our team to your door within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container about-container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/35435758/pexels-photo-35435758.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Artisan butcher at work in traditional shop">
+      </div>
+      <div class="about-content">
+        <h2>Rooted in Tradition</h2>
+        <p>For generations, our family has stood behind this counter, choosing only the finest animals raised with respect and slaughtered with reverence. We do not follow trends. We follow time-honored techniques passed down from master butchers who believed meat tells a story—and we are the keepers of this one.</p>
+        <p>Every cut carries the memory of place, animal, and hand. We work slowly, deliberately. We use no machines for Primary butchery. No plastic wraps. No preservatives. Just salt, time, and skill.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave wave1"></div>
+
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">From Our Neighbors</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p>These are the only chops I buy. The flavor is like nothing I’ve tasted before—you can almost taste the pasture.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">C</div>
+            <div>
+              <div class="testimonial-name">Chloe R.</div>
+              <div class="testimonial-role">Local Customer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>My grandmother used to tell me stories about “that butcher down east.” Now I know—she meant you.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div class="testimonial-name">Marcus T.</div>
+              <div class="testimonial-role">Verified Customer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>The way they handle their heritage pigs—the smell of the smokehouse walk-in… it’s like stepping into 1942. A rare gift.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">L</div>
+            <div>
+              <div class="testimonial-name">Lydia F.</div>
+              <div class="testimonial-role">Restaurant Owner</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave wave2"></div>
+
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Our Craft in Motion</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/26857721/pexels-photo-26857721.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Hand-carved pork shoulder">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/12884547/pexels-photo-12884547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Hand-cut prime steak being wrapped">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/15913562/pexels-photo-15913562.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Butcher wearing apron at workbench">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/15933541/pexels-photo-15933541.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cuts arranged on wooden block">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container contact-container">
+      <h2>Get in Touch</h2>
+      <p>Let us know how we can serve you—whether you're planning a feast, curious about cuts, or just want to say hello.</p>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us about your order or question..."></textarea>
+        </div>
+        <button type="submit" class="contact-btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-section">
+        <h3>Dellapietras</h3>
+        <p>Where Meat Has Memory. Locally sourced, traditionally butchered, delivered with care.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Our Cuts</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#" class="social-icon">📷</a>
+          <a href="#" class="social-icon">𝕏</a>
+          <a href="#" class="social-icon">📘</a>
+          <a href="#" class="social-icon">🟥</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Dellapietras. All rights reserved. No digital certificates. No statistics.</p>
+    </div>
+  </footer>
+
+  <div class="fade-in-trigger"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Nav scroll effect
+      const nav = document.getElementById('mainNav');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      // Fade-in animations
+      const fadeElements = document.querySelectorAll('.service-card, .testimonial, .gallery-item, .about-image');
+      const triggerElement = document.querySelector('.fade-in-trigger');
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const fadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      fadeElements.forEach(el => {
+        el.classList.add('fade-in');
+        fadeInObserver.observe(el);
+      });
+
+      // Hero animation
+      document.querySelector('.hero-content').classList.add('fade-in');
+      fadeInObserver.observe(document.querySelector('.hero-content'));
+
+      // Scroll to section for nav links
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          window.scrollTo({
+            top: targetElement.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      // Form submission
+      const contactForm = document.querySelector('.contact-form');
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! We’ll be in touch soon.');
+        contactForm.reset();
+      });
+    });
+  </script>
 <script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=RGVsbGFwaWV0cmFz&u=dmlzaXQ&s=410b44efc6bafd2b98090c57d6ca6358&beacon=1&l=b3NtLW5vZGUtNDE5MzYxMTcy";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:e0004b4150--></html>
+<!--bld:d3c769ddfd--></html>
