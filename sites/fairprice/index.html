@@ -3,17 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FairPrice — Everyday value, every day</title>
+  <title>FairPrice</title>
   <style>
     :root {
-      --primary-green: #4a9d6b;
-      --cream-white: #fefaf5;
-      --warm-gray: #e6e0d5;
-      --earth-brown: #6d5a48;
-      --accent-teal: #00b8a4;
-      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
-      --border-radius: 12px;
+      --mint: #a8e6cf;
+      --white: #fdfcfb;
+      --beige: #f5e9d0;
+      --charcoal: #2c2c2c;
+      --gold: #e6b35e;
     }
 
     * {
@@ -23,70 +20,69 @@
     }
 
     body {
-      font-family: 'Open Sans', sans-serif;
-      color: #333;
-      background-color: var(--cream-white);
-      line-height: 1.6;
+      font-family: 'Lato', sans-serif;
+      color: var(--charcoal);
+      background-color: var(--white);
       overflow-x: hidden;
+      line-height: 1.6;
     }
 
     h1, h2, h3, h4 {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-weight: 700;
-      line-height: 1.2;
+      letter-spacing: -0.5px;
     }
 
     h1 {
-      font-size: 4rem;
+      font-size: clamp(2.5rem, 8vw, 4rem);
     }
 
     h2 {
-      font-size: 2.75rem;
+      font-size: clamp(2rem, 6vw, 3rem);
     }
 
     h3 {
-      font-size: 1.8rem;
+      font-size: clamp(1.5rem, 4vw, 2rem);
     }
 
-    p {
-      margin-bottom: 1.5rem;
-      color: #444;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
 
-    a {
-      text-decoration: none;
-      color: var(--primary-green);
-      transition: all 0.3s ease;
-    }
-
-    a:hover {
-      color: var(--accent-teal);
-    }
-
-    /* --- Sticky Nav --- */
+    /* Sticky Nav */
     nav {
       position: sticky;
       top: 0;
       z-index: 1000;
-      padding: 1.5rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: transparent;
-      transition: background 0.4s ease, padding 0.4s ease;
+      backdrop-filter: blur(10px);
+      background-color: rgba(253, 252, 251, 0.8);
+      padding: 1rem 0;
+      transition: all 0.3s ease;
     }
 
     nav.scrolled {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 1rem 5%;
-      box-shadow: var(--shadow-md);
+      padding: 0.75rem 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .logo {
-      font-size: 2.1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.8rem;
       font-weight: 800;
-      color: var(--earth-brown);
-      letter-spacing: -0.5px;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--mint);
     }
 
     .nav-links {
@@ -95,61 +91,65 @@
     }
 
     .nav-links a {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #444;
+      text-decoration: none;
+      color: var(--charcoal);
+      font-weight: 500;
+      font-size: 1rem;
       position: relative;
+      transition: color 0.3s ease;
     }
 
-    .nav-links a::after {
+    .nav-links a:after {
       content: '';
       position: absolute;
       bottom: -5px;
       left: 0;
       width: 0;
       height: 2px;
-      background-color: var(--accent-teal);
+      background-color: var(--mint);
       transition: width 0.3s ease;
     }
 
-    .nav-links a:hover::after {
+    .nav-links a:hover {
+      color: var(--mint);
+    }
+
+    .nav-links a:hover:after {
       width: 100%;
     }
 
     .cta-button {
-      background-color: var(--primary-green);
-      color: white;
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      font-weight: 600;
+      background-color: var(--mint);
+      color: var(--charcoal);
       border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
       cursor: pointer;
-      font-size: 1rem;
       transition: all 0.3s ease;
-      box-shadow: var(--shadow-sm);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .cta-button:hover {
-      background-color: var(--accent-teal);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      background-color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(230, 179, 94, 0.2);
     }
 
-    /* --- Hero --- */
+    /* Hero Section */
     .hero {
-      height: 100vh;
-      width: 100%;
-      background-image: url('https://images.pexels.com/photos/33690927/pexels-photo-33690927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      height: 90vh;
+      min-height: 500px;
+      background-image: url('https://images.pexels.com/photos/7451964/pexels-photo-7451964.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
       background-size: cover;
       background-position: center;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      text-align: center;
       position: relative;
       overflow: hidden;
-      color: white;
     }
 
     .hero::before {
@@ -159,175 +159,140 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
+      background: linear-gradient(135deg, rgba(168, 230, 207, 0.3), rgba(255, 255, 255, 0.1));
       z-index: 1;
     }
 
     .hero-content {
       z-index: 2;
+      text-align: center;
+      color: var(--charcoal);
       max-width: 800px;
-      padding: 0 2rem;
+      margin: 0 auto;
+      padding: 0 1rem;
       opacity: 0;
-      transform: translateY(40px);
-      animation: fadeInUp 1s ease-out forwards;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out forwards;
+      animation-delay: 0.3s;
     }
 
     .hero h1 {
-      font-size: 5rem;
+      color: var(--charcoal);
       margin-bottom: 1rem;
-      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-      color: white;
+      font-size: clamp(3rem, 10vw, 5rem);
+      line-height: 1.1;
     }
 
     .hero p {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       margin-bottom: 2rem;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      color: var(--charcoal);
     }
 
     .hero-buttons {
       display: flex;
-      gap: 1.5rem;
       justify-content: center;
+      gap: 1rem;
     }
 
     .hero-buttons .cta-button {
-      background-color: white;
-      color: var(--earth-brown);
+      margin-top: 1rem;
     }
 
-    .hero-buttons .cta-button:hover {
-      background-color: var(--cream-white);
-      color: var(--accent-teal);
-      transform: scale(1.05);
-    }
-
-    /* --- Trust Strip --- */
+    /* Trust Strip */
     .trust-strip {
-      background-color: var(--warm-gray);
-      padding: 2rem 5%;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 3rem;
-      font-size: 1.1rem;
-      color: var(--earth-brown);
-    }
-
-    .trust-item {
+      background-color: var(--beige);
+      padding: 1rem 0;
       text-align: center;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
-    .trust-item:not(:last-child)::after {
-      content: '|';
-      margin: 0 1.5rem;
-      color: var(--primary-green);
-    }
-
-    /* --- Features --- */
+    /* Features Section */
     .features {
-      padding: 8rem 5%;
-      background-color: white;
+      padding: 5rem 0;
+      background-color: var(--white);
+    }
+
+    .section-title {
       text-align: center;
-    }
-
-    .section-heading {
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
       position: relative;
-      font-size: 2.75rem;
-      color: var(--earth-brown);
     }
 
-    .section-heading::after {
+    .section-title:after {
       content: '';
       position: absolute;
-      bottom: -15px;
+      bottom: -10px;
       left: 50%;
       transform: translateX(-50%);
       width: 80px;
-      height: 3px;
-      background-color: var(--accent-teal);
+      height: 4px;
+      background-color: var(--mint);
+      border-radius: 2px;
     }
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
     }
 
     .feature-card {
-      background-color: var(--cream-white);
-      padding: 2.5rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-md);
-      transition: all 0.4s ease;
+      background-color: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
       text-align: center;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
     }
 
     .feature-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
     }
 
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, rgba(74, 157, 107, 0.05), rgba(0, 184, 164, 0.05));
-      z-index: -1;
-      border-radius: var(--border-radius);
+    .feature-card svg {
+      fill: var(--mint);
+      width: 60px;
+      height: 60px;
+      margin-bottom: 1.5rem;
+      transition: transform 0.4s ease;
     }
 
-    .feature-icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(74, 157, 107, 0.1);
-      border-radius: 50%;
-    }
-
-    .feature-icon svg {
-      fill: var(--primary-green);
+    .feature-card:hover svg {
+      transform: scale(1.1);
     }
 
     .feature-card h3 {
       margin-bottom: 1rem;
-      color: var(--earth-brown);
+      color: var(--charcoal);
     }
 
-    /* --- About --- */
+    .feature-card p {
+      color: #555;
+    }
+
+    /* About Section */
     .about {
-      padding: 8rem 5%;
-      background-color: var(--cream-white);
+      padding: 5rem 0;
+      background-color: var(--beige);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
     }
 
     .about-image {
       flex: 1;
-      min-width: 300px;
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
+      padding: 0 2rem;
       position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
     }
 
     .about-image img {
@@ -337,64 +302,82 @@
       transition: transform 0.6s ease;
     }
 
-    .about-image:hover img {
-      transform: scale(1.05);
-    }
-
     .about-content {
       flex: 1;
-      min-width: 300px;
-      padding-left: 5rem;
-      padding-right: 1rem;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 2;
     }
 
     .about-content h2 {
-      color: var(--earth-brown);
       margin-bottom: 1.5rem;
+      color: var(--charcoal);
     }
 
     .about-content p {
       margin-bottom: 2rem;
+      color: #555;
     }
 
-    /* --- Testimonials --- */
+    .about-image img {
+      transform: scale(1.03);
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -20px;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(168, 230, 207, 0.2), transparent 70%);
+      z-index: -1;
+      border-radius: 20px;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    /* Testimonials Section */
     .testimonials {
-      padding: 8rem 5%;
-      background-color: white;
-      text-align: center;
+      padding: 5rem 0;
+      background-color: var(--white);
     }
 
-    .testimonial-grid {
+    .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
-      margin-top: 4rem;
+      gap: 2.5rem;
     }
 
-    .testimonial-card {
-      background-color: var(--cream-white);
-      padding: 2.5rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-md);
+    .testimonial {
+      background-color: var(--beige);
+      padding: 2rem;
+      border-radius: 16px;
       position: relative;
-      text-align: left;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      transition: transform 0.4s ease;
+      opacity: 0;
     }
 
-    .testimonial-card::before {
+    .testimonial:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimonial::before {
       content: '"';
       position: absolute;
       top: 20px;
       left: 20px;
-      font-size: 6rem;
+      font-size: 4rem;
+      color: var(--mint);
+      opacity: 0.2;
       font-family: Georgia, serif;
-      color: rgba(74, 157, 107, 0.1);
       line-height: 1;
     }
 
     .testimonial-text {
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       font-style: italic;
-      color: #333;
+      color: var(--charcoal);
     }
 
     .testimonial-author {
@@ -403,95 +386,94 @@
       gap: 1rem;
     }
 
-    .testimonial-author img {
+    .testimonial-avatar {
       width: 50px;
       height: 50px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid var(--primary-green);
+      border: 2px solid var(--mint);
     }
 
-    .author-name {
-      font-weight: 600;
-      color: var(--earth-brown);
+    .testimonial-name {
+      font-weight: 700;
+      color: var(--charcoal);
     }
 
-    .author-role {
+    .testimonial-role {
+      color: #777;
       font-size: 0.9rem;
-      color: var(--primary-green);
     }
 
-    /* --- Gallery --- */
+    /* Gallery Section */
     .gallery {
-      padding: 8rem 5%;
-      background-color: var(--cream-white);
-      text-align: center;
+      padding: 5rem 0;
+      background-color: var(--beige);
     }
 
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 4rem;
+      gap: 1rem;
     }
 
     .gallery-item {
       position: relative;
       overflow: hidden;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-sm);
+      border-radius: 16px;
       height: 300px;
       cursor: pointer;
-      transition: transform 0.4s ease;
-    }
-
-    .gallery-item:hover {
-      transform: scale(1.05);
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      transition: transform 0.5s ease;
     }
 
     .gallery-item:hover img {
       transform: scale(1.1);
     }
 
-    /* --- Contact --- */
+    /* Contact Section */
     .contact {
-      padding: 8rem 5%;
-      background-color: var(--primary-green);
-      color: white;
-      text-align: center;
+      padding: 5rem 0;
+      background-color: var(--white);
     }
 
-    .contact h2 {
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .contact-info h2 {
+      margin-bottom: 1.5rem;
+      color: var(--charcoal);
+    }
+
+    .contact-info p {
       margin-bottom: 2rem;
-      font-size: 2.75rem;
+      color: #555;
     }
 
     .contact-form {
-      max-width: 700px;
-      margin: 3rem auto;
-      background-color: white;
-      padding: 3rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-md);
+      background-color: var(--beige);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     }
 
     .form-group {
       margin-bottom: 1.5rem;
-      text-align: left;
     }
 
     .form-group label {
       display: block;
       margin-bottom: 0.5rem;
+      color: var(--charcoal);
       font-weight: 600;
-      color: var(--earth-brown);
     }
 
     .form-group input,
@@ -499,49 +481,41 @@
       width: 100%;
       padding: 1rem;
       border: 1px solid #ddd;
-      border-radius: var(--border-radius);
-      font-family: 'Open Sans', sans-serif;
+      border-radius: 8px;
+      font-family: 'Lato', sans-serif;
       font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--mint);
     }
 
     .form-group textarea {
       min-height: 150px;
+      resize: vertical;
     }
 
-    .contact-button {
-      width: 100%;
-      padding: 1rem;
-      border: none;
-      border-radius: var(--border-radius);
-      background-color: var(--primary-green);
-      color: white;
-      font-weight: 600;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .contact-button:hover {
-      background-color: var(--accent-teal);
-    }
-
-    /* --- Footer --- */
+    /* Footer */
     footer {
-      background-color: var(--earth-brown);
-      color: white;
-      padding: 4rem 5% 2rem;
+      background-color: var(--charcoal);
+      color: var(--white);
+      padding: 4rem 0 1rem;
     }
 
-    .footer-content {
+    .footer-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 3rem;
       margin-bottom: 3rem;
     }
 
-    .footer-section h3 {
+    .footer-column h3 {
       margin-bottom: 1.5rem;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
+      color: var(--white);
     }
 
     .footer-links {
@@ -549,385 +523,495 @@
     }
 
     .footer-links li {
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.75rem;
     }
 
     .footer-links a {
-      color: #ddd;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
       transition: color 0.3s ease;
     }
 
     .footer-links a:hover {
-      color: var(--accent-teal);
+      color: var(--mint);
     }
 
-    .social-icons a {
-      display: inline-block;
-      margin-right: 1rem;
-      color: #ddd;
-      font-size: 1.5rem;
-      transition: color 0.3s ease;
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
     }
 
-    .social-icons a:hover {
-      color: var(--accent-teal);
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background-color: var(--mint);
+      transform: translateY(-3px);
     }
 
     .copyright {
       text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
       font-size: 0.9rem;
-      color: #bbb;
     }
 
-    /* --- Animations --- */
-    .section-animated {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+    /* Animations */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .section-animated.visible {
-      opacity: 1;
-      transform: translateY(0);
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
     }
 
-    /* --- Mobile Responsive --- */
-    @media (max-width: 1024px) {
-      h1 { font-size: 3.5rem; }
-      h2 { font-size: 2.5rem; }
-      h3 { font-size: 1.6rem; }
+    /* Mobile Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--charcoal);
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-image,
+      .about-content {
+        padding: 0 2rem;
+      }
+
+      .about-image {
+        margin-bottom: 2rem;
+      }
     }
 
     @media (max-width: 768px) {
-      h1 { font-size: 3rem; }
-      h2 { font-size: 2.2rem; }
-      nav {
-        padding: 1rem 3%;
-      }
       .nav-links {
         display: none;
-      }
-      .hero h1 {
-        font-size: 3rem;
-      }
-      .hero p {
-        font-size: 1.3rem;
-      }
-      .about {
         flex-direction: column;
-      }
-      .about-content {
-        padding: 0 2rem;
-        text-align: center;
-        margin-top: 3rem;
-      }
-      .about-image {
-        margin-bottom: 3rem;
-      }
-      .testimonial-grid {
-        grid-template-columns: 1fr;
-      }
-      .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      }
-      .contact-form {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
         padding: 2rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        gap: 1.5rem;
+        z-index: 999;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-buttons .cta-button {
+        width: 100%;
+        margin-top: 1rem;
+        text-align: center;
+      }
+
+      .features,
+      .testimonials,
+      .gallery,
+      .contact {
+        padding: 3rem 0;
+      }
+
+      .trust-strip {
+        padding: 0.75rem 0;
+        font-size: 0.85rem;
       }
     }
 
     @media (max-width: 480px) {
-      h1 { font-size: 2.5rem; }
-      h2 { font-size: 2rem; }
+      .container {
+        padding: 0 1rem;
+      }
+
+      .hero {
+        height: 80vh;
+      }
+
       .hero h1 {
-        font-size: 2.3rem;
+        font-size: clamp(1.8rem, 8vw, 3rem);
       }
-      .hero p {
-        font-size: 1.1rem;
+
+      .feature-card,
+      .testimonial,
+      .gallery-item {
+        padding: 1.5rem;
       }
-      .hero-buttons {
-        flex-direction: column;
-        gap: 1rem;
+
+      .about-image,
+      .about-content {
+        padding: 0 1rem;
       }
-      .contact-button {
-        font-size: 1rem;
+
+      .contact-form {
+        padding: 2rem;
       }
     }
   </style>
 </head>
 <body>
-  <nav id="mainNav">
-    <div class="logo">FairPrice</div>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#features">Features</a>
-      <a href="#about">About</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
+  <nav>
+    <div class="container nav-container">
+      <a href="#" class="logo">Fair<span>Price</span></a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="cta-button">Shop Now</button>
+      <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
-    <button class="cta-button">Shop Now</button>
   </nav>
 
-  <section class="hero" id="home">
+  <section id="home" class="hero">
     <div class="hero-content">
       <h1>FairPrice</h1>
       <p>Everyday value, every day</p>
       <div class="hero-buttons">
-        <button class="cta-button">Explore Products</button>
-        <button class="cta-button">Find a Store</button>
+        <button class="cta-button">Browse Products</button>
+        <button class="cta-button">Find Store</button>
       </div>
     </div>
   </section>
 
-  <section class="trust-strip">
-    <div class="trust-item">Trusted by local families</div>
-    <div class="trust-item">Fresh, daily deliveries</div>
-    <div class="trust-item">Affordable prices with quality</div>
-    <div class="trust-item">Friendly local service</div>
-  </section>
+  <div class="trust-strip">
+    Trusted by local families for quality and value
+  </div>
 
-  <section class="features" id="features">
-    <h2 class="section-heading">Our Core Values</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 16V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Quality Saves You Money</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          <h3>Fresh Produce</h3>
+          <p>Locally sourced fruits and vegetables delivered daily to ensure maximum freshness and flavor.</p>
         </div>
-        <h3>Everyday Low Prices</h3>
-        <p>Discover consistently low prices across hundreds of products without compromise on quality.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 4C17.1046 4 18 4.89543 18 6V18C18 19.1046 17.1046 20 16 20H8C6.89543 20 6 19.1046 6 18V6C6 4.89543 6.89543 4 8 4H16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M8 4V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M16 4V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M8 18V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M16 18V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M10 12H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <div class="feature-card">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 22 16 12 26 8 22"></polyline></svg>
+          <h3>Affordable Prices</h3>
+          <p>Cutting out the middlemen to deliver real savings every week on groceries you buy constantly.</p>
         </div>
-        <h3>Fresh & Local Produce</h3>
-        <p>Support local farmers with daily fresh fruit, vegetables, dairy and meats delivered from nearby.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <div class="feature-card">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+          <h3>Local & Organic</h3>
+          <p>Supporting regional farmers who prioritize sustainable methods and chemical-free practices.</p>
         </div>
-        <h3>Everyday Value</h3>
-        <p>Quality you trust at prices that make sense — no hidden markups, just honest savings.</p>
       </div>
     </div>
   </section>
 
-  <section class="about" id="about">
+  <section id="about" class="about">
     <div class="about-image">
-      <img src="https://images.pexels.com/photos/9050560/pexels-photo-9050560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="FairPrice store interior with smiling staff and customers">
+      <img src="https://images.pexels.com/photos/2924427/pexels-photo-2924427.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="FairPrice team in-store">
     </div>
     <div class="about-content">
-      <h2>More Than a Supermarket</h2>
-      <p>FairPrice has been a neighborhood cornerstone since our first local customer walked through our doors. We're not just about groceries — we're about building community. Our team knows you by name, remembers your favorite items, and always goes the extra mile to help.</p>
-      <p>Our shelves are stocked with local produce, responsibly sourced pantry staples, and household essentials you can trust. We believe in transparency, affordability, and service — and we show it every day.</p>
+      <h2>Cheering for Community, Every Day</h2>
+      <p>FairPrice started as a simple idea: give people access to fresh, affordable food without sacrificing quality. For decades, our team has believed that a good grocery store isn't just about products—it's about connection, community, and consistent value.</p>
+      <p>We're proud to serve neighborhood customers with everyday low prices, helpful service, and honest standards. When you shop with us, you're not just buying groceries—you're supporting fair prices and sustainable practices right here at home.</p>
+      <button class="cta-button">Learn More About Us</button>
     </div>
   </section>
 
-  <section class="testimonials" id="testimonials">
-    <h2 class="section-heading">What Our Customers Say</h2>
-    <div class="testimonial-grid">
-      <div class="testimonial-card">
-        <p class="testimonial-text">I’ve tried every supermarket in town. FairPrice is the only one that feels like home. Their prices are unreal and the staff actually care.</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/33690927/pexels-photo-33690927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer photo">
-          <div>
-            <div class="author-name">Sarah J.</div>
-            <div class="author-role">Local client</div>
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Our Customers Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p class="testimonial-text">Never found a store that combines quality and affordability like FairPrice. My weekly shopping trip is always easy and budget-friendly.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/7451964/pexels-photo-7451964.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer Photo" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Local Customer</div>
+              <div class="testimonial-role">Regular shopper</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-text">Every visit feels like a treat — not just for the savings, but for the warmth. Everyone smiles here. That’s rare.</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/9050560/pexels-photo-9050560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer photo">
-          <div>
-            <div class="author-name">Michael T.</div>
-            <div class="author-role">Verified customer</div>
+        <div class="testimonial">
+          <p class="testimonial-text">The produce section is always fresh, and their weekly specials are truly unbeatable. We look forward to shopping here every time.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/2924427/pexels-photo-2924427.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer Photo" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Verified Customer</div>
+              <div class="testimonial-role">Family of four</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-text">I’ve been shopping here for 7 years. Nothing has changed — and I wouldn’t want it to. Quality. Price. Kindness.</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer photo">
-          <div>
-            <div class="author-name">Aisha R.</div>
-            <div class="author-role">Loyal patron</div>
+        <div class="testimonial">
+          <p class="testimonial-text">FairPrice treats every customer like family. The staff remembers names and always goes the extra mile. A true neighborhood gem.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer Photo" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Longtime Resident</div>
+              <div class="testimonial-role">Store supporter</div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="gallery" id="gallery">
-    <h2 class="section-heading">In Store</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/4971924/pexels-photo-4971924.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fresh fruit section at FairPrice">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Organic produce aisle">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/35285844/pexels-photo-35285844.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Clean checkout counters">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/19242076/pexels-photo-19242076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer selecting dairy products">
       </div>
     </div>
   </section>
 
-  <section class="contact" id="contact">
-    <h2>Ready to Visit Us?</h2>
-    <form class="contact-form">
-      <div class="form-group">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" placeholder="Enter your name">
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2 class="section-title">Our Fresh Selection</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/3985065/pexels-photo-3985065.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fresh produce display">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/9705830/pexels-photo-9705830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Bakery section">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/1111319/pexels-photo-1111319.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Dairy aisle">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/8475161/pexels-photo-8475161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Pantry goods">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/7451964/pexels-photo-7451964.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Checkout area">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/2924427/pexels-photo-2924427.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Staff helping customer">
+        </div>
       </div>
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="Enter your email">
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-container">
+        <div class="contact-info">
+          <h2>Get in Touch</h2>
+          <p>Have questions about our products or hours? We'd love to hear from you. We're here to make your shopping experience exceptional.</p>
+          <button class="cta-button">Visit Our Store</button>
+        </div>
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="How can we help you?" required></textarea>
+          </div>
+          <button type="submit" class="cta-button">Send Message</button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="message">Your Message</label>
-        <textarea id="message" placeholder="How can we help you today?"></textarea>
-      </div>
-      <button type="submit" class="contact-button">Get In Touch</button>
-    </form>
+    </div>
   </section>
 
   <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>FairPrice</h3>
-        <p>Everyday value, every day. We believe in quality local groceries at honest prices — no marketing gimmicks, just trust and community.</p>
-        <div class="social-icons">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Instagram">i</a>
-          <a href="#" aria-label="Twitter">t</a>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>FairPrice</h3>
+          <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.8);">Everyday value, every day — bringing affordable, fresh groceries to our community with care and integrity.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">F</a>
+            <a href="#" aria-label="Instagram">I</a>
+            <a href="#" aria-label="Twitter">T</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Our Products</h3>
+          <ul class="footer-links">
+            <li><a href="#">Fresh Produce</a></li>
+            <li><a href="#">Dairy & Eggs</a></li>
+            <li><a href="#">Bakery</a></li>
+            <li><a href="#">Pantry Staples</a></li>
+            <li><a href="#">Organic Selection</a></li>
+            <li><a href="#">Weekly Specials</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Store Hours</h3>
+          <ul class="footer-links">
+            <li>Monday - Friday: 7am - 9pm</li>
+            <li>Saturday: 6am - 10pm</li>
+            <li>Sunday: 7am - 9pm</li>
+          </ul>
         </div>
       </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul class="footer-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+      <div class="copyright">
+        © 2026 FairPrice. All rights reserved. Proudly serving our community since forever.
       </div>
-      <div class="footer-section">
-        <h3>Shop Hours</h3>
-        <ul class="footer-links">
-          <li>Monday - Friday: 7am - 10pm</li>
-          <li>Saturday: 6am - 11pm</li>
-          <li>Sunday: 7am - 9pm</li>
-        </ul>
-      </div>
-    </div>
-    <div class="copyright">
-      &copy; 2026 FairPrice. All Rights Reserved.
     </div>
   </footer>
 
   <script>
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 70,
-            behavior: 'smooth'
-          });
-        }
-      });
+    // Mobile Menu Toggle
+    document.querySelector('.hamburger').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
     });
 
-    // Sticky nav with scroll effect
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('mainNav');
-      if (window.scrollY > 100) {
+    // Nav scroll effect
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
         nav.classList.add('scrolled');
       } else {
         nav.classList.remove('scrolled');
       }
     });
 
-    // Section animation on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.section-animated').forEach(element => {
-      observer.observe(element);
-    });
-
-    // Initialize visible sections on load
-    document.querySelectorAll('.section-animated').forEach(element => {
-      if (element.getBoundingClientRect().top < window.innerHeight * 0.8) {
-        element.classList.add('visible');
-      }
-    });
-
-    // Hero staggered reveal
-    document.addEventListener('DOMContentLoaded', () => {
-      const heroContent = document.querySelector('.hero-content');
-      const heroButtons = document.querySelector('.hero-buttons');
-      
-      setTimeout(() => {
-        heroContent.classList.add('visible');
-      }, 300);
-
-      setTimeout(() => {
-        const buttonElements = heroButtons.children;
-        for (let i = 0; i < buttonElements.length; i++) {
-          buttonElements[i].classList.add('visible');
-          buttonElements[i].style.transitionDelay = (i * 0.2) + 's';
-        }
-      }, 500);
-    });
-
-    // Contact form submission (prevent default)
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        alert('Thank you for your message! We’ll get back to you soon.');
-        contactForm.reset();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+
+        // Close mobile menu if open
+        document.querySelector('.nav-links').classList.remove('active');
       });
-    }
+    });
+
+    // Reveal sections on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const observerOptions = {
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.feature-card, .testimonial').forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(30px)';
+        observer.observe(el);
+      });
+
+      document.querySelectorAll('.hero-content').forEach(el => {
+        observer.observe(el);
+      });
+
+      document.querySelectorAll('.about-image').forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateX(-30px)';
+        observer.observe(el);
+      });
+    });
+
+    // Custom SVG Animations
+    document.querySelectorAll('.feature-card svg').forEach(svg => {
+      svg.addEventListener('mouseenter', () => {
+        svg.style.transform = 'scale(1.1)';
+      });
+      svg.addEventListener('mouseleave', () => {
+        svg.style.transform = 'scale(1)';
+      });
+    });
+
+    // Form submission
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      
+      // In a real site, you'd send this to a server
+      alert('Thank you for contacting FairPrice! Your message has been sent.');
+      this.reset();
+    });
   </script>
-<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=RmFpclByaWNl&u=dmlzaXQ&s=d7dca772c59ddc180354b3deb104a107&beacon=1&l=b3NtLW5vZGUtMzY5MTI4MDU1";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:7bf72b09d7--></html>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=RmFpclByaWNl&u=dmlzaXQ&s=d7dca772c59ddc180354b3deb104a107&beacon=1&l=b3NtLW5vZGUtMzY5MTIzODky";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:27e7d4b569--></html>
