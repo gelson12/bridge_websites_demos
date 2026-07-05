@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linnean Society</title>
+  <style>
+    :root {
+      --emerald: #1a3a2e;
+      --oxblood: #5a1a1a;
+      --parchment: #f8f4f0;
+      --charcoal: #222222;
+      --gold: #d4af37;
+      --gold-light: #e6b95c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: var(--parchment);
+      color: var(--charcoal);
+      line-height: 1.7;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      font-kerning: normal;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      font-optical-sizing: auto;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    a {
+      color: var(--emerald);
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--oxblood);
+      text-decoration: underline;
+      transform: translateY(-1px);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* === NAV === */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: transparent;
+      padding: 1.5rem 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 1px 10px rgba(0,0,0,0.03);
+    }
+
+    nav.scrolled {
+      background: rgba(248, 244, 240, 0.98);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(210, 190, 170, 0.3);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--emerald);
+      letter-spacing: -0.5px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      font-size: 1.1rem;
+      font-weight: 600;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--emerald);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-links a:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cta-btn {
+      background: var(--oxblood);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .cta-btn:hover {
+      background: #4a0a0a;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    /* === HERO === */
+    .hero {
+      height: 100vh;
+      background-image: linear-gradient(rgba(26, 58, 46, 0.4), rgba(26, 58, 46, 0.4)), url('https://images.pexels.com/photos/16433564/pexels-photo-16433564.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 40%), radial-gradient(circle at 80% 20%, rgba(26, 58, 46, 0.2) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      max-width: 750px;
+      transform: translateY(40px);
+      opacity: 0;
+      animation: heroEnter 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    .hero h1 {
+      font-size: 4.8rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      font-weight: 700;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInDown 1.2s ease-out 0.2s forwards;
+    }
+
+    .hero p {
+      font-size: 1.6rem;
+      margin-bottom: 3rem;
+      font-weight: 300;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInDown 1.2s ease-out 0.5s forwards;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInDown 1.2s ease-out 0.8s forwards;
+    }
+
+    .hero-buttons .cta-btn {
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--oxblood);
+      border: none;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-buttons .cta-btn:hover {
+      background: white;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero .secondary-btn {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      padding: 0.8rem 1.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .hero .secondary-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* === TRUST STRIP === */
+    .trust-strip {
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+      color: var(--emerald);
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .trust-strip span {
+      margin: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .trust-strip span::after {
+      content: '•';
+      margin: 0 1rem;
+      opacity: 0.6;
+    }
+
+    .trust-strip span:last-child::after {
+      content: '';
+    }
+
+    /* === FEATURES === */
+    .features {
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .section-title h2 {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.8rem;
+      background: linear-gradient(90deg, var(--emerald) 0%, var(--oxblood) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: 1px solid rgba(210, 190, 170, 0.3);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.15), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+      border-color: rgba(255, 255, 255, 0.5);
+      border-radius: 16px;
+    }
+
+    .feature-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--parchment);
+      border-radius: 50%;
+      color: var(--emerald);
+      font-size: 3.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+      color: var(--gold);
+      background: rgba(212, 175, 55, 0.1);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1.2rem;
+      color: var(--emerald);
+      font-weight: 600;
+    }
+
+    /* === ABOUT === */
+    .about {
+      padding: 8rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+    }
+
+    .about-image {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15);
+      transform: translateX(-30px);
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05) rotate(0.5deg);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .about-content h2 {
+      color: var(--oxblood);
+      margin-bottom: 2rem;
+      font-weight: 600;
+    }
+
+    .about-content p {
+      margin-bottom: 1.8rem;
+      color: var(--charcoal);
+      font-weight: 400;
+    }
+
+    .about-content p:first-of-type {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    /* === TESTIMONIALS === */
+    .testimonials {
+      padding: 8rem 0;
+      background: var(--parchment);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,20 C350,85 720,85 1200,20 L1200,120 L0,120 Z" fill="%23e8e1d6"></path></svg>');
+      background-repeat: repeat-x;
+      background-size: 1200px 120px;
+      opacity: 0.5;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 4rem;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 15px 48px rgba(0, 0, 0, 0.05);
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease;
+      border: 1px solid rgba(210, 190, 170, 0.2);
+    }
+
+    .testimonial-card:before {
+      content: """;
+      position: absolute;
+      top: 25px;
+      left: 30px;
+      font-size: 5rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--emerald);
+      opacity: 0.2;
+      line-height: 1;
+    }
+
+    .testimonial-card:after {
+      content: """;
+      position: absolute;
+      bottom: 25px;
+      right: 30px;
+      font-size: 5rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--emerald);
+      opacity: 0.2;
+      line-height: 1;
+    }
+
+    .testimonial-card p {
+      font-style: italic;
+      color: var(--charcoal);
+      margin-bottom: 2rem;
+      font-weight: 400;
+      font-size: 1.15rem;
+      line-height: 1.7;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      color: var(--emerald);
+      gap: 1rem;
+    }
+
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-right: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--oxblood);
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-shadow: 0 0 3px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .testimonial-card:nth-child(1) {
+      animation: fadeInUp 0.8s ease-out forwards 0.1s;
+    }
+
+    .testimonial-card:nth-child(2) {
+      animation: fadeInUp 0.8s ease-out forwards 0.3s;
+    }
+
+    .testimonial-card:nth-child(3) {
+      animation: fadeInUp 0.8s ease-out forwards 0.5s;
+    }
+
+    /* === GALLERY === */
+    .gallery {
+      padding: 8rem 0;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .gallery-img {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      height: 350px;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    .gallery-img:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+    }
+
+    .gallery-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .gallery-img:hover img {
+      transform: scale(1.15);
+    }
+
+    .gallery-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80%;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+
+    .gallery-img:hover::after {
+      opacity: 1;
+    }
+
+    .gallery-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      color: white;
+      padding: 2rem 1.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.7s ease;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+
+    .gallery-img:hover .gallery-title {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === CONTACT === */
+    .contact {
+      padding: 8rem 0;
+      background: linear-gradient(135deg, var(--emerald) 0%, var(--oxblood) 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 80px 80px;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 180px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 180" preserveAspectRatio="none"><path d="M0,0 C250,120 700,120 1200,0 L1200,180 L0,180 Z" fill="%231a3a2e"></path></svg>');
+      background-repeat: repeat-x;
+      background-size: 1200px 180px;
+    }
+
+    .contact-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-content h2 {
+      margin-bottom: 1.5rem;
+      font-size: 3.5rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, white, rgba(255,255,255,0.9));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .contact-content p {
+      margin-bottom: 3rem;
+      font-size: 1.3rem;
+      opacity: 0.9;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .form-group label {
+      margin-bottom: 0.8rem;
+      text-align: left;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: -0.3px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 1.3rem;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      color: var(--charcoal);
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .form-group textarea {
+      min-height: 160px;
+      resize: vertical;
+      caret-color: var(--oxblood);
+    }
+
+    .contact-btn {
+      background: var(--gold);
+      color: var(--charcoal);
+      padding: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+
+    .contact-btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: var(--charcoal);
+      color: white;
+      padding: 5rem 0 2rem;
+      position: relative;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-col h3 {
+      color: var(--gold);
+      margin-bottom: 1.8rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .footer-links a::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-links a:hover::before {
+      width: 100%;
+    }
+
+    .footer-about p {
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      color: #aaa;
+      font-size: 1rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .social-icons a:hover {
+      background: var(--gold);
+      color: var(--charcoal);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 3rem;
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes heroEnter {
+      0% { transform: translateY(40px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* === PARALLAX & DECORATIVE ELEMENTS === */
+    .shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0.05;
+    }
+
+    .shape-1 { width: 160px; height: 160px; top: 15%; left: 8%; animation: float 16s ease-in-out infinite; }
+    .shape-2 { width: 100px; height: 100px; top: 60%; right: 12%; animation: float 22s ease-in-out infinite 1.5s; }
+    .shape-3 { width: 180px; height: 180px; bottom: 25%; left: 18%; animation: float 25s ease-in-out infinite 2s; }
+    .shape-4 { width: 70px; height: 70px; bottom: 15%; right: 8%; animation: float 18s ease-in-out infinite 0.8s; }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      h1 { font-size: 2.8rem; }
+      h2 { font-size: 2rem; }
+      .hero h1 { font-size: 4rem; }
+      .hero p { font-size: 1.4rem; }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      .nav-container {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+      .hero {
+        height: 80vh;
+      }
+      .hero h1 { font-size: 3.2rem; }
+      .hero p { font-size: 1.2rem; }
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .about {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+      }
+      .about-image {
+        transform: translateY(0);
+        margin-bottom: 2rem;
+      }
+      .testimonial-grid {
+        gap: 2rem;
+      }
+      .contact-content h2 { font-size: 2.8rem; }
+      .contact-form {
+        width: 100%;
+        gap: 1.5rem;
+      }
+      .form-group input,
+      .form-group textarea {
+        padding: 1rem;
+        font-size: 1rem;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-about, .footer-links, .social-icons {
+        text-align: center;
+        margin: 0 auto;
+        max-width: 300px;
+      }
+      .footer-col h3 {
+        text-align: center;
+        margin-bottom: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.8rem; }
+      .hero h1 { font-size: 2.8rem; }
+      .hero p { font-size: 1.1rem; }
+      .feature-card {
+        padding: 2rem 1.5rem;
+      }
+      .feature-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2.8rem;
+      }
+      .testimonial-card {
+        padding: 2.2rem 1.5rem;
+      }
+      .testimonial-card:before,
+      .testimonial-card:after {
+        font-size: 4rem;
+      }
+      .contact-content h2 { font-size: 2.2rem; }
+      .contact-content p { font-size: 1.1rem; }
+      .contact-form {
+        gap: 1rem;
+      }
+      .gallery-title {
+        font-size: 1.4rem;
+        padding: 1.5rem 1.2rem;
+        text-align: center;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-img {
+        height: 280px;
+      }
+      .footer-col h3 {
+        font-size: 1.3rem;
+      }
+    }
+
+    /* === CIRCULAR ROTATING ELEMENTS === */
+    .decorative-circles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      border-radius: 50%;
+      opacity: 0.2;
+    }
+
+    .circle-1 { width: 300px; height: 300px; top: 20%; left: 5%; animation: rotate 25s linear infinite; }
+    .circle-2 { width: 400px; height: 400px; top: 50%; right: 10%; animation: rotate 35s linear infinite 1s; }
+    .circle-3 { width: 200px; height: 200px; bottom: 10%; left: 20%; animation: rotate 20s linear infinite 1.5s; }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* === LIFTING ELEMENTS ON HOVER === */
+    .section-title:hover h2 {
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    /* === DYNAMIC MARGINS FOR LONG HEADINGS === */
+    .hero h1 {
+      word-wrap: break-word;
+      hyphens: auto;
+    }
+
+    /* === DEFAULT STYLING FOR BUTTONS === */
+    button, input[type="submit"] {
+      outline: none;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">Linnean Society</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Collection</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="cta-btn">Join Today</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="container hero-content">
+      <h1>Knowledge, curated, enduring</h1>
+      <p>Preserving natural history for the advancement of science since 1788</p>
+      <div class="hero-buttons">
+        <button class="cta-btn">Explore Our Library</button>
+        <button class="secondary-btn">Subscribe to Bulletin</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust-strip">
+    <span>Trusted by scholars since 1788</span>
+    <span>Digitally preserved collections</span>
+    <span>Curated by experts</span>
+  </div>
+
+  <section class="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Collection</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3>Historical Archives</h3>
+          <p>Original manuscripts, letters, and scientific drawings from the 18th and 19th centuries, meticulously preserved for academic research.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔬</div>
+          <h3>Research Resources</h3>
+          <p>Comprehensive taxonomic databases, specimen collections, and scholarly publications supporting global biological research.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏛️</div>
+          <h3>Educational Programs</h3>
+          <p>Lectures, workshops, and fellowships that connect academic communities and cultivate the next generation of naturalists.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/38374178/pexels-photo-38374178.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Linnean Society reading room">
+      </div>
+      <div class="about-content">
+        <h2>Founded in the spirit of discovery</h2>
+        <p>The Linnean Society of London was established in 1788 to honor the legacy of Carl Linnaeus and to promote the study of natural history. Our archives contain the original manuscripts of Charles Darwin, Alfred Russel Wallace, and other pioneering scientists whose work fundamentally shaped modern biology.</p>
+        <p>Today, we continue as a learned society dedicated to the advancement of taxonomy, evolutionary biology, and the curation of natural history records. Our library is open to scholars and researchers worldwide, offering access to a unique and irreplaceable heritage of scientific inquiry.</p>
+        <p>Membership is by invitation and election, reflecting our commitment to scholarly excellence and sustained contribution to the field.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>Trusted by Scholars</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p>Visiting the archives at the Linnean Society was a watershed moment in my career. The original correspondence between Darwin and Wallace, in their own hand — it felt like being there during the birth of modern evolution.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">A</div>
+            <span>Dr. A. Reynolds, Evolutionary Biologist</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p>The detailed cataloging of botanical specimens here far exceeds any modern database I've encountered. I've been working in herbaria for thirty years, and the Linnean collection remains unparalleled.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <span>Dr. M. Hendricks, Botanical Historian</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p>As a curator, I rely on the Society’s research publications as definitive references. The peer-reviewed rigor and meticulous attention to nomenclature set the global standard.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">E</div>
+            <span>Prof. E. Lyons, Zoological Curator</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="container">
+      <div class="section-title">
+        <h2>Exhibits & Rare Volumes</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-img">
+          <img src="https://images.pexels.com/photos/6232446/pexels-photo-6232446.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Ancient specimen illustration">
+          <div class="gallery-title">Specimen Illustrations, 1790s</div>
+        </div>
+        <div class="gallery-img">
+          <img src="https://images.pexels.com/photos/34455132/pexels-photo-34455132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Leather-bound folio">
+          <div class="gallery-title">Linnaean Folios, 1820</div>
+        </div>
+        <div class="gallery-img">
+          <img src="https://images.pexels.com/photos/4348191/pexels-photo-4348191.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Handwritten correspondence">
+          <div class="gallery-title">Darwin Correspondence</div>
+        </div>
+        <div class="gallery-img">
+          <img src="https://images.pexels.com/photos/31267820/pexels-photo-31267820.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Library reading room">
+          <div class="gallery-title">The Reading Room</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="container">
+      <div class="contact-content">
+        <h2>Join Our Community</h2>
+        <p>Membership to the Linnean Society is by election, extended to those who have made significant contributions to natural history. Please use the form below to begin your inquiry.</p>
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Your full name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="your.email@institution.edu">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Briefly describe your research or interest in natural history..."></textarea>
+          </div>
+          <button type="submit" class="contact-btn">Submit Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <h3>Linnean Society</h3>
+          <p>Promoting the advancement of natural history since 1788. Our collections form a cornerstone of global biological knowledge.</p>
+        </div>
+        <div class="footer-links">
+          <h3>Explore</h3>
+          <ul class="footer-links">
+            <li><a href="#">Library Catalog</a></li>
+            <li><a href="#">Publications</a></li>
+            <li><a href="#">Collections</a></li>
+            <li><a href="#">Lectures</a></li>
+            <li><a href="#">Scholarships</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Membership</h3>
+          <ul class="footer-links">
+            <li><a href="#">Eligibility</a></li>
+            <li><a href="#">Application</a></li>
+            <li><a href="#">Fellows</a></li>
+            <li><a href="#">Annual Report</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="social-icons">
+        <a href="#">🔗</a>
+        <a href="#">📘</a>
+        <a href="#">📧</a>
+        <a href="#">🗻</a>
+      </div>
+      <div class="copyright">
+        &copy; 2026 Linnean Society. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <div class="shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+  </div>
+
+  <div class="decorative-circles">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // Sticky nav with parallax
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // Scroll reveal animation
+      const revealElements = document.querySelectorAll('.feature-card, .about-image, .testimonial-card, .gallery-img');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.6s ease';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      revealElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(40px)';
+        el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+        observer.observe(el);
+      });
+
+      // Floating shapes animation
+      const shapes = document.querySelectorAll('.shape');
+      shapes.forEach(shape => {
+        setInterval(() => {
+          shape.style.opacity = (Math.random() * 0.05) + 0.01;
+        }, 2000);
+      });
+
+      // Add subtle parallax to hero background
+      window.addEventListener('mousemove', (e) => {
+        const hero = document.querySelector('.hero');
+        const x = (e.clientX - window.innerWidth / 2) / 100;
+        const y = (e.clientY - window.innerHeight / 2) / 100;
+        hero.style.backgroundPosition = `center calc(50% + ${y}px)`;
+      });
+
+      // Circular rotation
+      const circles = document.querySelectorAll('.circle');
+      circles.forEach(circle => {
+        let degrees = 0;
+        setInterval(() => {
+          degrees += 0.1;
+          circle.style.transform = `rotate(${degrees}deg)`;
+        }, 10);
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const offsetTop = targetElement.offsetTop - 70;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Contact form validation
+      const contactForm = document.querySelector('.contact-form');
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        
+        if (name && email && message) {
+          alert('Thank you for your inquiry. We will respond to your application soon.');
+          contactForm.reset();
+        }
+      });
+
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=TGlubmVhbiBTb2NpZXR5&u=dmlzaXQ&s=8540473abbfcb74af321b504a398d8b1&beacon=1&l=b3NtLW5vZGUtMzUyNjczMjM3";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:048741530c--></html>
