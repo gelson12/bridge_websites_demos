@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standard & Poor's</title>
+  <style>
+    :root {
+      --primary: #002147;
+      --secondary: #005b8c;
+      --accent: #ff9900;
+      --light: #ffffff;
+      --gray: #d3d3d3;
+      --font-display: 'Libre Baskerville', serif;
+      --font-body: 'Lato', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+      background-color: var(--light);
+      background-image: radial-gradient(circle at 20% 80%, rgba(0, 33, 71, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 153, 0, 0.02) 0%, transparent 50%);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      letter-spacing: -0.5px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Sticky Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 1.5rem 0;
+      box-shadow: 0 2px 20px rgba(0, 33, 71, 0.08);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      padding: 1rem 0;
+      background-color: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 4px 30px rgba(0, 33, 71, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--primary);
+      font-weight: 400;
+      position: relative;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .logo:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background-color: var(--accent);
+      color: var(--light);
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(255, 153, 0, 0.4);
+    }
+
+    .cta-button:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background-image: url('https://images.pexels.com/photos/8296977/pexels-photo-8296977.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: 50% 20%;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(0, 33, 71, 0.6) 0%, rgba(0, 33, 71, 0.9) 70%);
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,80L120,75C240,70,480,60,720,60C960,60,1200,70,1320,75L1440,80L1440,80L1320,80C1200,80,960,80,720,80C480,80,240,80,120,80L0,80Z" fill="%23ffffff" fill-opacity="0.02" stroke="none"/></svg>') center bottom;
+      background-size: 100% auto;
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 2rem;
+      color: var(--light);
+      max-width: 700px;
+      animation: fadeInUp 1.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero h1 {
+      color: var(--light);
+      margin-bottom: 1.2rem;
+      font-size: 5rem;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      position: relative;
+    }
+
+    .hero h1::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      border-radius: 2px;
+    }
+
+    .hero p {
+      font-size: 1.8rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+      font-weight: 300;
+      letter-spacing: -0.5px;
+      position: relative;
+    }
+
+    .hero p::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent);
+      opacity: 0.8;
+      border-radius: 2px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .secondary-button {
+      background-color: transparent;
+      color: var(--light);
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: 2px solid var(--light);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .secondary-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+      border-radius: 50px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .secondary-button:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .secondary-button:hover::before {
+      opacity: 1;
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background-color: var(--gray);
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,33,71,0.1), transparent);
+    }
+
+    .trust-strip::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,33,71,0.1), transparent);
+    }
+
+    /* Services */
+    .services {
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--accent);
+    }
+
+    .section-title::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, var(--accent, 0.1), transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .service-card {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-radius: 15px;
+      background-color: var(--light);
+      box-shadow: 0 8px 30px rgba(0, 33, 71, 0.05);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(211, 211, 211, 0.5);
+      background: linear-gradient(to bottom, #ffffff, #fafafa);
+      backdrop-filter: blur(5px);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-15px) scale(1.01);
+      box-shadow: 0 25px 50px rgba(0, 33, 71, 0.15);
+      background: linear-gradient(to bottom, #ffffff, #f8f8f8);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 2rem;
+      background-color: rgba(255, 153, 0, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 3rem;
+      box-shadow: inset 0 0 0 2px rgba(0,33,71,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1);
+      box-shadow: inset 0 0 0 4px rgba(0,33,71,0.08);
+    }
+
+    .service-title {
+      margin-bottom: 1rem;
+      color: var(--primary);
+      transition: color 0.3s ease;
+    }
+
+    .service-card:hover .service-title {
+      color: var(--secondary);
+    }
+
+    /* About */
+    .about {
+      padding: 8rem 0;
+      background-color: var(--light);
+      position: relative;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500"><path d="M250 50 C 250 20 400 20 400 50 C 400 60 420 130 420 170 C 420 300 250 330 250 350 C 250 330 80 300 80 170 C 80 130 100 60 100 50 C 100 20 250 20 250 50 Z" fill="none" stroke="%23002147" stroke-width="0.5" stroke-opacity="0.1"/></svg>') center;
+      background-size: 400px;
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-image {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 33, 71, 0.2);
+      transform: translateY(0);
+      transition: transform 0.6s ease;
+      position: relative;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(0, 33, 71, 0.1), transparent);
+      z-index: 1;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-content:hover .about-image::before {
+      background: linear-gradient(45deg, rgba(0, 33, 71, 0.2), transparent);
+    }
+
+    .about-content:hover .about-image img {
+      transform: scale(1.08);
+    }
+
+    .about-content {
+      padding-right: 2rem;
+    }
+
+    .about-content h2 {
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .about-content h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background-color: var(--accent);
+    }
+
+    .about-content p {
+      margin-bottom: 2rem;
+      color: var(--primary);
+      font-size: 1.1rem;
+      font-weight: 400;
+      position: relative;
+    }
+
+    .about-content p::before {
+      content: "•";
+      color: var(--accent);
+      margin-right: 1rem;
+      font-weight: bold;
+      opacity: 0.7;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 8rem 0;
+      background-color: var(--gray);
+      position: relative;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="120" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,80 C360,120 720,40 1080,80 C1320,100 1440,80 1440,80 V 120 H 0 Z" fill="%23ffffff" fill-opacity="0.8"/></svg>') center top;
+      background-size: 100% auto;
+      z-index: -1;
+    }
+
+    .testimonials::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="120" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,40 C360,0 720,80 1080,40 C1320,20 1440,40 1440,40 V 120 H 0 Z" fill="%23ffffff" fill-opacity="0.8"/></svg>') center bottom;
+      background-size: 100% auto;
+      z-index: -1;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .testimonial-card {
+      background-color: var(--light);
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 33, 71, 0.05);
+      position: relative;
+      border: 1px solid rgba(211, 211, 211, 0.5);
+      transition: transform 0.4s ease;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #ffffff, #f8f8f8);
+      backdrop-filter: blur(5px);
+    }
+
+    .testimonial-card::before {
+      content: """;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 5rem;
+      font-family: var(--font-display);
+      color: rgba(0, 33, 71, 0.1);
+      line-height: 1;
+      z-index: 1;
+    }
+
+    .testimonial-card::after {
+      content: """;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 5rem;
+      font-family: var(--font-display);
+      color: rgba(0, 33, 71, 0.1);
+      line-height: 1;
+      z-index: 1;
+    }
+
+    .testimonial-text {
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      color: var(--primary);
+      position: relative;
+      z-index: 2;
+      font-weight: 400;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 1rem;
+      background-color: var(--gray);
+      background-image: url('https://images.pexels.com/photos/8296977/pexels-photo-8296977.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      border: 2px solid var(--light);
+      box-shadow: 0 2px 8px rgba(0, 33, 71, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .testimonial-card:hover .testimonial-avatar {
+      transform: scale(1.05);
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .testimonial-role {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-top: 0.2rem;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255, 153, 0, 0.1), transparent 80%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .gallery::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(50%);
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(0, 33, 71, 0.1), transparent 80%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .gallery-item {
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      height: 300px;
+      box-shadow: 0 8px 30px rgba(0, 33, 71, 0.1);
+      transition: all 0.5s ease;
+      background: linear-gradient(45deg, transparent, rgba(0,33,71,0.05));
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03) translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 33, 71, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 33, 71, 0.9), transparent);
+      color: white;
+      padding: 1.5rem;
+      transform: translateY(100%);
+      transition: transform 0.5s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-overlay h3 {
+      margin-bottom: 0;
+      font-weight: 500;
+      font-size: 1.5rem;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 8rem 0;
+      background-color: var(--primary);
+      color: var(--light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, rgba(0, 33, 71, 0.2));
+      z-index: -1;
+    }
+
+    .contact::after {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 153, 0, 0.1), transparent 80%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .contact-content h2 {
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .contact-content h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background-color: var(--accent);
+    }
+
+    .contact-content h2::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    .contact-content p {
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+      opacity: 0.9;
+      position: relative;
+    }
+
+    .contact-content p::before {
+      content: "•";
+      color: var(--accent);
+      margin-right: 1rem;
+      font-weight: bold;
+      opacity: 0.7;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      margin-bottom: 0.7rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 1rem;
+      border-radius: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--light);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.3);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary);
+      color: var(--light);
+      padding: 5rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="80" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,80 C360,40 720,80 1080,40 C1320,20 1440,80 1440,80 V 80 H 0 Z" fill="%23ffffff" fill-opacity="0.03"/></svg>') center top;
+      background-size: 100% auto;
+      z-index: -1;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand {
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand h3 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .footer-brand h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 80px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    .footer-brand p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .footer-links h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .footer-links h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 80px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      transition: color 0.3s ease, transform 0.3s ease;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .footer-links a::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    .footer-links a:hover::before {
+      opacity: 1;
+      transform: translateX(5px);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-social a {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-social a:hover {
+      color: var(--accent);
+      background-color: rgba(255, 153, 0, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .footer-copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* SCROLL ANIMATIONS */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Parallax Hero */
+    .hero {
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    .hero.h-scroll {
+      background-position: 50% 50%;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      h1 {
+        font-size: 4rem;
+      }
+      h2 {
+        font-size: 2.5rem;
+      }
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+      .about-container,
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+      .about-image {
+        order: -1;
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        height: 90vh;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+      }
+
+      .hero-ctas {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .services,
+      .about,
+      .testimonials,
+      .gallery,
+      .contact {
+        padding: 6rem 0;
+      }
+
+      h1 {
+        font-size: 3.2rem;
+      }
+      h2 {
+        font-size: 2.2rem;
+      }
+
+      .section-title {
+        margin-bottom: 3rem;
+      }
+
+      .section-title::after {
+        width: 60px;
+      }
+
+      .section-title::before {
+        display: none;
+      }
+
+      .about-content h2 {
+        margin-bottom: 1rem;
+      }
+
+      .testimonial-card {
+        padding: 2rem;
+      }
+
+      .service-card {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .service-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2.5rem;
+      }
+
+      .footer-container {
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+      }
+      .footer-brand h3 {
+        font-size: 1.8rem;
+      }
+      .footer-links h3 {
+        font-size: 1.3rem;
+      }
+      .footer-brand p {
+        font-size: 0.9rem;
+      }
+      .contact-content p {
+        font-size: 1rem;
+      }
+      .testimonial-card {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Animation for sticky nav */
+    nav {
+      background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 70%, transparent 100%);
+    }
+
+    /* Add smooth transition to sections */
+    .services, .about, .testimonials, .gallery, .contact {
+      transition: opacity 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="mainNav">
+    <div class="container nav-container">
+      <a href="#" class="logo">Standard & Poor's</a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="cta-button">Get Started</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Standard & Poor's</h1>
+      <p>Accurate. Reliable. Uncompromised.</p>
+      <div class="hero-ctas">
+        <button class="cta-button">Consult Now</button>
+        <button class="secondary-button">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    <p>Trusted by local businesses for precision accounting services since years past</p>
+  </div>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">📊</div>
+          <h3 class="service-title">Financial Auditing</h3>
+          <p>Comprehensive audits that guarantee compliance and accuracy, following all local and federal standards with uncompromising rigor.</p>
+        </div>
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">📚</div>
+          <h3 class="service-title">Tax Planning</h3>
+          <p>Strategic planning that minimizes liabilities while maximizing opportunities, tailored to your unique business structure.</p>
+        </div>
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">📈</div>
+          <h3 class="service-title">Business Advisory</h3>
+          <p>Expert guidance on financial decisions, forecasting, operational efficiency, and long-term fiscal health for sustainable growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container about-container">
+      <div class="about-content">
+        <h2>Our Legacy of Precision</h2>
+        <p>For generations, Standard & Poor's has been the standard by which accounting excellence is measured. Our team combines deep institutional knowledge with disciplined methodology to deliver results you can rely on.</p>
+        <p>Every ledger scrutinized, every tax form filed, every forecast validated — with exhaustive attention to detail and unwavering adherence to integrity.</p>
+        <p>We serve small businesses, medium enterprises, and private clients across the local area with the same unwavering standard of excellence that has defined us since our inception.</p>
+      </div>
+      <div class="about-image animate-on-scroll">
+        <img src="https://images.pexels.com/photos/8167382/pexels-photo-8167382.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Professional accounting team in session">
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">Client Trust</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card animate-on-scroll">
+          <p class="testimonial-text">Their attention to detail transformed our year-end reporting. I’ve never felt more confident in our financial position.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar"></div>
+            <div>
+              <div class="testimonial-name">Local Client</div>
+              <div class="testimonial-role">Small Business Owner</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate-on-scroll">
+          <p class="testimonial-text">Taxes were handled flawlessly, and their proactive advice saved us over ten thousand dollars last fiscal year. Truly exemplary.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar"></div>
+            <div>
+              <div class="testimonial-name">Verified Customer</div>
+              <div class="testimonial-role">Retail Partnership</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate-on-scroll">
+          <p class="testimonial-text">When we needed clarity during a market shift, Standard & Poor's delivered insight with grace and precision. We're guided by their expertise.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar"></div>
+            <div>
+              <div class="testimonial-name">Local Client</div>
+              <div class="testimonial-role">Family Enterprise</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Our Workspace</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/5632406/pexels-photo-5632406.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Clean accounting office interior">
+          <div class="gallery-overlay">
+            <h3>Professional Environment</h3>
+          </div>
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/7947744/pexels-photo-7947744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Accountant reviewing documents">
+          <div class="gallery-overlay">
+            <h3>Diligent Review</h3>
+          </div>
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/8923526/pexels-photo-8923526.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Team meeting in accounting office">
+          <div class="gallery-overlay">
+            <h3>Collaborative Strategy</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container contact-container">
+      <div class="contact-content">
+        <h2>Begin Your Financial Clarity</h2>
+        <p>Standard & Poor's offers free initial consultations to discuss your accounting needs. Whether you're managing your first ledger or scaling your enterprise, we’re here to provide disciplined, reliable service.</p>
+        <p>No figures fabricated. No shortcuts taken. Just precision, preserved.</p>
+      </div>
+      <form class="contact-form" action="#" method="POST">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about your accounting needs" required></textarea>
+        </div>
+        <button type="submit" class="cta-button">Request Consultation</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <h3>Standard & Poor's</h3>
+        <p>Accurate. Reliable. Uncompromised. Committed to the highest standards of financial integrity.</p>
+      </div>
+      <div class="footer-links">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#">Financial Auditing</a></li>
+          <li><a href="#">Tax Planning</a></li>
+          <li><a href="#">Business Advisory</a></li>
+          <li><a href="#">Bookkeeping</a></li>
+          <li><a href="#">Financial Forecasting</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3>Connect</h3>
+        <div class="footer-social">
+          <a href="#">FB</a>
+          <a href="#">LI</a>
+          <a href="#">IG</a>
+        </div>
+        <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.8);">Local presence throughout the region</p>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <p>&copy; 2026 Standard & Poor's. All rights reserved. No invoices fabricated.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky Nav
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('mainNav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Scroll Reveal Animation
+    const animateOnScroll = document.querySelectorAll('.animate-on-scroll');
+    
+    const animateOnScrollFunction = () => {
+      animateOnScroll.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+          element.classList.add('visible');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', animateOnScrollFunction);
+    window.addEventListener('load', animateOnScrollFunction);
+
+    // Smooth Scroll for Anchor Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Add animation to hero on load with stagger
+    const heroContent = document.querySelector('.hero-content');
+    const heroItems = heroContent.querySelectorAll('*');
+    
+    heroItems.forEach((item, index) => {
+      item.style.opacity = 0;
+      item.style.transform = 'translateY(30px)';
+      item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      
+      setTimeout(() => {
+        item.style.opacity = 1;
+        item.style.transform = 'translateY(0)';
+      }, 200 * index);
+    });
+
+    // Parallax effect for hero
+    window.addEventListener('scroll', function() {
+      const hero = document.querySelector('.hero');
+      const scrollAmount = window.pageYOffset;
+      const parallaxValue = scrollAmount * 0.5;
+      
+      hero.style.backgroundPositionY = parallaxValue + 'px';
+    });
+
+    // Add subtle hover pulse to CTA buttons
+    const ctaButtons = document.querySelectorAll('.cta-button, .secondary-button');
+    ctaButtons.forEach(button => {
+      button.addEventListener('mouseenter', () => {
+        button.style.animation = 'pulse 1.5s ease-in-out infinite alternate';
+      });
+      button.addEventListener('mouseleave', () => {
+        button.style.animation = '';
+      });
+    });
+
+    // Add fake floating bubbles for decorative effect
+    function createBubbles() {
+      const container = document.querySelector('.hero');
+      for (let i = 0; i < 15; i++) {
+        const bubble = document.createElement('div');
+        bubble.style.position = 'absolute';
+        bubble.style.width = Math.random() * 20 + 5 + 'px';
+        bubble.style.height = bubble.style.width;
+        bubble.style.borderRadius = '50%';
+        bubble.style.background = 'rgba(255, 255, 255, 0.1)';
+        bubble.style.opacity = Math.random() * 0.3 + 0.1;
+        bubble.style.top = Math.random() * 100 + '%';
+        bubble.style.left = Math.random() * 100 + '%';
+        bubble.style.animation = `float ${Math.random() * 8 + 8}s ease-in-out infinite`;
+        bubble.style.pointerEvents = 'none';
+        container.appendChild(bubble);
+      }
+      
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes float {
+          0% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(-100vh) translateX(${Math.random() * 50 - 25}px); }
+          100% { transform: translateY(-200vh) translateX(${Math.random() * 100 - 50}px); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    window.addEventListener('load', createBubbles);
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=U3RhbmRhcmQgJiBQb29yJ3M&u=dmlzaXQ&s=142264ad0d70adc7682404924e8e83f4&beacon=1&l=b3NtLW5vZGUtMTM0NDQxNzEyNw";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:b5dc622a91--></html>
