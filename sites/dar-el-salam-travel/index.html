@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dar El Salam Travel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary: #2c3e50;
-      --accent: #e67e22;
-      --highlight: #f1c40f;
-      --secondary: #3498db;
-      --light: #ecf0f1;
-      --dark: #1a2530;
+      --primary: #8B4513;
+      --accent: #D4A574;
+      --dark: #2E1B13;
+      --light: #F5E6D3;
+      --secondary: #6B4226;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Lora', serif;
     }
 
     * {
@@ -22,175 +22,159 @@
     }
 
     body {
-      font-family: 'Lato', sans-serif;
-      color: var(--primary);
+      font-family: var(--font-body);
+      color: var(--dark);
       line-height: 1.7;
       overflow-x: hidden;
       background-color: var(--light);
-      font-feature-settings: "liga" 1, "dlig" 1;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      background-image: radial-gradient(circle at 10% 20%, rgba(212, 165, 116, 0.05) 0%, transparent 50%), 
+                        radial-gradient(circle at 90% 80%, rgba(139, 69, 19, 0.03) 0%, transparent 60%);
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%238B4513" d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M13,17h-2v-6h2V17z M13,9h-2V7h2V9z"/></svg>') 12 12, auto;
     }
 
     h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-weight: 600;
       letter-spacing: -0.5px;
-      margin-bottom: 1rem;
+      text-transform: capitalize;
     }
 
     h1 {
-      font-size: 4.5rem;
-      line-height: 1;
-      font-variation-settings: "wdth" 105;
+      font-size: 4rem;
+      line-height: 1.1;
+      background: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     h2 {
-      font-size: 3rem;
+      font-size: 2.8rem;
+      position: relative;
+      display: inline-block;
     }
 
     h3 {
       font-size: 2rem;
     }
 
-    p {
-      margin-bottom: 1.5rem;
-      color: #333;
-      font-weight: 300;
-    }
-
     a {
+      color: var(--primary);
       text-decoration: none;
-      color: var(--accent);
-      transition: color 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     a:hover {
-      color: var(--primary);
+      color: var(--secondary);
+      text-shadow: 0 1px 4px rgba(139, 69, 19, 0.2);
     }
 
     .container {
-      width: 90%;
-      max-width: 1300px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 0 2rem;
     }
 
-    /* --- NAV --- */
+    /* Sticky Nav */
     nav {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
-      width: 100%;
       z-index: 1000;
-      padding: 2rem 0;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       background: transparent;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+      padding: 1.5rem 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(212, 165, 116, 0.1);
     }
 
     nav.scrolled {
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(230, 126, 34, 0.1);
+      background: rgba(245, 230, 211, 0.98);
+      padding: 0.75rem 0;
+      box-shadow: 0 12px 40px rgba(139, 69, 19, 0.15);
+      border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+      transform: translateY(0);
     }
 
     .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
       position: relative;
     }
 
     .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-size: 2.2rem;
       color: var(--primary);
-      letter-spacing: -1px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
       position: relative;
-      z-index: 10;
+      padding: 0.5rem;
     }
 
     .logo::after {
       content: '';
       position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: -1;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: var(--accent);
+      transition: width 0.5s ease;
     }
 
     .logo:hover::after {
-      transform: scaleX(1);
+      width: 100%;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
-      position: relative;
-      z-index: 10;
+      gap: 1.8rem;
     }
 
     .nav-links a {
-      color: var(--primary);
-      font-weight: 600;
-      position: relative;
+      font-weight: 500;
       font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+      position: relative;
+      padding: 0.5rem 0;
       transition: color 0.3s ease;
     }
 
-    .nav-links a::before {
+    .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: 0;
       left: 0;
       width: 0;
       height: 2px;
-      background-color: var(--accent);
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: -1;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    .nav-links a:hover::before {
+    .nav-links a:hover::after {
       width: 100%;
     }
 
     .cta-button {
-      background-color: var(--accent);
+      background-color: var(--primary);
       color: white;
       padding: 0.8rem 2.2rem;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 0.9rem;
       border: none;
+      border-radius: 50px;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 8px 25px rgba(230, 126, 34, 0.35);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-family: 'Lato', sans-serif;
+      box-shadow: 0 6px 25px rgba(139, 69, 19, 0.25);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
       position: relative;
       overflow: hidden;
-      z-index: 1;
+      font-weight: 600;
     }
 
     .cta-button::before {
@@ -200,52 +184,31 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, rgba(255,255,255,0.4), transparent);
-      transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: -1;
-    }
-
-    .cta-button:hover {
-      background-color: #d35400;
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 15px 40px rgba(230, 126, 34, 0.45);
-      color: white;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.7s;
     }
 
     .cta-button:hover::before {
       left: 100%;
     }
 
-    .mobile-menu-button {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 2rem;
-      color: var(--primary);
-      cursor: pointer;
-      padding: 0.5rem;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      z-index: 20;
+    .cta-button:hover {
+      background-color: var(--secondary);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(139, 69, 19, 0.35);
     }
 
-    .mobile-menu-button:hover {
-      background-color: rgba(0,0,0,0.05);
-    }
-
-    /* --- HERO --- */
+    /* Hero */
     .hero {
       height: 100vh;
-      width: 100%;
-      background-image: url('https://images.pexels.com/photos/10573397/pexels-photo-10573397.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background: linear-gradient(rgba(46, 27, 19, 0.7), rgba(46, 27, 19, 0.9)), url('https://images.pexels.com/photos/10961006/pexels-photo-10961006.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
       background-size: cover;
-      background-position: center center;
+      background-position: center 30%;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-end;
       position: relative;
       overflow: hidden;
-      perspective: 1000px;
+      padding-bottom: 8rem;
     }
 
     .hero::before {
@@ -255,153 +218,112 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, rgba(44, 62, 80, 0.35) 0%, rgba(44, 62, 80, 0.85) 100%);
+      background: linear-gradient(135deg, rgba(139, 69, 19, 0.6), rgba(46, 27, 19, 0.8));
       z-index: 1;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -100px;
-      left: -100px;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(241,196,15,0.3) 0%, transparent 70%);
-      border-radius: 50%;
-      z-index: 1;
-      animation: pulse 4s infinite;
     }
 
     .hero-content {
-      text-align: center;
-      color: white;
-      z-index: 2;
-      animation: fadeInUp 1.4s ease-out;
-      max-width: 850px;
-      padding: 0 1rem;
       position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 3rem 2rem 5rem;
+      color: white;
+      transform: translateY(60px);
+      opacity: 0;
+      animation: fadeInUp 1.2s ease-out 0.2s both;
     }
 
     .hero h1 {
-      font-size: 5.5rem;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      font-weight: 800;
-      line-height: 1;
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .hero p {
       font-size: 1.8rem;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
       font-weight: 300;
-      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
-      opacity: 0.9;
       letter-spacing: -0.5px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      animation: fadeInUp 1.2s ease-out 0.5s both;
     }
 
-    .hero-cta {
+    .hero-ctas {
       display: flex;
-      justify-content: center;
-      gap: 1.8rem;
-      flex-wrap: wrap;
+      gap: 1.5rem;
+      animation: fadeInUp 1.2s ease-out 0.8s both;
     }
 
-    .hero-cta .cta-button {
-      margin-top: 1.5rem;
+    .hero-ctas .cta-button {
+      margin-top: 0;
+      flex: 1;
+      min-width: 0;
     }
 
-    .hero-cta .cta-button:nth-child(2) {
-      background-color: rgba(255,255,255,0.1);
-      border: 2px solid rgba(255,255,255,0.3);
+    .hero-ctas button:nth-child(2) {
+      background: transparent;
       color: white;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.5);
+      box-shadow: none;
+      padding: 0.8rem 2rem;
     }
 
-    .hero-cta .cta-button:nth-child(2):hover {
-      background-color: rgba(255,255,255,0.2);
-      border-color: rgba(255,255,255,0.5);
+    .hero-ctas button:nth-child(2):hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.8);
+      transform: translateY(-3px);
     }
 
-    /* --- SCROLL INDICATOR --- */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 50px;
-      left: 50%;
-      transform: translateX(-50%) rotate(90deg);
-      animation: bounce 2s infinite;
-      color: white;
-      font-size: 2.4rem;
-      z-index: 3;
-      pointer-events: none;
-      opacity: 0.8;
-    }
-
-    /* --- TRUST STRIP --- */
+    /* Trust Strip */
     .trust-strip {
-      background: linear-gradient(90deg, var(--primary), #1e2a3a);
-      color: white;
-      padding: 1.8rem 0;
+      background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.2), transparent);
+      color: var(--dark);
+      padding: 1.2rem 0;
+      text-align: center;
+      font-size: 1rem;
+      font-style: italic;
+      letter-spacing: 0.5px;
+      border-top: 1px solid rgba(212, 165, 116, 0.15);
+      border-bottom: 1px solid rgba(212, 165, 116, 0.15);
       position: relative;
-      overflow: hidden;
     }
 
-    .trust-strip::before {
+    .trust-strip::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><path d="M0,0 L120,0 L120,120 L0,120 Z M10,10 L110,10 L110,110 L10,110 Z" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/></svg>') repeat;
-      opacity: 0.5;
-      z-index: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(0deg);
+      width: 40px;
+      height: 40px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%238B4513" stroke-width="2"><path d="M20.49 19a9 9 0 1 1-10.35-9.5" /><path d="M20.49 15a7 7 0 1 0-9 7" /></svg>') center/contain no-repeat;
+      border-radius: 50%;
+      z-index: 2;
     }
 
-    .trust-strip .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 4rem;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
-    }
-
-    .trust-item {
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: var(--light);
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      padding: 0 1rem;
-      border-left: 1px solid rgba(255,255,255,0.1);
-      animation: fadeInUp 0.6s ease-out forwards;
-      opacity: 0;
-    }
-
-    .trust-item:nth-child(1) { animation-delay: 0.1s; }
-    .trust-item:nth-child(2) { animation-delay: 0.2s; }
-    .trust-item:nth-child(3) { animation-delay: 0.3s; }
-
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
-      from { opacity: 0; transform: translateY(30px); }
-    }
-
-    /* --- FEATURES --- */
-    .features {
-      padding: 10rem 0;
+    /* Services */
+    .services {
+      padding: 8rem 0;
       background-color: white;
       position: relative;
     }
 
+    .services::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 150" preserveAspectRatio="none"><path d="M0,0 C300,40 900,40 1200,0 L1200,150 L0,150 Z" fill="%23D4A574" opacity="0.1"/></svg>') repeat-x;
+      z-index: -1;
+    }
+
     .section-title {
       text-align: center;
-      margin-bottom: 6rem;
+      margin-bottom: 5rem;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
     .section-title::after {
@@ -414,288 +336,221 @@
       height: 4px;
       background: linear-gradient(90deg, transparent, var(--accent), transparent);
       border-radius: 2px;
-      animation: ripple 2s infinite;
+      animation: pulse 2s infinite;
     }
 
-    .section-title::before {
-      content: '';
-      position: absolute;
-      top: -16px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 60px;
-      background: radial-gradient(circle, rgba(230,126,34,0.1), transparent 70%);
-      border-radius: 50%;
-      z-index: -1;
-    }
-
-    .features-grid {
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 4rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
     }
 
-    .feature-card {
-      background-color: var(--light);
-      padding: 3rem 2.5rem;
+    .service-card {
+      background: white;
       border-radius: 20px;
+      padding: 3rem 2rem;
       text-align: center;
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 15px 40px rgba(139, 69, 19, 0.08);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 40px rgba(44, 62, 80, 0.05);
-      border: 1px solid rgba(230,126,34,0.05);
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(241, 196, 15, 0.15), transparent);
-      transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .feature-card::after {
-      content: '';
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--secondary), var(--accent));
-      border-radius: 1px;
+      border: 1px solid rgba(139, 69, 19, 0.07);
+      transform: translateY(40px);
       opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 1;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
     }
 
-    .feature-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 30px 60px rgba(44, 62, 80, 0.15);
-    }
-
-    .feature-card:hover::before {
-      left: 100%;
-    }
-
-    .feature-card:hover::after {
-      opacity: 1;
-    }
-
-    .feature-icon {
-      width: 90px;
-      height: 90px;
-      margin: 0 auto 2.5rem;
-      background-color: rgba(230, 126, 34, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 2.5rem;
-      position: relative;
-      z-index: 2;
-      box-shadow: 0 0 0 4px rgba(230,126,34,0.1);
-      transition: all 0.4s ease;
-    }
-
-    .feature-card:hover .feature-icon {
-      background-color: rgba(230, 126, 34, 0.2);
-      transform: scale(1.1);
-      box-shadow: 0 0 0 6px rgba(230,126,34,0.15);
-    }
-
-    .feature-title {
-      font-size: 1.7rem;
-      margin-bottom: 1.5rem;
-      color: var(--primary);
-      font-weight: 700;
-      transition: color 0.4s ease;
-    }
-
-    .feature-card:hover .feature-title {
-      color: var(--accent);
-    }
-
-    .feature-card p {
-      color: #555;
-      font-size: 1.1rem;
-      line-height: 1.7;
-      font-weight: 300;
-    }
-
-    /* --- ABOUT --- */
-    .about {
-      padding: 10rem 0;
-      background-color: var(--light);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .about::before {
+    .service-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 80px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,97.19,36.71,147.89,29.21C181.11,69.86,282.36,47.59,356,32.87c73.5,17.7,184.94,24.26,269.5,14.6a43.2,43.2,0,0,0,13.89-4.73C643.09,21.26,670.54,19.25,700,20.49c21.28,1.08,39.91,8.74,45.05,15.14C795,45.27,826,70.07,874,88.27c31.95,13.81,69.5,22.04,100.31,18.08C1020,64.56,1029,50.89,1074,26.42c38.66,10.77,77.09,13.62,113,13.45C1362,20.71,1432,28,1496,37.09V120H0Z' fill='%23ecf0f1'%3E%3C/path%3E%3C/svg%3E") repeat-x;
-      background-size: 80px 120px;
-      z-index: 2;
+      height: 5px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 100%;
+      height: 60px;
+      background: radial-gradient(circle at 50% 0%, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+      border-radius: 50% 50% 0 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      transform: translateY(-30px);
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 50px rgba(139, 69, 19, 0.18);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 2rem;
+      background: var(--light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 2.2rem;
+      box-shadow: 0 8px 25px rgba(139, 69, 19, 0.12);
+      transition: transform 0.5s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.08) rotate(5deg);
+    }
+
+    .service-card h3 {
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1.9rem;
+    }
+
+    .service-card p {
+      color: var(--dark);
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* About */
+    .about {
+      padding: 8rem 0;
+      background-color: var(--light);
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 200px;
+      height: 200px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23D4A574" d="M10,10 C40,30 60,70 90,90 L90,10 Z" opacity="0.05" /></svg>') center/contain no-repeat;
+      opacity: 0.7;
+      z-index: -1;
+      border-radius: 50%;
     }
 
     .about::after {
       content: '';
       position: absolute;
-      top: 60px;
-      right: -150px;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(230,126,34,0.1) 0%, transparent 60%);
+      bottom: -120px;
+      left: -120px;
+      width: 250px;
+      height: 250px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><path fill="none" stroke="%238B4513" stroke-width="2" stroke-dasharray="4,4" d="M10,10 C40,30 80,80 110,110" opacity="0.3" /></svg>') center/contain no-repeat;
+      opacity: 0.4;
+      z-index: -1;
       border-radius: 50%;
-      z-index: 0;
-      animation: floatRotate 12s linear infinite;
-    }
-
-    .about-content {
-      display: flex;
-      align-items: center;
-      gap: 8rem;
-      position: relative;
-      z-index: 1;
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 40px 80px rgba(44, 62, 80, 0.1);
-      padding: 6rem 4rem;
     }
 
     .about-image {
       flex: 1;
-      border-radius: 18px;
+      min-width: 300px;
+      border-radius: 25px;
       overflow: hidden;
+      box-shadow: 0 25px 70px rgba(139, 69, 19, 0.2);
       position: relative;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .about-image::before {
-      content: '';
-      position: absolute;
-      top: -30px;
-      left: -30px;
-      width: calc(100% + 60px);
-      height: calc(100% + 60px);
-      background: linear-gradient(45deg, rgba(52,152,219,0.1), rgba(230,126,34,0.1));
-      z-index: -1;
+      transform: translateX(-40px);
       opacity: 0;
-      transition: opacity 0.6s ease;
-      animation: pulse 8s infinite;
-      border-radius: 12px;
-    }
-
-    .about-image:hover::before {
-      opacity: 1;
-    }
-
-    .about-image:hover {
-      transform: translateX(-15px) translateY(-10px);
+      animation: fadeInRight 1s ease-out 0.2s both;
     }
 
     .about-image img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 1s ease;
+      height: auto;
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(3px);
+      transform: scale(1.02);
     }
 
     .about-image:hover img {
       transform: scale(1.08);
     }
 
-    .about-text {
+    .about-content {
       flex: 1;
-      position: relative;
+      min-width: 300px;
+      transform: translateX(40px);
+      opacity: 0;
+      animation: fadeInLeft 1s ease-out 0.4s both;
     }
 
-    .about-text h2 {
-      font-size: 3.4rem;
-      margin-bottom: 2.5rem;
+    .about h2 {
+      margin-bottom: 1.5rem;
       color: var(--primary);
-      font-weight: 800;
-      line-height: 1.1;
-    }
-
-    .about-text p {
-      margin-bottom: 2.5rem;
-      font-size: 1.15rem;
-      line-height: 1.8;
-    }
-
-    .about-text .highlight {
-      color: var(--accent);
-      font-style: italic;
+      font-size: 3rem;
       position: relative;
-      text-shadow: 0 2px 6px rgba(230,126,34,0.1);
+      display: inline-block;
     }
 
-    .about-text .highlight::before,
-    .about-text .highlight::after {
+    .about h2::after {
       content: '';
       position: absolute;
-      top: 0;
+      bottom: -15px;
+      left: 0;
+      width: 80px;
+      height: 4px;
       background: var(--accent);
-      opacity: 0.2;
-      height: 25%;
-      width: 5px;
-      border-radius: 4px;
+      border-radius: 2px;
     }
 
-    .about-text .highlight::before {
-      left: -12px;
+    .about p {
+      margin-bottom: 2rem;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: var(--dark);
     }
 
-    .about-text .highlight::after {
-      right: -12px;
+    .about .cta-button {
+      margin-top: 1rem;
     }
 
-    /* --- TESTIMONIALS --- */
+    /* Testimonials */
     .testimonials {
-      padding: 10rem 0;
+      padding: 8rem 0;
       background-color: white;
       position: relative;
-      overflow: hidden;
     }
 
     .testimonials::before {
       content: '';
       position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(241,196,15,0.15) 0%, transparent 80%);
-      border-radius: 50%;
-      z-index: 0;
-    }
-
-    .testimonials::after {
-      content: '';
-      position: absolute;
-      bottom: -120px;
-      left: -120px;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(52,152,219,0.15) 0%, transparent 80%);
-      border-radius: 50%;
-      z-index: 0;
+      top: -80px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0,0 C300,80 900,80 1200,0 L1200,100 L0,100 Z" fill="%23D4A574" opacity="0.08"/></svg>') repeat-x;
+      z-index: -1;
+      background-size: 1200px 100px;
     }
 
     .testimonials-grid {
@@ -704,108 +559,89 @@
       gap: 4rem;
     }
 
-    .testimonial-card {
-      background-color: var(--light);
-      padding: 3rem 2.8rem;
-      border-radius: 20px;
+    .testimonial {
+      background: var(--light);
+      padding: 3rem 2.5rem;
+      border-radius: 25px;
+      box-shadow: 0 20px 50px rgba(139, 69, 19, 0.08);
       position: relative;
-      border-top: 4px solid var(--secondary);
-      box-shadow: 0 15px 40px rgba(44, 62, 80, 0.08);
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      text-align: center;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
     }
 
-    .testimonial-card::after {
-      content: '';
+    .testimonial:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(139, 69, 19, 0.12);
+    }
+
+    .testimonial::before {
+      content: """;
       position: absolute;
-      top: -20px;
-      right: -20px;
-      width: 80px;
-      height: 80px;
-      background: radial-gradient(circle, rgba(230,126,34,0.1) 0%, transparent 70%);
-      border-radius: 50%;
-      z-index: -1;
-    }
-
-    .testimonial-card:hover {
-      transform: translateY(-25px) scale(1.01);
-      box-shadow: 0 40px 80px rgba(44, 62, 80, 0.15);
-    }
-
-    .testimonial-text {
-      font-style: italic;
-      color: #444;
-      font-size: 1.3rem;
-      margin-bottom: 2.5rem;
-      position: relative;
+      top: 30px;
+      left: 30px;
+      font-size: 6rem;
+      font-family: var(--font-display);
+      color: var(--primary);
+      opacity: 0.15;
+      line-height: 1;
       font-weight: 300;
     }
 
-    .testimonial-text::before {
-      content: "'\201C'";
-      font-size: 5rem;
-      color: rgba(230, 126, 34, 0.2);
+    .testimonial::after {
+      content: """;
       position: absolute;
-      top: -40px;
-      left: 0;
-      font-family: serif;
+      bottom: 30px;
+      right: 30px;
+      font-size: 6rem;
+      font-family: var(--font-display);
+      color: var(--primary);
+      opacity: 0.1;
       line-height: 1;
+      font-weight: 300;
+      transform: rotate(180deg);
     }
 
-    .testimonial-text::after {
-      content: "'\201D'";
-      font-size: 5rem;
-      color: rgba(230, 126, 34, 0.1);
-      position: absolute;
-      bottom: -60px;
-      right: 0;
-      font-family: serif;
-      line-height: 1;
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
     }
 
     .testimonial-author {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 1.3rem;
-      margin-bottom: 0.2rem;
-      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
-    .testimonial-role {
-      color: var(--secondary);
-      font-size: 1rem;
-      margin-top: 0.5rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .author-image {
-      width: 80px;
-      height: 80px;
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      margin: 1.5rem auto;
-      background: linear-gradient(135deg, rgba(44,62,80,0.1), rgba(230,126,34,0.1));
-      overflow: hidden;
-      border: 3px solid var(--accent);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      transition: all 0.4s ease;
+      margin-right: 1rem;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+      border: 3px solid rgba(212, 165, 116, 0.3);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
 
-    .author-image:hover {
-      transform: scale(1.1);
+    .testimonial-name {
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 1.2rem;
     }
 
-    .author-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* --- GALLERY --- */
+    /* Gallery */
     .gallery {
-      padding: 10rem 0;
-      background-color: var(--light);
+      padding: 8rem 0;
+      background-color: var(--dark);
+      color: white;
       position: relative;
       overflow: hidden;
     }
@@ -813,291 +649,244 @@
     .gallery::before {
       content: '';
       position: absolute;
-      top: -120px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(241,196,15,0.25) 0%, transparent 80%);
-      border-radius: 50%;
-      z-index: 0;
-    }
-
-    .gallery::after {
-      content: '';
-      position: absolute;
-      bottom: -140px;
-      right: 20%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(52,152,219,0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      z-index: 0;
-      animation: rotateSlow 18s linear infinite;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 150" preserveAspectRatio="none"><path d="M0,0 C300,60 900,60 1200,0 L1200,150 L0,150 Z" fill="%23F5E6D3" opacity="0.08"/></svg>') repeat-x;
+      z-index: -1;
+      background-size: 1200px 150px;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 6rem;
+      margin-bottom: 5rem;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
-    .section-title::before {
+    .section-title::after {
       content: '';
       position: absolute;
-      top: -16px;
+      bottom: -20px;
       left: 50%;
       transform: translateX(-50%);
-      width: 60px;
-      height: 60px;
-      background: radial-gradient(circle, rgba(230,126,34,0.1), transparent 70%);
-      border-radius: 50%;
-      z-index: -1;
-    }
-
-    .section-subtitle {
-      font-size: 1.3rem;
-      color: #666;
-      margin-top: 0.5rem;
-      font-weight: 400;
-      letter-spacing: 0.5px;
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, rgb(212, 165, 116), transparent);
+      border-radius: 2px;
     }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
-      margin-top: 5rem;
-      position: relative;
-      z-index: 2;
     }
 
     .gallery-item {
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      border-radius: 16px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
       position: relative;
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: translateY(0);
-      opacity: 0.98;
-    }
-
-    .gallery-item::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(45deg, rgba(52,152,219,0), rgba(230,126,34,0.14));
-      border-radius: 16px;
+      overflow: hidden;
+      border-radius: 20px;
+      aspect-ratio: 1;
+      background: var(--primary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transform: translateY(40px);
       opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
-    }
-
-    .gallery-item:hover::after {
-      opacity: 1;
-    }
-
-    .gallery-item:hover {
-      transform: translateY(-15px) scale(1.02);
-      opacity: 1;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 0.8s ease-out 0.2s both;
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 1.2s ease;
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: scale(1.05);
     }
 
     .gallery-item:hover img {
       transform: scale(1.15);
     }
 
-    .gallery-item .overlay {
+    .album-overlay {
       position: absolute;
-      inset: 0;
-      background: transparent;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 2rem 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      backdrop-filter: blur(8px);
       opacity: 0;
       transition: opacity 0.5s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       color: white;
-      font-size: 1.4rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
     }
 
-    .gallery-item:hover .overlay {
-      opacity: 0.8;
+    .gallery-item:hover .album-overlay {
+      opacity: 1;
     }
 
-    /* --- CONTACT --- */
+    .album-overlay h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    /* Contact */
     .contact {
-      padding: 10rem 0;
-      background-color: var(--dark);
-      color: white;
+      padding: 8rem 0;
+      background-color: white;
       position: relative;
-      overflow: hidden;
-      background-image: url('https://images.pexels.com/photos/2610791/pexels-photo-2610791.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-      background-size: cover;
-      background-position: center center;
     }
 
     .contact::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, rgba(44,62,80,0.7) 0%, rgba(44,62,80,0.9) 100%);
-      backdrop-filter: blur(20px);
+      top: -50px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0,0 C300,20 900,20 1200,0 L1200,100 L0,100 Z" fill="%23D4A574" opacity="0.05"/></svg>') repeat-x;
+      z-index: -1;
+      background-size: 1200px 100px;
     }
 
-    .contact-content {
-      max-width: 800px;
-      margin: 0 auto;
+    .section-title {
       text-align: center;
+      margin-bottom: 5rem;
       position: relative;
-      z-index: 1;
     }
 
-    .contact h2 {
-      font-size: 4rem;
-      margin-bottom: 2.5rem;
-      color: white;
-      line-height: 1.1;
-      font-weight: 800;
-      text-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      border-radius: 2px;
     }
 
-    .contact p {
-      margin-bottom: 4rem;
-      font-size: 1.4rem;
-      color: rgba(247,247,247,0.85);
-      font-weight: 300;
+    .contact-container {
+      display: flex;
+      gap: 5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+      transform: translateY(40px);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .contact-info h2 {
+      color: var(--primary);
+      font-size: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 2rem;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: var(--dark);
+      position: relative;
+    }
+
+    .contact-info p::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
     }
 
     .contact-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 3rem;
+      flex: 1;
+      min-width: 300px;
+      transform: translateY(40px);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.5s both;
     }
 
     .form-group {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
-    .form-control {
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: -0.3px;
+    }
+
+    .form-group input,
+    .form-group textarea {
       width: 100%;
-      padding: 1.2rem 1.5rem;
-      border: none;
+      padding: 1.3rem;
+      border: 1px solid #ddd;
       border-radius: 12px;
-      background-color: rgba(255, 255, 255, 0.09);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: white;
-      font-family: 'Lato', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 300;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: inset 0 0 0 0 transparent;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background-color: transparent;
     }
 
-    .form-control::placeholder {
-      color: rgba(255, 255, 255, 0.4);
-    }
-
-    .form-control:focus {
+    .form-group input:focus,
+    .form-group textarea:focus {
       outline: none;
-      background-color: rgba(255, 255, 255, 0.15);
-      box-shadow: inset 0 0 0 2px rgba(52, 152, 219, 0.5), 0 10px 40px rgba(0,0,0,0.2);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.2);
+      transform: translateY(-1px);
     }
 
-    .form-control.message {
-      grid-column: 1 / -1;
-      min-height: 160px;
+    .form-group textarea {
+      min-height: 150px;
       resize: vertical;
-      font-size: 1.15rem;
     }
 
-    .send-button {
-      background-color: var(--accent);
-      border: none;
-      color: white;
-      padding: 1.4rem 3.5rem;
-      border-radius: 40px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 0;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      align-self: flex-end;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(230,126,34,0.4);
-    }
-
-    .send-button::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: -10px;
+    .contact-form .cta-button {
       width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.2), transparent);
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      border-radius: 50%;
     }
 
-    .send-button:hover {
-      background-color: #d35400;
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 20px 50px rgba(230,126,34,0.5);
-    }
-
-    .send-button:hover::before {
-      opacity: 1;
-      animation: ripple 1s ease-out;
-    }
-
-    @keyframes ripple {
-      0% {
-        transform: scale(0);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(20);
-        opacity: 0;
-      }
-    }
-
-    /* --- FOOTER --- */
+    /* Footer */
     footer {
       background-color: var(--dark);
       color: var(--light);
       padding: 5rem 0 3rem;
-      font-size: 0.95rem;
       position: relative;
+      overflow: hidden;
     }
 
-    .footer-content {
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,0 C300,40 900,40 1200,0 L1200,200 L0,200 Z" fill="%23D4A574" opacity="0.05"/></svg>') repeat-x;
+      z-index: -1;
+      background-size: 1200px 200px;
+    }
+
+    .footer-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 4rem;
     }
 
     .footer-column h3 {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      color: var(--highlight);
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+      font-size: 1.8rem;
       position: relative;
       padding-bottom: 1rem;
     }
@@ -1107,211 +896,134 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 45px;
+      width: 40px;
       height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--secondary));
-      border-radius: 1.5px;
+      background: var(--accent);
+      border-radius: 2px;
     }
 
-    .footer-column ul {
+    .footer-links {
       list-style: none;
     }
 
-    .footer-column ul li {
+    .footer-links li {
       margin-bottom: 1rem;
     }
 
-    .footer-column ul li a {
+    .footer-links a {
       color: var(--light);
+      font-size: 0.95rem;
       transition: all 0.3s ease;
       position: relative;
-      padding: 1px 0;
     }
 
-    .footer-column ul li a::after {
+    .footer-links a::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
       width: 0;
       height: 1px;
-      background-color: var(--accent);
-      transition: width 0.4s ease;
+      background: var(--accent);
+      transition: width 0.3s ease;
     }
 
-    .footer-column ul li a:hover {
-      color: var(--accent);
-    }
-
-    .footer-column ul li a:hover::after {
+    .footer-links a:hover::after {
       width: 100%;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      text-shadow: 0 1px 4px rgba(212, 165, 116, 0.3);
     }
 
     .social-icons {
       display: flex;
-      gap: 1.8rem;
-      margin-top: 2rem;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
     }
 
     .social-icons a {
+      width: 45px;
+      height: 45px;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 50px;
-      height: 50px;
-      background-color: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.08);
       border-radius: 50%;
       color: var(--light);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.4rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid rgba(212, 165, 116, 0.2);
     }
 
     .social-icons a:hover {
-      background-color: var(--accent);
-      color: white;
-      transform: translateY(-8px) scale(1.1);
-      box-shadow: 0 12px 40px rgba(230,126,34,0.4);
+      background: var(--accent);
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
+      color: var(--dark);
     }
 
     .copyright {
       text-align: center;
-      padding-top: 4rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      margin-top: 4rem;
-      font-size: 0.85rem;
-      color: #aaa;
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      color: var(--accent);
       letter-spacing: 0.5px;
     }
 
     .copyright::before {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--highlight), transparent);
-      margin: 0 auto 1.2rem;
+      content: '🤝';
+      margin-right: 0.5rem;
     }
 
-    /* --- MOBILE NAV --- */
-    .mobile-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: var(--primary);
-      z-index: 9999;
-      padding-top: 12rem;
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 3rem;
-      animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .mobile-nav.active {
-      display: flex;
-    }
-
-    .mobile-nav a {
-      color: white;
-      font-size: 2rem;
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-weight: 600;
-      position: relative;
-      padding: 0.5rem 0;
-    }
-
-    .mobile-nav a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 3px;
-      background-color: var(--accent);
-      transition: width 0.4s ease;
-    }
-
-    .mobile-nav a:hover::after {
-      width: 100%;
-    }
-
-    /* --- ANIMATIONS --- */
+    /* Animations */
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+    @keyframes fadeInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
-    .fade-in.appear {
-      opacity: 1;
-      transform: translateY(0);
+    @keyframes fadeInLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
     @keyframes pulse {
       0%, 100% {
-        transform: scale(1);
+        opacity: 0.6;
       }
       50% {
-        transform: scale(1.05);
-      }
-    }
-
-    @keyframes ripple {
-      from {
-        transform: scale(0);
         opacity: 1;
       }
-      to {
-        transform: scale(1.2);
-        opacity: 0;
-      }
     }
 
-    @keyframes floatRotate {
-      from {
-        transform: rotate(0deg) translateX(0);
-      }
-      to {
-        transform: rotate(360deg) translateX(0);
-      }
-    }
-
-    @keyframes rotateSlow {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* Scroll hint (enhanced) */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 1.6rem;
+      opacity: 0.8;
+      animation: bounce 2s infinite;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      letter-spacing: 1px;
+      font-weight: bold;
     }
 
     @keyframes bounce {
@@ -1319,450 +1031,429 @@
         transform: translateX(-50%) translateY(0);
       }
       40% {
-        transform: translateX(-50%) translateY(-20px);
+        transform: translateX(-50%) translateY(-15px);
       }
       60% {
-        transform: translateX(-50%) translateY(-10px);
+        transform: translateX(-50%) translateY(-7px);
       }
     }
 
-    /* --- BLOBS --- */
-    .blob {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background-color: rgba(230, 126, 34, 0.1);
-      z-index: 0;
-      animation: float 8s infinite ease-in-out;
-    }
-
-    .blob-1 {
-      top: -40px;
-      left: -40px;
-      background-color: rgba(52, 152, 219, 0.1);
-      border-radius: 50%;
-      animation-delay: 1s;
-    }
-
-    .blob-2 {
-      bottom: -60px;
-      right: -60px;
-      width: 150px;
-      height: 150px;
-      background-color: rgba(241, 196, 15, 0.1);
-      border-radius: 50%;
-      animation-delay: 2s;
-    }
-
-    .blob-3 {
-      top: 25%;
-      left: 5%;
-      width: 80px;
-      height: 80px;
-      background-color: rgba(241, 196, 15, 0.1);
-      animation-delay: 3s;
-    }
-
-    .blob-4 {
-      top: 15%;
-      right: 15%;
+    /* Floating shapes with improved motion */
+    .floating-shape {
+      position: fixed;
       width: 120px;
       height: 120px;
-      background-color: rgba(52, 152, 219, 0.1);
-      animation-delay: 4s;
+      background: rgba(212, 165, 116, 0.05);
+      border-radius: 50%;
+      z-index: -1;
+      pointer-events: none;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .floating-shape:nth-child(1) {
+      top: 15%;
+      left: 5%;
+      animation-delay: 0s;
+      background: rgba(212, 165, 116, 0.1);
+    }
+
+    .floating-shape:nth-child(2) {
+      bottom: 10%;
+      right: 10%;
+      width: 180px;
+      height: 180px;
+      animation-delay: -6s;
+      background: rgba(139, 69, 19, 0.08);
+    }
+
+    .floating-shape:nth-child(3) {
+      top: 65%;
+      left: 80%;
+      width: 90px;
+      height: 90px;
+      animation-delay: -12s;
+      background: rgba(212, 165, 116, 0.06);
+    }
+
+    .floating-shape:nth-child(4) {
+      top: 40%;
+      right: 15%;
+      width: 140px;
+      height: 140px;
+      animation-delay: -18s;
+      background: rgba(212, 165, 116, 0.04);
     }
 
     @keyframes float {
       0%, 100% {
-        transform: translateY(0);
+        transform: translateY(0) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-25px) rotate(5deg);
       }
       50% {
-        transform: translateY(-40px);
+        transform: translateY(0) rotate(0deg);
+      }
+      75% {
+        transform: translateY(25px) rotate(-5deg);
       }
     }
 
-    /* --- SLOW PARALLAX --- */
-    .parallax-layer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.9;
-    }
-
-    .parallax-layer:nth-child(1) {
-      background-image: url('https://images.pexels.com/photos/10573397/pexels-photo-10573397.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-      background-size: cover;
-      background-position: center center;
-      transform: translateY(0%) translateZ(0);
-    }
-
-    .parallax-layer:nth-child(2) {
-      background-image: url('https://images.pexels.com/photos/5137969/pexels-photo-5137969.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-      background-size: cover;
-      background-position: center center;
-      transform: translateY(5%) translateZ(0);
-      opacity: 0.6;
-    }
-
-    .parallax-layer:nth-child(3) {
-      background-image: url('https://images.pexels.com/photos/2610791/pexels-photo-2610791.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-      background-size: cover;
-      background-position: center center;
-      transform: translateY(10%) translateZ(0);
-      opacity: 0.4;
-    }
-
-    /* --- PROGRESSIVE FOCUS --- */
-    .layer {
-      transform-style: preserve-3d;
-    }
-
-    /* --- RESPONSIVE --- */
-    @media (max-width: 1024px) {
-      .hero h1 { font-size: 4.5rem; }
-      .hero p { font-size: 1.6rem; }
-      .about-content { flex-direction: column; gap: 4rem; }
-      .about-image, .about-text { width: 100%; max-width: 100%; }
-      .about-image img { height: 600px; object-position: center 30%; }
-      .container { width: 95%; }
-      .footer-content { gap: 3rem; }
-    }
-
+    /* Responsive */
     @media (max-width: 768px) {
-      .hero { padding-top: 80px; }
-      .hero h1 { font-size: 3.8rem; }
-      .hero p { font-size: 1.4rem; }
-      .hero-cta { flex-direction: column; }
-      .hero-cta .cta-button { width: 100%; max-width: 300px; margin: 0.5rem auto; }
-      .section-title { margin-bottom: 3rem; }
-      .section-title::after { width: 80px; }
-      .features-grid, .testimonials-grid, .gallery-grid { gap: 2rem; }
-      .feature-card, .testimonial-card { padding: 2rem 1.5rem; }
-      .about-content { padding: 4rem 2rem; }
-      .contact h2 { font-size: 3rem; }
-      .contact p { font-size: 1.2rem; }
-      .contact-form { grid-template-columns: 1fr; }
-      .form-control.message { width: 100%; }
-      .send-button { padding: 1.2rem 2.5rem; }
-      .mobile-menu-button { display: block; }
-      .nav-links { display: none; }
-      .logo { font-size: 2rem; }
-    }
+      h1 {
+        font-size: 3rem;
+      }
 
-    @media (max-width: 480px) {
-      h1 { font-size: 3rem; }
-      h2 { font-size: 2.4rem; }
-      h3 { font-size: 1.8rem; }
-      .hero h1 { font-size: 3rem; }
-      .hero p { font-size: 1.2rem; }
-      .container { width: 95%; }
-      .about-content { gap: 2rem; padding: 3rem 1.5rem; }
-      .about-image { height: 400px; }
-      .about-image img { height: 100%; }
-      .trust-item { border: none; padding: 0.5rem; }
-      .trust-strip .container { flex-direction: column; gap: 1rem; }
-      .gallery-item { margin-bottom: 1rem; }
-      .mobile-nav { padding-top: 16rem; }
-      .mobile-nav a { font-size: 1.6rem; }
-      .footer-column h3 { font-size: 1.3rem; }
-      .social-icons a { width: 40px; height: 40px; }
-      .social-icons a::before { content: "•"; }
+      h2 {
+        font-size: 2.2rem;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .hero-content {
+        padding: 1.5rem;
+        max-width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1.4rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .hero-ctas .cta-button {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .about, .contact-container {
+        flex-direction: column;
+        gap: 4rem;
+      }
+
+      .about-image, .contact-info, .contact-form {
+        min-width: 100%;
+      }
+
+      .about-image {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .about-content {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .testimonial {
+        padding: 2.5rem 2rem;
+      }
+
+      .service-card {
+        padding: 2.5rem 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Floating decorative shapes -->
+  <div class="floating-shape"></div>
+  <div class="floating-shape"></div>
+  <div class="floating-shape"></div>
+  <div class="floating-shape"></div>
+
+  <!-- Navigation -->
   <nav id="navbar">
     <div class="container nav-container">
       <a href="#" class="logo">Dar El Salam Travel</a>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="cta-button">Explore Journeys</button>
-      <button class="mobile-menu-button" id="mobile-menu-btn">☰</button>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="cta-button">Book Now</button>
     </div>
   </nav>
 
-  <div class="mobile-nav" id="mobile-nav">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-  </div>
-
-  <section id="home" class="hero">
+  <!-- Hero Section -->
+  <section class="hero" id="home">
     <div class="hero-content">
       <h1>Dar El Salam Travel</h1>
-      <p>Where Every Journey Begins at Home</p>
-      <div class="hero-cta">
-        <button class="cta-button">Plan Your Trip</button>
-        <button class="cta-button">View Destinations</button>
+      <p>Journeys Rooted in Tradition</p>
+      <div class="hero-ctas">
+        <button class="cta-button">Explore Destinations</button>
+        <button class="cta-button" style="background: transparent; color: white; border: 2px solid white;">Plan Your Trip</button>
       </div>
     </div>
-    <svg class="scroll-indicator" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+    <div class="scroll-hint">↓</div>
   </section>
 
-  <section class="trust-strip">
-    <div class="container">
-      <div class="trust-item">Trusted by local clients</div>
-      <div class="trust-item">Experienced, authentic guides</div>
-      <div class="trust-item">Personalised travel experiences</div>
-    </div>
-  </section>
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    <div class="container">Trusted by generations of travelers seeking authentic experiences</div>
+  </div>
 
-  <section id="services" class="features">
+  <!-- Services -->
+  <section class="services" id="services">
     <div class="container">
       <h2 class="section-title">Our Services</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🌍</div>
-          <h3 class="feature-title">Custom Itineraries</h3>
-          <p>Every journey we craft is uniquely yours, inspired by your passions, not a template. We design experiences that feel like home, wherever you are.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🚗</div>
+          <h3>Custom Itineraries</h3>
+          <p>Handcrafted journeys tailored to your interests, pace, and cultural curiosity with deep local insights.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">✈️</div>
-          <h3 class="feature-title">Guided Journeys</h3>
-          <p>Let our local experts unlock hidden corners of the world, sharing stories and traditions only insiders know. Authentic connections, not tourist traps.</p>
+        <div class="service-card">
+          <div class="service-icon">🏨</div>
+          <h3>Premium Accommodations</h3>
+          <p>Curated stays in traditional inns, boutique hotels, and authentic local homes for immersive experiences.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🏨</div>
-          <h3 class="feature-title">Curated Stays</h3>
-          <p>We select accommodations with soul — boutique lodges, family-run riads, serene retreats — where comfort meets culture and hospitality feels personal.</p>
+        <div class="service-card">
+          <div class="service-icon">研学</div>
+          <h3>Cultural Immersion</h3>
+          <p>Connecting you with local traditions, artisan workshops, and culinary experiences that tell real stories.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="about" class="about">
-    <div class="container about-content">
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
       <div class="about-image">
-        <img src="https://images.pexels.com/photos/5137969/pexels-photo-5137969.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Dar El Salam Travel team welcoming guests" />
+        <img src="https://images.pexels.com/photos/33541992/pexels-photo-33541992.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Dar El Salam Travel team on a journey">
       </div>
-      <div class="about-text">
-        <h2>Welcome to Dar El Salam</h2>
-        <p>At Dar El Salam Travel, we don’t just book trips — we cultivate <span class="highlight">journeys that echo</span> in your heart long after the suitcase is unpacked.</p>
-        <p>Founded by locals with deep roots and wide wings, our team blends cultural intimacy with global mastery. Whether you're drawn to silent mountain monasteries or bustling spice markets, we guide you with warmth, wisdom, and a quiet reverence for place and people.</p>
-        <p>We believe travel should awaken your spirit — not your inbox. No brochures. No robotic itineraries. Just your heart’s curiosity, paired with our decades of quiet expertise.</p>
+      <div class="about-content">
+        <h2>Rooted in Heritage, Guided by Passion</h2>
+        <p>Dar El Salam Travel is more than a travel agency — we are custodians of tradition, weaving the timeless spirit of our region into every journey we create. With decades of local knowledge and deeply personal connections, we don't just show you places — we invite you into stories that have been passed down through generations.</p>
+        <p>Our team lives where your journey begins, understands the rhythms of the land, and knows the hidden courtyards, whispered legends, and sacred spaces that make travel unforgettable. We believe the most meaningful trips aren't about ticking boxes — they're about moments of connection, discovery, and quiet wonder.</p>
+        <button class="cta-button">Learn More</button>
       </div>
     </div>
   </section>
 
-  <section class="testimonials">
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
     <div class="container">
-      <h2 class="section-title">Traveler Voices</h2>
+      <h2 class="section-title">Who We've Guided</h2>
       <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <p class="testimonial-text">The attention to detail transformed my entire perspective. It didn’t feel like a tour — it felt like being welcomed into a family.</p>
-          <div class="author-image">
-            <img src="https://images.pexels.com/photos/10573397/pexels-photo-10573397.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client" />
+        <div class="testimonial">
+          <p>Our family’s five-day journey through the old town was richer than we ever imagined. The artisans we met, the flavors we tasted — every detail felt like a gift from the earth itself.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">J</div>
+            <div class="testimonial-name">A Verified Customer</div>
           </div>
-          <p class="testimonial-author">Local Client</p>
-          <p class="testimonial-role">Marrakesh, 2024</p>
         </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">I’ve been on many trips, but this was the only one where I didn’t want to leave. The hospitality… it stayed with me.</p>
-          <div class="author-image">
-            <img src="https://images.pexels.com/photos/5137969/pexels-photo-5137969.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client" />
+        <div class="testimonial">
+          <p>After years of generic tours, this was the first time I felt truly seen as a traveler. Their understanding of local customs and hidden gems brought a depth I never knew travel could offer.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div class="testimonial-name">A Local Client</div>
           </div>
-          <p class="testimonial-author">Verified Customer</p>
-          <p class="testimonial-role">Andalusia, 2023</p>
         </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">After years of chaotic travel experiences, Dar El Salam restored my faith in the journey. Quiet. Meaningful. Pure.</p>
-          <div class="author-image">
-            <img src="https://images.pexels.com/photos/6747387/pexels-photo-6747387.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client" />
+        <div class="testimonial">
+          <p>The serene atmosphere of our stay, the guided morning tea ceremony, the stories shared over dinner — this wasn't a vacation. It was a homecoming.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div class="testimonial-name">A Verified Customer</div>
           </div>
-          <p class="testimonial-author">Returning Guest</p>
-          <p class="testimonial-role">Oujda, 2025</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="gallery" class="gallery">
+  <!-- Gallery -->
+  <section class="gallery" id="gallery">
     <div class="container">
-      <h2 class="section-title">Journeys Captured</h2>
-      <p class="section-subtitle">A glimpse into the magic we create</p>
+      <h2 class="section-title">Echoes of the Journey</h2>
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/6747387/pexels-photo-6747387.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Sunset over ancient stone streets" />
+          <img src="https://images.pexels.com/photos/16627228/pexels-photo-16627228.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Traditional courtyard in golden light">
+          <div class="album-overlay">
+            <h3>Sacred Courtyards</h3>
+          </div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/30163560/pexels-photo-30163560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Traditional market with vibrant fabrics" />
+          <img src="https://images.pexels.com/photos/2787826/pexels-photo-2787826.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Handwoven textiles in vibrant colors">
+          <div class="album-overlay">
+            <h3>Artisan Traditions</h3>
+          </div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/37472728/pexels-photo-37472728.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Ceramic artisan at work" />
+          <img src="https://images.pexels.com/photos/9497618/pexels-photo-9497618.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Spice market at sunset">
+          <div class="album-overlay">
+            <h3>Living Markets</h3>
+          </div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/2610791/pexels-photo-2610791.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Calm courtyard with fountain" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/6747387/pexels-photo-6747387.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Sunset over ancient stone streets" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/30163560/pexels-photo-30163560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Traditional market with vibrant fabrics" />
+          <img src="https://images.pexels.com/photos/4905089/pexels-photo-4905089.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Tea ceremony in quiet garden">
+          <div class="album-overlay">
+            <h3>Time-Honored Rituals</h3>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="contact">
-    <div class="contact-content">
-      <h2>Let’s Begin Your Journey</h2>
-      <p>Start with a conversation. We don’t sell packages. We create unforgettable experiences.</p>
-      <form class="contact-form">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Your Name" required />
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Begin Your Journey</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <p>Let us help you design a journey that resonates with your spirit. Our team is here to listen, to guide, and to turn your dreams into peaceful, meaningful experiences.</p>
+          <p>Reach out with your travel ideas — no request is too small, too unique, or too traditional. For us, every dream of travel is sacred.</p>
+          <button class="cta-button">Get in Touch</button>
         </div>
-        <div class="form-group">
-          <input type="email" class="form-control" placeholder="Your Email" required />
+        <div class="contact-form">
+          <form>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Tell Us About Your Journey</label>
+              <textarea id="message" placeholder="What inspires you? Where do you feel called to go?" required></textarea>
+            </div>
+            <button type="submit" class="cta-button">Send Request</button>
+          </form>
         </div>
-        <div class="form-group">
-          <input type="text" class="form-control message" placeholder="Tell us your dream destination, and how we can help" required />
-        </div>
-        <button type="submit" class="send-button">Begin the Conversation</button>
-      </form>
+      </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <div class="container">
-      <div class="footer-content">
+      <div class="footer-container">
         <div class="footer-column">
           <h3>Dar El Salam Travel</h3>
-          <p>Where every journey begins at home — grounded in authenticity, guided by heart, crafted for you.</p>
+          <p>Journeys Rooted in Tradition — where every path tells a story, and every destination holds a whisper of the past.</p>
           <div class="social-icons">
-            <a href="#" aria-label="Instagram">I</a>
-            <a href="#" aria-label="Facebook">F</a>
-            <a href="#" aria-label="Twitter">T</a>
+            <a href="#">FB</a>
+            <a href="#">IG</a>
+            <a href="#">YT</a>
           </div>
         </div>
         <div class="footer-column">
-          <h3>Resources</h3>
-          <ul>
-            <li><a href="#">Travel Tips</a></li>
-            <li><a href="#">Cultural Etiquette</a></li>
-            <li><a href="#">Sustainable Travel</a></li>
-            <li><a href="#">FAQ</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3>Destinations</h3>
-          <ul>
-            <li><a href="#">Morocco</a></li>
-            <li><a href="#">Andalusia</a></li>
-            <li><a href="#">Tunisia</a></li>
-            <li><a href="#">Sicily</a></li>
+          <h3>Explore</h3>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Our Services</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
         <div class="footer-column">
           <h3>Connect</h3>
-          <ul>
-            <li><a href="#">Send a Message</a></li>
-            <li><a href="#">Schedule a Call</a></li>
-            <li><a href="#">Open Hours</a></li>
-            <li><a href="#">Work With Us</a></li>
+          <ul class="footer-links">
+            <li><a href="#">Join Our Newsletter</a></li>
+            <li><a href="#">Travel Tips</a></li>
+            <li><a href="#">Cultural Guides</a></li>
+            <li><a href="#">Book a Consultation</a></li>
           </ul>
         </div>
       </div>
       <div class="copyright">
-        &copy; 2026 Dar El Salam Travel. All rights reserved. No founding year invented. No phone number fabricated.
+        © 2026 Dar El Salam Travel. All rights reserved.
       </div>
     </div>
   </footer>
 
   <script>
+    // Nav scroll effect
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Enhanced scroll reveal with staggered animation
+    const fadeElements = document.querySelectorAll('.service-card, .about-image, .testimonial, .gallery-item, .contact-info, .contact-form');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => {
+      el.classList.add('fade-in');
+      observer.observe(el);
+    });
+
+    // Animate hero content on load with enhanced easing
     document.addEventListener('DOMContentLoaded', () => {
-      const navbar = document.getElementById('navbar');
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const mobileNav = document.getElementById('mobile-nav');
-
-      // NAV SCROLL
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
+      const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero-ctas');
+      heroElements.forEach((el, i) => {
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, i * 300);
       });
-
-      // MOBILE MENU
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileNav.classList.toggle('active');
-        if (mobileNav.classList.contains('active')) {
-          mobileMenuBtn.textContent = '✕';
-        } else {
-          mobileMenuBtn.textContent = '☰';
-        }
-      });
-
-      // FADE-IN ANIMATION ON SCROLL
-      const fadeElements = document.querySelectorAll('.feature-card, .testimonial-card, .gallery-item, .about-text, .about-image, .hero-content, .contact-content');
       
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('appear');
-          }
-        });
-      }, { threshold: 0.1, rootMargin: '-200px' });
-
-      fadeElements.forEach(el => {
-        el.classList.add('fade-in');
-        observer.observe(el);
-      });
-
-      // GALLERY ITEMS ANIMATION
-      const galleryItems = document.querySelectorAll('.gallery-item');
-      galleryItems.forEach((item, index) => {
-        item.style.animationDelay = `${index * 0.3}s`;
-      });
-
-      // PARALLAX BACKGROUND ON SCROLL
-      const parallaxLayer = document.createElement('div');
-      parallaxLayer.className = 'parallax-layer';
-      document.body.appendChild(parallaxLayer);
-
+      // Add parallax effect to hero background
       window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        parallaxLayer.style.transform = `translateY(${scrollY * 0.1}px) translateZ(0)`;
+        const hero = document.querySelector('.hero');
+        const scrollPosition = window.pageYOffset;
+        hero.style.backgroundPositionY = scrollPosition * 0.3 + 'px';
       });
+    });
 
-      // FORM SUBMISSION
-      const form = document.querySelector('.contact-form');
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Thank you for reaching out. We’ll be in touch soon.');
-        form.reset();
+    // Add subtle parallax effects to gallery items
+    window.addEventListener('scroll', () => {
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const scrollTop = window.pageYOffset;
+      
+      galleryItems.forEach(item => {
+        const speed = item.dataset.speed || 0.1;
+        const yPos = -(scrollTop * speed);
+        item.style.transform = `translateY(${yPos}px)`;
       });
+    });
 
-      // ANIMATE BLOB BOUNCES
-      const blobs = document.querySelectorAll('.blob');
-      blobs.forEach(blob => {
-        blob.style.animationDuration = (Math.random() * 4 + 6) + 's';
-        blob.style.animationDelay = (Math.random() * 4) + 's';
-      });
+    // Add mouse parallax to hero
+    document.addEventListener('mousemove', (e) => {
+      const hero = document.querySelector('.hero');
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 80;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 80;
+      hero.style.transform = `rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
+    });
 
-      // SMOOTH SCROLL
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'nearest'
-          });
-        });
-      });
+    // Reset parallax on mouse leave
+    document.addEventListener('mouseleave', () => {
+      const hero = document.querySelector('.hero');
+      hero.style.transform = 'rotateX(0) rotateY(0)';
     });
   </script>
 <script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=RGFyIEVsIFNhbGFtIFRyYXZlbA&u=dmlzaXQ&s=91e8d05b954398aefac6b544186f7e01&beacon=1&l=b3NtLW5vZGUtMjA3MDA1NzA4Mg";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:7035a29e65--></html>
+<!--bld:a13e29bd0e--></html>
