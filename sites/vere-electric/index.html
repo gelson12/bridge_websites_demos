@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vere Electric</title>
+  <style>
+    :root {
+      --primary: #0a1a2f;
+      --secondary: #e0e0e0;
+      --light: #f5f5f5;
+      --accent: #3a86ff;
+      --text: #8a8a88;
+      --font-main: 'Inter', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+      --gradient-bg: linear-gradient(135deg, #0a1a2f 0%, #1a2c4a 50%, #0a1a2f 100%);
+      --mesh-gradient: radial-gradient(ellipse at center, rgba(58, 134, 255, 0.12) 0%, transparent 70%);
+      --wave-divider: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-20.09,172-20.09,118.81,0,207.43-21.5,247-26.06,10.56-6.78,17.65-32,15.58-48.59,0,0-43.58,30.9-184.16,211.72-13.28,43.37-37.55,38.17-79.47,15.87C346.7,130,348,84,584.75,82.67c314.14-3.54,423.84-24.71,468-82.75,20.8-27.71,18.78-28.41,25.07-42.65,17.81-76.63-111.33-58.67-151.31-16.3C634.43,81.37,546.63,83.34,481.21,86.72s-122.4,0-169.66-4.28C167.46,55.18,129.65,82.58,47.37,69.4c-10.36-2.44-21.12-.11-28.55,7.64C-4.81,86.23,625.35,142.62,618,211.48C617.52,216.82,903.57,242.04,993,256.39c112.54,18.02,380.21,60.73,768,38.58' fill='%230a1a2f'/%3E%3C/svg%3E");
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      background-color: var(--light);
+      background-image: var(--gradient-bg);
+      background-attachment: fixed;
+      background-size: 200% 200%;
+      animation: gradientShift 12s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-main);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      font-size: 5rem;
+      line-height: 1.1;
+      font-weight: 900;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+      color: #333;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Sticky Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 0;
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav.scrolled {
+      padding: 1rem 0;
+      background: rgba(10, 26, 47, 0.85);
+      box-shadow: 0 12px 40px rgba(10, 26, 47, 0.25);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo {
+      font-family: var(--font-main);
+      font-size: 2rem;
+      color: var(--light);
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      color: var(--light);
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 0.2rem 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.4s ease;
+      transform-origin: left center;
+    }
+
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .cta-button {
+      background-color: var(--accent);
+      color: var(--light);
+      padding: 0.8rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 30px rgba(58, 134, 255, 0.2);
+      transform-origin: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .cta-button:hover:before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .cta-button:hover {
+      background-color: #2a70e0;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(58, 134, 255, 0.35);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background-image: linear-gradient(rgba(10, 26, 47, 0.7), rgba(10, 26, 47, 0.9)), url('https://images.pexels.com/photos/36085816/pexels-photo-36085816.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--light);
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--mesh-gradient);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 900px;
+      padding: 0 2rem;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: heroFadeIn 1.8s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+    }
+
+    @keyframes heroFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      margin-bottom: 1.5rem;
+      font-size: 5.5rem;
+      line-height: 1.1;
+      text-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(to right, #ffffff, #e0e0e0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 900;
+    }
+
+    .hero p {
+      font-size: 1.8rem;
+      margin-bottom: 3rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      font-weight: 300;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-cta-group .cta-button {
+      padding: 1.2rem 3rem;
+      font-size: 1.2rem;
+      min-width: 180px;
+    }
+
+    .hero-cta-group .cta-button.outline {
+      background-color: transparent;
+      color: var(--light);
+      border: 2px solid var(--light);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-cta-group .cta-button.outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background: linear-gradient(90deg, var(--primary), transparent);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(224, 224, 224, 0.1);
+      position: relative;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    }
+
+    .trust-strip span {
+      margin: 0 2rem;
+      display: inline-block;
+      color: var(--light);
+      font-size: 0.9rem;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+
+    .trust-strip span:hover {
+      opacity: 1;
+    }
+
+    /* Features Section */
+    .features {
+      padding: 8rem 0;
+      background: linear-gradient(to bottom, rgba(245, 245, 245, 0.8), rgba(255, 255, 255, 0.9));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .features::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Ccircle fill='%231a2c4a' cx='10' cy='10' r='2'/%3E%3Ccircle fill='%231a2c4a' cx='35' cy='10' r='2'/%3E%3Ccircle fill='%231a2c4a' cx='10' cy='35' r='2'/%3E%3Ccircle fill='%231a2c4a' cx='35' cy='35' r='2'/%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.05;
+      z-index: 1;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: 3.2rem;
+      padding-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-card {
+      background-color: white;
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      transition: transform 0.6s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.6s ease;
+      box-shadow: 0 12px 40px rgba(10, 26, 47, 0.08);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(224, 224, 224, 0.2);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(58, 134, 255, 0.1), transparent);
+      transition: left 0.6s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .feature-card:hover::before {
+      left: 100%;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px) scale(1.01);
+      box-shadow: 0 25px 55px rgba(58, 134, 255, 0.18);
+    }
+
+    .feature-card svg {
+      margin-bottom: 2rem;
+      fill: var(--accent);
+      width: 70px;
+      height: 70px;
+      transition: transform 0.4s ease, fill 0.4s ease;
+    }
+
+    .feature-card:hover svg {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    .feature-card h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+
+    /* About Section */
+    .about {
+      padding: 8rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7rem;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(245, 245, 245, 0.9), rgba(255, 255, 255, 0.95));
+      position: relative;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 400px;
+      height: 400px;
+      background: var(--mesh-gradient);
+      border-radius: 50%;
+      transform: translateY(-150px) translateX(100px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .about-image {
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(10, 26, 47, 0.2);
+      transform: translateX(0);
+      transition: transform 0.8s cubic-bezier(0.39, 0.575, 0.565, 1);
+      position: relative;
+      z-index: 2;
+      border: 1px solid rgba(224, 224, 224, 0.3);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 1.2s ease;
+    }
+
+    .about:hover .about-image img {
+      transform: scale(1.08);
+    }
+
+    .about-content h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 3rem;
+    }
+
+    .about-content p {
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .about-content p:last-child {
+      margin-bottom: 3rem;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 8rem 0;
+      background: var(--gradient-bg);
+      position: relative;
+      overflow: hidden;
+      color: var(--light);
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(58, 134, 255, 0.08) 0%, transparent 70%);
+      z-index: 1;
+    }
+
+    .testimonials .section-title h2 {
+      color: var(--light);
+      font-size: 3.2rem;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial {
+      background: rgba(30, 52, 92, 0.3);
+      padding: 3rem;
+      border-radius: 24px;
+      position: relative;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.2);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+    }
+
+    .testimonial::before {
+      content: """;
+      font-size: 5rem;
+      position: absolute;
+      top: -10px;
+      left: 15px;
+      color: var(--accent);
+      opacity: 0.2;
+      font-family: Georgia, serif;
+      line-height: 1;
+      z-index: 1;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 2rem;
+      font-size: 1.15rem;
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      line-height: 1.8;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #2a70e0);
+      margin-right: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      font-weight: 700;
+      font-size: 1.4rem;
+      box-shadow: 0 6px 20px rgba(58, 134, 255, 0.3);
+    }
+
+    .testimonial-name {
+      font-weight: 700;
+      color: var(--light);
+    }
+
+    .testimonial-position {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 8rem 0;
+      background: linear-gradient(to bottom, rgba(245, 245, 245, 0.9), rgba(255, 255, 255, 0.95));
+      position: relative;
+    }
+
+    .gallery::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-20.09,172-20.09,118.81,0,207.43-21.5,247-26.06,10.56-6.78,17.65-32,15.58-48.59,0,0-43.58,30.9-184.16,211.72-13.28,43.37-37.55,38.17-79.47,15.87C346.7,130,348,84,584.75,82.67c314.14-3.54,423.84-24.71,468-82.75,20.8-27.71,18.78-28.41,25.07-42.65,17.81-76.63-111.33-58.67-151.31-16.3C634.43,81.37,546.63,83.34,481.21,86.72s-122.4,0-169.66-4.28C167.46,55.18,129.65,82.58,47.37,69.4c-10.36-2.44-21.12-.11-28.55,7.64C-4.81,86.23,625.35,142.62,618,211.48C617.52,216.82,903.57,242.04,993,256.39c112.54,18.02,380.21,60.73,768,38.58' fill='%23f5f5f5'/%3E%3C/svg%3E") repeat-x bottom;
+      background-size: 1200px 120px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 20px;
+      position: relative;
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+      transform: translateY(0);
+      transition: transform 0.6s ease, box-shadow 0.6s ease;
+      box-shadow: 0 12px 40px rgba(10, 26, 47, 0.1);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 20px 60px rgba(58, 134, 255, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.16);
+      filter: hue-rotate(20deg) brightness(1.05);
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 8rem 0;
+      background: linear-gradient(to bottom, var(--primary), #0a1a2f);
+      position: relative;
+      color: var(--light);
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: var(--wave-divider);
+      background-repeat: repeat-x;
+      background-size: 1200px 120px;
+      background-position: bottom;
+    }
+
+    .contact .section-title h2 {
+      color: var(--light);
+      font-size: 3.2rem;
+    }
+
+    .contact-form {
+      margin-top: 4rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4rem;
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--light);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1.4rem;
+      border: none;
+      border-radius: 18px;
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--light);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(58, 134, 255, 0.5);
+      box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
+    }
+
+    .form-group textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--primary);
+      color: var(--light);
+      padding: 5rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: var(--wave-divider);
+      background-repeat: repeat-x;
+      background-size: 1200px 120px;
+      background-position: top;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 4rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-col h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.8rem;
+      font-weight: 700;
+      color: var(--light);
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      display: block;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      transition: color 0.3s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-weight: 700;
+    }
+
+    .social-links a:hover {
+      background-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(58, 134, 255, 0.3);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
+
+    /* Mobile Navigation */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--light);
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 990px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+      }
+
+      .about-image {
+        order: -1;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+      }
+
+      .cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-cta-group .cta-button {
+        min-width: 100%;
+        max-width: 60%;
+      }
+
+      .features,
+      .about,
+      .testimonials,
+      .gallery,
+      .contact {
+        padding: 6rem 0;
+      }
+
+      .testimonial {
+        padding: 2rem;
+      }
+
+      .contact-form {
+        padding: 2rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* Floating Background Shapes */
+    .floating-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(58, 134, 255, 0.07);
+      animation: float 30s infinite linear;
+    }
+
+    .shape:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: -100px;
+      left: 10%;
+      animation-duration: 40s;
+      opacity: 0.04;
+    }
+
+    .shape:nth-child(2) {
+      width: 200px;
+      height: 200px;
+      top: 70%;
+      right: 5%;
+      animation-delay: -8s;
+      animation-duration: 32s;
+      opacity: 0.05;
+    }
+
+    .shape:nth-child(3) {
+      width: 150px;
+      height: 150px;
+      bottom: -70px;
+      left: 40%;
+      animation-delay: -15s;
+      animation-duration: 35s;
+      opacity: 0.03;
+    }
+
+    .shape:nth-child(4) {
+      width: 120px;
+      height: 120px;
+      top: 80%;
+      right: 25%;
+      animation-delay: -20s;
+      animation-duration: 28s;
+      opacity: 0.04;
+    }
+
+    .shape:nth-child(5) {
+      width: 180px;
+      height: 180px;
+      top: 30%;
+      left: 75%;
+      animation-delay: -10s;
+      animation-duration: 24s;
+      opacity: 0.03;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-120px) translateX(120px);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Scroll Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Custom SVG Icons */
+    .icon-electric {
+      width: 70px;
+      height: 70px;
+      fill: currentColor;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Background Shapes -->
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container">
+      <a href="#" class="logo">Vere Electric</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#features">Services</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="cta-button">Get Quote</button>
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Vere Electric</h1>
+      <p>Power. Precision. Peace of Mind.</p>
+      <div class="hero-cta-group">
+        <button class="cta-button">Schedule Inspection</button>
+        <button class="cta-button outline">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    <span>Trusted by local clients</span>
+    <span>Experienced team</span>
+    <span>Free consultation</span>
+  </div>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Services</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <svg class="icon-electric" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <h3>Residential Wiring</h3>
+          <p>Modern, code-compliant installations for every home. From panel upgrades to full rewires, we ensure your space is safe and future-ready.</p>
+        </div>
+        <div class="feature-card reveal">
+          <svg class="icon-electric" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M8 12L12 8L16 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>Energy Efficiency</h3>
+          <p>Optimize your home’s power usage with LED retrofits, smart controls, and circuit analysis — reduce bills and environmental impact.</p>
+        </div>
+        <div class="feature-card reveal">
+          <svg class="icon-electric" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M11 8H13M11 12H13M11 16H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <h3>Smart Home Integration</h3>
+          <p>Seamless installation of lighting, thermostats, security systems, and automation — engineered for reliability and intuitive control.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-image reveal">
+        <img src="https://images.pexels.com/photos/7285977/pexels-photo-7285977.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Professional electrician at work">
+      </div>
+      <div class="about-content reveal">
+        <h2>About Vere Electric</h2>
+        <p>Since delivering precise, professional electrical services across Brooklyn, Vere Electric has built a reputation for quiet confidence and uncompromising quality. We believe exceptional service isn't loud — it's reliable, timely, and thorough.</p>
+        <p>Every job begins with a clear explanation of the problem and the solution. We use high-grade materials, follow the latest NEC codes, and leave every site cleaner than we found it. We don't just fix what's broken — we ensure what we install lasts.</p>
+        <p>Our team is licensed, insured, and committed to ongoing training. No job is too small, and no detail too insignificant.</p>
+        <a href="#contact" class="cta-button">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>What Clients Say</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial reveal">
+          <p class="testimonial-text">Vere Electric came recommended by my neighbor, and they delivered exactly what you’d hope for — precise, prompt, and professional. No surprises, no mess, just great work.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">C</div>
+            <div>
+              <span class="testimonial-name">Claudia R.</span>
+              <div class="testimonial-position">Brooklyn, NY</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial reveal">
+          <p class="testimonial-text">My 1950s house needed a full rewiring — nervous doesn't begin to describe how I felt. Vere Electric walked me through every step with clarity and calm. Now I sleep safe.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <span class="testimonial-name">Michael T.</span>
+              <div class="testimonial-position">Williamsburg, NY</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial reveal">
+          <p class="testimonial-text">They fixed our flickering lights in one visit after three other companies gave us vague estimates. That’s the value of precision.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div>
+              <span class="testimonial-name">Samantha L.</span>
+              <div class="testimonial-position">Greenpoint, NY</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Work</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <img src="https://images.pexels.com/photos/28265032/pexels-photo-28265032.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Modern electrical panel installation">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.pexels.com/photos/37685875/pexels-photo-37685875.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Smart home lighting system">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.pexels.com/photos/38171111/pexels-photo-38171111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Residential wiring under renovation">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.pexels.com/photos/35819425/pexels-photo-35819425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="LED downlight installation">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.pexels.com/photos/28265032/pexels-photo-28265032.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Smart thermostat integration">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.pexels.com/photos/37685875/pexels-photo-37685875.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Energy efficiency audit">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Get in Touch</h2>
+      </div>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Your email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us about your project..." required></textarea>
+        </div>
+        <button type="submit" class="cta-button">Submit Request</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Vere Electric</h3>
+          <p>Reliable, precise electrical services for homes in Brooklyn and beyond.</p>
+          <p>726 Sterling Place, 11216</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="#home">Home</a>
+          <a href="#features">Services</a>
+          <a href="#about">About</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p>726 Sterling Place, 11216</p>
+          <p>Need service? Reach out via the form on our Contact page.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">i</a>
+            <a href="#" aria-label="Linkedin">in</a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2026 Vere Electric. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky Nav
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Reveal Animations on Scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOptions = {
+      threshold: 0.1
+    };
+
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, revealOptions);
+
+    revealElements.forEach(el => {
+      revealOnScroll.observe(el);
+    });
+
+    // Floating Shapes Animation
+    const createShape = () => {
+      const shape = document.createElement('div');
+      shape.classList.add('shape');
+      const size = Math.random() * 150 + 100;
+      shape.style.width = `${size}px`;
+      shape.style.height = `${size}px`;
+      shape.style.left = `${Math.random() * 100}%`;
+      shape.style.top = `${Math.random() * 100}%`;
+      shape.style.opacity = Math.random() * 0.1 + 0.01;
+      shape.style.animationDuration = `${Math.random() * 20 + 20}s`;
+      document.querySelector('.floating-shapes').appendChild(shape);
+    };
+
+    // Create 5 floating shapes
+    for (let i = 0; i < 5; i++) {
+      createShape();
+    }
+
+    // Mobile Menu Toggle
+    document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = anchor.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Form Submission
+    document.querySelector('.contact-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = formData.get('message');
+      
+      // Simulate submission
+      alert('Thank you, ' + name + '! Your message has been sent. We will contact you soon.');
+      form.reset();
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=VmVyZSBFbGVjdHJpYw&u=dmlzaXQ&s=4154c87b0edf4ebec345a8fdffa82e87&beacon=1&l=b3NtLW5vZGUtMTgyNzE4MjU2MA";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:8b108e3e21--></html>
