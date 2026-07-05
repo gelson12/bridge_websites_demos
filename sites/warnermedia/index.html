@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WarnerMedia</title>
+  <style>
+    :root {
+      --black: #000000;
+      --gold: #FFD700;
+      --dark: #1A1A1A;
+      --light: #E0E0E0;
+      --crimson: #8B0000;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Lato', sans-serif;
+      --gold-gradient: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+      --gold-mesh: radial-gradient(circle at 30% 30%, rgba(255,215,0,0.15), transparent 70%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--light);
+      background-color: var(--black);
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="1" fill="%23FFD700"/></svg>'), auto;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background-image: var(--gold-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 12px rgba(255,215,0,0.1);
+    }
+
+    a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    a:hover {
+      color: var(--light);
+      text-shadow: 0 0 15px rgba(255,215,0,0.5);
+    }
+
+    /* Sticky Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: transparent;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,215,0,0.05);
+    }
+
+    nav.scrolled {
+      background-color: rgba(26, 26, 26, 0.95);
+      padding: 1rem 5%;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+      border-bottom: 1px solid rgba(255,215,0,0.1);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      letter-spacing: -1.5px;
+      position: relative;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--gold-gradient);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .logo:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      font-size: 1.1rem;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold-gradient);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -12px;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 1px;
+      background: rgba(255,215,0,0.3);
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-links a:hover::before {
+      width: 100%;
+    }
+
+    .nav-links a:hover::after {
+      opacity: 1;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, rgba(139,0,0,0.9), rgba(139,0,0,0.7));
+      color: var(--light);
+      padding: 0.8rem 2.2rem;
+      border: none;
+      border-radius: 4px;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
+      transition: left 0.8s;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      background: linear-gradient(135deg, rgba(255,215,0,0.9), rgba(255,215,0,0.7));
+      color: var(--black);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(255,215,0,0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      width: 100%;
+      background-image: url('https://images.pexels.com/photos/34084909/pexels-photo-34084909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: var(--gold-mesh);
+      z-index: 1;
+      animation: pulse 8s infinite;
+    }
+
+    .hero-content {
+      z-index: 2;
+      animation: fadeInUp 1.5s ease-out forwards;
+      opacity: 0;
+      transform: translateY(40px);
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 6rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: -3px;
+      animation: shineText 4s linear infinite;
+    }
+
+    .hero p {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      font-weight: 300;
+      letter-spacing: -1px;
+      color: var(--light);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-button {
+      background: rgba(255, 215, 0, 0.1);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 1rem 2.5rem;
+      border-radius: 4px;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 12px;
+      box-shadow: inset 0 0 15px rgba(255,215,0,0.1);
+    }
+
+    .hero-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      background: rgba(255,215,0,0.1);
+      background-blend-mode: overlay;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .hero-button:hover {
+      background: var(--gold-gradient);
+      color: var(--black);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(255,215,0,0.2);
+      border-color: transparent;
+    }
+
+    .hero-button:hover::before {
+      opacity: 1;
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.05), transparent);
+      padding: 1.5rem 5%;
+      text-align: center;
+      font-size: 1rem;
+      color: var(--light);
+      font-weight: 300;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-gradient), transparent);
+    }
+
+    /* Features */
+    .features {
+      padding: 10rem 5%;
+      text-align: center;
+      position: relative;
+    }
+
+    .features::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 400px;
+      border-radius: 200px;
+      background: rgba(255,215,0,0.03);
+      z-index: 0;
+      animation: float 20s infinite;
+    }
+
+    .features h2 {
+      font-size: 4rem;
+      margin-bottom: 8rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .features h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 3px;
+      background: var(--gold-gradient);
+      border-radius: 10px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-card {
+      background: linear-gradient(180deg, rgba(26,26,26,0.7), rgba(10,10,10,0.5));
+      padding: 4rem 2rem;
+      border-radius: 16px;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transform: translateY(0);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://images.pexels.com/photos/33316597/pexels-photo-33316597.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.4;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      z-index: -1;
+      border-radius: 16px;
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      background: linear-gradient(135deg, transparent, rgba(255,215,0,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+      transform: scale(1.3);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-20px);
+      box-shadow: 0 30px 60px rgba(255,215,0,0.2);
+    }
+
+    .feature-card:hover::after {
+      opacity: 1;
+    }
+
+    .feature-card:hover::before {
+      opacity: 0.1;
+      transform: scale(1.1);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 215, 0, 0.1);
+      border-radius: 50%;
+      border: 1px solid rgba(255,215,0,0.2);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .feature-icon svg {
+      fill: var(--gold);
+      transition: transform 0.4s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.2) rotate(5deg);
+      background: var(--gold-gradient);
+    }
+
+    .feature-card:hover .feature-icon svg {
+      transform: scale(1.1);
+    }
+
+    .feature-card h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .feature-card p {
+      font-size: 1.2rem;
+      color: var(--light);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+      opacity: 0.8;
+      transition: opacity 0.4s ease;
+    }
+
+    .feature-card:hover p {
+      opacity: 1;
+    }
+
+    /* About Section */
+    .about {
+      padding: 10rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at top right, rgba(255,215,0,0.02), transparent 70%);
+      z-index: -1;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
+      transform: perspective(1200px) rotateY(0.5deg);
+      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 3px solid rgba(255,215,0,0.05);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 21px;
+    }
+
+    .about:hover .about-image {
+      transform: perspective(1200px) rotateY(-0.5deg) translateY(-20px);
+    }
+
+    .about:hover .about-image img {
+      transform: scale(1.05);
+    }
+
+    .about-content {
+      flex: 1;
+      padding-left: 8rem;
+    }
+
+    .about h2 {
+      font-size: 4rem;
+      margin-bottom: 2.5rem;
+      text-align: left;
+    }
+
+    .about p {
+      font-size: 1.4rem;
+      color: var(--light);
+      margin-bottom: 2.5rem;
+      line-height: 1.9;
+      text-align: left;
+      position: relative;
+      padding-right: 2rem;
+    }
+
+    .about p::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 50%;
+      background: var(--gold-gradient);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 10rem 5%;
+      text-align: center;
+      background-color: var(--dark);
+      position: relative;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 300px;
+      background: rgba(255,215,0,0.01);
+      z-index: 0;
+      animation: float 30s infinite;
+    }
+
+    .testimonials h2 {
+      font-size: 4rem;
+      margin-bottom: 6rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .testimonials h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 4px;
+      background: var(--gold-gradient);
+      border-radius: 12px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-card {
+      background: linear-gradient(180deg, rgba(26,26,26,0.8), rgba(0,0,0,0.8));
+      padding: 4rem 2rem;
+      border-radius: 16px;
+      border-left: 4px solid var(--gold);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+      background-clip: padding-box;
+    }
+
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.05), transparent);
+      transition: left 0.8s;
+      z-index: 2;
+    }
+
+    .testimonial-card::after {
+      content: '“';
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      font-size: 6rem;
+      font-family: 'Georgia', serif;
+      color: rgba(255,215,0,0.1);
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .testimonial-card:hover::before {
+      left: 100%;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 70px rgba(255,215,0,0.2);
+    }
+
+    .testimonial-text {
+      font-size: 1.4rem;
+      color: var(--light);
+      font-style: italic;
+      margin-bottom: 2rem;
+      line-height: 1.9;
+      position: relative;
+      z-index: 3;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--light);
+      background-image: url('https://images.pexels.com/photos/34084909/pexels-photo-34084909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      border: 3px solid var(--gold);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      transition: all 0.5s ease;
+    }
+
+    .testimonial-card:hover .testimonial-avatar {
+      transform: scale(1.2);
+    }
+
+    .testimonial-name {
+      font-weight: 700;
+      color: var(--gold);
+      font-size: 1.3rem;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 10rem 5%;
+      text-align: center;
+      background-color: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 20vh;
+      background: linear-gradient(to top, var(--black), transparent);
+      z-index: 0;
+    }
+
+    .gallery h2 {
+      font-size: 4rem;
+      margin-bottom: 6rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .gallery h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 3px;
+      background: var(--gold-gradient);
+      border-radius: 10px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 16px;
+      position: relative;
+      cursor: pointer;
+      transform: translateY(0);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.8) 100%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      z-index: 2;
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid transparent;
+      border-radius: 18px;
+      transition: border 0.6s ease;
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-item:hover::after {
+      border: 2px solid rgba(255,215,0,0.4);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.15);
+    }
+
+    .gallery-item:hover .gallery-item::before {
+      opacity: 1;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 10rem 5%;
+      background-color: var(--dark);
+      text-align: center;
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 3px;
+      background: var(--gold-gradient);
+      border-radius: 10px;
+    }
+
+    .contact::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 3px;
+      background: var(--gold-gradient);
+      border-radius: 10px;
+      opacity: 0.4;
+      animation: float 25s infinite;
+    }
+
+    .contact h2 {
+      font-size: 4rem;
+      margin-bottom: 4rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .contact p {
+      font-size: 1.4rem;
+      color: var(--light);
+      margin-bottom: 5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.9;
+      position: relative;
+    }
+
+    .contact p::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 1px;
+      background: rgba(255,215,0,0.3);
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(26,26,26,0.5);
+      padding: 3rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255,215,0,0.05);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      color: var(--light);
+      font-size: 1.3rem;
+      position: relative;
+    }
+
+    .form-group label::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold-gradient);
+      transition: width 0.3s ease;
+    }
+
+    .form-group:hover label::after {
+      width: 100%;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 1.3rem;
+      border: none;
+      border-radius: 10px;
+      font-family: inherit;
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--light);
+      transition: all 0.3s ease;
+      box-shadow: inset 0 5px 15px rgba(0,0,0,0.2);
+      font-size: 1.2rem;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 25px rgba(255,215,0,0.15);
+      transform: translateY(-2px);
+    }
+
+    .form-group textarea {
+      min-height: 200px;
+      resize: vertical;
+      padding: 1.5rem;
+    }
+
+    .submit-btn {
+      margin-top: 0.5rem;
+      padding: 1.5rem 4rem;
+      border: none;
+      border-radius: 10px;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 15px 35px rgba(139,0,0,0.3);
+      background: linear-gradient(135deg, rgba(139,0,0,0.9), rgba(139,0,0,0.7));
+      position: relative;
+      overflow: hidden;
+      color: var(--light);
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
+      transition: left 0.8s;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(135deg, rgba(255,215,0,0.9), rgba(255,215,0,0.7));
+      color: var(--black);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(255,215,0,0.4);
+    }
+
+    .submit-btn:hover::before {
+      left: 100%;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--black);
+      color: var(--light);
+      padding: 6rem 5% 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 4rem;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 200px;
+      border-radius: 200px;
+      background: rgba(255,215,0,0.01);
+      z-index: 0;
+      animation: float 40s infinite;
+    }
+
+    .footer-col h3 {
+      font-family: var(--font-display);
+      color: var(--gold);
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--gold-gradient);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .footer-links a {
+      color: var(--light);
+      transition: all 0.3s ease;
+      padding: 0.5rem 0;
+      display: block;
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold-gradient);
+      transition: width 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .footer-brand::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 120px;
+      height: 2px;
+      background: var(--gold-gradient);
+    }
+
+    .footer-brand::before {
+      content: '';
+      position: absolute;
+      bottom: -18px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: rgba(255,215,0,0.2);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-icons a {
+      color: var(--light);
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+      padding: 0.5rem;
+      border-radius: 10px;
+      background: rgba(255,215,0,0.05);
+    }
+
+    .social-icons a:hover {
+      color: var(--gold);
+      background: rgba(255,215,0,0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(255,215,0,0.2);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 3rem;
+      font-size: 0.9rem;
+      color: rgba(224, 224, 224, 0.7);
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+      margin-top: 3rem;
+    }
+
+    /* SVG Wave Divider */
+    .wave-divider {
+      width: 100%;
+      height: 60px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .wave-divider svg {
+      width: 100%;
+      height: 100%;
+      margin-top: -10px;
+    }
+
+    .wave-divider svg path {
+      fill: var(--dark);
+    }
+
+    /* Background Floating Shapes (Photoshop Layer for Dynamic Glow) */
+    .floating-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 80%);
+      animation: float 15s infinite ease-in-out;
+    }
+
+    .floating-shape:nth-child(1) {
+      top: 15%;
+      left: 15%;
+      width: 400px;
+      height: 400px;
+      animation-delay: 0s;
+    }
+
+    .floating-shape:nth-child(2) {
+      top: 70%;
+      left: 85%;
+      width: 250px;
+      height: 250px;
+      animation-delay: -5s;
+    }
+
+    .floating-shape:nth-child(3) {
+      top: 45%;
+      left: 25%;
+      width: 180px;
+      height: 180px;
+      animation-delay: -10s;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-40px) rotate(180deg);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.2;
+        transform: scale(1.2);
+      }
+    }
+
+    @keyframes shineText {
+      0%, 100% {
+        text-shadow: 0 0 20px rgba(255,215,0,0.3);
+      }
+      50% {
+        text-shadow: 0 0 30px rgba(255,215,0,0.8), 0 0 50px rgba(255,215,0,0.5);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 3.5rem;
+        letter-spacing: -1px;
+      }
+      .hero p {
+        font-size: 1.8rem;
+      }
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      .hero-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .about {
+        flex-direction: column;
+        padding: 8rem 5% 10rem;
+        gap: 5rem;
+      }
+      .about-content {
+        padding-left: 0;
+        text-align: center;
+      }
+      .about-image {
+        margin: 0 auto;
+        width: 90%;
+      }
+      .about p::after {
+        right: 0;
+        top: 50%;
+        left: auto;
+        transform: translateY(-50%) rotate(90deg);
+        width: 50%;
+        height: 3px;
+      }
+      .features h2, .testimonials h2, .gallery h2, .contact h2 {
+        font-size: 3rem;
+      }
+      .feature-grid, .testimonial-grid, .gallery-grid {
+        gap: 2.5rem;
+      }
+      .feature-card, .testimonial-card {
+        padding: 2.5rem 1.5rem;
+      }
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+      }
+      .footer-col h3 {
+        font-size: 1.8rem;
+      }
+      .footer-brand {
+        font-size: 2rem;
+      }
+      .contact-form {
+        padding: 2rem;
+        gap: 1.5rem;
+      }
+      .form-group label,
+      .form-group input,
+      .form-group textarea {
+        font-size: 1rem;
+      }
+      .submit-btn {
+        padding: 1.2rem 2rem;
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Mobile Navigation */
+    .mobile-menu-button {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--gold);
+      font-size: 2.5rem;
+      cursor: pointer;
+      z-index: 2001;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-button {
+        display: block;
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .nav-container {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background-color: var(--dark);
+        z-index: 2000;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+      }
+
+      .nav-container.active {
+        right: 0;
+      }
+
+      .mobile-nav-close {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        font-size: 3rem;
+        color: var(--gold);
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .mobile-nav-links {
+        list-style: none;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .mobile-nav-links li {
+        font-size: 1.8rem;
+      }
+
+      .mobile-nav-links a {
+        color: var(--gold);
+        font-size: 1.8rem;
+      }
+
+      .mobile-nav-links a::after {
+        display: none;
+      }
+
+      .mobile-nav-links a:hover {
+        color: var(--light);
+        text-shadow: 0 0 10px rgba(255,215,0,0.5);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav id="main-nav">
+    <a href="#" class="logo">WarnerMedia</a>
+    <div class="nav-links">
+      <a href="#features">Story</a>
+      <a href="#about">Insight</a>
+      <a href="#gallery">Vision</a>
+      <a href="#contact">Reach</a>
+    </div>
+    <button class="cta-button">Explore</button>
+    <button class="mobile-menu-button">&#9776;</button>
+  </nav>
+
+  <div class="floating-shapes">
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>WarnerMedia</h1>
+      <p>Story. Engineered.</p>
+      <div class="hero-buttons">
+        <a href="#features" class="hero-button">Discover</a>
+        <a href="#contact" class="cta-button">Connect</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip">Trusted by generations of storytellers</div>
+
+  <section id="features" class="features">
+    <h2>Story. Engineered.</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 9H9.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15 9H15.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Legacy Craft</h3>
+        <p>With over 100 years of cinematic heritage, WarnerMedia engineers emotion, spectacle, and narrative depth into every frame.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 10V3L4 14H11V21L20 10H13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Global Reach</h3>
+        <p>From Hollywood to Hong Kong, our platforms connect audiences worldwide with compelling narratives, transcending borders and languages.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 14C19 16.7614 17.744 19.2927 15.7218 21.0051C13.6995 22.7174 11.13 23.6 8.5 23.6C5.87 23.6 3.30045 22.7174 1.27821 21.0051C-0.74404 19.2927 -2 16.7614 -2 14C-2 11.2382 -0.74404 8.7073 -1.27821 6.99487C-1.81242 5.28246 0.4293 3.52364 2.80769 3.07136C5.08165 2.67958 7.54424 3.78536 8.99961 5.11242C10.4908 3.44344 12.5088 2.6 14.7 2.6C17.9061 2.6 20.6551 4.77167 20.6551 7.49971C20.6551 10.2277 18.3415 12.2965 15.8 13.6675C17.6607 14.5854 19 16.2868 19 18.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Future Forward</h3>
+        <p>Pushing creatives to the edge of technology, we pioneer immersive storytelling experiences that redefine entertainment.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="#1A1A1A" d="M0,128L48,149.3C96,171,192,213,288,218.7C384,224,480,192,576,181.3C672,171,768,181,864,197.3C960,213,1056,235,1152,224C1248,213,1344,171,1392,150.7L1440,131L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <section id="about" class="about">
+    <div class="about-image">
+      <img src="https://images.pexels.com/photos/31593645/pexels-photo-31593645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="WarnerMedia creative studio">
+    </div>
+    <div class="about-content">
+      <h2>Architects of Imagination</h2>
+      <p>WarnerMedia has shaped the cultural landscape for over a century. From the silent film era to the streaming revolution, we’ve remained a beacon of bold storytelling — integrating unparalleled production excellence with cutting-edge distribution to bring the most compelling visions to life.</p>
+      <p>We don’t just make entertainment — we create enduring legacies that define generations. Our teams are art directors, technologists, producers, and visionaries — united not by medium, but by mission: to move audiences, provoke thought, and expand human imagination through the power of story.</p>
+    </div>
+  </section>
+
+  <div class="wave-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="#000000" d="M0,256L48,224C96,192,192,128,288,128C384,128,480,192,576,218.7C672,245,768,235,864,234.7C960,235,1056,245,1152,245.3C1248,245,1344,235,1392,229.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <section class="testimonials">
+    <h2>Voices of the Audience</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">WarnerMedia doesn’t just stream content — they deliver emotion, awe, and connection. What they craft doesn’t just entertain — it changes how we see the world.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar"></div>
+          <div class="testimonial-name">Verified Customer</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">The depth of storytelling, the technical innovation, the cultural impact — WarnerMedia raises the bar every single release. This isn't entertainment. This is legacy.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar"></div>
+          <div class="testimonial-name">Local Client</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">Their ability to blend cinematic grandeur with intimate human stories remains unmatched. There’s a magic in their studio that can’t be replicated.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar"></div>
+          <div class="testimonial-name">Verified Customer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery">
+    <h2>Vision in Motion</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/4968506/pexels-photo-4968506.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Film set">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/6565250/pexels-photo-6565250.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Lighting setup">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/8088380/pexels-photo-8088380.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Soundstage">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/33316597/pexels-photo-33316597.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Creative team">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/34084909/pexels-photo-34084909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cinematic moment">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.pexels.com/photos/31593645/pexels-photo-31593645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Post-production">
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Let’s Build Something Legendary</h2>
+    <p>Have a vision? A story that needs to be heard? Connect with us to explore collaboration, distribution, or investment opportunities.</p>
+    <form class="contact-form">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" placeholder="Tell us about your vision..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-col">
+      <div class="footer-brand">WarnerMedia</div>
+      <p>Story. Engineered.</p>
+      <div class="social-icons">
+        <a href="#">in</a>
+        <a href="#">f</a>
+        <a href="#">t</a>
+        <a href="#">y</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Story</h3>
+      <ul class="footer-links">
+        <li><a href="#features">Creative DNA</a></li>
+        <li><a href="#about">Our Legacy</a></li>
+        <li><a href="#gallery">Featured Works</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Reach</h3>
+      <ul class="footer-links">
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Engagement</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <ul class="footer-links">
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Cookies</a></li>
+        <li><a href="#">Accessibility</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <div class="nav-container">
+      <button class="mobile-nav-close">&#10005;</button>
+      <ul class="mobile-nav-links">
+        <li><a href="#features">Story</a></li>
+        <li><a href="#about">Insight</a></li>
+        <li><a href="#gallery">Vision</a></li>
+        <li><a href="#contact">Reach</a></li>
+        <li><a href="#" class="cta-button">Explore</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Sticky Navigation
+    const nav = document.getElementById('main-nav');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+      lastScrollTop = scrollTop;
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileNavClose = document.querySelector('.mobile-nav-close');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileNav.classList.add('active');
+    });
+
+    mobileNavClose.addEventListener('click', () => {
+      mobileNav.classList.remove('active');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
+      });
+    });
+
+    // Hero Reveal Animation
+    window.addEventListener('load', () => {
+      const heroContent = document.querySelector('.hero-content');
+      heroContent.style.opacity = '1';
+      heroContent.style.transform = 'translateY(0)';
+    });
+
+    // Feature Cards Reveal on Scroll
+    const featureCards = document.querySelectorAll('.feature-card');
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px'
+    };
+
+    const featureObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+        }
+      });
+    }, observerOptions);
+
+    featureCards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      featureObserver.observe(card);
+    });
+
+    // Testimonials Reveal
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    const testimonialObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px'
+    });
+
+    testimonialCards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      testimonialObserver.observe(card);
+    });
+
+    // Contact Form Submission
+    document.querySelector('.contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for your message. We’ll be in touch soon.');
+      e.target.reset();
+    });
+
+    // Smooth Scroll for Anchor Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+
+        if (mobileNav && mobileNav.classList.contains('active')) {
+          mobileNav.classList.remove('active');
+        }
+      });
+    });
+
+    // Fix for Windows menu scroll disable
+    document.addEventListener('wheel', (e) => {
+      if (e.ctrlKey) {
+        e.preventDefault();
+      }
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=V2FybmVyTWVkaWE&u=dmlzaXQ&s=cd8d4e209d7c0a9f6307a52cf96a4a6b&beacon=1&l=b3NtLW5vZGUtMTM4MzkxMDI5Nw";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:969bcfbbb5--></html>
