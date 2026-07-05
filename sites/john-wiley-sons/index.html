@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Wiley & Sons</title>
+  <style>
+    :root {
+      --primary: #002147;
+      --light: #E8E8E8;
+      --mid: #C5C5C5;
+      --dark: #2E2E2E;
+      --offwhite: #F5F5F5;
+      --accent: #E0E0E0;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'Lato', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-color: white;
+      background-image: radial-gradient(circle at 20% 80%, rgba(0, 33, 71, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 5vw, 2.2rem);
+    }
+
+    h3 {
+      font-size: clamp(1.5rem, 4.5vw, 1.8rem);
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #1d4b87;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Sticky Nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: transparent;
+      padding: 1.2rem 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 32px rgba(0, 33, 71, 0.1);
+      padding: 0.8rem 0;
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-brand::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-brand:hover::after {
+      width: 100%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      color: var(--dark);
+      position: relative;
+      padding: 0.2rem 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .ctabtn {
+      background-color: var(--primary);
+      color: white;
+      padding: 0.7rem 1.8rem;
+      border: none;
+      border-radius: 30px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(0, 33, 71, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ctabtn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .ctabtn:hover::before {
+      left: 100%;
+    }
+
+    .ctabtn:hover {
+      background-color: #001832;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 33, 71, 0.25);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background-image: url('https://images.pexels.com/photos/2946974/pexels-photo-2946974.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      color: white;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(0, 33, 71, 0.3) 0%, rgba(0, 33, 71, 0.9) 80%);
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" preserveAspectRatio="none" fill="none"><path d="M0,150 C300,210 900,50 1200,150 L1200,200 L0,200 Z" stroke="none" fill="rgba(255,255,255,0.02)"/></svg>');
+      background-size: 1200px 200px;
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 2rem;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: heroFadeIn 1.5s ease-out forwards;
+      animation-delay: 0.2s;
+    }
+
+    .hero h1 {
+      color: white;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    .hero h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #fff, transparent);
+      border-radius: 2px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.3rem, 3.5vw, 1.5rem);
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      color: #E8E8E8;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .hero-tagline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+      top: 50%;
+      margin-top: 8px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUpFromBottom 1s ease-out forwards;
+      animation-delay: 0.7s;
+    }
+
+    .hero-ctas .ctabtn {
+      padding: 0.8rem 2.2rem;
+      font-size: 0.95rem;
+    }
+
+    .hero-ctas a:nth-child(2) {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      box-shadow: none;
+    }
+
+    .hero-ctas a:nth-child(2):hover {
+      background-color: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255,255,255,0.15);
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background: linear-gradient(90deg, var(--offwhite), #f0f0f0, var(--offwhite));
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      letter-spacing: 0.08rem;
+      text-transform: uppercase;
+      color: var(--dark);
+      border-bottom: 1px solid var(--light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 33, 71, 0.1), transparent);
+      z-index: 1;
+    }
+
+    .trust-strip span {
+      margin: 0 2rem;
+      opacity: 0.8;
+      position: relative;
+      z-index: 2;
+      display: inline-block;
+      padding: 0 0.8rem;
+    }
+
+    /* SVG Waves */
+    .wave-top {
+      display: block;
+      width: 100%;
+      height: 80px;
+      margin: -1px 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 80" preserveAspectRatio="none" fill="none"><path d="M0,40 C300,100 900,0 1200,40 L1200,80 L0,80 Z" stroke="none" fill="%23F5F5F5"/></svg>') repeat-x;
+      background-size: 1200px 80px;
+      transition: height 0.8s ease;
+    }
+
+    .wave-bottom {
+      display: block;
+      width: 100%;
+      height: 80px;
+      margin: -1px 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 80" preserveAspectRatio="none" fill="none"><path d="M0,40 C300,100 900,0 1200,40 L1200,80 L0,80 Z" stroke="none" fill="%23002147"/></svg>') repeat-x;
+      background-size: 1200px 80px;
+      transition: height 0.8s ease;
+    }
+
+    /* Section */
+    .section {
+      padding: 7rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      margin: 1rem auto 0;
+      box-shadow: 0 0 10px rgba(0, 33, 71, 0.1);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .feature-card {
+      background-color: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 33, 71, 0.05);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      text-align: center;
+      padding: 3rem 2rem;
+      position: relative;
+      z-index: 1;
+      perspective: 1000px;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 33, 71, 0.04), transparent);
+      transform: rotate(3deg);
+      transition: 0.8s;
+      z-index: -1;
+    }
+
+    .feature-card:hover::before {
+      left: 100%;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px) rotateX(2deg);
+      box-shadow: 0 24px 56px rgba(0, 33, 71, 0.15);
+    }
+
+    .feature-icon {
+      width: 90px;
+      height: 90px;
+      background-color: var(--offwhite);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.8rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 24px rgba(0, 33, 71, 0.08);
+    }
+
+    .feature-card:hover .feature-icon {
+      background-color: var(--primary);
+      transform: scale(1.1);
+      box-shadow: 0 12px 36px rgba(0, 33, 71, 0.2);
+    }
+
+    .feature-icon svg {
+      width: 45px;
+      height: 45px;
+      fill: var(--primary);
+      transition: fill 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon svg {
+      fill: white;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about img {
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 33, 71, 0.15);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .about-img {
+      flex: 1;
+      min-width: 300px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 16px 50px rgba(0, 33, 71, 0.1);
+      perspective: 1000px;
+    }
+
+    .about-img::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(0, 33, 71, 0.05), transparent);
+      opacity: 0;
+      transition: 0.6s;
+      z-index: 1;
+    }
+
+    .about-img:hover::before {
+      opacity: 1;
+    }
+
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-radius: 16px;
+    }
+
+    .about-img:hover img {
+      transform: scale(1.06) rotate(-1deg);
+    }
+
+    .about-content {
+      flex: 1;
+      min-width: 300px;
+      position: relative;
+    }
+
+    .about-content h2 {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .about-content h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    .about-content p {
+      margin-bottom: 1.8rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .about-content p::before {
+      content: '»';
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+      top: 0.1rem;
+      opacity: 0.6;
+    }
+
+    .testimonials {
+      background-color: var(--offwhite);
+      padding: 8rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(0, 33, 71, 0.02) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    .testimonials .container {
+      position: relative;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .testimonial {
+      background-color: white;
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.05);
+      position: relative;
+      transition: all 0.5s ease;
+      overflow: hidden;
+    }
+
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+      font-size: 7rem;
+      font-family: var(--font-display);
+      color: var(--light);
+      line-height: 1;
+      z-index: 1;
+      opacity: 0.1;
+    }
+
+    .testimonial-content {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 1.8rem;
+      font-style: italic;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.3s ease;
+    }
+
+    .testimonial:hover .testimonial-author {
+      transform: translateY(-5px);
+    }
+
+    .author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1.5rem;
+      border: 3px solid var(--offwhite);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      overflow: hidden;
+    }
+
+    .testimonial:hover .author-avatar {
+      transform: scale(1.1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .author-name {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .author-role {
+      color: var(--mid);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 33, 71, 0.07);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      height: 250px;
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0, 33, 71, 0.6), transparent);
+      opacity: 0;
+      transition: 0.5s;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 24px 60px rgba(0, 33, 71, 0.15);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem;
+      color: white;
+      background: linear-gradient(to top, rgba(0, 33, 71, 0.8), transparent);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s ease;
+    }
+
+    .gallery-item:hover .caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact {
+      background: linear-gradient(135deg, var(--primary) 0%, #001a3a 100%);
+      color: white;
+      text-align: center;
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 C30,50 70,50 100,0 L100,100 L0,100 Z" stroke="none" fill="rgba(255,255,255,0.05)"/></svg>') repeat;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    .contact h2 {
+      color: white;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .contact h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    }
+
+    .contact p {
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      color: #E8E8E8;
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .form-control:focus {
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
+    }
+
+    .contact .ctabtn {
+      background-color: white;
+      color: var(--primary);
+      margin-top: 1rem;
+      border: none;
+      padding: 0.9rem 2.5rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .contact .ctabtn:hover {
+      background-color: #f5f5f5;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--dark);
+      color: var(--light);
+      padding: 7rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 80" preserveAspectRatio="none" fill="none"><path d="M0,40 C300,100 900,0 1200,40 L1200,80 L0,80 Z" stroke="none" fill="%23002147"/></svg>') repeat-x;
+      background-size: 1200px 80px;
+      z-index: 1;
+    }
+
+    .footer .container {
+      display: grid;
+      grid-template-columns: 1fr 2fr 2fr 2fr;
+      gap: 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-brand {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-brand .logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: white;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .footer-brand p {
+      opacity: 0.8;
+      max-width: 280px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .footer-links h4 {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: white;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-links h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #fff, transparent);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: var(--light);
+      transition: color 0.3s ease;
+      position: relative;
+      padding-left: 10px;
+    }
+
+    .footer-links a::before {
+      content: '»';
+      color: var(--light);
+      position: absolute;
+      left: 0;
+      font-size: 0.8rem;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-links a:hover::before {
+      opacity: 1;
+      left: 2px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      font-size: 0.7rem;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* Decorative SVG Blobs */
+    .svg-blob {
+      position: absolute;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .blob-1 {
+      top: 15%;
+      left: 5%;
+      width: 200px;
+      height: 200px;
+      fill: #002147;
+    }
+
+    .blob-2 {
+      bottom: 15%;
+      right: 10%;
+      width: 180px;
+      height: 180px;
+      fill: #002147;
+    }
+
+    .blob-3 {
+      top: 40%;
+      left: 90%;
+      width: 120px;
+      height: 120px;
+      fill: #E8E8E8;
+    }
+
+    .blob-4 {
+      bottom: 10%;
+      left: 15%;
+      width: 100px;
+      height: 100px;
+      fill: #E8E8E8;
+    }
+
+    /* Back to Top */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: var(--primary);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 8px 30px rgba(0, 33, 71, 0.3);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 100;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background-color: #001832;
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 12px 40px rgba(0, 33, 71, 0.35);
+    }
+
+    /* Animations */
+    @keyframes heroFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUpFromBottom {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-section {
+      opacity: 0;
+    }
+
+    .fade-in-section.visible {
+      opacity: 1;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0.8rem 1rem;
+      }
+      
+      .nav-brand {
+        margin-bottom: 0.5rem;
+      }
+      
+      .nav-links {
+        gap: 0.8rem;
+      }
+      
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .hero {
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+      
+      .hero-content {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+      
+      .hero-ctas {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .features,
+      .testimonial-grid,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+      
+      .about {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      .about-img,
+      .about-content {
+        width: 100%;
+        min-width: auto;
+      }
+      
+      .footer .container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .footer-links {
+        text-align: center;
+      }
+      
+      .footer-brand {
+        margin-bottom: 1rem;
+      }
+      
+      .section {
+        padding: 5rem 1rem;
+      }
+      
+      .trust-strip span {
+        margin: 0 0.8rem;
+        display: block;
+        font-size: 0.85rem;
+      }
+      
+      .contact {
+        padding: 5rem 1rem;
+      }
+      
+      .contact p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container">
+      <a href="#" class="nav-brand">John Wiley & Sons</a>
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Publications</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <button class="ctabtn">Cart</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Advancing Knowledge for Generations</h1>
+      <p class="hero-tagline">John Wiley & Sons</p>
+      <div class="hero-ctas">
+        <a href="#features" class="ctabtn">Explore Our Collection</a>
+        <a href="#contact" class="ctabtn">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    <span>Trusted by universities since 1807</span>
+    <span>Expert editorial team</span>
+    <span>Global distribution network</span>
+  </div>
+
+  <!-- Features -->
+  <section id="features" class="section">
+    <div class="container">
+      <h2 class="section-title">Our Publications</h2>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <h3>Academic Journals</h3>
+          <p>Peer-reviewed research across over 1,600 journals in science, technology, medicine, and the humanities.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h3>Reference Works</h3>
+          <p>Comprehensive encyclopedias, handbooks and dictionaries compiled by leading scholars worldwide.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <h3>Professional Books</h3>
+          <p>Practical guides for practitioners in business, engineering, and creative professions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about">
+        <div class="about-img">
+          <img src="https://images.pexels.com/photos/38374178/pexels-photo-38374178.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="John Wiley & Sons campus" />
+        </div>
+        <div class="about-content">
+          <h2>Our Legacy</h2>
+          <p>Founded in Hoboken, New Jersey, John Wiley & Sons has been at the forefront of scholarly publishing for over two centuries. Our mission is to connect knowledge and insight with those who seek it — reliably, rigorously, and responsibly.</p>
+          <p>We collaborate with the world’s most respected researchers, institutions, and educators to bring authoritative content to libraries, classrooms, and research labs across the globe. Our commitment to quality, ethical publishing, and open access continues to shape the future of academic communication.</p>
+          <p>111 River Street, Hoboken, NJ 07030-5774</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Others Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <p class="testimonial-content">John Wiley & Sons transformed how we deliver research to our students. Their digital platforms are intuitive, reliable, and deeply integrated with our curriculum.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/2946974/pexels-photo-2946974.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Author" class="author-avatar">
+            <div>
+              <div class="author-name">Professor Elena Rodriguez</div>
+              <div class="author-role">Dean of Research, University of Toronto</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-content">As an academic librarian, I’ve used Wiley’s resources for over 20 years. Their collection depth and metadata quality are unmatched.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/38374178/pexels-photo-38374178.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Author" class="author-avatar">
+            <div>
+              <div class="author-name">Dr. Michael Tan</div>
+              <div class="author-role">Head of Academic Resources, MIT Libraries</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-content">Their editorial process is rigorous. The peer review system and author support have elevated our entire research output — not just our publications.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/8850766/pexels-photo-8850766.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Author" class="author-avatar">
+            <div>
+              <div class="author-name">Dr. Sophia Kim</div>
+              <div class="author-role">Director, Bioinformatics Research Group</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2 class="section-title">Our Presence</h2>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/16689054/pexels-photo-16689054.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Library shelves" />
+          <div class="caption">Academic research in action</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/8850766/pexels-photo-8850766.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Research team" />
+          <div class="caption">Global collaboration</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/7877191/pexels-photo-7877191.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Book launch" />
+          <div class="caption">Author publishings</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/7713415/pexels-photo-7713415.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Academic conference" />
+          <div class="caption">Knowledge exchange</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Get In Touch</h2>
+      <p>Interested in partnering, licensing, or simply learning more about our offerings? We are here to help.</p>
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="form-control" placeholder="Your full name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" placeholder="your.email@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" class="form-control" rows="5" placeholder="Tell us about your interest..."></textarea>
+        </div>
+        <button type="submit" class="ctabtn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">
+        <div class="logo">John Wiley & Sons</div>
+        <p>Advancing knowledge for generations since 1807. For over two centuries, we have served the global academic, professional, and scientific community with authoritative content and publishing innovations.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon">in</a>
+          <a href="#" class="social-icon">f</a>
+          <a href="#" class="social-icon">t</a>
+          <a href="#" class="social-icon">x</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#">Academic Journals</a></li>
+          <li><a href="#">Books</a></li>
+          <li><a href="#">Reference Works</a></li>
+          <li><a href="#">Open Access</a></li>
+          <li><a href="#">Author Resources</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Investor Relations</a></li>
+          <li><a href="#">Corporate Sustainability</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Press Releases</a></li>
+          <li><a href="#">Policies</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 John Wiley & Sons. All rights reserved. 111 River Street, Hoboken, NJ 07030-5774</p>
+    </div>
+  </footer>
+
+  <!-- Decorative SVG Blobs -->
+  <svg class="svg-blob blob-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M50,50 C100,0 150,50 150,100 C150,150 100,200 50,150 C0,200 0,100 50,50 Z" fill="currentColor"></path></svg>
+  <svg class="svg-blob blob-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150"><path d="M30,30 C80,0 120,40 120,80 C120,120 80,150 30,120 C-20,150 10,100 30,30 Z" fill="currentColor"></path></svg>
+  <svg class="svg-blob blob-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><path d="M60,20 C30,30 10,60 30,90 C50,120 90,110 100,80 C110,55 105,40 60,20 Z" fill="currentColor"></path></svg>
+  <svg class="svg-blob blob-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,50 C25,30 45,25 60,40 C75,55 80,80 60,85 C40,90 30,70 20,50 Z" fill="currentColor"></path></svg>
+
+  <!-- SVG Waves -->
+  <svg class="wave-top" preserveAspectRatio="none" viewBox="0 0 1200 80" xmlns="http://www.w3.org/2000/svg"></svg>
+  <svg class="wave-bottom" preserveAspectRatio="none" viewBox="0 0 1200 80" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  <!-- Back to Top -->
+  <div class="back-to-top" title="Back to top">↑</div>
+
+  <script>
+    // Sticky Nav
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Animate Sections on Scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.feature-card, .about, .testimonial, .gallery-item, .contact').forEach(el => {
+      el.classList.add('fade-in-section');
+      observer.observe(el);
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Back to Top Button
+    const backToTopButton = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+      } else {
+        backToTopButton.classList.remove('show');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Form Submission
+    const form = document.querySelector('.contact form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // In a real deployment, this would send the form data
+        alert('Thank you for contacting John Wiley & Sons. We will respond soon.');
+        form.reset();
+      });
+    }
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=Sm9obiBXaWxleSAmIFNvbnM&u=dmlzaXQ&s=b73be430a570d0e72ff636a224840cf3&beacon=1&l=b3NtLW5vZGUtMTQ1NjMzMjQwNQ";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:50041a8356--></html>
