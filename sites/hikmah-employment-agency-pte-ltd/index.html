@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hikmah Employment Agency PTE LTD</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary: #2c3e50;
-      --secondary: #e67e22;
-      --light: #ecf0f1;
-      --accent: #3498db;
-      --gray: #95a5a6;
-      --font-primary: 'Poppins', sans-serif;
-      --font-secondary: 'Lato', sans-serif;
+      --primary: #2E5A88;
+      --secondary: #F4F1DE;
+      --accent: #E07A5F;
+      --neutral: #8D99AE;
+      --light: #EDF6F9;
+      --text: #212121;
     }
 
     * {
@@ -23,228 +21,95 @@
     }
 
     body {
-      font-family: var(--font-secondary);
-      color: var(--primary);
-      line-height: 1.7;
+      font-family: 'Lato', sans-serif;
+      color: var(--text);
+      line-height: 1.6;
       overflow-x: hidden;
-      background-color: var(--light);
-      background-image: radial-gradient(circle at 20% 80%, rgba(52, 152, 219, 0.03) 0%, transparent 40%), radial-gradient(circle at 80% 20%, rgba(230, 126, 34, 0.03) 0%, transparent 40%);
-      background-attachment: fixed;
+      background-color: var(--secondary);
     }
 
     h1, h2, h3, h4 {
-      font-family: var(--font-primary);
-      font-weight: 600;
-      margin-bottom: 0.5em;
-      color: var(--primary);
-      position: relative;
-    }
-
-    h1 {
-      font-size: 4.2rem;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 2px 10px rgba(44, 62, 80, 0.1);
-    }
-
-    h2 {
-      font-size: 2.8rem;
-      padding-bottom: 0.8rem;
-    }
-
-    h3 {
-      font-size: 2.2rem;
-    }
-
-    p {
-      margin-bottom: 1.2em;
-      color: #333;
-      font-size: 1.1rem;
-      letter-spacing: -0.01em;
-    }
-
-    a {
-      text-decoration: none;
-      color: var(--accent);
-      transition: color 0.3s ease;
-    }
-
-    a:hover {
-      color: var(--secondary);
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
     }
 
     .container {
       width: 90%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 20px;
     }
 
-    /* STICKY NAV */
+    /* Sticky Navigation */
     nav {
       position: sticky;
       top: 0;
       background: transparent;
       padding: 1.5rem 0;
+      transition: background 0.3s ease, padding 0.3s ease;
       z-index: 1000;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(44, 62, 80, 0.05);
-    }
-
-    nav.scrolled {
-      background-color: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-      padding: 1rem 0;
-      border-radius: 0 0 16px 16px;
-    }
-
-    .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
+    }
+
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1rem 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
 
     .logo {
-      font-family: var(--font-primary);
-      font-size: 1.9rem;
-      font-weight: 800;
+      font-size: 1.5rem;
+      font-weight: 700;
       color: var(--primary);
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      position: relative;
-      display: inline-block;
-    }
-
-    .logo::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 40px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--secondary), transparent);
-      opacity: 0;
-      transition: opacity 0.3s, width 0.4s;
-    }
-
-    .logo:hover::after {
-      width: 60px;
-      opacity: 1;
+      text-decoration: none;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
-      align-items: center;
+      gap: 2rem;
     }
 
     .nav-links a {
+      color: var(--text);
+      text-decoration: none;
       font-weight: 500;
-      color: var(--primary);
-      position: relative;
-      transition: all 0.3s ease;
-      padding: 0.5rem 0;
+      transition: color 0.3s ease;
     }
 
     .nav-links a:hover {
-      color: var(--secondary);
-      transform: translateY(-2px);
-    }
-
-    .nav-links a::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--secondary);
-      transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .nav-links a:hover::before {
-      width: 100%;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      top: -4px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 16px;
-      height: 4px;
-      background: var(--secondary);
-      border-radius: 2px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .nav-links a:hover::after {
-      opacity: 1;
+      color: var(--accent);
     }
 
     .cta-button {
-      background: linear-gradient(135deg, var(--secondary), #d35400);
+      background-color: var(--primary);
       color: white;
-      border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 36px;
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
       font-weight: 600;
-      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      box-shadow: 0 6px 24px rgba(230, 126, 34, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.7s;
-      z-index: 1;
-    }
-
-    .cta-button:hover::before {
-      left: 100%;
     }
 
     .cta-button:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(230, 126, 34, 0.4);
+      background-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(224, 122, 95, 0.2);
     }
 
-    .mobile-menu {
-      display: none;
-      cursor: pointer;
-      font-size: 1.8rem;
-      color: var(--primary);
-      position: relative;
-      z-index: 1001;
-    }
-
-    /* HERO */
+    /* Hero Section */
     .hero {
       height: 100vh;
-      position: relative;
+      width: 100%;
       background-image: url('https://images.pexels.com/photos/38321174/pexels-photo-38321174.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
       background-size: cover;
       background-position: center;
       display: flex;
       align-items: center;
-      color: white;
+      position: relative;
       overflow: hidden;
-      isolation: isolate;
     }
 
     .hero::before {
@@ -254,627 +119,337 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 80% 20%, rgba(44, 62, 80, 0.8) 0%, transparent 40%), radial-gradient(circle at 20% 80%, rgba(52, 152, 219, 0.6) 0%, transparent 40%);
+      background: linear-gradient(135deg, rgba(46, 90, 136, 0.8), rgba(46, 90, 136, 0.6));
       z-index: 1;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -100px;
-      left: -100px;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(230, 126, 34, 0.25) 0%, transparent 70%);
-      border-radius: 50%;
-      opacity: 0.8;
-      z-index: 1;
-      animation: float 6s ease-in-out infinite;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
+      padding: 0 2rem;
       max-width: 700px;
-      animation: fadeUp 1.4s ease-out;
+      animation: fadeInUp 1.2s ease-out;
     }
 
     .hero h1 {
-      font-size: 5rem;
-      margin-bottom: 1.3rem;
+      font-size: 3.8rem;
+      color: white;
+      margin-bottom: 1rem;
       line-height: 1.1;
-      font-weight: 800;
     }
 
     .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 2.5rem;
-      opacity: 0.95;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      font-size: 1.4rem;
+      color: var(--secondary);
+      margin-bottom: 2rem;
     }
 
     .hero-buttons {
       display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
+      gap: 1.5rem;
     }
 
-    .hero-buttons .cta-button {
-      background: linear-gradient(135deg, var(--secondary), #d35400);
-    }
-
-    .hero-buttons a {
-      color: white;
-    }
-
-    .hero-buttons .cta-button.secondary {
+    .secondary-button {
       background: transparent;
-      border: 2px solid rgba(255, 255, 255, 0.8);
-      color: white;
-      padding: 0.8rem 2rem;
-      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+      color: var(--secondary);
+      padding: 0.7rem 1.8rem;
+      border: 2px solid var(--secondary);
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
       transition: all 0.3s ease;
     }
 
-    .hero-buttons .cta-button.secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    .secondary-button:hover {
+      background-color: var(--secondary);
+      color: var(--primary);
       transform: translateY(-3px);
     }
 
-    .hero-scroll-indicator {
-      position: absolute;
-      bottom: 60px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.8rem;
-      z-index: 2;
-      animation: pulse 2s infinite;
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .hero-scroll-indicator span {
-      width: 20px;
-      height: 20px;
-      border: 2px solid rgba(255, 255, 255, 0.8);
-      border-radius: 50%;
-      margin: 5px 0;
-      opacity: 0.8;
-      animation: scrollPulse 2s infinite;
-    }
-
-    /* TRUST STRIP */
+    /* Trust Strip */
     .trust-strip {
-      background: linear-gradient(90deg, var(--primary), rgba(44, 62, 80, 0.95));
-      color: white;
-      padding: 2rem 0;
-      display: flex;
-      justify-content: center;
-      gap: 4rem;
-      font-size: 0.9rem;
-      font-weight: 400;
-      overflow-x: auto;
-      white-space: nowrap;
-      position: relative;
-      margin-top: -1px;
-    }
-
-    .trust-strip::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,40 C300,0 900,0 1200,40 L1200,60 L0,60 Z" fill="%23ffffff" fill-opacity="0.05"/></svg>');
-      background-size: 100% 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .trust-strip div {
-      padding: 0 2rem;
-      min-width: 220px;
+      background-color: var(--light);
+      padding: 1.5rem 0;
       text-align: center;
-      position: relative;
-      z-index: 2;
+      font-size: 0.95rem;
+      color: var(--neutral);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
-    .trust-strip div::before {
+    .trust-strip span {
+      margin: 0 1.5rem;
+      display: inline-block;
+      padding: 0 0.8rem;
+    }
+
+    .trust-strip span::after {
+      content: '|';
+      margin-left: 1.2rem;
+      color: var(--neutral);
+    }
+
+    .trust-strip span:last-child::after {
       content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.1);
-      z-index: 1;
     }
 
-    .trust-strip div:first-child::before {
-      display: none;
-    }
-
-    /* FEATURES */
-    .features {
-      padding: 10rem 0;
+    /* Services Section */
+    .services {
+      padding: 7rem 0;
       background-color: white;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .features::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: -150px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle at center, rgba(52, 152, 219, 0.1), transparent 70%);
-      border-radius: 50%;
-      z-index: 1;
     }
 
     .section-title {
       text-align: center;
       margin-bottom: 4rem;
-      position: relative;
+      font-size: 2.5rem;
+      color: var(--primary);
     }
 
-    .section-title h2 {
-      display: inline-block;
-      padding-bottom: 1rem;
-    }
-
-    .section-title h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--secondary), transparent);
-      transform: translateY(10px);
-      opacity: 0;
-      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .section-title.has-animation h2::after {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .features-grid {
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 3.5rem;
-      position: relative;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
     }
 
-    .feature-card {
-      background: white;
+    .service-card {
+      background-color: var(--secondary);
       border-radius: 16px;
-      padding: 3rem 2.5rem;
+      padding: 2.5rem 2rem;
       text-align: center;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.07);
-      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
       position: relative;
       overflow: hidden;
-      z-index: 1;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      border: 1px solid rgba(0, 0, 0, 0.05);
     }
 
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: -100%;
-      left: -100%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(230, 126, 34, 0.1), transparent);
-      transform: rotate(45deg);
-      transition: all 0.8s ease;
-      z-index: 1;
-    }
-
-    .feature-card::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 10px;
-      background: linear-gradient(90deg, transparent, rgba(230, 126, 34, 0.3), transparent);
-      border-radius: 50px;
-      opacity: 0;
-      transition: opacity 0.6s;
-      z-index: 2;
-    }
-
-    .feature-card:hover::before {
-      top: 100%;
-      left: 100%;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.12);
-    }
-
-    .feature-card:hover::after {
-      opacity: 1;
-    }
-
-    .feature-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 2.5rem;
-      background: linear-gradient(135deg, transparent, var(--accent), transparent);
-      color: var(--accent);
-      font-size: 2.4rem;
-      transition: all 0.5s ease;
-      z-index: 2;
-      position: relative;
-      border: 2px solid rgba(52, 152, 219, 0.2);
-      box-shadow: 0 0 30px rgba(52, 152, 219, 0.1);
-    }
-
-    .feature-card:hover .feature-icon {
-      background: linear-gradient(135deg, var(--accent), var(--secondary));
-      color: white;
-      transform: scale(1.15);
-      box-shadow: 0 0 40px rgba(230, 126, 34, 0.3);
-    }
-
-    .feature-icon svg {
-      width: 32px;
-      height: 32px;
-      transition: transform 0.3s;
-    }
-
-    .feature-card:hover .feature-icon svg {
-      transform: rotate(12deg);
-    }
-
-    .feature-card h3 {
-      margin-bottom: 1.5rem;
-      font-size: 1.9rem;
-      transition: color 0.3s;
-    }
-
-    .feature-card:hover h3 {
-      color: var(--secondary);
-    }
-
-    /* ABOUT */
-    .about {
-      padding: 10rem 0;
-      background-color: var(--light);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .about::before {
+    .service-card::before {
       content: '';
       position: absolute;
       top: 0;
-      left: -5%;
-      width: 110%;
-      height: 80px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,0 C300,40 900,40 1200,0 V80 H0 Z" fill="%23ffffff" fill-opacity="0.9"/></svg>');
-      background-size: 100% 100%;
-      z-index: 1;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(224, 122, 95, 0.1), transparent);
+      transition: 0.5s;
     }
 
-    .about::after {
-      content: '';
-      position: absolute;
-      right: -100px;
-      top: 50%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle at center, rgba(52, 152, 219, 0.1), transparent 70%);
-      border-radius: 50%;
-      transform: translateY(-50%);
-      z-index: 1;
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     }
 
-    .about-content {
+    .service-card:hover::before {
+      left: 100%;
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .service-card p {
+      color: var(--neutral);
+    }
+
+    /* About Section */
+    .about {
+      padding: 7rem 0;
+      background-color: var(--light);
       display: flex;
       align-items: center;
-      gap: 5rem;
-      margin-top: 2rem;
-      position: relative;
-      z-index: 2;
     }
 
     .about-image {
       flex: 1;
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 40px 60px rgba(0, 0, 0, 0.12);
-      position: relative;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .about-image::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      background: linear-gradient(45deg, transparent, #ecf0f1, transparent);
-      z-index: 1;
-      transition: all 0.6s;
-      opacity: 0;
-      border-radius: 18px;
-      pointer-events: none;
-    }
-
-    .about-image::after {
-      content: '';
-      position: absolute;
-      top: 40%;
-      left: 20px;
-      width: 4px;
-      height: 60%;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      opacity: 0;
-      transition: all 0.8s;
-      z-index: 2;
-    }
-
-    .about-image:hover {
-      transform: translateY(-15px);
-    }
-
-    .about-image:hover::before {
-      opacity: 1;
-      transform: scale(1.1);
-    }
-
-    .about-image:hover::after {
-      opacity: 1;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      transform: perspective(1000px) rotateY(-3deg);
+      transition: transform 0.5s ease;
     }
 
     .about-image img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      height: auto;
+      transform: scale(1.05);
+      transition: transform 0.7s ease;
     }
 
-    .about-image:hover img {
-      transform: scale(1.08);
+    .about:hover .about-image img {
+      transform: scale(1.1);
     }
 
-    .about-text {
+    .about-content {
       flex: 1;
+      padding: 0 4rem;
     }
 
-    .about-text p {
-      margin-bottom: 2rem;
-      font-size: 1.15rem;
-      color: #333;
-      position: relative;
+    .about h2 {
+      font-size: 2.8rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
     }
 
-    .about-text p::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -8px;
-      width: 4px;
-      height: 2rem;
-      background: var(--accent);
-      opacity: 0;
-      transition: opacity 0.5s;
+    .about p {
+      margin-bottom: 1.8rem;
+      color: var(--text);
     }
 
-    .about-text p:hover::before {
-      opacity: 1;
+    .about .cta-button {
+      margin-top: 1.5rem;
     }
 
-    /* SOCIAL PROOF */
+    /* Testimonials */
     .testimonials {
-      padding: 10rem 0;
+      padding: 7rem 0;
       background-color: white;
       position: relative;
+      overflow: hidden;
     }
 
-    .testimonials::before {
+    .testimonials::after {
       content: '';
       position: absolute;
       top: 0;
-      left: -100px;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle at center, rgba(230, 126, 34, 0.1), transparent 70%);
-      border-radius: 50%;
+      right: 0;
+      width: 60%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><path d="M10,30 L50,10 L90,30 L50,50 Z" fill="%23E07A5F" opacity="0.1" /></svg>') no-repeat;
+      background-size: 100% 100%;
+      z-index: 0;
+    }
+
+    .testimonials .container {
+      position: relative;
       z-index: 1;
     }
 
-    .section-title.has-animation h2::after {
-      opacity: 1;
-      transform: translateY(0);
+    .testimonials .section-title {
+      margin-bottom: 4rem;
     }
 
-    .testimonials-grid {
+    .testimonial-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 4rem;
-      margin-top: 4rem;
+      gap: 3rem;
     }
 
     .testimonial-card {
-      background-color: var(--light);
-      padding: 3rem;
-      border-radius: 20px;
+      background-color: var(--secondary);
+      padding: 2rem;
+      border-radius: 16px;
       position: relative;
-      border-top: 5px solid var(--accent);
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
-      transition: all 0.5s ease;
-      transform: translateY(0);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
 
     .testimonial-card::before {
       content: '"';
-      font-size: 7rem;
-      color: var(--gray);
-      position: absolute;
-      top: 30px;
-      left: 25px;
-      font-family: serif;
-      line-height: 1;
+      font-size: 5rem;
+      color: var(--accent);
       opacity: 0.2;
-      z-index: 1;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-family: Playfair Display;
     }
 
     .testimonial-text {
       font-style: italic;
-      margin-bottom: 2.4rem;
-      font-size: 1.15rem;
-      color: #444;
-      position: relative;
-      z-index: 2;
-      flex-grow: 1;
+      margin-bottom: 1.5rem;
+      color: var(--text);
     }
 
     .testimonial-author {
       display: flex;
       align-items: center;
-      position: relative;
-      z-index: 2;
     }
 
     .testimonial-avatar {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      object-fit: cover;
-      margin-right: 1.5rem;
-      border: 4px solid var(--accent);
-      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
-    }
-
-    .testimonial-name {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 1.1rem;
-    }
-
-    .testimonial-role {
-      color: var(--gray);
-      font-size: 0.95rem;
-      margin-top: 2px;
-    }
-
-    .testimonial-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.12);
-    }
-
-    /* GALLERY */
-    .gallery {
-      padding: 10rem 0;
-      background-color: var(--light);
-      position: relative;
+      background-color: var(--neutral);
+      margin-right: 1rem;
       overflow: hidden;
     }
 
-    .gallery::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: -5%;
-      width: 110%;
-      height: 80px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,80 C300,40 900,40 1200,80 V0 H0 Z" fill="%23ecf0f1" fill-opacity="0.9"/></svg>');
-      background-size: 100% 100%;
-      z-index: 1;
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .gallery::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: -100px;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle at center, rgba(52, 152, 219, 0.1), transparent 70%);
-      border-radius: 50%;
-      transform: translateY(-50%);
-      z-index: 1;
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--primary);
     }
 
-    .section-title.has-animation h2::after {
-      opacity: 1;
-      transform: translateY(0);
+    .testimonial-role {
+      font-size: 0.9rem;
+      color: var(--neutral);
+    }
+
+    /* Gallery Section */
+    .gallery {
+      padding: 7rem 0;
+      background-color: var(--light);
     }
 
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
+      gap: 1.5rem;
     }
 
     .gallery-item {
-      height: 360px;
       border-radius: 16px;
       overflow: hidden;
       position: relative;
-      cursor: pointer;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transform-style: preserve-3d;
-      perspective: 1000px;
-    }
-
-    .gallery-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(38, 100, 135, 0.6), transparent);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      z-index: 3;
-    }
-
-    .gallery-item:hover::before {
-      opacity: 1;
+      height: 300px;
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.6s ease;
     }
 
     .gallery-item:hover img {
-      transform: scale(1.1) rotate(-2deg);
+      transform: scale(1.1);
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(to top, rgba(46, 90, 136, 0.9), transparent);
+      transition: height 0.5s ease;
+    }
+
+    .gallery-item:hover::before {
+      height: 100%;
     }
 
     .gallery-caption {
@@ -882,40 +457,21 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      padding: 2rem;
+      padding: 1.5rem;
       color: white;
-      transform: translateY(100%);
-      transition: transform 0.5s ease;
-      z-index: 4;
-      font-size: 1.1rem;
       font-weight: 600;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
     .gallery-item:hover .gallery-caption {
-      transform: translateY(0);
+      opacity: 1;
     }
 
-    .gallery-item::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 2px solid rgba(255, 255, 255, 0);
-      transition: border-color 0.5s ease;
-      z-index: 2;
-    }
-
-    .gallery-item:hover::after {
-      border-color: rgba(255, 255, 255, 0.8);
-    }
-
-    /* CONTACT */
+    /* Contact Section */
     .contact {
-      padding: 10rem 0;
-      background: linear-gradient(140deg, var(--primary), #233a54);
+      padding: 8rem 0;
+      background-color: var(--primary);
       color: white;
       position: relative;
       overflow: hidden;
@@ -924,147 +480,119 @@
     .contact::before {
       content: '';
       position: absolute;
-      top: 15%;
-      left: 15%;
-      width: 500px;
-      height: 500px;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><path d="M10,10 c10,10 20,20 30,10 c10,-10 20,0 30,10 c10,10 20,20 30,10" stroke="%23ffffff" fill="none" stroke-opacity="0.05" stroke-width="3" stroke-linecap="round"/></svg>');
-      opacity: 0.1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.pexels.com/photos/5256990/pexels-photo-5256990.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center;
+      background-size: cover;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .contact .container {
+      position: relative;
       z-index: 1;
     }
 
-    .section-title.has-animation h2::after {
-      opacity: 1;
-      transform: translateY(0);
+    .contact .section-title {
+      color: white;
+      margin-bottom: 4rem;
     }
 
     .contact-form {
-      max-width: 650px;
-      margin: 4rem auto 0;
-      background-color: rgba(255, 255, 255, 0.05);
-      padding: 4rem;
-      border-radius: 24px;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
-      position: relative;
-      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .form-group {
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 0.8rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.9);
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
     }
 
     .form-group input,
     .form-group textarea {
       width: 100%;
-      padding: 1.3rem;
+      padding: 1rem;
       border: none;
-      border-radius: 12px;
-      background-color: rgba(255, 255, 255, 0.08);
-      color: white;
-      font-family: var(--font-secondary);
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-      outline: none;
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      transition: box-shadow 0.3s ease;
     }
 
     .form-group input:focus,
     .form-group textarea:focus {
-      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3);
-      background-color: rgba(255, 255, 255, 0.12);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
     }
 
     .form-group textarea {
-      height: 200px;
+      height: 180px;
       resize: vertical;
-      padding-top: 1.3rem;
     }
 
-    .submit-btn {
-      width: 100%;
-      background: linear-gradient(135deg, var(--secondary), #d35400);
+    .form-submit {
+      background-color: var(--accent);
       color: white;
+      padding: 1rem 3rem;
       border: none;
-      padding: 1.4rem;
-      font-size: 1.2rem;
+      border-radius: 50px;
       font-weight: 600;
-      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      position: relative;
-      overflow: hidden;
-      margin-top: 0.5rem;
+      transition: all 0.3s ease;
+      grid-column: span 2;
     }
 
-    .submit-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.7s;
-    }
-
-    .submit-btn:hover::before {
-      left: 100%;
-    }
-
-    .submit-btn:hover {
+    .form-submit:hover {
+      background-color: #c96651;
       transform: translateY(-3px);
-      box-shadow: 0 14px 36px rgba(230, 126, 34, 0.4);
     }
 
-    /* FOOTER */
+    /* Footer */
     footer {
-      background: linear-gradient(180deg, #1a2537 0%, #2c3e50 100%);
+      background-color: var(--text);
       color: white;
       padding: 4rem 0 2rem;
-      position: relative;
     }
 
-    .footer-content {
+    .footer-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 4rem;
-      margin-bottom: 4rem;
+      gap: 3rem;
+      margin-bottom: 3rem;
     }
 
-    .footer-col h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1.8rem;
-      display: inline-block;
+    .footer-column h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
       position: relative;
-      padding-bottom: 0.8rem;
     }
 
-    .footer-col h3::after {
+    .footer-column h3::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -10px;
       left: 0;
       width: 40px;
       height: 3px;
-      background: var(--accent);
-      transition: width 0.5s ease;
+      background-color: var(--accent);
     }
 
-    .footer-col h3:hover::after {
-      width: 60px;
+    .footer-column p {
+      margin-bottom: 1.5rem;
+      color: var(--light);
     }
 
     .footer-links {
@@ -1072,118 +600,55 @@
     }
 
     .footer-links li {
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
 
     .footer-links a {
-      color: #bdc3c7;
-      transition: all 0.3s ease;
-      position: relative;
-      padding: 0.5rem 0;
-      display: block;
-    }
-
-    .footer-links a::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width 0.3s ease;
+      color: var(--light);
+      text-decoration: none;
+      transition: color 0.3s ease;
     }
 
     .footer-links a:hover {
       color: var(--accent);
     }
 
-    .footer-links a:hover::before {
-      width: 100%;
-    }
-
     .social-icons {
       display: flex;
-      gap: 1.2rem;
-      margin-top: 1.5rem;
+      gap: 1rem;
     }
 
     .social-icons a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
       color: white;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-      position: relative;
-      font-size: 1.1rem;
-    }
-
-    .social-icons a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, transparent 50%, rgba(52, 152, 219, 0.2) 100%);
-      border-radius: 50%;
-      opacity: 0;
-      transition: opacity 0.3s;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
     }
 
     .social-icons a:hover {
-      background: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(52, 152, 219, 0.4);
-    }
-
-    .social-icons a:hover::before {
-      opacity: 1;
+      background-color: var(--accent);
     }
 
     .copyright {
       text-align: center;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      color: #bdc3c7;
+      color: var(--light);
       font-size: 0.9rem;
-      position: relative;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .copyright::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.3), transparent);
-    }
-
-    .animated-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-      background: radial-gradient(circle at 10% 20%, var(--accent, #3498db) 0%, transparent 50%), radial-gradient(circle at 90% 80%, var(--secondary, #e67e22) 0%, transparent 50%);
-      opacity: 0.1;
-      animation: bgFloat 20s ease-in-out infinite;
-    }
-
-    /* MOTION ANIMATIONS */
-    @keyframes fadeUp {
+    /* Scroll Reveal Animation */
+    @keyframes slideIn {
       from {
         opacity: 0;
-        transform: translateY(50px);
+        transform: translateY(40px);
       }
       to {
         opacity: 1;
@@ -1193,8 +658,7 @@
 
     .fade-in {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
     .fade-in.visible {
@@ -1202,505 +666,404 @@
       transform: translateY(0);
     }
 
-    .slide-up {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .slide-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 0.8;
-        transform: translateY(0);
-      }
-      50% {
-        opacity: 0.3;
-        transform: translateY(-5px);
-      }
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 0.6;
-      }
-      50% {
-        transform: scale(1.3);
-        opacity: 0.8;
-      }
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translate(-100px, -100px);
-      }
-      25% {
-        transform: translate(100px, -50px);
-      }
-      50% {
-        transform: translate(-50px, 50px);
-      }
-      75% {
-        transform: translate(80px, 100px);
-      }
-    }
-
-    @keyframes bgFloat {
-      0%, 100% {
-        transform: translateX(0) scale(1);
-      }
-      50% {
-        transform: translateX(20px) scale(1.05);
-      }
-    }
-
-    /* CURSOR EFFECT */
-    .cursor-follower {
-      position: fixed;
-      width: 30px;
-      height: 30px;
-      border: 1px solid var(--secondary);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      mix-blend-mode: difference;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s ease;
+    .hidden {
       opacity: 0;
     }
 
-    .cursor-follower.active {
-      opacity: 1;
-    }
-
-    .cursor-follower[data-state="link"] {
-      width: 50px;
-      height: 50px;
-      border-color: var(--accent);
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    /* RESPONSIVE */
+    /* Responsive */
     @media (max-width: 992px) {
-      h1 { font-size: 3.8rem; }
-      h2 { font-size: 2.5rem; }
-      h3 { font-size: 2rem; }
+      .hero h1 {
+        font-size: 3rem;
+      }
+      .hero p {
+        font-size: 1.3rem;
+      }
+      .about-content {
+        padding: 0 2rem;
+      }
+      .contact-form {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.8rem; }
-      .hero p { font-size: 1.2rem; }
-      .hero-buttons { flex-direction: column; }
-      .hero-buttons .cta-button, .hero-buttons .cta-button.secondary { width: 100%; }
-      .nav-container { flex-direction: column; }
-      .nav-links { margin-top: 1.5rem; flex-direction: column; align-items: center; gap: 1rem; background-color: rgba(255, 255, 255, 0.98); border-radius: 12px; padding: 1rem 0; width: 100%; position: absolute; top: 70px; left: 0; display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-      .nav-links.show { display: flex; }
-      .mobile-menu { display: block; position: absolute; right: 20px; top: 1.5rem; color: var(--primary); }
-      .hero-content { padding: 0 2rem; text-align: center; }
-      .about-content { flex-direction: column; text-align: center; }
-      .about-image { margin-bottom: 2rem; }
-      .trust-strip { padding: 1rem 0; gap: 2rem; }
-      .trust-strip div { min-width: 180px; padding: 0 1.2rem; }
-      .section-title h2 { font-size: 2.2rem; }
-      .contact-form { padding: 2.5rem; }
-      .gallery-item { height: 280px; }
-      .gallery-caption { padding: 1.5rem; font-size: 1.05rem; }
-      .social-icons a { width: 40px; height: 40px; }
-      .footer-content { gap: 2rem; }
-      .footer-col h3 { font-size: 1.2rem; }
-      .footer-col h3::after { width: 30px; }
-      .footer-links a::before { bottom: -1px; }
+      .nav-links {
+        display: none;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero p {
+        font-size: 1.2rem;
+      }
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .about {
+        flex-direction: column;
+      }
+      .about-image {
+        margin-bottom: 2rem;
+      }
+      .about-content {
+        padding: 0 2rem;
+      }
+      .section-title {
+        font-size: 2.2rem;
+      }
+      .testimonial-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
-    @media (max-width: 480px) {
-      h1 { font-size: 2.4rem; }
-      .hero-buttons { gap: 1rem; }
-      .cta-button { padding: 0.7rem 1.6rem; font-size: 0.9rem; }
-      .hero p { font-size: 1.1rem; }
-      .feature-card { padding: 2.2rem 1.8rem; }
-      .feature-icon { width: 60px; height: 60px; font-size: 2rem; }
-      .testimonial-card { padding: 2rem; }
-      .testimonial-caption { font-size: 1.05rem; }
-      .gallery-item { height: 240px; }
-      .gallery-caption { padding: 1.2rem; font-size: 1rem; }
+    @media (max-width: 576px) {
+      .hero {
+        height: 90vh;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      footer .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        height: 100vh;
+        background: white;
+        z-index: 999;
+        padding: 2rem;
+        transition: left 0.4s ease;
+      }
+      .mobile-menu.open {
+        left: 0;
+      }
+      .mobile-menu .nav-links {
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      .mobile-menu .cta-button {
+        margin-top: 1rem;
+      }
+      .mobile-menu .nav-links a {
+        font-size: 1.5rem;
+      }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- CURSOR FOLLOWS MOUSE -->
-  <div class="cursor-follower"></div>
-
-  <!-- ANIMATED BACKGROUND ELEMENTS -->
-  <div class="animated-bg"></div>
-
-  <!-- NAVIGATION -->
   <nav>
-    <div class="container nav-container">
-      <a href="#" class="logo">Hikmah Employment Agency PTE LTD</a>
-      <div class="mobile-menu" id="mobile-menu">☰</div>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#features">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#testimonials">Success</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="cta-button">Get Started</button>
+    <a href="#" class="logo">Hikmah Employment Agency PTE LTD</a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
     </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    <a href="#contact" class="cta-button">Get Started</a>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="container hero-content">
-      <h1>Connecting talent with purpose</h1>
-      <p>Committed to bridging skilled individuals with employers who value integrity, culture, and commitment in Joo Chiat Road and beyond.</p>
-      <div class="hero-buttons">
-        <a href="#contact" class="cta-button">Find Your Opportunity</a>
-        <a href="#features" class="cta-button secondary">Explore Our Agency</a>
-      </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="cta-button">Get Started</a>
     </div>
-    <div class="hero-scroll-indicator">
-      <span></span>
-      <span></span>
-      <span></span>
-      <p style="margin-top: 15px; color: rgba(255,255,255,0.7);">Scroll down</p>
-    </div>
-  </section>
-
-  <!-- TRUST STRIP -->
-  <div class="trust-strip">
-    <div>Trusted by local employers</div>
-    <div>Culturally aware recruitment</div>
-    <div>Personalized support</div>
-    <div>Transparent process</div>
   </div>
 
-  <!-- FEATURES -->
-  <section class="features" id="features">
+  <section id="home" class="hero">
     <div class="container">
-      <div class="section-title has-animation">
-        <h2>Our Services</h2>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 9h2M17 9h2m-2 1h10m-8 5h1a1 1 0 110 2h-1a1 1 0 010-2z" />
-            </svg>
-          </div>
-          <h3>Job Matching</h3>
-          <p>We carefully match candidates with employers based on skills, experience, and cultural alignment—ensuring lasting success.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11 5.828V4a2 2 0 00-2-2h-2v2" />
-            </svg>
-          </div>
-          <h3>Resume Guidance</h3>
-          <p>Our dedicated advisors help candidates craft compelling, employer-ready resumes that stand out in competitive markets.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 9h2M17 9h2m-2 1h10m-8 5h1a1 1 0 110 2h-1a1 1 0 010-2z" />
-            </svg>
-          </div>
-          <h3>Employer Partnerships</h3>
-          <p>We build lasting relationships with businesses to understand their culture and values, helping them find the right fit.</p>
+      <div class="hero-content">
+        <h1>Hikmah Employment Agency PTE LTD</h1>
+        <p>Where Talent Meets Purpose</p>
+        <div class="hero-buttons">
+          <a href="#services" class="cta-button">Explore Services</a>
+          <a href="#contact" class="secondary-button">Get In Touch</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="about" id="about">
+  <div class="trust-strip">
+    <span>Trusted by families across Joo Chiat Road</span>
+    <span>Experienced, caring team</span>
+    <span>Free initial consultation</span>
+  </div>
+
+  <section id="services" class="services">
     <div class="container">
-      <div class="section-title has-animation">
-        <h2>About Us</h2>
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">👑</div>
+          <h3>Job Matching</h3>
+          <p>We connect skilled individuals with organizations seeking dedicated talent, ensuring alignment with values and career goals.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🤝</div>
+          <h3>Placement Support</h3>
+          <p>Comprehensive support from interview prep to onboarding, every step of the way, to ensure a successful transition.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📅</div>
+          <h3>Career Counselling</h3>
+          <p>Personalized guidance to help individuals identify their strengths, passion, and direction in their professional journey.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/7693153/pexels-photo-7693153.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A diverse group of professional individuals in a welcoming office environment at Hikmah Employment Agency">
       </div>
       <div class="about-content">
-        <div class="about-image">
-          <img src="https://images.pexels.com/photos/9301902/pexels-photo-9301902.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Team of professionals at Hikmah Employment Agency">
+        <h2>Where Care Meets Capability</h2>
+        <p>Hikmah Employment Agency PTE LTD is grounded in the belief that everyone deserves the opportunity to thrive. We bring warmth, dignity, and professionalism to every placement, ensuring candidates not only find jobs — but find meaning in their work.</p>
+        <p>Our team, rooted in the heart of Joo Chiat Road, understands community and compassion. Whether you're seeking employment or talent, we treat every journey with integrity, patience, and respect.</p>
+        <a href="#contact" class="cta-button">Start Your Journey</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Community Voices</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">Hikmah helped me find a role where I truly belong. Their patience and personalized support made all the difference during a difficult transition.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/38321174/pexels-photo-38321174.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Avatar of a satisfied candidate">
+            </div>
+            <div>
+              <div class="testimonial-name">Local Candidate</div>
+              <div class="testimonial-role">Client Since 2021</div>
+            </div>
+          </div>
         </div>
-        <div class="about-text">
-          <p>Hikmah Employment Agency PTE LTD is rooted in the heart of Joo Chiat Road, serving a diverse community with integrity and care. We believe employment is not just a transaction—it’s a partnership that transforms lives.</p>
-          <p>Our approach is guided by cultural awareness, deep listening, and personalized support. We treat every candidate and employer as an individual, recognizing that the right opportunity is more than a paycheck—it’s aligned purpose.</p>
-          <p>From entry-level placements to specialized roles, we’re committed to building meaningful connections that endure.</p>
+        <div class="testimonial-card">
+          <p class="testimonial-text">We've placed dozens of staff through Hikmah. Their attention to cultural fit and professionalism aligns perfectly with our values.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/7693153/pexels-photo-7693153.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Avatar of a satisfied employer">
+            </div>
+            <div>
+              <div class="testimonial-name">Local Employer</div>
+              <div class="testimonial-role">Partner Organization</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">As an employer, I appreciate how they take the time to understand both my team's needs and the candidate’s aspirations.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/5439368/pexels-photo-5439368.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Avatar of a satisfied employer">
+            </div>
+            <div>
+              <div class="testimonial-name">Local Employer</div>
+              <div class="testimonial-role">Small Business Owner</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="testimonials" id="testimonials">
+  <section id="gallery" class="gallery">
     <div class="container">
-      <div class="section-title has-animation">
-        <h2>What People Say</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <p class="testimonial-text">I was nervous about starting over, but Hikmah took the time to understand where I came from and what I wanted. They didn’t just find me a job—they found me the right fit.</p>
-          <div class="testimonial-author">
-            <img src="https://images.pexels.com/photos/38321174/pexels-photo-38321174.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client profile" class="testimonial-avatar">
-            <div>
-              <div class="testimonial-name">Local Client</div>
-              <div class="testimonial-role">Warehouse Supervisor</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">We’ve worked with several agencies, but Hikmah stands apart. They truly represent our company culture and bring us candidates who don’t just meet requirements—they embrace our values.</p>
-          <div class="testimonial-author">
-            <img src="https://images.pexels.com/photos/9301902/pexels-photo-9301902.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client profile" class="testimonial-avatar">
-            <div>
-              <div class="testimonial-name">Verified Employer</div>
-              <div class="testimonial-role">Operations Director</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">In just 3 weeks, Hikmah connected me with an employer who matched my experience, schedule, and cultural needs perfectly. The follow-up was thoughtful and reassuring.</p>
-          <div class="testimonial-author">
-            <img src="https://images.pexels.com/photos/5439368/pexels-photo-5439368.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client profile" class="testimonial-avatar">
-            <div>
-              <div class="testimonial-name">New Arrival</div>
-              <div class="testimonial-role">Healthcare Assistant</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="gallery" id="gallery">
-    <div class="container">
-      <div class="section-title has-animation">
-        <h2>Our Community</h2>
-      </div>
+      <h2 class="section-title">In Our Community</h2>
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/8482645/pexels-photo-8482645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Team meeting">
-          <div class="gallery-caption">Team alignment at Joo Chiat</div>
+          <img src="https://images.pexels.com/photos/5439368/pexels-photo-5439368.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A warm team meeting at Hikmah Employment Agency">
+          <div class="gallery-caption">Team Connection</div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/8482645/pexels-photo-8482645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Candidate interview">
-          <div class="gallery-caption">Guided interview preparation</div>
+          <img src="https://images.pexels.com/photos/8482861/pexels-photo-8482861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A candid moment of a candidate shaking hands with a consultant">
+          <div class="gallery-caption">One-on-One Support</div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/8482645/pexels-photo-8482645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client handshake">
-          <div class="gallery-caption">Placement celebration</div>
+          <img src="https://images.pexels.com/photos/5699449/pexels-photo-5699449.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A group of happy employees in a welcoming office space">
+          <div class="gallery-caption">Successful Placements</div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/8482645/pexels-photo-8482645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Community event">
-          <div class="gallery-caption">Cultural community outreach</div>
+          <img src="https://images.pexels.com/photos/5256990/pexels-photo-5256990.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The gentle grandeur of Joo Chiat Road">
+          <div class="gallery-caption">Our Home on Joo Chiat Road</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
+  <section id="contact" class="contact">
     <div class="container">
-      <div class="section-title has-animation">
-        <h2>Let’s Connect</h2>
-      </div>
-      <div class="contact-form">
-        <form>
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" placeholder="Enter your name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="Enter your email" required>
-          </div>
-          <div class="form-group">
-            <label for="message">How Can We Help You?</label>
-            <textarea id="message" placeholder="Tell us about your needs..." required></textarea>
-          </div>
-          <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-      </div>
+      <h2 class="section-title">Let’s Begin Together</h2>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us about your needs or how we can help you..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-col">
+      <div class="footer-grid">
+        <div class="footer-column">
           <h3>Hikmah Employment Agency PTE LTD</h3>
-          <p>Building meaningful connections between talent and opportunity in Joo Chiat Road and the wider community.</p>
+          <p>Where Talent Meets Purpose. Grounded in community, dedicated to dignity.</p>
           <div class="social-icons">
-            <a href="https://facebook.com" aria-label="Facebook">f</a>
-            <a href="https://instagram.com" aria-label="Instagram">ig</a>
-            <a href="https://linkedin.com" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">i</a>
+            <a href="#" aria-label="LinkedIn">in</a>
           </div>
         </div>
-        <div class="footer-col">
+        <div class="footer-column">
           <h3>Quick Links</h3>
           <ul class="footer-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#features">Our Services</a></li>
+            <li><a href="#services">Services</a></li>
             <li><a href="#about">About Us</a></li>
-            <li><a href="#testimonials">Success Stories</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
-        <div class="footer-col">
+        <div class="footer-column">
           <h3>Location</h3>
-          <ul class="footer-links">
-            <li>At the heart of Joo Chiat Road</li>
-            <li>Our doors are open to all</li>
-            <li>Culturally aware. Personally committed.</li>
-          </ul>
+          <p>Joo Chiat Road<br>Singapore</p>
         </div>
       </div>
       <div class="copyright">
-        © 2026 Hikmah Employment Agency PTE LTD. All rights reserved.  
+        © 2026 Hikmah Employment Agency PTE LTD. All rights reserved.
       </div>
     </div>
   </footer>
 
   <script>
-    // NAV SCROLL EFFECT
+    // Navigation Scroll Effect
     window.addEventListener('scroll', () => {
       const nav = document.querySelector('nav');
-      nav.classList.toggle('scrolled', window.scrollY > 100);
-    });
-
-    // MOBILE MENU TOGGLE
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.getElementById('nav-links');
-
-    mobileMenu.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-
-    // FADE IN ON SCROLL
-    const fadeElements = document.querySelectorAll('.feature-card, .testimonial-card, .gallery-item, .about-image, .about-text, .contact-form, .section-title');
-
-    const observerOptions = {
-      threshold: 0.1,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    fadeElements.forEach(element => {
-      if (!element.classList.contains('has-animation')) {
-        element.classList.add('fade-in');
-        observer.observe(element);
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
       }
     });
 
-    // ANIMATED GRADIENT BG IN FOOTER
-    document.addEventListener('DOMContentLoaded', () => {
-      const footerBg = document.querySelector('footer');
-      let offset = 0;
-
-      function animateBackground() {
-        offset += 0.2;
-        footerBg.style.backgroundPosition = `${offset}% 50%`;
-        requestAnimationFrame(animateBackground);
-      }
-
-      animateBackground();
+    // Mobile Menu
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('open');
     });
 
-    // Smooth scrolling for internal links
+    // Smooth Scroll for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        
         const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
+        if (targetId === '#') return;
         
+        document.getElementById('mobileMenu').classList.remove('open');
+        
+        const targetElement = document.querySelector(targetId);
         if (targetElement) {
           window.scrollTo({
             top: targetElement.offsetTop - 80,
             behavior: 'smooth'
           });
-          
-          // Close mobile menu if open
-          if (navLinks.classList.contains('show')) {
-            navLinks.classList.remove('show');
-          }
         }
       });
     });
 
-    // CURSOR FOLLOWS MOUSE
-    const cursor = document.querySelector('.cursor-follower');
-    const links = document.querySelectorAll('a, button, .feature-card, .gallery-item, .testimonial-card');
+    // Scroll Reveal Animation
+    const fadeElements = document.querySelectorAll('.service-card, .testimonial-card, .gallery-item, .about-content, .contact-form');
 
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    fadeElements.forEach(el => {
+      el.classList.add('fade-in');
+      observer.observe(el);
     });
 
-    links.forEach(link => {
-      link.addEventListener('mouseenter', () => {
-        cursor.classList.add('active', 'data-state="link"');
+    // Gallery Hover Effects
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        item.querySelector('.gallery-caption').style.opacity = '1';
       });
-      link.addEventListener('mouseleave', () => {
-        cursor.classList.remove('data-state', 'active');
+      item.addEventListener('mouseleave', () => {
+        item.querySelector('.gallery-caption').style.opacity = '0';
       });
     });
 
-    // Add animation to hero section
-    document.querySelector('.hero').addEventListener('mousemove', e => {
+    // Form Submission
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! We will get back to you soon.');
+      this.reset();
+    });
+
+    // Hero Image Parallax Effect
+    window.addEventListener('scroll', () => {
       const hero = document.querySelector('.hero');
-      const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-      const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-      hero.style.transform = `rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
+      const scrollPosition = window.pageYOffset;
+      hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
     });
-
-    document.querySelector('.hero').addEventListener('mouseleave', () => {
-      document.querySelector('.hero').style.transform = 'rotateX(0) rotateY(0)';
-    });
-
-    // Scroll indicators
-    document.querySelectorAll('.hero-scroll-indicator span').forEach((span, i) => {
-      span.style.animationDelay = `${i * 0.3}s`;
-    });
-
-    // Add animation delay to cards
-    document.querySelectorAll('.feature-card').forEach((card, i) => {
-      card.style.animationDelay = `${i * 0.1}s`;
-    });
-
-    // Animate testimonials
-    document.querySelectorAll('.testimonial-card').forEach((card, i) => {
-      card.style.animationDelay = `${i * 0.15}s`;
-    });
-
-    // Animate gallery items
-    document.querySelectorAll('.gallery-item').forEach((item, i) => {
-      item.style.animationDelay = `${i * 0.1}s`;
-    });
-
-    // Trigger animations on load
-    setTimeout(() => {
-      document.querySelectorAll('.fade-in, .section-title').forEach(el => {
-        el.classList.add('visible');
-      });
-    }, 500);
-
-    // Custom easing curve
-    document.documentElement.style.setProperty('--ease', 'cubic-bezier(0.25, 0.46, 0.45, 0.94)');
   </script>
 <script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=SGlrbWFoIEVtcGxveW1lbnQgQWdlbmN5IFBURSBMVEQ&u=dmlzaXQ&s=1bbf842c70e4af55fa54b7d5f665cb95&beacon=1&l=b3NtLW5vZGUtMzY1MzQ0MzMxNQ";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:892262b1c4--></html>
+<!--bld:26124488f9--></html>
