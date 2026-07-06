@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camat Lubuk Baja Office</title>
+  <style>
+    :root {
+      --navy: #0a1a3f;
+      --cream: #f8f4e9;
+      --olive: #5a6d51;
+      --gray: #333333;
+      --gold: #c9a55a;
+      --shadow: 0 8px 32px rgba(10, 26, 63, 0.1);
+      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--gray);
+      background-color: var(--cream);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Zilla Slab', serif;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+    }
+
+    h3 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* NAVIGATION */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: transparent;
+      padding: 1.5rem 0;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    nav.scrolled {
+      background: var(--cream);
+      box-shadow: var(--shadow);
+      padding: 1rem 0;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Zilla Slab', serif;
+      font-size: 1.8rem;
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background-color: var(--navy);
+      color: var(--cream);
+      padding: 0.8rem 1.8rem;
+      border: none;
+      border-radius: 30px;
+      font-family: 'Zilla Slab', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(10, 26, 63, 0.2);
+      text-decoration: none;
+      display: inline-block;
+      margin-left: 2rem;
+    }
+
+    .cta-button:hover {
+      background-color: var(--gold);
+      color: var(--navy);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(201, 165, 90, 0.3);
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background-image: url('https://images.pexels.com/photos/32329299/pexels-photo-32329299.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 26, 63, 0.55);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: var(--cream);
+      max-width: 700px;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .hero h1 {
+      color: var(--cream);
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .secondary-button {
+      background-color: transparent;
+      color: var(--cream);
+      border: 2px solid var(--cream);
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
+      font-family: 'Zilla Slab', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .secondary-button:hover {
+      background-color: var(--cream);
+      color: var(--navy);
+      transform: translateY(-3px);
+    }
+
+    /* TRUST STRIP */
+    .trust-strip {
+      background-color: var(--navy);
+      color: var(--cream);
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(201, 165, 90, 0.2);
+    }
+
+    .trust-strip span {
+      display: inline-block;
+      margin: 0 2rem;
+      position: relative;
+    }
+
+    .trust-strip span::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -1rem;
+      width: 1px;
+      height: 1rem;
+      background-color: var(--gold);
+      transform: translateY(-50%);
+    }
+
+    .trust-strip span:last-child::after {
+      display: none;
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 5rem 0;
+      background-color: var(--cream);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--navy);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 3px;
+      background-color: var(--gold);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .feature-card {
+      background-color: var(--cream);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 18px 40px rgba(10, 26, 63, 0.12);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background-color: rgba(90, 109, 81, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--olive);
+      font-size: 2rem;
+      transition: var(--transition);
+    }
+
+    .feature-card:hover .feature-icon {
+      background-color: var(--gold);
+      color: var(--navy);
+      transform: scale(1.1);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1rem;
+      color: var(--navy);
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 5rem 0;
+      background-color: var(--navy);
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .about-image {
+      flex: 1;
+      margin-right: 5rem;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      transition: var(--transition);
+    }
+
+    .about-content {
+      flex: 1;
+    }
+
+    .about h2 {
+      margin-bottom: 1.5rem;
+      color: var(--cream);
+    }
+
+    .about p {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.03);
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      padding: 5rem 0;
+      background-color: var(--cream);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .testimonial-card {
+      background-color: var(--navy);
+      color: var(--cream);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: ''';
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      font-size: 5rem;
+      font-family: Georgia, serif;
+      color: rgba(201, 165, 90, 0.1);
+      line-height: 1;
+    }
+
+    .testimonial-text {
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .author-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 1rem;
+      background-color: var(--olive);
+      overflow: hidden;
+    }
+
+    .author-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .author-name {
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .author-role {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      color: var(--cream);
+    }
+
+    /* GALLERY */
+    .gallery {
+      padding: 5rem 0;
+      background-image: url('https://images.pexels.com/photos/36641542/pexels-photo-36641542.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 26, 63, 0.65);
+    }
+
+    .gallery-content {
+      position: relative;
+      z-index: 2;
+      color: var(--cream);
+      text-align: center;
+    }
+
+    .gallery h2 {
+      margin-bottom: 2rem;
+      color: var(--cream);
+      font-size: 2.5rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 220px;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 5rem 0;
+      background-color: var(--navy);
+      color: var(--cream);
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--gold);
+      color: var(--navy);
+      font-family: 'Zilla Slab', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 1rem;
+    }
+
+    .submit-button:hover {
+      background-color: var(--navy);
+      color: var(--cream);
+      transform: translateY(-3px);
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--gray);
+      color: var(--cream);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-column h3 {
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--gold);
+    }
+
+    .footer-column p,
+    .footer-column ul {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-column ul li a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--gold);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--cream);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background-color: var(--gold);
+      color: var(--navy);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* SVG WAVE */
+    .wave {
+      display: block;
+      width: 100%;
+      height: 80px;
+      margin-bottom: -5px;
+      shape-outside: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V55.8C122,81.8 209.6,89.5 349.6,84.2c140.9,4.8 266.4,2.7 418.6,21.9c141.9,19.1 247.3,72.8 372.2,71.9c124.9-1 215.1-78.6 370.5-76.7C1100,117 1133,144 1200,144V0H0Z" fill="%23f8f4e9"/></svg>');
+      shape-image-threshold: 0;
+      background-color: var(--cream);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .animate-in.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE NAV */
+    .mobile-menu-button {
+      display: none;
+      background: transparent;
+      border: none;
+      font-size: 2rem;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-button {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background-color: var(--cream);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transform: translateY(-150%);
+        transition: transform 0.4s ease;
+        gap: 1.5rem;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        padding: 0.7rem 1.5rem;
+        border-radius: 8px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .hero {
+        height: 80vh;
+      }
+
+      .hero-content {
+        padding: 0 2rem;
+      }
+
+      .about-image {
+        margin-right: 0;
+        margin-bottom: 3rem;
+      }
+
+      .about {
+        flex-direction: column;
+      }
+
+      .gallery h2 {
+        font-size: 2rem;
+      }
+
+      .contact-form {
+        padding: 2rem;
+      }
+    }
+
+    /* LOADING ANIMATION */
+    .loading-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--cream);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loading-indicator.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader {
+      border: 5px solid var(--navy);
+      border-top: 5px solid var(--gold);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* BADGE FOR NAV */
+    .nav-badge {
+      display: inline-block;
+      background-color: var(--gold);
+      color: var(--navy);
+      font-size: 0.7rem;
+      padding: 0.1rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 700;
+      vertical-align: middle;
+      margin-left: 0.5rem;
+    }
+
+    /* FADING BOXES IN HERO */
+    .hero-fade-boxes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .hero-fade-box {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: rgba(201, 165, 90, 0.1);
+      border-radius: 50%;
+      animation: float 10s ease-in-out infinite;
+    }
+
+    .hero-fade-box:nth-child(1) {
+      top: 15%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .hero-fade-box:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-delay: -3s;
+      width: 80px;
+      height: 80px;
+    }
+
+    .hero-fade-box:nth-child(3) {
+      bottom: 20%;
+      left: 20%;
+      animation-delay: -7s;
+      width: 100px;
+      height: 100px;
+    }
+
+    .hero-fade-box:nth-child(4) {
+      top: 30%;
+      right: 15%;
+      animation-delay: -5s;
+      width: 90px;
+      height: 90px;
+    }
+
+    .hero-fade-box:nth-child(5) {
+      bottom: 10%;
+      right: 10%;
+      animation-delay: -2s;
+      width: 70px;
+      height: 70px;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(180deg);
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="loading-indicator">
+    <div class="loader"></div>
+  </div>
+
+  <nav>
+    <div class="container nav-container">
+      <a href="#" class="logo">Camat <span>Lubuk Baja Office</span></a>
+      <div class="mobile-menu-button">☰</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="cta-button">Get In Touch</a>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="hero-fade-boxes">
+      <div class="hero-fade-box"></div>
+      <div class="hero-fade-box"></div>
+      <div class="hero-fade-box"></div>
+      <div class="hero-fade-box"></div>
+      <div class="hero-fade-box"></div>
+    </div>
+    <div class="container hero-content">
+      <h1>Camat Lubuk Baja Office</h1>
+      <p>Serving Lubuk Baja Together</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="cta-button">Contact Us</a>
+        <a href="#services" class="secondary-button">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-strip">
+    <span>Trusted by Local Residents</span>
+    <span>Experienced Public Administrators</span>
+    <span>Open and Transparent</span>
+  </section>
+
+  <section id="services" class="features">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h3>Public Administration</h3>
+          <p>Efficient, transparent, and citizen-centered governance services for all residents of Lubuk Baja.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline></svg>
+          </div>
+          <h3>Community Development</h3>
+          <p>Programs and initiatives to improve infrastructure, education, and community cohesion in our local area.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <h3>Public Records Access</h3>
+          <p>Streamlined processes for citizens to access official documents, permits, and administrative records.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="about-image">
+      <img src="https://images.pexels.com/photos/26225452/pexels-photo-26225452.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Camat Lubuk Baja Office staff in official setting">
+    </div>
+    <div class="about-content container">
+      <h2>Who We Are</h2>
+      <p>The Camat Lubuk Baja Office is the official local government administration serving the Lubuk Baja community. Our dedicated team works every day to ensure public services are delivered with integrity, efficiency, and deep respect for the people we serve.</p>
+      <p>Rooted in the traditions and needs of Lubuk Baja, we strive to be accessible, responsive, and transparent — building a governance model that reflects the values and aspirations of our region.</p>
+      <p>We believe in community-led development and work in close partnership with local organizations, residents, and stakeholders to create lasting, positive change.</p>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Community Voices</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">The staff at Camat Lubuk Baja Office made it easy to get my business permit. They answered every question patiently and guided me through the process with kindness and speed.</p>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://images.pexels.com/photos/32329299/pexels-photo-32329299.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Local business owner">
+            </div>
+            <div>
+              <div class="author-name">Surya Hadi</div>
+              <div class="author-role">Verified Customer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">Before coming here, I wasn’t sure how to start a community clean-up. The office provided templates, contacts, and even helped us get funding. We’ve now cleaned three neighborhoods!</p>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://images.pexels.com/photos/26225452/pexels-photo-26225452.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Community volunteer">
+            </div>
+            <div>
+              <div class="author-name">Maya Dewi</div>
+              <div class="author-role">Local Volunteer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">As a new resident, I was nervous about paperwork. But the team at Camat Lubuk Baja greeted me warmly, explained everything clearly, and even checked in with me afterward. They truly care.</p>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://images.pexels.com/photos/4425993/pexels-photo-4425993.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="New resident">
+            </div>
+            <div>
+              <div class="author-name">Johan Setiawan</div>
+              <div class="author-role">New Resident</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery">
+    <div class="container gallery-content">
+      <h2>A Look At Our Community</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/4425993/pexels-photo-4425993.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Community meeting">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/11364987/pexels-photo-11364987.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Public infrastructure">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/29926504/pexels-photo-29926504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Local event">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/26225452/pexels-photo-26225452.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Office staff working">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title" style="color: var(--cream);">Get In Touch</h2>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Your email address">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" rows="5" placeholder="How can we serve you today?"></textarea>
+        </div>
+        <button type="submit" class="submit-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Camat Lubuk Baja Office</h3>
+          <p>Providing trusted, transparent, and efficient public administration to the people of Lubuk Baja.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">in</a>
+            <a href="#" aria-label="YouTube">y</a>
+            <a href="#" aria-label="Twitter">t</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#">Public Records</a></li>
+            <li><a href="#">Application Forms</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Community Events</a></li>
+            <li><a href="#">Career Opportunities</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Visit Us</h3>
+          <p>Local Government Office<br>Lubuk Baja, Indonesia</p>
+          <p>Office Hours:<br>Monday–Friday: 08:00–16:00<br>Lunch Break: 12:00–13:00</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Camat Lubuk Baja Office. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <div class="wave"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Remove loading indicator after 1.5 seconds
+      setTimeout(() => {
+        document.querySelector('.loading-indicator').classList.add('fade-out');
+      }, 1500);
+
+      // Sticky navigation
+      window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      // Mobile menu toggle
+      const mobileMenuButton = document.querySelector('.mobile-menu-button');
+      const navLinks = document.querySelector('.nav-links');
+      mobileMenuButton.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+          // Close mobile menu after click
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+          }
+        });
+      });
+
+      // Animate sections on scroll
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.feature-card, .testimonial-card, .gallery-item, .about-content, .hero-content');
+        elements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) {
+            el.classList.add('appear');
+          }
+        });
+      };
+
+      window.addEventListener('scroll', animateOnScroll);
+      animateOnScroll(); // Initial check
+
+      // Animate gallery items
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      galleryItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.2}s`;
+      });
+
+      // Form submission
+      const form = document.querySelector('.contact-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your message! We will respond soon.');
+        form.reset();
+      });
+
+      // Add badge to nav for visual interest
+      const badge = document.createElement('span');
+      badge.className = 'nav-badge';
+      badge.textContent = 'OFFICIAL';
+      document.querySelector('.logo').appendChild(badge);
+
+      // Add subtle nav highlighting for current section
+      const sections = document.querySelectorAll('section[id]');
+      const navLinksList = document.querySelectorAll('.nav-links a');
+
+      const observerOptions = {
+        rootMargin: '0px',
+        threshold: 0.4
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinksList.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=Q2FtYXQgTHVidWsgQmFqYSBPZmZpY2U&u=dmlzaXQ&s=3797a59d8afe18d9627e97052239e5cd&beacon=1&l=b3NtLW5vZGUtNzAyNjcyNTEy";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:45a5f8f2f1--></html>
