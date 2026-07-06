@@ -1,145 +1,1477 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Modern Montessori International</title>
-<meta name="description" content="Quality you can count on">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Modern Montessori International">
-<meta property="og:description" content="Quality you can count on">
-<meta property="og:image" content="https://images.pexels.com/photos/7385395/pexels-photo-7385395.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Modern Montessori International">
-<meta name="twitter:description" content="Quality you can count on">
-<meta name="twitter:image" content="https://images.pexels.com/photos/7385395/pexels-photo-7385395.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{--bg:#0e0c0a;--ink:#f6efe6;--mut:#b6a892;--acc:#e0a060;--card:#171310;--line:rgba(224,160,96,.18)}
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
-  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.05}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
-  nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;
-      padding:18px 28px;backdrop-filter:blur(10px);background:rgba(14,12,10,.55);border-bottom:1px solid var(--line)}
-  nav .brand{font-family:'Fraunces';font-weight:700;font-size:20px;letter-spacing:.3px}
-  nav .links{display:flex;gap:26px;font-size:14px;color:var(--mut)}
-  nav .links a:hover{color:var(--acc)}
-  @media(max-width:720px){nav .links{display:none}}
-  .hero{position:relative;min-height:100vh;display:flex;align-items:center;isolation:isolate}
-  .hero .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;
-            transform:scale(1.05);animation:zoom 18s ease-in-out infinite alternate}
-  .hero::after{content:'';position:absolute;inset:0;z-index:-1;
-            background:linear-gradient(180deg,rgba(14,12,10,.55),rgba(14,12,10,.82) 70%,var(--bg))}
-  @keyframes zoom{to{transform:scale(1.16)}}
-  .hero .inner{padding:120px 0 80px}
-  .eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--acc);
-           margin-bottom:22px;opacity:0;animation:rise .9s .1s forwards}
-  .hero h1{font-size:clamp(44px,9vw,104px);letter-spacing:-.02em;opacity:0;animation:rise 1s .25s forwards}
-  .hero p.tag{margin-top:18px;font-size:clamp(18px,2.4vw,26px);color:var(--mut);max-width:620px;
-              opacity:0;animation:rise 1s .45s forwards}
-  .btn{display:inline-block;margin-top:38px;padding:15px 34px;border-radius:100px;background:var(--acc);color:#221606;
-       font-weight:700;letter-spacing:.02em;opacity:0;animation:rise 1s .6s forwards;transition:transform .25s,box-shadow .25s}
-  .btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(224,160,96,.6)}
-  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
-  section{padding:104px 0}
-  .lead{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
-  .about h2{font-size:clamp(32px,5vw,56px);max-width:14ch;letter-spacing:-.02em}
-  .about p{margin-top:22px;font-size:19px;color:var(--mut);max-width:60ch}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  @media(max-width:820px){.grid3{grid-template-columns:1fr}}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 30px;transition:transform .3s,border-color .3s}
-  .card:hover{transform:translateY(-6px);border-color:var(--acc)}
-  .card-no{font-family:'Fraunces';font-size:34px;color:var(--acc);opacity:.7}
-  .card h3{font-size:23px;margin:10px 0 8px}
-  .card p{color:var(--mut);font-size:15.5px}
-  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  @media(max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}}
-  .gal figure{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
-  .gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-  .gal figure:hover img{transform:scale(1.08)}
-  .gal .ph{width:100%;height:100%;background:linear-gradient(135deg,#1d1712,#0e0c0a)}
-  .contact{background:linear-gradient(180deg,var(--bg),#15110d)}
-  .contact .row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-  @media(max-width:820px){.contact .row{grid-template-columns:1fr}}
-  .contact h2{font-size:clamp(30px,4.5vw,50px);letter-spacing:-.02em}
-  .contact p{color:var(--mut);margin-top:18px;font-size:18px;max-width:46ch}
-  form{display:grid;gap:14px}
-  input,textarea{background:#100d0a;border:1px solid var(--line);border-radius:12px;padding:15px 16px;color:var(--ink);
-                 font-family:inherit;font-size:15px}
-  input:focus,textarea:focus{outline:none;border-color:var(--acc)}
-  textarea{min-height:120px;resize:vertical}
-  form .btn{margin-top:6px;animation:none;opacity:1;border:none;cursor:pointer;font-size:15px}
-  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:13.5px;border-top:1px solid var(--line)}
-  footer .big{font-family:'Fraunces';font-size:26px;color:var(--ink);margin-bottom:10px}
-  .badge{display:inline-block;margin-top:14px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-         color:var(--acc);opacity:.8}
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--d,0ms),transform .7s var(--d,0ms)}
-  .reveal.in{opacity:1;transform:none}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Montessori International</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #e8e4d9;
+      --secondary: #7a6e62;
+      --accent: #4a5346;
+      --light: #c9b7a1;
+      --background: #f4f0e6;
+      --text: #333;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      --border-radius: 12px;
+      --wave-height: 20px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--text);
+      background-color: var(--background);
+      line-height: 1.7;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      background: radial-gradient(circle at 50% 30%, rgba(232, 228, 217, 0.1), transparent 70%), linear-gradient(to bottom, transparent 50%, var(--background) 100%);
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 4.5rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 3.2rem;
+    }
+
+    h3 {
+      font-size: 2.2rem;
+    }
+
+    p {
+      font-size: 1.15rem;
+      margin-bottom: 1.8rem;
+      font-weight: 300;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    /* Sticky Nav */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.5rem 0;
+      transition: var(--transition);
+      display: flex;
+      justify-content: center;
+      background: transparent;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(232, 228, 217, 0.1);
+    }
+
+    header.scrolled {
+      padding: 1rem 0;
+      background: rgba(244, 240, 230, 0.98);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 700;
+      position: relative;
+      padding: 0.1rem 0;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+      transition: var(--transition);
+    }
+
+    .logo:hover::after {
+      width: 100%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      position: relative;
+    }
+
+    .nav-links a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 1rem;
+      position: relative;
+      padding: 0.2rem 0;
+      transition: var(--transition);
+      display: inline-block;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transition: var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: var(--secondary);
+      opacity: 0;
+      transition: var(--transition);
+      pointer-events: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .nav-links a:hover::before {
+      width: 100%;
+    }
+
+    .nav-links a:hover::after {
+      width: 8px;
+      height: 8px;
+      opacity: 0.3;
+    }
+
+    .cta-button {
+      background-color: var(--secondary);
+      color: var(--primary);
+      padding: 0.8rem 2rem;
+      border-radius: var(--border-radius);
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+      box-shadow: 0 4px 15px rgba(122, 110, 98, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: rotate(45deg);
+      transition: var(--transition);
+    }
+
+    .cta-button:hover::before {
+      top: 120%;
+      left: 120%;
+    }
+
+    .cta-button:hover {
+      background-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(74, 83, 70, 0.2);
+    }
+
+    .mobile-menu-button {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--secondary);
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    .mobile-menu-button:hover {
+      background-color: rgba(232, 228, 217, 0.1);
+    }
+
+    /* Hero */
+    .hero {
+      height: 90vh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      position: relative;
+      padding: 0 3rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.pexels.com/photos/31864405/pexels-photo-31864405.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') center/cover no-repeat;
+      z-index: -1;
+      filter: brightness(0.9);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(232, 228, 217, 0.2) 30%, rgba(118, 110, 98, 0.4) 100%);
+      z-index: -1;
+    }
+
+    .hero-content {
+      text-align: center;
+      color: var(--primary);
+      max-width: 850px;
+      padding-bottom: 6rem;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .hero-content.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .hero h1 {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 1.6rem;
+      margin-bottom: 3rem;
+      font-weight: 300;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .secondary-button {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 0.8rem 2rem;
+      border-radius: var(--border-radius);
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.05));
+    }
+
+    .secondary-button:hover {
+      background-color: var(--primary);
+      color: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      border-color: transparent;
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background: repeating-linear-gradient(90deg, var(--light), var(--light) 5px, transparent 5px, transparent 10px);
+      padding: 1.2rem 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(232, 228, 217, 0.2);
+      display: flex;
+      justify-content: center;
+      gap: 5rem;
+      font-weight: 300;
+      font-size: 1rem;
+      position: relative;
+      overflow: hidden;
+      margin-top: -1px;
+    }
+
+    .trust-strip span {
+      padding: 0 1.2rem;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 20" preserveAspectRatio="none"><path d="M0,20 C166.7,20 333.3,0 500,20 L500,0 L0,0 Z" fill="%23e8e4d9"/></svg>') repeat-x;
+      background-size: 500px 20px;
+    }
+
+    /* Services */
+    .services {
+      padding: 10rem 0;
+      background-color: var(--background);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 100px;
+      background: repeating-linear-gradient(180deg, transparent, transparent 20px, rgba(232, 228, 217, 0.3) 20px, rgba(232, 228, 217, 0.3) 40px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 6rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+      border-radius: 10px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+      position: relative;
+      z-index: 2;
+      margin-top: 4rem;
+    }
+
+    .service-card {
+      background-color: white;
+      border-radius: var(--border-radius);
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(232, 228, 217, 0.5);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(74, 83, 70, 0.08), transparent);
+      transition: var(--transition);
+      z-index: 1;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 100% 0, rgba(122, 110, 98, 0.05) 0%, transparent 50%);
+      transition: var(--transition);
+      z-index: 1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+      border-color: rgba(122, 110, 98, 0.2);
+    }
+
+    .service-card:hover::before {
+      left: 100%;
+    }
+
+    .service-card:hover::after {
+      background: radial-gradient(circle at 100% 0, rgba(122, 110, 98, 0.15) 0%, transparent 50%);
+    }
+
+    .service-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(118, 110, 98, 0.15), rgba(118, 110, 98, 0.1));
+      color: var(--secondary);
+      font-size: 3rem;
+      box-shadow: 0 10px 20px rgba(118, 110, 98, 0.08);
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1);
+    }
+
+    /* About */
+    .about {
+      padding: 12rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      background-color: var(--primary);
+      position: relative;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,20 50,50 T100,50 Z" fill="%23e8e4d9" opacity="0.7"/></svg>') repeat-x;
+      background-size: 500px 200px;
+      background-position: top center;
+      z-index: 1;
+    }
+
+    .about::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,80 50,50 T100,50 Z" fill="%23e8e4d9" opacity="0.7"/></svg>') repeat-x;
+      background-size: 500px 100px;
+      background-position: bottom center;
+      z-index: 1;
+    }
+
+    .about-image {
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      transform: translateY(0);
+      transition: var(--transition);
+      height: 100%;
+      margin-left: -3rem;
+      padding: 2rem;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+      transform: scale(1);
+    }
+
+    .about-content h2 {
+      font-size: 3.4rem;
+      margin-bottom: 2rem;
+      color: var(--secondary);
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-content h2::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--secondary);
+    }
+
+    .about-content p {
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 12rem 0;
+      background-color: var(--background);
+      position: relative;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,80 50,50 T100,50 Z" fill="%23f4f0e6" opacity="0.5"/></svg>') repeat-x;
+      background-size: 500px 100px;
+    }
+
+    .testimonials::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,20 50,50 T100,50 Z" fill="%23f4f0e6" opacity="0.5"/></svg>') repeat-x;
+      background-size: 500px 100px;
+    }
+
+    .section-title.testimonials-title {
+      margin-bottom: 7rem;
+    }
+
+    .section-title.testimonials-title::after {
+      width: 100px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+    }
+
+    .testimonial {
+      background-color: white;
+      border-radius: var(--border-radius);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid rgba(232, 228, 217, 0.5);
+    }
+
+    .testimonial::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      color: rgba(118, 110, 98, 0.1);
+      position: absolute;
+      top: -2rem;
+      left: 2rem;
+      line-height: 1;
+      z-index: 1;
+      transform: rotate(2deg);
+    }
+
+    .testimonial::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 90% 10%, rgba(118, 110, 98, 0.03) 0%, transparent 80%);
+      z-index: 1;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 2;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: var(--light);
+      overflow: hidden;
+      border: 3px solid var(--primary);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testimonial:hover .testimonial-avatar {
+      transform: scale(1.1);
+    }
+
+    .testimonial-name {
+      font-weight: 700;
+      color: var(--secondary);
+      font-size: 1.3rem;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 12rem 0;
+      background-color: var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 200px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 500 200" preserveAspectRatio="none"><rect width="500" height="200" fill="none"/><path d="M0,150 Q125,170 250,150 T500,150 Z" fill="%23e8e4d9" opacity="0.7"/></svg>') repeat-x;
+      background-size: 500px 200px;
+      z-index: 1;
+    }
+
+    .gallery::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 200px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 500 200" preserveAspectRatio="none"><rect width="500" height="200" fill="none"/><path d="M0,50 Q125,30 250,50 T500,50 Z" fill="%23e8e4d9" opacity="0.7"/></svg>') repeat-x;
+      background-size: 500px 200px;
+      z-index: 1;
+    }
+
+    .section-title.gallery-title {
+      margin-bottom: 8rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2.5rem;
+      position: relative;
+    }
+
+    .gallery-item {
+      position: relative;
+      height: 400px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transform: translateY(10px);
+      opacity: 0;
+      transition: var(--transition);
+      border: 1px solid rgba(232, 228, 217, 0.5);
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      z-index: 2;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.4));
+      opacity: 0;
+      transition: var(--transition);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 1.5rem;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: var(--border-radius);
+    }
+
+    /* Contact */
+    .contact {
+      padding: 12rem 0;
+      background-color: var(--background);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,80 50,50 T100,50 Z" fill="%23f4f0e6" opacity="0.5"/></svg>') repeat-x;
+      background-size: 500px 100px;
+    }
+
+    .contact-form {
+      max-width: 580px;
+      margin: 4rem auto;
+      background-color: white;
+      padding: 5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-group {
+      margin-bottom: 2.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: var(--secondary);
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .form-group label::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(74, 83, 70, 0.1);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1.2rem;
+      border: 2px solid rgba(232, 228, 217, 0.5);
+      border-radius: var(--border-radius);
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: transparent;
+      font-weight: 300;
+    }
+
+    .form-group input:focus::placeholder,
+    .form-group textarea:focus::placeholder {
+      opacity: 0.3;
+    }
+
+    .form-group textarea {
+      min-height: 200px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--accent);
+      color: var(--primary);
+      padding: 6rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 500 100" preserveAspectRatio="none"><rect width="500" height="100" fill="none"/><path d="M0,60 Q125,20 250,60 T500,60 Z" fill="%23e8e4d9" opacity="0.1"/></svg>') repeat-x;
+      background-size: 500px 100px;
+      z-index: 1;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 5rem;
+      margin-bottom: 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-column h3 {
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .footer-column p,
+    .footer-column a {
+      color: var(--primary);
+      text-decoration: none;
+      margin-bottom: 1rem;
+      display: block;
+      transition: var(--transition);
+      font-weight: 300;
+      position: relative;
+      padding-left: 0.5rem;
+    }
+
+    .footer-column a::before {
+      content: '»';
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .footer-column a:hover {
+      color: var(--light);
+      padding-left: 1rem;
+    }
+
+    .footer-column a:hover::before {
+      opacity: 1;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: rgba(232, 228, 217, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .social-icons a:hover {
+      background-color: var(--light);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(232, 228, 217, 0.1);
+      font-size: 0.9rem;
+      color: rgba(232, 228, 217, 0.6);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+      filter: blur(5px);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+    }
+
+    /* Parallax Background */
+    .hero-parallax {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://images.pexels.com/photos/31864405/pexels-photo-31864405.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      transform: translateY(0);
+      z-index: -2;
+      opacity: 0.8;
+      transition: transform 0.1s ease-out;
+      pointer-events: none;
+      background-attachment: fixed;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--light);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      h2 {
+        font-size: 2.6rem;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+      }
+
+      .services,
+      .about,
+      .testimonials,
+      .gallery,
+      .contact {
+        padding: 6rem 0;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+      }
+
+      .about-image {
+        order: -1;
+        margin-left: 0;
+        padding: 0;
+        height: 400px;
+      }
+
+      .service-card {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        padding: 0 2rem;
+      }
+    }
+
+    @media (max-width: 650px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .nav-container {
+        padding: 0 1.5rem;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 100vh;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: white;
+        padding: 2rem 1.5rem;
+        align-items: center;
+        gap: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        transition: var(--transition);
+        z-index: 900;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+      }
+
+      .mobile-menu-button {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1001;
+        padding: 0.8rem;
+        background-color: rgba(232, 228, 217, 0.8);
+      }
+
+      .about,
+      .testimonials,
+      .gallery,
+      .contact {
+        padding: 5rem 1.5rem;
+      }
+
+      .contact-form {
+        padding: 2rem;
+        margin: 3rem auto;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 0 1.5rem;
+      }
+
+      .footer-column h3 {
+        font-size: 1.4rem;
+      }
+
+      .footer-column p {
+        margin: 0.5rem 0;
+      }
+
+      .trust-strip {
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .trust-strip span {
+        margin: 1rem;
+        padding: 0.3rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .gallery-item {
+        height: 300px;
+      }
+    }
+  </style>
 </head>
 <body>
-<nav>
-  <a class="brand" href="#top">Modern Montessori International</a>
-  <div class="links">
-    <a href="#top">Home</a><a href="#about">About</a><a href="#services">Services</a>
-    <a href="#gallery">Gallery</a><a href="#contact">Contact</a>
-  </div>
-</nav>
-<header class="hero" id="top">
-  <div class="bg" style="background-image:url('https://images.pexels.com/photos/7385395/pexels-photo-7385395.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940')"></div>
-  <div class="wrap inner">
-    <span class="eyebrow">Proudly serving 76 South Bridge Road Singapore 058706</span>
-    <h1>Modern Montessori International</h1>
-    <p class="tag">Quality you can count on</p>
-    <a class="btn" href="#contact">Get in touch</a>
-  </div>
-</header>
-<section class="about wrap" id="about">
-  <div class="lead">About us</div>
-  <h2 class="reveal">Quality you can count on</h2>
-  <p class="reveal" style="--d:120ms">We're a local favourite, proud to serve our community with care and a personal touch. Come and see what makes us different.</p>
-</section>
-<section class="wrap" id="services">
-  <div class="lead">What we offer</div>
-  <div class="grid3"><div class="card reveal"><div class="card-no">01</div><h3>Crafted with care</h3><p>Every detail handled by people who take pride in their work.</p></div>
-<div class="card reveal"><div class="card-no">02</div><h3>Local &amp; personal</h3><p>A warm welcome and service that remembers your name.</p></div>
-<div class="card reveal"><div class="card-no">03</div><h3>Trusted quality</h3><p>The standard our regulars keep coming back for.</p></div></div>
-</section>
-<section class="wrap" id="gallery">
-  <div class="lead">A look inside</div>
-  <div class="gal"><figure class="reveal" style="--d:0ms"><img loading="lazy" src="https://images.pexels.com/photos/6659343/pexels-photo-6659343.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Modern Montessori International"></figure>
-<figure class="reveal" style="--d:60ms"><img loading="lazy" src="https://images.pexels.com/photos/34417195/pexels-photo-34417195.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Modern Montessori International"></figure>
-<figure class="reveal" style="--d:120ms"><img loading="lazy" src="https://images.pexels.com/photos/18008026/pexels-photo-18008026.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Modern Montessori International"></figure>
-<figure class="reveal" style="--d:180ms"><img loading="lazy" src="https://images.pexels.com/photos/8050435/pexels-photo-8050435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Modern Montessori International"></figure>
-<figure class="reveal" style="--d:240ms"><img loading="lazy" src="https://images.pexels.com/photos/18000843/pexels-photo-18000843.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Modern Montessori International"></figure>
-<figure class="reveal" style="--d:300ms"><img loading="lazy" src="https://images.pexels.com/photos/6659343/pexels-photo-6659343.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Modern Montessori International"></figure></div>
-</section>
-<section class="contact" id="contact">
-  <div class="wrap row">
-    <div>
-      <div class="lead">Contact</div>
-      <h2 class="reveal">Come say hello</h2>
-      <p class="reveal" style="--d:120ms">We'd love to welcome you. Find us, call us, or drop by.</p>
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo">Modern Montessori International</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#services">Learning</a></li>
+          <li><a href="#about">Approach</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Connect</a></li>
+        </ul>
+      </nav>
+      <a href="#contact" class="cta-button">Join Us</a>
+      <button class="mobile-menu-button">☰</button>
     </div>
-    <form class="reveal" style="--d:200ms" onsubmit="return false">
-      <input placeholder="Your name"><input type="email" placeholder="Your email">
-      <textarea placeholder="Your message"></textarea>
-      <button class="btn" type="submit">Send</button>
-    </form>
+  </header>
+
+  <section class="hero">
+    <div class="hero-parallax"></div>
+    <div class="hero-content">
+      <h1>Modern Montessori International</h1>
+      <p>Learn with purpose</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="cta-button">Enroll Today</a>
+        <a href="#gallery" class="secondary-button">See Our Space</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <span>Trusted by families in Singapore</span>
+    <span>Peaceful, nurturing environment</span>
+    <span>Certified Montessori educators</span>
   </div>
-</section>
-<footer>
-  <div class="big">Modern Montessori International</div>
-  <div>Proudly serving 76 South Bridge Road Singapore 058706</div>
-  <div class="badge">★ Website preview crafted by Bridge Digital Solutions</div>
-</footer>
-<script>
-  const io=new IntersectionObserver((es)=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.14});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
-</body>
-<!--bld:b4cc3319fb--></html>
+
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Learning Philosophy</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🌿</div>
+          <h3>Self-Directed Learning</h3>
+          <p>Each child explores their interests at their own pace, building independence and intrinsic motivation through hands-on, sensorial materials.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🌱</div>
+          <h3>Prepared Environment</h3>
+          <p>Thoughtfully curated spaces foster concentration, order, and beauty — where materials are accessible, orderly, and inviting to the child.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🧘</div>
+          <h3>Mindful Development</h3>
+          <p>Quiet reflection, grace and courtesy, and emotional awareness form the foundation for lifelong emotional intelligence and social grace.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/7296764/pexels-photo-7296764.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Nurturing classroom environment at Modern Montessori International">
+      </div>
+      <div class="about-content">
+        <h2>Our Approach</h2>
+        <p>Modern Montessori International blends the timeless principles of Maria Montessori with modern design and pedagogical insights. Our educators are deeply trained, and our spaces intentionally designed to support the child's natural desire to learn.</p>
+        <p>We observe, we adapt, and we follow the child — never rushing development, but creating conditions where growth unfolds naturally. In an age of noise and distraction, we offer the quiet, intentional space children need to become their best selves.</p>
+        <p>Our curriculum balances freedom with responsibility, fostering not just academic skills, but character, resilience, and a profound respect for self and community.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title testimonials-title">Voices of Our Community</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p>A space where my daughter finally blossomed — not because she was taught to, but because she was allowed to discover herself.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/18991702/pexels-photo-18991702.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Parent avatar">
+            </div>
+            <div class="testimonial-name">Local Parent</div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>Every detail is calibrated for peace. The light, the textures, the quiet — it feels like the school was made for children, not administrators.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/5256524/pexels-photo-5256524.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Parent avatar">
+            </div>
+            <div class="testimonial-name">Verified Customer</div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>My child’s curiosity has grown exponentially. She wakes up excited to go to school — something we never thought possible.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/9667023/pexels-photo-9667023.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Parent avatar">
+            </div>
+            <div class="testimonial-name">Parent of Three-Year-Old</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title gallery-title">Our Sanctuary</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/8923039/pexels-photo-8923039.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Wooden classroom materials">
+          <div class="gallery-overlay">Curiosity in Motion</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/9667023/pexels-photo-9667023.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Quiet reading corner">
+          <div class="gallery-overlay">Calm Discovery</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/5256524/pexels-photo-5256524.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Outdoor nature exploration">
+          <div class="gallery-overlay">Nature as Teacher</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/7296764/pexels-photo-7296764.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Child engaging with art materials">
+          <div class="gallery-overlay">Creative Expression</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/31864405/pexels-photo-31864405.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Natural light streaming into classroom">
+          <div class="gallery-overlay">Light & Quiet</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/18991702/pexels-photo-18991702.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Children participating in group activity">
+          <div class="gallery-overlay">Community of Learners</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-form">
+        <h2 class="section-title">Begin Your Journey</h2>
+        <p>Fill out the form below to request an orientation tour or learn about our enrollment process.</p>
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Your email">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Tell us about your child and what you're looking for..."></textarea>
+          </div>
+          <button type="submit" class="cta-button">Request a Tour</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>Modern Montessori International</h3>
+          <p>76 South Bridge Road<br>Singapore 058706</p>
+        </div>
+        <div class="footer-column">
+          <h3>Explore</h3>
+          <a href="#services">Learning Philosophy</a>
+          <a href="#about">Our Approach</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Enroll</a>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-column">
+          <h3>Social</h3>
+          <div class="social-icons">
+            <a href="#">FB</a>
+            <a href="#">IG</a>
+            <a href="#">LI</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Modern Montessori International. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky header
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    const mobileButton = document.querySelector('.mobile-menu-button');
+    const navLinks = document.querySelector('.nav-links');
+    if (mobileButton && navLinks) {
+      mobileButton.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+    }
+
+    // Hero content fade-in
+    setTimeout(() => {
+      document.querySelector('.hero-content').classList.add('show');
+    }, 500);
+
+    // Fade-in animations on scroll
+    const fadeElements = document.querySelectorAll('.service-card, .about-content, .testimonial, .gallery-item, .contact-form, .hero-content');
+    
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px'
+    };
+
+    const fadeObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    fadeElements.forEach(element => {
+      element.classList.add('fade-in');
+      fadeObserver.observe(element);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+        
+        // Close mobile menu if open
+        if (navLinks && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
+      });
+    });
+
+    // Parallax effect on scroll
+    const heroParallax = document.querySelector('.hero-parallax');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      const parallaxValue = scrollTop * 0.15;
+      heroParallax.style.transform = `translateY(${parallaxValue}px)`;
+    });
+
+    // Gallery card hover effect
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        const overlay = item.querySelector('.gallery-overlay');
+        if (overlay) {
+          overlay.style.opacity = '1';
+          overlay.style.transform = 'translateY(0)';
+        }
+      });
+      
+      item.addEventListener('mouseleave', () => {
+        const overlay = item.querySelector('.gallery-overlay');
+        if (overlay) {
+          overlay.style.opacity = '0';
+          overlay.style.transform = 'translateY(10px)';
+        }
+      });
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=TW9kZXJuIE1vbnRlc3NvcmkgSW50ZXJuYXRpb25hbA&u=dmlzaXQ&s=b68a4b4a9ef2033372de13271ce268df&beacon=1&l=b3NtLW5vZGUtMzQ2MDgzMTQ0MQ";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:3612582682--></html>
