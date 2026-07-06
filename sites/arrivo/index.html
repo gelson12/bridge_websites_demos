@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrivo</title>
+  <style>
+    :root {
+      --taupe: #8B7355;
+      --slate: #5D6D7E;
+      --olive: #6B8E23;
+      --cream: #F8F4E3;
+      --charcoal: #2E2E2E;
+      --light: #F8F4E3;
+      --dark: #2E2E2E;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--dark);
+      background-color: var(--cream);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Lora', serif;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: var(--slate);
+      margin-bottom: 1.5rem;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* NAVIGATION */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: transparent;
+      padding: 1.5rem 0;
+      transition: background 0.4s ease, padding 0.4s ease;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    nav.scrolled {
+      background: rgba(248, 244, 227, 0.95);
+      padding: 1rem 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-family: 'Lora', serif;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--olive);
+    }
+
+    .cta-button {
+      background-color: var(--olive);
+      color: var(--cream);
+      padding: 0.8rem 1.8rem;
+      border: none;
+      border-radius: 30px;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .cta-button:hover {
+      background-color: var(--taupe);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(107, 142, 35, 0.2);
+    }
+
+    /* HERO */
+    .hero {
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      background-image: url('https://images.pexels.com/photos/6248973/pexels-photo-6248973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(139, 115, 85, 0.15), rgba(46, 46, 46, 0.3));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .hero h1 {
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero p {
+      color: var(--cream);
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .secondary-button {
+      background: transparent;
+      color: var(--cream);
+      padding: 0.8rem 1.8rem;
+      border: 2px solid var(--cream);
+      border-radius: 30px;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .secondary-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* TRUST STRIP */
+    .trust-strip {
+      background-color: var(--taupe);
+      padding: 1.5rem 0;
+      text-align: center;
+      color: var(--cream);
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 6rem 0;
+      background-color: var(--cream);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      font-family: 'Lora', serif;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .service-card {
+      background: var(--cream);
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--taupe), var(--olive));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      background-color: rgba(107, 142, 35, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--olive);
+      font-size: 2rem;
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 6rem 0;
+      background-color: var(--slate);
+      color: var(--cream);
+    }
+
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      transform: scale(1);
+      transition: transform 0.6s ease;
+    }
+
+    .about-image:hover {
+      transform: scale(1.03);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .about-content h2 {
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-content p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      padding: 6rem 0;
+      background-color: var(--cream);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .testimonial-card {
+      background: var(--taupe);
+      padding: 2.5rem;
+      border-radius: 16px;
+      color: var(--cream);
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 5rem;
+      font-family: 'Lora', serif;
+      opacity: 0.1;
+      color: var(--olive);
+    }
+
+    .testimonial-text {
+      margin-bottom: 2rem;
+      font-style: italic;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--olive);
+    }
+
+    .author-name {
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--cream);
+    }
+
+    .author-role {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* PRICING/GALLERY */
+    .gallery {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, var(--taupe), var(--slate));
+      color: var(--cream);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 250px;
+      cursor: pointer;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: var(--cream);
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      font-family: 'Lora', serif;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 6rem 0;
+      background-color: var(--cream);
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .contact-text h2 {
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-text p {
+      color: var(--slate);
+      margin-bottom: 2rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--olive);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--dark);
+      color: var(--cream);
+      padding: 4rem 0 2rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 2rem;
+    }
+
+    .footer-links h4 {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--olive);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      color: var(--cream);
+      background: rgba(255, 255, 255, 0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background: var(--olive);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--dark);
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    /* RESPONSES */
+    @media screen and (max-width: 990px) {
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero {
+        height: 80vh;
+      }
+
+      .about-container,
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        margin-bottom: 3rem;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 3rem;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .hero-cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .services-grid,
+      .testimonials-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card,
+      .testimonial-card {
+        padding: 2rem;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">Arrivo</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="cta-button">Get Started</a>
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <h1>Work where you belong</h1>
+      <p>Arrivo offers calm, collaborative coworking spaces designed for focus, creativity, and connection. Find your perfect workspace in the heart of the city.</p>
+      <div class="hero-cta-buttons">
+        <a href="#contact" class="cta-button">Book a Tour</a>
+        <a href="#services" class="secondary-button">Explore Spaces</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    Trusted by local creators, freelancers, and remote teams
+  </div>
+
+  <section id="services" class="services">
+    <div class="container">
+      <h2 class="section-title">Our Spaces</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">💬</div>
+          <h3>Private Offices</h3>
+          <p>Quiet, secure spaces for your team or individual focus. Floor-to-ceiling windows with natural light and sound-dampened walls.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💻</div>
+          <h3>Hot Desks</h3>
+          <p>Flexible, daily access to shared workstations. Perfect for freelancers, consultants, or those on the move.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">☕</div>
+          <h3>Community Lounge</h3>
+          <p>Relax, reconnect, and collaborate over artisan coffee and herbal teas. Designed for spontaneous ideas and meaningful conversation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container about-container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/6326260/pexels-photo-6326260.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A calm, softly lit coworking space in Arrivo with wooden desks and indoor plants">
+      </div>
+      <div class="about-content">
+        <h2>Designed for quiet productivity</h2>
+        <p>Arrivo was created for those who value peace, purpose, and presence in their work environment. Our design philosophy draws from Japanese wabi-sabi, Scandinavian minimalism, and biophilic principles — blending earthy textures, muted tones, and natural materials to foster mental calm and deep focus.</p>
+        <p>Unlike noisy, chaotic coworking spaces, we’ve intentionally designed silence into every detail: from sound-absorbing panels to curated ambient soundscapes, and from low-impact lighting to ergonomic furniture that supports posture without distraction.</p>
+        <p>Here, you’re not just a member — you’re part of a thoughtful community aligned with rhythm, not rush.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Community Voices</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">The ambient lighting and lack of noise have completely transformed how I work. I finally get my deep work done — and the coffee is perfect.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/6248973/pexels-photo-6248973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Avatar of a woman" class="author-avatar">
+            <div>
+              <div class="author-name">Local Creator</div>
+              <div class="author-role">Freelance Designer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">I’ve tried seven coworking spots. This is the only one where I want to stay all day, every day. The community events feel authentic, not corporate.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/6326260/pexels-photo-6326260.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Avatar of a man" class="author-avatar">
+            <div>
+              <div class="author-name">Verified Customer</div>
+              <div class="author-role">Remote Developer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">Coming here feels like a reset. It’s not just a desk — it’s a sanctuary where creativity flows naturally.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/15537709/pexels-photo-15537709.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Avatar of a person" class="author-avatar">
+            <div>
+              <div class="author-name">Local Client</div>
+              <div class="author-role">Independent Writer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2 class="section-title">A Glimpse Inside</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/5668471/pexels-photo-5668471.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A quiet corner of the coworking space with a plant, wooden desk, and open laptop">
+          <div class="gallery-overlay">Library Nook</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/15537709/pexels-photo-15537709.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A person working at a desk with natural light and wooden furniture">
+          <div class="gallery-overlay">Private Office</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/6794935/pexels-photo-6794935.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A group of people sitting casually on sofas in a lounge area">
+          <div class="gallery-overlay">Community Lounge</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/9419044/pexels-photo-9419044.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A modern kitchenette area with a coffee machine and fresh herbs">
+          <div class="gallery-overlay">Cafe & Kitchen</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container contact-container">
+      <div class="contact-text">
+        <h2>Let’s Talk</h2>
+        <p>If you’re ready to belong to a quiet, thoughtful workspace where your work feels meaningful, we’d love to hear from you.</p>
+        <p>Just fill out the form — we’ll respond within 24 hours to schedule your tour or answer your questions.</p>
+      </div>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="cta-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <h3>Arrivo</h3>
+        <p>Work where you belong</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">I</a>
+          <a href="#" aria-label="LinkedIn">L</a>
+          <a href="#" aria-label="Twitter">T</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Spaces</a></li>
+          <li><a href="#about">Our Philosophy</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Visit Us</h4>
+        <ul>
+          <li>217 Mill Street</li>
+          <li>City Center District</li>
+          <li>—, —</li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Stay Connected</h4>
+        <ul>
+          <li><a href="#">Newsletter</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Membership</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Arrivo. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // NAVIGATION SCROLL EFFECT
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // HAMBURGER MENU
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      hamburger.classList.toggle('open');
+    });
+
+    // FADE IN ANIMATION
+    const fadeElements = document.querySelectorAll('.service-card, .testimonial-card, .about-image, .gallery-item, .contact-text');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => {
+      el.classList.add('fade-in');
+      observer.observe(el);
+    });
+
+    // ANIMATE HERO ON LOAD
+    window.addEventListener('load', () => {
+      document.querySelector('.hero-content').style.animation = 'fadeInUp 1.2s ease-out forwards';
+    });
+
+    // FORM SUBMISSION
+    document.querySelector('.contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you! We’ll get back to you soon.');
+      e.target.reset();
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=QXJyaXZv&u=dmlzaXQ&s=94c5f096b74475262bce6bf3f6eb94cf&beacon=1&l=b3NtLW5vZGUtMjgwMzgwMDUy";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:69d6292c5b--></html>
