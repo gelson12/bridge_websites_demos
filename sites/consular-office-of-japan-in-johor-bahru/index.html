@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consular Office of Japan in Johor Bahru</title>
+  <style>
+    :root {
+      --indigo: #1a237e;
+      --ivory: #fffffb;
+      --charcoal: #333333;
+      --gold: #d4af37;
+      --sage: #e8f5e9;
+      --font-display: "Plantin MT Std", serif;
+      --font-body: "Cochin", serif;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+      --gradient-gold: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+      --gradient-indigo: linear-gradient(135deg, rgba(26, 35, 126, 0.2), transparent);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--ivory);
+      color: var(--charcoal);
+      line-height: 1.7;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      background-image: radial-gradient(circle at 20% 80%, rgba(26, 35, 126, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: normal;
+      letter-spacing: -0.5px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    a {
+      color: var(--indigo);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--gold);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    /* Sticky Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background-color: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--shadow-lg);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-bottom: 1px solid rgba(26, 35, 126, 0.05);
+    }
+
+    nav.scrolled {
+      padding: 1rem 3rem;
+      background-color: rgba(255, 255, 255, 0.98);
+      box-shadow: var(--shadow-md);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--indigo);
+      letter-spacing: -0.3px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.4s ease;
+    }
+
+    .logo:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-links a {
+      font-size: 1.1rem;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transition: width 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, var(--indigo), #0d1a6e);
+      color: var(--ivory);
+      padding: 0.8rem 2.2rem;
+      border-radius: 50px;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+      border-radius: 55px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .cta-button:hover::before {
+      opacity: 1;
+      animation: shine 1s ease-in-out infinite;
+    }
+
+    .cta-button:hover {
+      background: linear-gradient(135deg, var(--gold), #c99828);
+      color: var(--charcoal);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .secondary-button {
+      background-color: transparent;
+      color: var(--ivory);
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      padding: 0.8rem 2.2rem;
+      border-radius: 50px;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .secondary-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--ivory), rgba(255, 255, 255, 0.2));
+      transition: width 0.4s ease;
+      z-index: -1;
+      border-radius: 50px;
+    }
+
+    .secondary-button:hover {
+      color: var(--indigo);
+      border-color: var(--ivory);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .secondary-button:hover::before {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      width: 100%;
+      background-image: url(https://images.pexels.com/photos/21036457/pexels-photo-21036457.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--ivory);
+      margin-top: 0;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(26, 35, 126, 0.8) 0%, rgba(26, 35, 126, 0.4) 50%, transparent 100%);
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 70%, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 2rem;
+      animation: fadeInUp 1.4s ease-out;
+      perspective: 1000px;
+    }
+
+    .hero h1 {
+      color: var(--ivory);
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 8px 20px rgba(0, 0, 0, 0.3);
+      font-size: 4.5rem;
+      line-height: 1.1;
+      position: relative;
+    }
+
+    .hero h1::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .hero p {
+      font-size: 1.8rem;
+      margin-bottom: 3rem;
+      text-shadow: 1px 4px 12px rgba(0, 0, 0, 0.2);
+      font-weight: 400;
+      position: relative;
+      opacity: 0.9;
+      transition: opacity 0.5s ease;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background: linear-gradient(90deg, transparent, var(--inigo), transparent);
+      padding: 2rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(26, 35, 126, 0.1);
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(26, 35, 126, 0.02) 20px, rgba(26, 35, 126, 0.02) 30px);
+    }
+
+    .trust-strip p {
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      color: var(--indigo);
+      margin-bottom: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Services */
+    .services {
+      padding: 8rem 0;
+      position: relative;
+      background-color: var(--ivory);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 1rem auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+    }
+
+    .service-card {
+      background-color: var(--ivory);
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transform: translateY(10px);
+      opacity: 0;
+      transition-delay: 0.1s;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-gold);
+      background-size: 300% 300%;
+      transition: background-position 0.8s ease;
+      z-index: -1;
+      opacity: 0;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+      background-position: 100% 100%;
+    }
+
+    .service-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .service-icon {
+      width: 90px;
+      height: 90px;
+      background-color: var(--indigo);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2.5rem;
+      color: var(--ivory);
+      font-size: 2rem;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-card:hover .service-icon {
+      background-color: var(--gold);
+      color: var(--charcoal);
+      transform: rotate(12deg) scale(1.1);
+    }
+
+    /* About */
+    .about {
+      padding: 8rem 0;
+      display: flex;
+      align-items: center;
+      gap: 7rem;
+      background-color: var(--ivory);
+      position: relative;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: radial-gradient(circle at 15% 40%, rgba(26, 35, 126, 0.05) 0%, transparent 60%);
+      z-index: 0;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      transform: translateY(0);
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 16px;
+      z-index: -1;
+      transition: opacity 0.5s ease;
+    }
+
+    .about-image:hover::after {
+      opacity: 1;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .about-image:hover img {
+      transform: translateX(-8px) scale(1.05);
+    }
+
+    .about-content {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-content h2 {
+      margin-bottom: 1.5rem;
+      color: var(--indigo);
+      line-height: 1.3;
+    }
+
+    .about-content p {
+      margin-bottom: 2.5rem;
+      font-size: 1.15rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .about-content p::before {
+      content: '';
+      position: absolute;
+      top: 0.8rem;
+      left: 0;
+      width: 4px;
+      height: 1.2rem;
+      background-color: var(--gold);
+      border-radius: 2px;
+    }
+
+    .about-content a {
+      font-size: 1.1rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-content a::after {
+      content: '→';
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .about-content a:hover::after {
+      opacity: 1;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 8rem 0;
+      position: relative;
+      background: linear-gradient(to bottom, var(--sage) 0%, rgba(248, 255, 233, 0.95) 20%, var(--ivory) 100%);
+    }
+
+    .testimonials .section-title::after {
+      background: linear-gradient(90deg, transparent, var(--indigo), transparent);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+    }
+
+    .testimonial {
+      background-color: var(--ivory);
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transform: translateY(10px);
+      opacity: 0;
+      transition-delay: 0.1s;
+    }
+
+    .testimonial::before {
+      content: """;
+      font-family: var(--font-display);
+      font-size: 6rem;
+      color: var(--indigo);
+      opacity: 0.05;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      line-height: 1;
+      transform: rotate(-3deg);
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 1.8rem;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+      margin-top: 0.5rem;
+    }
+
+    .testimonial-avatar {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      margin-right: 1rem;
+      background-color: var(--indigo);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ivory);
+      font-family: var(--font-display);
+      font-weight: bold;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s ease;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(26, 35, 126, 0.15);
+    }
+
+    .testimonial:hover .testimonial-avatar {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--indigo);
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 8rem 0;
+      background-color: var(--ivory);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 60%);
+      z-index: 0;
+    }
+
+    .gallery::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26, 35, 126, 0.1) 0%, transparent 60%);
+      z-index: 0;
+    }
+
+    .gallery .section-title::after {
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      aspect-ratio: 1 / 1;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition-delay: 0.1s;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.15);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, transparent 30%, rgba(26, 35, 126, 0.6) 80%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    .gallery-item .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+      color: var(--ivory);
+      transform: translateY(100%);
+      transition: transform 0.5s ease;
+      pointer-events: none;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+
+    /* Contact */
+    .contact {
+      padding: 8rem 0;
+      background: linear-gradient(135deg, var(--indigo) 0%, #0d1a6e 100%);
+      color: var(--ivory);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .contact .section-title {
+      color: var(--ivory);
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact .section-title::after {
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .contact-form {
+      max-width: 750px;
+      margin: 0 auto;
+      background-color: var(--ivory);
+      padding: 4rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      z-index: 1;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 2.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+      color: var(--indigo);
+      font-size: 1.1rem;
+      letter-spacing: -0.2px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1.2rem;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: all 0.4s ease;
+      background-color: rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.25);
+      background-color: white;
+      transform: translateY(-2px);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+      font-family: inherit;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--charcoal);
+      color: var(--ivory);
+      padding: 6rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    footer::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: -50px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26, 35, 126, 0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 4rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-column h3 {
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      position: relative;
+      font-size: 1.8rem;
+      font-family: var(--font-display);
+      letter-spacing: -0.3px;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 1rem 0;
+    }
+
+    .footer-column p {
+      margin-bottom: 1.8rem;
+      line-height: 1.9;
+      font-size: 1rem;
+      color: #bbb;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: #ddd;
+      transition: color 0.3s ease;
+      display: inline-block;
+      position: relative;
+      padding: 0.2rem 0;
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transition: width 0.3s ease;
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin-right: 1.5rem;
+      color: #aaa;
+      font-size: 1.3rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .social-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .social-links a:hover::after {
+      width: 100%;
+    }
+
+    .social-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #aaa;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-bottom a {
+      color: var(--gold);
+      transition: color 0.3s ease;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--ivory);
+    }
+
+    /* Wave Divider */
+    .wave-divider {
+      position: relative;
+      margin: 0;
+      height: 120px;
+      overflow: hidden;
+    }
+
+    .wave-divider svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      bottom: 0;
+      left: 0;
+    }
+
+    .wave-divider svg path {
+      fill: var(--ivory);
+      transition: fill 0.5s ease;
+    }
+
+    .wave-divider.wave--gold svg path {
+      fill: var(--gold);
+    }
+
+    .wave-divider.wave--indigo svg path {
+      fill: var(--indigo);
+    }
+
+    /* Animated Gradient Background Decorations */
+    .decorative-leaf {
+      position: absolute;
+      opacity: 0.08;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .leaf-1 {
+      top: 15%;
+      left: 8%;
+      width: 40px;
+      height: 40px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="rgba(212, 175, 55, 0.15)"%3E%3Cpath d="M50,10 C70,15 90,40 90,65 C90,90 70,100 50,100 C30,100 10,90 10,65 C10,40 30,15 50,10 Z"/%3E%3C/svg%3E');
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .leaf-2 {
+      top: 70%;
+      right: 10%;
+      width: 60px;
+      height: 60px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="rgba(26, 35, 126, 0.1)"%3E%3Cpath d="M50,10 C70,15 90,40 90,65 C90,90 70,100 50,100 C30,100 10,90 10,65 C10,40 30,15 50,10 Z"/%3E%3C/svg%3E');
+      animation: float 22s ease-in-out 1s infinite;
+    }
+
+    .leaf-3 {
+      bottom: 10%;
+      left: 15%;
+      width: 45px;
+      height: 45px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="rgba(26, 35, 126, 0.1)"%3E%3Cpath d="M50,10 C70,15 90,40 90,65 C90,90 70,100 50,100 C30,100 10,90 10,65 C10,40 30,15 50,10 Z"/%3E%3C/svg%3E');
+      animation: float 18s ease-in-out 2s infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-200px) rotate(180deg);
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-item {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .stagger-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--ivory);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .scroll-indicator svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--ivory);
+      stroke-width: 2;
+      stroke-linecap: round;
+      fill: none;
+      animation: scroll-bounce 1.5s infinite;
+    }
+
+    @keyframes scroll-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+
+      nav {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+      }
+
+      .hero {
+        height: 90vh;
+        padding: 0 2rem;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: 1.4rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .services,
+      .about,
+      .testimonials,
+      .gallery,
+      .contact {
+        padding: 6rem 0;
+      }
+
+      .about {
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      .about-image,
+      .about-content {
+        width: 100%;
+      }
+
+      .about-content {
+        text-align: center;
+      }
+
+      .about-content a {
+        justify-content: center;
+      }
+
+      .section-title {
+        margin-bottom: 3rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.3rem;
+      }
+
+      .services-grid,
+      .testimonials-grid,
+      .gallery-grid {
+        gap: 2.5rem;
+      }
+
+      .service-card,
+      .testimonial {
+        padding: 2rem;
+      }
+
+      .service-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+      }
+
+      .form-group {
+        margin-bottom: 2rem;
+      }
+
+      .contact-form {
+        padding: 2.5rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .wave-divider {
+        height: 90px;
+      }
+
+      .wave-divider svg {
+        height: 90px;
+      }
+
+      .scroll-indicator {
+        bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#" class="logo">Consular Office of Japan in Johor Bahru</a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Support</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="cta-button">Book Appointment</button>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Consular Office of Japan in Johor Bahru</h1>
+      <p>Guiding Trust Across Borders</p>
+      <div class="hero-buttons">
+        <button class="cta-button">Services Overview</button>
+        <button class="secondary-button">Visa Information</button>
+      </div>
+    </div>
+    <div class="decorative-leaf leaf-1"></div>
+    <div class="decorative-leaf leaf-2"></div>
+    <div class="decorative-leaf leaf-3"></div>
+    <div class="scroll-indicator">
+      <span>Scroll Down</span>
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <p>Trusted by diplomats and residents since its founding</p>
+  </div>
+
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">📜</div>
+          <h3>Passport Services</h3>
+          <p>Issuing and renewing Japanese passports for residents in Johor Bahru and surrounding areas, ensuring compliance with Japanese diplomatic protocols.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🪪</div>
+          <h3>Visa Applications</h3>
+          <p>Processing visa applications for travel to Japan, with detailed guidance on requirements and documentation for a smooth diplomatic experience.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🕊️</div>
+          <h3>Civil Registration</h3>
+          <p>Registration of births, marriages, deaths, and other civil matters for Japanese nationals abroad, preserving official records with precision.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider wave--ivory">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" fill="none" preserveAspectRatio="none">
+      <path d="M0,88 C312,147 512,88 720,83 C924,77 1164,164 1440,95 L1440,200 L0,200 Z" fill="var(--ivory)"></path>
+    </svg>
+  </div>
+
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/8815849/pexels-photo-8815849.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Consular Office interior" loading="lazy">
+      </div>
+      <div class="about-content">
+        <h2>Our Mission</h2>
+        <p>As the official representation of Japan in Johor Bahru, we uphold the principles of mutual respect, cultural exchange, and diplomatic excellence. We serve Japanese nationals, local residents, and businesses with unwavering commitment to protocol and confidentiality.</p>
+        <p>Our office embodies the dignity and precision of Japanese foreign service, providing essential consular services with attention to detail and deep cultural understanding. We are dedicated to fostering strong bilateral ties between Japan and Malaysia through responsible, professional service.</p>
+        <a href="#contact">Schedule a consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">Client Testimonials</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p>Our family's visa application was processed with remarkable efficiency and courtesy. The staff's knowledge of Japanese bureaucracy was reassuring and professional.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">J</div>
+            <div class="testimonial-name">Local Responder</div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>The passport renewal process was seamless, even with time-sensitive travel plans. Their attention to detail saved us from several potential complications.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div class="testimonial-name">Business Traveler</div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>As a diplomat, I value discretion above all. The Consular Office provided confidential services with impeccable professionalism and quiet efficiency.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div class="testimonial-name">Verified Customer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider wave--sage">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150" fill="none" preserveAspectRatio="none">
+      <path d="M0,150 C288,105 576,150 864,105 C1152,60 1440,105 1440,150 L0,150 Z" fill="var(--sage)"></path>
+    </svg>
+  </div>
+
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Our Presence</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/30836791/pexels-photo-30836791.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Consular Office exterior" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/30110942/pexels-photo-30110942.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Consular staff at work" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/29455424/pexels-photo-29455424.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Diplomatic documents" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/4922356/pexels-photo-4922356.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cultural exchange events" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Your full name as it appears in your passport">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Your email address">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Please describe your request or inquiry. Include your reference number if applicable."></textarea>
+        </div>
+        <button class="cta-button">Submit Inquiry</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Consular Office of Japan in Johor Bahru</h3>
+          <p>As the official Japanese diplomatic mission in Johor Bahru, we serve Japanese nationals and local residents with discretion, excellence, and deep cultural understanding.</p>
+          <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#testimonials">Client Stories</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Important Notices</h3>
+          <ul class="footer-links">
+            <li><a href="#">Visa Requirements</a></li>
+            <li><a href="#">Passport Renewal</a></li>
+            <li><a href="#">Emergency Services</a></li>
+            <li><a href="#">Office Hours</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Consular Office of Japan in Johor Bahru. All rights reserved. | This website is an official representation of the Government of Japan.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Sticky nav
+      window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      // Fade-in animations
+      const fadeElements = document.querySelectorAll('.service-card, .testimonial, .gallery-item, .about-content');
+      const observerOptions = {
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      fadeElements.forEach(element => {
+        element.classList.add('fade-in');
+        observer.observe(element);
+      });
+
+      // Staggered animations for sections
+      const staggerCards = document.querySelectorAll('.services-grid .service-card');
+      const staggerDelay = 0.2;
+
+      staggerCards.forEach((card, index) => {
+        card.classList.add('stagger-item');
+        card.style.transitionDelay = `${index * staggerDelay}s`;
+        observer.observe(card);
+      });
+
+      // Staggered testimonials
+      const staggerTestimonials = document.querySelectorAll('.testimonials-grid .testimonial');
+      staggerTestimonials.forEach((testimonial, index) => {
+        testimonial.classList.add('stagger-item');
+        testimonial.style.transitionDelay = `${index * staggerDelay + 0.2}s`;
+        observer.observe(testimonial);
+      });
+
+      // Staggered gallery items
+      const staggerGallery = document.querySelectorAll('.gallery-grid .gallery-item');
+      staggerGallery.forEach((item, index) => {
+        item.classList.add('stagger-item');
+        item.style.transitionDelay = `${index * staggerDelay + 0.4}s`;
+        observer.observe(item);
+      });
+
+      // Hash navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const offsetTop = targetElement.offsetTop - 80;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Parallax moving effect on hero
+      window.addEventListener('mousemove', function(e) {
+        const hero = document.querySelector('.hero');
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+        hero.style.transform = `rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
+      });
+
+      // Reset parallax on mouse leave
+      window.addEventListener('mouseleave', function() {
+        document.querySelector('.hero').style.transform = 'rotateX(0) rotateY(0)';
+      });
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=Q29uc3VsYXIgT2ZmaWNlIG9mIEphcGFuIGluIEpvaG9yIEJhaHJ1&u=dmlzaXQ&s=6b9b5082533359fd0dae34ae3d0b81dc&beacon=1&l=b3NtLW5vZGUtMjg1MDM1ODU1MQ";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:e2d1a05381--></html>
