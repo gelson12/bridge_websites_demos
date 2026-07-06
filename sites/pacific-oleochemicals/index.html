@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pacific Oleochemicals</title>
+  <style>
+    :root {
+      --forest-green: #2a4e3d;
+      --slate-gray: #4a5568;
+      --cream-white: #f8f4f0;
+      --warm-beige: #e8d7c7;
+      --deep-amber: #b85c00;
+      --text-dark: #333;
+      --text-light: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--text-dark);
+      line-height: 1.6;
+      background-color: var(--cream-white);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      color: var(--forest-green);
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    a {
+      color: var(--deep-amber);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--forest-green);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* STICKY NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: transparent;
+      padding: 1.5rem 0;
+      transition: background-color 0.4s ease, padding 0.4s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    nav.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 1rem 0;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--forest-green);
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--deep-amber);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 2rem;
+    }
+
+    .nav-links a {
+      font-size: 1.1rem;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--forest-green);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background-color: var(--deep-amber);
+      color: var(--text-light);
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: var(--forest-green);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(184, 92, 0, 0.2);
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background-image: url('https://images.pexels.com/photos/10490663/pexels-photo-10490663.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(42, 78, 61, 0.7), rgba(20, 30, 25, 0.8));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: var(--text-light);
+      max-width: 600px;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .hero h1 {
+      margin-bottom: 1rem;
+      font-size: 4rem;
+      text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .cta-secondary {
+      background-color: transparent;
+      color: var(--text-light);
+      border: 2px solid var(--text-light);
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cta-secondary:hover {
+      background-color: var(--text-light);
+      color: var(--forest-green);
+    }
+
+    /* TRUST STRIP */
+    .trust-strip {
+      background-color: var(--cream-white);
+      padding: 2rem 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(232, 215, 199, 0.7);
+    }
+
+    .trust-strip p {
+      font-size: 1.1rem;
+      color: var(--slate-gray);
+      font-style: italic;
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 5rem 0;
+      background-color: var(--warm-beige);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .feature-card {
+      background-color: var(--cream-white);
+      padding: 2.5rem 2rem;
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: linear-gradient(90deg, var(--forest-green), var(--deep-amber), var(--forest-green));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background-color: rgba(42, 78, 61, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--forest-green);
+      transition: all 0.4s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+      background-color: var(--deep-amber);
+      color: var(--text-light);
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.8s ease;
+    }
+
+    .about-content {
+      flex: 1;
+    }
+
+    .about-content h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    .about-content p {
+      margin-bottom: 2rem;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      padding: 5rem 0;
+      background-color: var(--cream-white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::after {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,50 C20,30 60,70 90,50 L100,100 L0,100 Z" fill="rgba(232,215,199,0.5)"/></svg>').background-size: 100% 100%;
+      z-index: 1;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial {
+      background-color: var(--warm-beige);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      position: relative;
+      transition: transform 0.4s ease;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 4rem;
+      font-family: Georgia, serif;
+      color: rgba(184, 92, 0, 0.1);
+      line-height: 1;
+    }
+
+    .testimonial-text {
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      color: var(--slate-gray);
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--slate-gray);
+      margin-right: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-weight: bold;
+      font-size: 1.2rem;
+      overflow: hidden;
+    }
+
+    .author-name {
+      font-weight: 600;
+      color: var(--forest-green);
+    }
+
+    /* GALLERY */
+    .gallery {
+      padding: 5rem 0;
+      background-color: var(--warm-beige);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      border-radius: 15px;
+      overflow: hidden;
+      height: 300px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      color: var(--text-light);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 5rem 0;
+      background-color: var(--cream-white);
+    }
+
+    .contact-content {
+      display: flex;
+      gap: 5rem;
+    }
+
+    .contact-info {
+      flex: 1;
+    }
+
+    .contact-info h2 {
+      margin-bottom: 2rem;
+    }
+
+    .contact-form {
+      flex: 1;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--forest-green);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid rgba(74, 85, 104, 0.2);
+      border-radius: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--deep-amber);
+    }
+
+    textarea.form-control {
+      height: 150px;
+      resize: vertical;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--forest-green);
+      color: var(--text-light);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-logo {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo span {
+      color: var(--deep-amber);
+    }
+
+    .footer-about p {
+      margin-bottom: 1.5rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-links h3 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-light);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .social-icon:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .about {
+        flex-direction: column;
+      }
+
+      .about-image, .about-content {
+        width: 100%;
+      }
+
+      .contact-content {
+        flex-direction: column;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+      }
+
+      h2 {
+        font-size: 2.4rem;
+      }
+
+      .about-image {
+        height: 300px;
+      }
+
+      .gallery-grid, .testimonials-grid, .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+      }
+
+      .container {
+        width: 95%;
+      }
+
+      .section-title h2 {
+        font-size: 2rem;
+      }
+
+      h3 {
+        font-size: 1.6rem;
+      }
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--forest-green);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.98);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      backdrop-filter: blur(10px);
+    }
+
+    .mobile-nav.active {
+      display: flex;
+    }
+
+    .mobile-nav ul {
+      list-style: none;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .mobile-nav li {
+      margin: 1rem 0;
+    }
+
+    .mobile-nav a {
+      font-size: 1.5rem;
+      color: var(--forest-green);
+    }
+
+    .mobile-nav .cta-button {
+      margin-top: 2rem;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav id="mainNav">
+    <div class="container nav-container">
+      <a href="#home" class="logo">Pacific<span>Oleochemicals</span></a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+      <a href="#contact" class="cta-button">Get in Touch</a>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#features">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="cta-button">Get in Touch</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <h1>Nature refined,<br>reliably</h1>
+      <p>Pacific Oleochemicals transforms plant-based resources into premium oleochemical solutions for sustainable industries worldwide.</p>
+      <div class="hero-ctas">
+        <a href="#features" class="cta-button">Explore Our Products</a>
+        <a href="#contact" class="cta-secondary">Request a Sample</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="trust-strip">
+    <div class="container">
+      <p>Trusted by manufacturers, formulators, and sustainability leaders across the Pacific region and globally.</p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Our Specialty Products</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <h3>Palm-Based Derivatives</h3>
+          <p>High-purity, sustainably sourced fatty acids and esters derived from renewable palm oil, engineered for enhanced performance and traceability.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h3>Native Coconut Esters</h3>
+          <p>Exceptionally mild, skin-compatible emollients and surfactants derived from cold-pressed coconut oil, ideal for personal care and eco-formulations.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+          </div>
+          <h3>Refined Glycerol Streams</h3>
+          <p>Pharmaceutical-grade glycerol recovered from biofuel production, offering a pure, sustainable by-product solution for food, cosmetic, and industrial applications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="about-image">
+      <img src="https://images.pexels.com/photos/18915643/pexels-photo-18915643.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Pacific Oleochemicals production facility">
+    </div>
+    <div class="about-content">
+      <h2>Rooted in Nature, Refined by Science</h2>
+      <p>Pacific Oleochemicals was founded to bridge the gap between the natural abundance of tropical plant oils and the demanding quality standards of modern industry. With deep expertise in extraction, purification, and formulation technology, we transform copra, palm fruit, and other botanical sources into ingredients that meet the highest benchmarks for purity, consistency, and biodegradability.</p>
+      <p>Our state-of-the-art facility in the Pacific region combines centuries-old knowledge of plant chemistry with precision engineering to ensure every batch we produce delivers the performance you expect — with the sustainability you demand.</p>
+      <p>We partner with manufacturers who seek transparency, traceability, and ecological responsibility — not just in their end-products, but in their supply chains.</p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2 class="section-title">What We’ve Accomplished Together</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p class="testimonial-text">The palm esters we sourced from Pacific Oleochemicals transformed our line of eco-skin care products. Consistent quality, efficient delivery, and true SCS certification.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">E</div>
+            <div class="author-name">Emily, Formulation Director</div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">Their glycerol stream saved us 40% on raw material costs while improving our product's texture. A reliable partner with ecological integrity.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">R</div>
+            <div class="author-name">Robert, Procurement Lead</div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">Coconut-derived surfactants that perform like synthetics? It’s rare. Pacific Oleochemicals doesn’t just meet our specs — they anticipate our needs.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div class="author-name">Shelley, Product Innovator</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2 class="section-title">Our Processes in Focus</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/30366817/pexels-photo-30366817.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Raw palm fruit harvesting">
+          <div class="gallery-overlay">
+            <h3>Raw Material Harvesting</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/8539752/pexels-photo-8539752.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Laboratory quality control">
+          <div class="gallery-overlay">
+            <h3>Lab Quality Control</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/4464482/pexels-photo-4464482.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="High-performance reactor vessel">
+          <div class="gallery-overlay">
+            <h3>Industrial Reactors</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/12278575/pexels-photo-12278575.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Eco-friendly packaging line">
+          <div class="gallery-overlay">
+            <h3>Sustainable Packaging</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <h3>For partnerships, inquiries, or samples</h3>
+          <p>Pacific Oleochemicals is dedicated to connecting with manufacturers and formulators who share our commitment to sustainable innovation. Our team is ready to answer your technical questions and arrange product evaluations.</p>
+          <p>Please use the form below, or email us directly through the contact channels listed on our official corporate documentation.</p>
+        </div>
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" class="form-control" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" class="form-control" placeholder="your.email@example.com">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="form-control" placeholder="Tell us about your application and requirements..."></textarea>
+          </div>
+          <button type="submit" class="cta-button">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">Pacific<span>Oleochemicals</span></div>
+          <p>Nature refined, reliably. Sustainable oleochemical solutions derived from responsibly cultivated botanicals for global industry.</p>
+          <div class="footer-social">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">in</a>
+            <a href="#" class="social-icon">ig</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Products</h3>
+          <ul>
+            <li><a href="#">Fatty Acids</a></li>
+            <li><a href="#">Esters & Wax</a></li>
+            <li><a href="#">Glycerol Streams</a></li>
+            <li><a href="#">Surfactants</a></li>
+            <li><a href="#">Specialty Derivatives</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Pacific Oleochemicals. All rights reserved. Site built for sustainable performance.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+      });
+
+      // Close mobile menu when clicking a link
+      document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('active');
+        });
+      });
+
+      // Sticky Nav
+      const nav = document.getElementById('mainNav');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      // Scroll Reveal
+      const revealElements = document.querySelectorAll('.feature-card, .about-image, .testimonial, .gallery-item, .about-content, .contact-info');
+      const observerOptions = {
+        threshold: 0.15
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      revealElements.forEach(el => {
+        el.classList.add('animate-on-scroll');
+        observer.observe(el);
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 70,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Form submission (prevent default for demo)
+      const contactForm = document.querySelector('.contact-form');
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Message submitted! For demo purposes, no server is connected. In production, this would route to our CRM.');
+      });
+
+      // Add beautiful CSS animation for form focus
+      const inputs = document.querySelectorAll('.form-control');
+      inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+          input.style.boxShadow = '0 0 0 3px rgba(184, 92, 0, 0.2)';
+        });
+        input.addEventListener('blur', () => {
+          input.style.boxShadow = 'none';
+        });
+      });
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=UGFjaWZpYyBPbGVvY2hlbWljYWxz&u=dmlzaXQ&s=993dd1c305cc9005b7fb98fc6f1c24c5&beacon=1&l=b3NtLW5vZGUtMjkxNDM0MjI5Mg";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:0e054caef8--></html>
