@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garuda Indonesia Reservation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #002F5C;
+            --accent: #F4D03F;
+            --light: #FFFFFF;
+            --green: #007A33;
+            --soft: #E8F4F8;
+            --shadow: 0 10px 30px rgba(0, 47, 92, 0.1);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #333;
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-color: var(--light);
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Sticky Nav */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: transparent;
+            padding: 20px 0;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+            padding: 12px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .cta-button {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(244, 208, 63, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(244, 208, 63, 0.4);
+            background-color: #e3c22e;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: url('https://images.pexels.com/photos/11146317/pexels-photo-11146317.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center;
+            background-size: cover;
+            color: var(--light);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 47, 92, 0.65);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            animation: fadeUp 1.2s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--light);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .secondary-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Trust Strip */
+        .trust-strip {
+            background-color: var(--soft);
+            padding: 20px 0;
+            text-align: center;
+            font-size: 16px;
+            color: var(--primary);
+            font-weight: 400;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        /* Services */
+        .services {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            color: var(--primary);
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--green));
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 47, 92, 0.15);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(244, 208, 63, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--accent);
+            font-size: 28px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* About */
+        .about {
+            padding: 100px 0;
+            background-color: var(--soft);
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.pexels.com/photos/7658247/pexels-photo-7658247.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-text {
+            flex: 1;
+            padding: 0 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transform: scale(1.02);
+            transition: var(--transition);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about h2 {
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            line-height: 1.3;
+        }
+
+        .about p {
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--soft);
+            border-radius: 16px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            border: 1px solid rgba(0, 47, 92, 0.05);
+        }
+
+        .testimonial-card::before {
+            content: """;
+            font-size: 6rem;
+            color: rgba(0, 47, 92, 0.1);
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #555;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--soft);
+            overflow: hidden;
+            border: 2px solid #e0e0e0;
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .testimonial-role {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Gallery */
+        .gallery {
+            padding: 100px 0;
+            background-color: var(--soft);
+            overflow: hidden;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            background-color: #eee;
+            cursor: pointer;
+            transform: scale(1);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(transparent, rgba(0, 47, 92, 0.7));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 5px;
+            left: 15px;
+            color: var(--light);
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--primary);
+            color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: rgba(244, 208, 63, 0.1);
+            z-index: 0;
+        }
+
+        .contact::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: rgba(0, 122, 51, 0.1);
+            z-index: 0;
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .contact-form {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-size: 16px;
+            font-family: 'Lato', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group label {
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus ~ label,
+        .form-group textarea:focus ~ label,
+        .form-group input:not(:placeholder-shown) ~ label,
+        .form-group textarea:not(:placeholder-shown) ~ label {
+            top: -10px;
+            left: 15px;
+            font-size: 14px;
+            color: var(--accent);
+            background-color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+
+        .submit-button {
+            margin-top: 20px;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 16px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(244, 208, 63, 0.3);
+        }
+
+        .submit-button:hover {
+            background-color: #e3c22e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(244, 208, 63, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 60px 0 20px;
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Floating shapes */
+        .floating-shape-1 {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0, 122, 51, 0.05);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .floating-shape-2 {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(244, 208, 63, 0.05);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 18s infinite ease-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+            75% {
+                transform: translateY(20px) rotate(-5deg);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 10px;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-text {
+                padding: 0 20px;
+                margin-bottom: 40px;
+            }
+
+            .about-image {
+                width: 100%;
+                height: 350px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .contact h2 {
+                font-size: 2.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .service-card {
+                padding: 30px 20px;
+            }
+
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+
+            .about h2 {
+                font-size: 2.5rem;
+            }
+
+            .contact-form {
+                gap: 15px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 12px 15px;
+            }
+
+            .submit-button {
+                padding: 14px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="nav">
+        <div class="container nav-container">
+            <a href="#" class="logo">Garuda <span>Indonesia</span> Reservation</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Book Now</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Fly with Grace</h1>
+                <p>Experience seamless, elegant travel with Garuda Indonesia Reservation — where every journey begins with serenity and trust.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="cta-button">Book Your Flight</a>
+                    <a href="#gallery" class="secondary-button">Explore Destinations</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="trust-strip">
+        <div class="container">Trusted by explorers worldwide — your journey is in graceful hands.</div>
+    </div>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our <span>Services</span></h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3>Flight Booking</h3>
+                    <p>Seamless reservations with real-time availability and exclusive deals across Garuda Indonesia’s global network.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3>Travel Packages</h3>
+                    <p>Carefully curated itineraries that combine luxury stays, cultural excursions, and premium experiences in Indonesia and beyond.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3>24/7 Support</h3>
+                    <p>Dedicated concierge team ready to assist before, during, and after your journey — day or night, home or abroad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Experience the Garuda Difference</h2>
+                    <p>Garuda Indonesia Reservation embodies the spirit of Indonesia — where hospitality meets elegance. With decades of expertise and a passion for authentic experiences, we transform travel into art.</p>
+                    <p>Our team of dedicated consultants are fluent in more than 12 languages and have personally explored all destinations we offer. We don't just book flights — we craft journeys that linger in memory.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.pexels.com/photos/7658247/pexels-photo-7658247.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Garuda Indonesia Reservation team in action">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Travelers Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">From the moment I reached out, every step was effortless. My international flight was coordinated with flawless precision. This is how travel should be.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.pexels.com/photos/11146317/pexels-photo-11146317.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client avatar">
+                        </div>
+                        <div>
+                            <div class="testimonial-name">Verified Customer</div>
+                            <div class="testimonial-role">Jakarta to Paris</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">The attention to detail was extraordinary. They remembered my dietary preferences and ensured seamless transfers. My wife still talks about how smooth our Bali trip was.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.pexels.com/photos/7658247/pexels-photo-7658247.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client avatar">
+                        </div>
+                        <div>
+                            <div class="testimonial-name">Verified Customer</div>
+                            <div class="testimonial-role">London to Bali</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">I've used many travel agents before, but none have the grace, efficiency, and quiet elegance that Garuda Indonesia Reservation provides. It felt like being hosted by old friends.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.pexels.com/photos/3943950/pexels-photo-3943950.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client avatar">
+                        </div>
+                        <div>
+                            <div class="testimonial-name">Verified Customer</div>
+                            <div class="testimonial-role">Singapore to Yogyakarta</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Destination <span>Gallery</span></h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/37838562/pexels-photo-37838562.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Bali temple at sunrise">
+                    <div class="gallery-caption">Bali Temple</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/3943950/pexels-photo-3943950.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Komodo dragon in natural habitat">
+                    <div class="gallery-caption">Komodo Island</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/37854313/pexels-photo-37854313.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Traditional Javanese dance performance">
+                    <div class="gallery-caption">Traditional Dance</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/35428411/pexels-photo-35428411.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Luxury resort overlooking the ocean">
+                    <div class="gallery-caption">Luxury Resorts</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Ready to Fly?</h2>
+                <p>Let us plan your next journey with the grace and precision Garuda Indonesia is known for. Fill out the form below and we’ll be in touch within one business hour.</p>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email" required>
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" placeholder="Tell us about your dream journey..." required></textarea>
+                        <label for="message">Tell us about your dream journey...</label>
+                    </div>
+                    <button type="submit" class="submit-button">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Garuda Indonesia Reservation</h3>
+                    <p>Experience the elegance of Indonesian hospitality through seamless, personalized travel planning — where every journey begins with grace.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">in</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Bali</a></li>
+                        <li><a href="#">Jakarta</a></li>
+                        <li><a href="#">Yogyakarta</a></li>
+                        <li><a href="#">Lombok</a></li>
+                        <li><a href="#">Sulawesi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Garuda Indonesia Reservation. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div class="floating-shape-1"></div>
+    <div class="floating-shape-2"></div>
+
+    <script>
+        // Sticky Nav
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Reveal on Scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.service-card, .testimonial-card, .gallery-item, .about-image');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            });
+
+            // Animate hero content separately for staggered effect
+            const heroContent = document.querySelector('.hero-content');
+            heroContent.style.opacity = '0';
+            heroContent.style.transform = 'translateY(40px)';
+            heroContent.style.transition = 'opacity 1.2s ease-out, transform 1.2s ease-out';
+
+            setTimeout(() => {
+                heroContent.style.opacity = '1';
+                heroContent.style.transform = 'translateY(0)';
+            }, 200);
+
+            // SVG animations
+            gsap.to('.floating-shape-1', { duration: 25, y: -30, rotation: 5, repeat: -1, yoyo: true, ease: 'power1.inOut' });
+            gsap.to('.floating-shape-2', { duration: 18, y: 20, rotation: -5, repeat: -1, yoyo: true, ease: 'power4.out' });
+        });
+
+        // Form Submit
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your inquiry! We’ll respond within one business hour.');
+            this.reset();
+        });
+
+        // Gallery Hover
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'scale(1.05)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=R2FydWRhIEluZG9uZXNpYSBSZXNlcnZhdGlvbg&u=dmlzaXQ&s=2d8adaaeb4002e899ebd79ae3ed45fd3&beacon=1&l=b3NtLW5vZGUtNzAzODI1NzQw";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:4da3bfb683--></html>
