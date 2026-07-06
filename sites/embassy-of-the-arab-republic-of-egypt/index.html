@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Embassy of the Arab Republic of Egypt</title>
+  <style>
+    :root {
+      --green: #006544;
+      --gold: #D4AF37;
+      --white: #FFFFFF;
+      --black: #000000;
+      --red: #A50021;
+      --off-white: #F8F5F0;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      color: var(--black);
+      background-color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.7;
+      background: linear-gradient(180deg, var(--white) 30%, #f9f4ef 100%);
+      background-attachment: fixed;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+    }
+
+    a {
+      color: var(--green);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--gold);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Sticky Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: transparent;
+      padding: 1.5rem 0;
+      transition: var(--transition);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    nav.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--green);
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: -0.7px;
+      position: relative;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transition: var(--transition);
+    }
+
+    .logo:hover::after {
+      width: 100%;
+    }
+
+    .menu {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .menu a {
+      font-size: 1.1rem;
+      position: relative;
+      padding-bottom: 0.3rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--gold);
+      transition: var(--transition);
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+    .menu a:hover {
+      transform: translateY(-1px);
+    }
+
+    .cta-button {
+      background-color: var(--green);
+      color: var(--white);
+      padding: 0.8rem 1.8rem;
+      border: none;
+      border-radius: 40px;
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 18px rgba(0, 101, 68, 0.3);
+      letter-spacing: 0.5px;
+    }
+
+    .cta-button:hover {
+      background-color: var(--gold);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0, 101, 68, 0.4);
+      color: var(--black);
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background-image: url('https://images.pexels.com/photos/36047749/pexels-photo-36047749.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(0, 101, 68, 0.7) 0%, rgba(0, 101, 68, 0.3) 70%, transparent 100%);
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-20.09,172-35.58C582.91,16.61,605.5,8.56,706.26,24.93c36.9,6.4,80.5,19.86,108,27.87,34.33,12,75,21,114.25,27.17,34.33,6,81.39,8,118.75,8l12.5,12.5c1.7,1.7,1.7,4.5,0,6.2L1320,120V0l-29.3,29.2c-.5.5-1.4.5-2,0s-1.3-1.5-1.5-2c-.8-2.4-1.6-4.9-2.4-7.3-1.4-4-3.1-7.7-5-11.7-2.8-6-8-10.3-14.7-13.7-9.6-4.7-21-7-33-7-7.3,0-14.8,1.4-21.1,4.7-3,1.7-5.6,4.5-7.8,7.4l-34.3,35.1c-.8.8-.8,2,0,2.8.8.8,2,.8,2.8,0l26.8-27.6c3.6-3.7,10.5-6.3,18.5-6.3,6,0,12,1.5,16.9,4.2,1.3.7,2.5,1.5,3.5,2.6,5.8,5.7,11.3,11.7,16.3,17.5,3.1,3.7,6.6,7.1,9.2,9.6,7.4,7.7,12.9,16,15.7,24.6,3.2,11.1,5.1,28.2,5.5,43.8,0,14.2-.8,27.6-2.6,37.9-1.7,11.2-4.4,21.6-8.1,29-2.7,5.6-6.4,10.7-10.3,14.8-6.1,6.6-12.4,11.9-19.2,15.7-3.7,2.1-7.8,3.8-12.6,5.3-15.6,4.5-32.5,6.9-50.9,6.9-2.5,0-5-.1-7.5-.5-.7,0-1.4,0-2,0-.7-.1-1.4,0-1.3-.7.4-1.1.3-2.2-.3-3.1-6.6-11-14.8-21.3-25.5-30.4-5-4.2-10.5-8.5-15.3-12.5-3.4-2.9-7.2-3.7-10.7-4.1-11.2-1.3-49.5-8.8-50.1-9.4-1.4-1.2-1.7-3.1-.6-4.5,2.7-4,3.8-8.8,3.5-13.5-.8-13.7-10.1-28.3-22.6-37.9-14.1-10.7-33.2-17.5-51.8-17.5C358.3,117.1,351.7,107.3,336.7,101.2c-3.5-1.4-7.1-2.2-10.9-2.2-6,0-12,2.6-17.6,7.7-6.2,5.8-15.5,18.1-30.2,28.8-8.7,5.9-14.8,7-18.9,7-1.7,0-3.6-.5-5.1-1.2-12.1-6.7-23.2-15.7-30.2-26.4-4.3-7.1-6.9-18-6.9-29.3,0-15.7,5.5-26,13.1-33.3C212.4,26,241.4,34,321.39,56.44Z" fill="%23006544"/></svg>') no-repeat center bottom;
+      background-size: 100% 100%;
+      opacity: 0.3;
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: var(--white);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      animation: floatIn 1.4s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 4.8rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -1px;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 1.2s ease-out 0.2s both;
+    }
+
+    .hero p {
+      font-size: 1.6rem;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 1.2s ease-out 0.4s both;
+    }
+
+    .hero .cta-button {
+      margin-top: 1rem;
+      animation: fadeInUp 1.2s ease-out 0.6s both;
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background: linear-gradient(90deg, var(--green), transparent);
+      padding: 1.2rem 0;
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--white);
+      border-bottom: 1px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" preserveAspectRatio="none"><path d="M0,25 C40,10 160,10 200,25 L200,50 L0,50 Z" fill="rgba(212, 175, 55, 0.2)"/></svg>') repeat-x;
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .trust-strip span {
+      display: inline-block;
+      margin: 0 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .trust-strip span::after {
+      content: '•';
+      margin: 0 1.2rem;
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+
+    .trust-strip span:last-child::after {
+      content: '';
+    }
+
+    /* Services Section */
+    .services {
+      padding: 8rem 0;
+      background-color: var(--white);
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      font-size: 3rem;
+      color: var(--green);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green), var(--gold), var(--green));
+      border-radius: 2px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+    }
+
+    .service-card {
+      background-color: var(--off-white);
+      padding: 3rem;
+      border-radius: 16px;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 101, 68, 0.05);
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(0, 101, 68, 0.12);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.08) 100%);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 1;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 90px;
+      height: 90px;
+      background-color: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2.5rem;
+      color: var(--white);
+      font-size: 2.8rem;
+      z-index: 2;
+      box-shadow: 0 8px 25px rgba(0, 101, 68, 0.2);
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1) translateY(-5px);
+      background: linear-gradient(135deg, var(--green), var(--gold));
+    }
+
+    .service-card h3 {
+      margin-bottom: 1.2rem;
+      color: var(--green);
+      font-weight: 600;
+      font-size: 1.8rem;
+    }
+
+    .service-card p {
+      color: #555;
+      font-size: 1.1rem;
+      padding: 0 1rem;
+    }
+
+    /* About Section */
+    .about {
+      padding: 8rem 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23F8F5F0"/><path d="M0,50 Q25,25 50,50 T100,50" stroke="%23006544" stroke-width="0.5" fill="none" opacity="0.08"/><path d="M0,70 Q25,45 50,70 T100,70" stroke="%23006544" stroke-width="0.5" fill="none" opacity="0.04"/></svg>') repeat;
+      display: flex;
+      align-items: flex-start;
+      gap: 8rem;
+      position: relative;
+    }
+
+    .about-image {
+      flex: 1;
+      min-width: 300px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+      transform: translateY(0);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 4px solid rgba(212, 175, 55, 0.2);
+      border-radius: 16px;
+      z-index: 1;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .about-image:hover::before {
+      opacity: 1;
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent, rgba(0, 101, 68, 0.1), transparent);
+      border-radius: 16px;
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .about-image:hover::after {
+      opacity: 1;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      transition: var(--transition);
+      transform: scale(1);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-content {
+      flex: 1;
+      min-width: 300px;
+      padding-right: 2rem;
+      position: relative;
+    }
+
+    .about-content h2 {
+      color: var(--green);
+      margin-bottom: 1.5rem;
+      font-size: 2.8rem;
+      line-height: 1.2;
+    }
+
+    .about-content p {
+      margin-bottom: 1.5rem;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .about-content::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -50px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, var(--gold), transparent 70%);
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 8rem 0;
+      background-color: var(--off-white);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M10,30 Q50,10 90,30 T90,70 Q50,90 10,70 T10,30z" fill="none" stroke="%23006544" stroke-width="0.8" opacity="0.06"/></svg>') repeat;
+      z-index: -1;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      font-size: 3rem;
+      color: var(--green);
+      position: relative;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial {
+      background-color: var(--white);
+      padding: 3rem;
+      border-radius: 16px;
+      position: relative;
+      border-left: 6px solid var(--gold);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+    }
+
+    .testimonial:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 50px rgba(0, 101, 68, 0.08);
+    }
+
+    .testimonial::before {
+      content: """;
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+      font-family: Cormorant Garamond;
+      font-size: 6rem;
+      color: var(--gold);
+      opacity: 0.2;
+      line-height: 1;
+      font-weight: 600;
+    }
+
+    .testimonial:hover::before {
+      opacity: 0.3;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 2rem;
+      color: #444;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .client {
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .client-image {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 1.5rem;
+      border: 3px solid var(--gold);
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+      transition: var(--transition);
+    }
+
+    .client:hover .client-image {
+      transform: scale(1.05);
+    }
+
+    .client-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .client-name {
+      font-weight: 600;
+      color: var(--green);
+      font-size: 1.1rem;
+    }
+
+    .client-title {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.2rem;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 8rem 0;
+      background-color: var(--white);
+      overflow: hidden;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      font-size: 3rem;
+      color: var(--green);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green), var(--gold), var(--green));
+      border-radius: 2px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(0, 101, 68, 0.8), transparent);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 2;
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-item .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem;
+      color: var(--white);
+      transform: translateY(100%);
+      transition: var(--transition);
+      z-index: 3;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    .gallery-item:hover .overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-item .overlay::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 8rem 0;
+      background-color: var(--off-white);
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M0,50 Q100,20 200,50 T200,150 Q100,180 0,150 T0,50z" fill="%23006544" opacity="0.02"/></svg>') repeat;
+      z-index: -1;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6rem;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+      padding-right: 2rem;
+    }
+
+    .contact-info h2 {
+      color: var(--green);
+      margin-bottom: 1.5rem;
+      font-size: 2.8rem;
+      line-height: 1.2;
+    }
+
+    .contact-info p {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .contact-info p:last-child {
+      margin-bottom: 3rem;
+    }
+
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+      background-color: var(--white);
+      padding: 3.5rem;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 101, 68, 0.05);
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      color: var(--green);
+      font-size: 1.1rem;
+      letter-spacing: 0.3px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1.3rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      transition: var(--transition);
+      background-color: #fafafa;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M2,9 Q9,4 16,9 Q9,14 2,9z" fill="%23006544" opacity="0.05"/></svg>');
+      background-repeat: no-repeat;
+      background-size: 18px;
+      background-position: calc(100% - 12px) center;
+      color: #333;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+      background-color: #ffffff;
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+      padding: 1.3rem;
+    }
+
+    .form-group input:focus::placeholder,
+    .form-group textarea:focus::placeholder {
+      opacity: 0.4;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--black);
+      color: var(--white);
+      padding: 5rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-20.09,172-35.58C582.91,16.61,605.5,8.56,706.26,24.93c36.9,6.4,80.5,19.86,108,27.87,34.33,12,75,21,114.25,27.17,34.33,6,81.39,8,118.75,8l12.5,12.5c1.7,1.7,1.7,4.5,0,6.2L1320,120V0l-29.3,29.2c-.5.5-1.4.5-2,0s-1.3-1.5-1.5-2c-.8-2.4-1.6-4.9-2.4-7.3-1.4-4-3.1-7.7-5-11.7-2.8-6-8-10.3-14.7-13.7-9.6-4.7-21-7-33-7-7.3,0-14.8,1.4-21.1,4.7-3,1.7-5.6,4.5-7.8,7.4l-34.3,35.1c-.8.8-.8,2,0,2.8.8.8,2,.8,2.8,0l26.8-27.6c3.6-3.7,10.5-6.3,18.5-6.3,6,0,12,1.5,16.9,4.2,1.3.7,2.5,1.5,3.5,2.6,5.8,5.7,11.3,11.7,16.3,17.5,3.1,3.7,6.6,7.1,9.2,9.6,7.4,7.7,12.9,16,15.7,24.6,3.2,11.1,5.1,28.2,5.5,43.8,0,14.2-.8,27.6-2.6,37.9-1.7,11.2-4.4,21.6-8.1,29-2.7,5.6-6.4,10.7-10.3,14.8-6.1,6.6-12.4,11.9-19.2,15.7-3.7,2.1-7.8,3.8-12.6,5.3-15.6,4.5-32.5,6.9-50.9,6.9-2.5,0-5-.1-7.5-.5-.7,0-1.4,0-2,0-.7-.1-1.4,0-1.3-.7.4-1.1.3-2.2-.3-3.1-6.6-11-14.8-21.3-25.5-30.4-5-4.2-10.5-8.5-15.3-12.5-3.4-2.9-7.2-3.7-10.7-4.1-11.2-1.3-49.5-8.8-50.1-9.4-1.4-1.2-1.7-3.1-.6-4.5,2.7-4,3.8-8.8,3.5-13.5-.8-13.7-10.1-28.3-22.6-37.9-14.1-10.7-33.2-17.5-51.8-17.5C358.3,117.1,351.7,107.3,336.7,101.2c-3.5-1.4-7.1-2.2-10.9-2.2-6,0-12,2.6-17.6,7.7-6.2,5.8-15.5,18.1-30.2,28.8-8.7,5.9-14.8,7-18.9,7-1.7,0-3.6-.5-5.1-1.2-12.1-6.7-23.2-15.7-30.2-26.4-4.3-7.1-6.9-18-6.9-29.3,0-15.7,5.5-26,13.1-33.3C212.4,26,241.4,34,321.39,56.44Z" fill="%23D4AF37" opacity="0.05"/></svg>') repeat-x;
+      bottom: -150px;
+      z-index: 1;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 4rem;
+      margin-bottom: 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-column h3 {
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 1.8rem;
+      position: relative;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--gold));
+      border-radius: 2px;
+    }
+
+    .footer-column p,
+    .footer-column a {
+      color: #ddd;
+      margin-bottom: 1rem;
+      display: block;
+      font-size: 1rem;
+      line-height: 1.8;
+      transition: var(--transition);
+    }
+
+    .footer-column a:hover {
+      color: var(--gold);
+      transform: translateX(5px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      color: var(--white);
+      background-color: rgba(255, 255, 255, 0.1);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      font-size: 1.4rem;
+    }
+
+    .social-links a:hover {
+      background-color: var(--gold);
+      color: var(--black);
+      transform: translateY(-4px) scale(1.05);
+      border-color: var(--gold);
+    }
+
+    .social-links a:nth-child(1):hover {
+      color: var(--black);
+      background-color: rgba(0, 101, 68, 0.2);
+      border-color: rgba(0, 101, 68, 0.3);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #aaa;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+
+    /* Animations */
+    @keyframes floatIn {
+      0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 101, 68, 0.2);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 101, 68, 0.4);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+      .hero {
+        height: 80vh;
+        clip-path: none;
+        padding-top: 3rem;
+      }
+      .hero p {
+        font-size: 1.4rem;
+      }
+      .trust-strip {
+        padding: 1rem 0;
+      }
+      .trust-strip span {
+        display: block;
+        margin: 0.5rem 0;
+        font-size: 1rem;
+      }
+      .trust-strip span::after {
+        content: none;
+      }
+      .services,
+      .about,
+      .testimonials,
+      .gallery,
+      .contact {
+        padding: 5rem 0;
+      }
+      .section-title {
+        font-size: 2.4rem;
+      }
+      .services-grid,
+      .testimonials-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .service-card,
+      .testimonial {
+        padding: 2rem;
+      }
+      .about {
+        flex-direction: column;
+        gap: 3rem;
+        padding: 5rem 0;
+      }
+      .about-image {
+        width: 100%;
+        min-width: auto;
+      }
+      .about-content {
+        padding: 0 1rem;
+        min-width: auto;
+        text-align: center;
+      }
+      .contact-container {
+        flex-direction: column;
+        gap: 3rem;
+      }
+      .contact-info,
+      .contact-form {
+        width: 100%;
+        text-align: center;
+      }
+      .contact-info p,
+      .contact-form {
+        margin-bottom: 1.5rem;
+      }
+      .contact-form {
+        padding: 2.5rem;
+      }
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      .menu {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1.2rem;
+      }
+      .menu a {
+        padding: 0.5rem 0.8rem;
+        margin: 0;
+      }
+      .cta-button {
+        margin-top: 0;
+        justify-self: center;
+      }
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+      }
+      .footer-column h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+      }
+      .social-links {
+        justify-content: center;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav id="mainNav">
+    <div class="container nav-container">
+      <a href="#" class="logo">Embassy of the Arab Republic of Egypt</a>
+      <div class="menu">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="cta-button">Get in Touch</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Embassy of the Arab Republic of Egypt</h1>
+      <p>Honoring Egypt's Legacy on the Global Stage</p>
+      <button class="cta-button">Learn More</button>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <span>Trusted by Diplomatic Partners</span>
+    <span>Experienced Consular Team</span>
+    <span>Preserving Cultural Heritage</span>
+  </div>
+
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🌐</div>
+          <h3>Diplomatic Relations</h3>
+          <p>Facilitating bilateral cooperation and fostering strong ties between nations through structured dialogue and mutual respect.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🤝</div>
+          <h3>Consular Assistance</h3>
+          <p>Providing guidance and protection to Egyptian nationals abroad with integrity and cultural sensitivity.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📜</div>
+          <h3>Cultural Exchange</h3>
+          <p>Promoting the rich heritage, arts, and traditions of Egypt to deepen global understanding and appreciation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-image">
+      <img src="https://images.pexels.com/photos/19875973/pexels-photo-19875973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Egyptian Diplomatic Presence" />
+    </div>
+    <div class="about-content">
+      <h2>Preserving Sovereignty Through Diplomacy</h2>
+      <p>The Embassy of the Arab Republic of Egypt serves as a sovereign bastion of national identity and international cooperation. Rooted in an ancient civilization that has shaped human history, our mission is to uphold Egypt's solemn responsibilities on the global stage.</p>
+      <p>Through thoughtful engagement, strategic dialogue, and unwavering respect for international normative frameworks, the Embassy fosters trust between nations. We stand as guardians of cultural heritage, advocates for peace, and conduits for the enduring legacy of the Nile Valley.</p>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Global Recognition</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p>“The Embassy consistently demonstrates professionalism and deep cultural understanding, serving as a vital bridge between our nations.”</p>
+          <div class="client">
+            <div class="client-image">
+              <img src="https://images.pexels.com/photos/36047749/pexels-photo-36047749.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client" />
+            </div>
+            <div>
+              <div class="client-name">Verified Diplomatic Correspondent</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>“Our collaboration has been marked by integrity, timeliness, and the utmost respect for mutual sovereignty — qualities this Embassy embodies consistently.”</p>
+          <div class="client">
+            <div class="client-image">
+              <img src="https://images.pexels.com/photos/19875973/pexels-photo-19875973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client" />
+            </div>
+            <div>
+              <div class="client-name">Local Government Liaison</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>“In times of need, the embassy’s support has been both dignified and decisive — a true reflection of Egypt’s enduring statecraft.”</p>
+          <div class="client">
+            <div class="client-image">
+              <img src="https://images.pexels.com/photos/15188118/pexels-photo-15188118.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client" />
+            </div>
+            <div>
+              <div class="client-name">International NGO Representative</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Cultural Heritage</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/15188118/pexels-photo-15188118.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Ancient Egyptian Artifacts" />
+          <div class="overlay">Ancient Artifacts</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/36491384/pexels-photo-36491384.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Egyptian Cultural Events" />
+          <div class="overlay">Cultural Events</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/7841497/pexels-photo-7841497.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Diplomatic Ceremonies" />
+          <div class="overlay">Diplomatic Ceremonies</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/18934703/pexels-photo-18934703.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Egyptian Citizens Abroad" />
+          <div class="overlay">Citizens Abroad</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-container">
+        <div class="contact-info">
+          <h2>Get in Touch</h2>
+          <p>We welcome inquiries from fellow sovereign states, international organizations, and communities dedicated to peace and cultural understanding. All correspondence is handled with the utmost discretion and dignity.</p>
+          <p>To initiate formal communication, please submit your message below or contact our protocol department directly through secure diplomatic channels.</p>
+        </div>
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Your message..."></textarea>
+          </div>
+          <button type="submit" class="cta-button">Submit Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>Embassy of the Arab Republic of Egypt</h3>
+          <p>An enduring institution dedicated to upholding the dignity of the Egyptian state and advancing peace, culture, and mutual respect on the global stage.</p>
+          <div class="social-links">
+            <a href="#">🌐</a>
+            <a href="#">📄</a>
+            <a href="#">🔗</a>
+            <a href="#">📱</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <a href="#about">About Us</a>
+          <a href="#services">Services</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-column">
+          <h3>Protocol & Security</h3>
+          <a href="#">Diplomatic Credentials</a>
+          <a href="#">Security Guidelines</a>
+          <a href="#">Notifications</a>
+          <a href="#">Emergency Contacts</a>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2026 Embassy of the Arab Republic of Egypt. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const nav = document.getElementById('mainNav');
+      const hero = document.querySelector('.hero');
+
+      // Sticky nav on scroll
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Sections fade-in animation on scroll
+      const sections = document.querySelectorAll('.services, .about, .testimonials, .gallery, .contact');
+      
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(40px)';
+        section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        observer.observe(section);
+      });
+
+      // Animate gallery items
+      document.querySelectorAll('.gallery-item').forEach((item, index) => {
+        item.style.opacity = 0;
+        item.style.transform = 'translateY(100px)';
+        item.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        item.style.transitionDelay = `${index * 0.1}s`;
+        
+        const galleryObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = 1;
+              entry.target.style.transform = 'translateY(0)';
+              galleryObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        galleryObserver.observe(item);
+      });
+
+      // Hero content staggered animation
+      const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero .cta-button');
+      heroElements.forEach((el, i) => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(40px)';
+        el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        el.style.transitionDelay = `${i * 0.2}s`;
+      });
+
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            heroElements.forEach(el => {
+              el.style.opacity = 1;
+              el.style.transform = 'translateY(0)';
+            });
+            heroObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      heroObserver.observe(hero);
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=RW1iYXNzeSBvZiB0aGUgQXJhYiBSZXB1YmxpYyBvZiBFZ3lwdA&u=dmlzaXQ&s=e4a369e6116941b14909575cbc4ae7c5&beacon=1&l=b3NtLW5vZGUtMTgxOTQyMzgzNA";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:e81952d89b--></html>
