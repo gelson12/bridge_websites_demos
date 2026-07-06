@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Modern Montessori International</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #e8e4d9;
-      --secondary: #7a6e62;
-      --accent: #4a5346;
-      --light: #c9b7a1;
-      --background: #f4f0e6;
-      --text: #333;
-      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      --border-radius: 12px;
-      --wave-height: 20px;
+      --beige: #f5f2e8;
+      --taupe: #d4c8b8;
+      --sage: #a8b8a9;
+      --oat: #e8dfd1;
+      --wood: #6b5a4a;
+      --text: #3b3b3b;
     }
 
     * {
@@ -26,96 +22,100 @@
     }
 
     body {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Open Sans', sans-serif;
       color: var(--text);
-      background-color: var(--background);
-      line-height: 1.7;
+      line-height: 1.6;
       overflow-x: hidden;
-      scroll-behavior: smooth;
-      background: radial-gradient(circle at 50% 30%, rgba(232, 228, 217, 0.1), transparent 70%), linear-gradient(to bottom, transparent 50%, var(--background) 100%);
+      background-color: var(--beige);
+      overflow: hidden;
     }
 
-    h1, h2, h3, h4, h5 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
+    h1, h2, h3, h4 {
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      color: var(--text);
       letter-spacing: -0.5px;
-      position: relative;
     }
 
     h1 {
-      font-size: 4.5rem;
+      font-size: 3.8rem;
       line-height: 1.1;
     }
 
     h2 {
-      font-size: 3.2rem;
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
     }
 
     h3 {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
     }
 
     p {
-      font-size: 1.15rem;
-      margin-bottom: 1.8rem;
-      font-weight: 300;
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    a {
+      color: var(--wood);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--sage);
     }
 
     .container {
+      width: 90%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 3rem;
+      padding: 0 20px;
     }
 
     /* Sticky Nav */
     header {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
-      width: 100%;
       z-index: 1000;
-      padding: 1.5rem 0;
-      transition: var(--transition);
-      display: flex;
-      justify-content: center;
       background: transparent;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(232, 228, 217, 0.1);
+      padding: 1.5rem 0;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     header.scrolled {
-      padding: 1rem 0;
-      background: rgba(244, 240, 230, 0.98);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: 0 4px 35px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(212, 200, 184, 0.12);
     }
 
-    .nav-container {
+    nav {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      width: 100%;
+      align-items: center;
+      position: relative;
     }
 
     .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: var(--secondary);
-      text-decoration: none;
+      font-size: 1.8rem;
       font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.5px;
       position: relative;
-      padding: 0.1rem 0;
     }
 
     .logo::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -5px;
       left: 0;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--secondary), transparent);
-      transition: var(--transition);
+      background: var(--sage);
+      transition: width 0.4s ease;
     }
 
     .logo:hover::after {
@@ -124,126 +124,60 @@
 
     .nav-links {
       display: flex;
-      gap: 3rem;
-      position: relative;
+      gap: 2rem;
     }
 
     .nav-links a {
-      color: var(--secondary);
-      text-decoration: none;
-      font-weight: 400;
-      font-size: 1rem;
+      font-weight: 600;
+      font-size: 1.05rem;
       position: relative;
-      padding: 0.2rem 0;
-      transition: var(--transition);
-      display: inline-block;
-    }
-
-    .nav-links a::before {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      transition: var(--transition);
+      padding: 0.25rem 0;
     }
 
     .nav-links a::after {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      bottom: 0;
+      left: 0;
       width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: var(--secondary);
-      opacity: 0;
-      transition: var(--transition);
-      pointer-events: none;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .nav-links a:hover::before {
-      width: 100%;
+      height: 2px;
+      background: var(--sage);
+      transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .nav-links a:hover::after {
-      width: 8px;
-      height: 8px;
-      opacity: 0.3;
+      width: 100%;
     }
 
     .cta-button {
-      background-color: var(--secondary);
-      color: var(--primary);
-      padding: 0.8rem 2rem;
-      border-radius: var(--border-radius);
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
+      background-color: var(--sage);
+      color: white;
+      padding: 0.8rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.05rem;
       border: none;
       cursor: pointer;
-      transition: var(--transition);
-      white-space: nowrap;
-      box-shadow: 0 4px 15px rgba(122, 110, 98, 0.15);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-      transform: rotate(45deg);
-      transition: var(--transition);
-    }
-
-    .cta-button:hover::before {
-      top: 120%;
-      left: 120%;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 6px 20px rgba(168, 184, 169, 0.18);
     }
 
     .cta-button:hover {
-      background-color: var(--accent);
+      background-color: var(--taupe);
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(74, 83, 70, 0.2);
-    }
-
-    .mobile-menu-button {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      color: var(--secondary);
-      cursor: pointer;
-      padding: 0.5rem;
-      border-radius: var(--border-radius);
-      transition: var(--transition);
-    }
-
-    .mobile-menu-button:hover {
-      background-color: rgba(232, 228, 217, 0.1);
+      box-shadow: 0 10px 30px rgba(168, 184, 169, 0.25);
     }
 
     /* Hero */
     .hero {
-      height: 90vh;
+      height: 100vh;
+      min-height: 700px;
+      background-image: url(https://images.pexels.com/photos/7296764/pexels-photo-7296764.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+      background-size: cover;
+      background-position: center;
       display: flex;
-      align-items: flex-end;
-      justify-content: center;
+      align-items: center;
       position: relative;
-      padding: 0 3rem;
       overflow: hidden;
     }
 
@@ -254,546 +188,588 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://images.pexels.com/photos/31864405/pexels-photo-31864405.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') center/cover no-repeat;
-      z-index: -1;
-      filter: brightness(0.9);
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(212, 200, 184, 0.3) 100%);
+      z-index: 1;
     }
 
     .hero::after {
       content: '';
       position: absolute;
-      top: 0;
+      bottom: -10%;
       left: 0;
       width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, rgba(232, 228, 217, 0.2) 30%, rgba(118, 110, 98, 0.4) 100%);
-      z-index: -1;
+      height: 300px;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,30 Q60,45 100,30 Q60,15 10,30 Z' fill='%23f5f2e8' opacity='0.6'/%3E%3C/svg%3E") repeat-x;
+      background-size: 400px;
+      opacity: 0.7;
+      z-index: 1;
     }
 
     .hero-content {
-      text-align: center;
-      color: var(--primary);
-      max-width: 850px;
-      padding-bottom: 6rem;
-      transform: translateY(20px);
+      position: relative;
+      z-index: 2;
+      color: white;
+      max-width: 700px;
       opacity: 0;
-      transition: var(--transition);
+      transform: translateY(60px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    .hero-content.show {
-      transform: translateY(0);
+    .hero-content.visible {
       opacity: 1;
+      transform: translateY(0);
     }
 
     .hero h1 {
-      font-size: 5rem;
+      font-size: 4.5rem;
       margin-bottom: 1.5rem;
-      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
       line-height: 1.1;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .hero p {
-      font-size: 1.6rem;
-      margin-bottom: 3rem;
-      font-weight: 300;
-      letter-spacing: -0.5px;
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+      letter-spacing: -0.4px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.1);
     }
 
     .hero-buttons {
       display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
+      gap: 1.5rem;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .hero-buttons.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .secondary-button {
-      background-color: transparent;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-      padding: 0.8rem 2rem;
-      border-radius: var(--border-radius);
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 0.8rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.05rem;
       cursor: pointer;
-      transition: var(--transition);
-      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.05));
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 6px 20px rgba(255,255,255,0.1);
     }
 
     .secondary-button:hover {
-      background-color: var(--primary);
-      color: var(--secondary);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      border-color: transparent;
+      background-color: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,255,255,0.2);
     }
 
-    /* Trust Strip */
+    /* Trust-strip */
     .trust-strip {
-      background: repeating-linear-gradient(90deg, var(--light), var(--light) 5px, transparent 5px, transparent 10px);
+      background-color: var(--oat);
       padding: 1.2rem 0;
       text-align: center;
-      border-bottom: 1px solid rgba(232, 228, 217, 0.2);
-      display: flex;
-      justify-content: center;
-      gap: 5rem;
-      font-weight: 300;
-      font-size: 1rem;
+      font-size: 0.95rem;
+      color: var(--taupe);
+      border-bottom: 1px solid rgba(212, 200, 184, 0.4);
       position: relative;
       overflow: hidden;
-      margin-top: -1px;
-    }
-
-    .trust-strip span {
-      padding: 0 1.2rem;
     }
 
     .trust-strip::before {
       content: '';
       position: absolute;
-      top: -10px;
-      left: 0;
-      width: 100%;
-      height: 20px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 20" preserveAspectRatio="none"><path d="M0,20 C166.7,20 333.3,0 500,20 L500,0 L0,0 Z" fill="%23e8e4d9"/></svg>') repeat-x;
-      background-size: 500px 20px;
-    }
-
-    /* Services */
-    .services {
-      padding: 10rem 0;
-      background-color: var(--background);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .services::before {
-      content: '';
-      position: absolute;
-      top: -100px;
+      top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 100%;
-      height: 100px;
-      background: repeating-linear-gradient(180deg, transparent, transparent 20px, rgba(232, 228, 217, 0.3) 20px, rgba(232, 228, 217, 0.3) 40px);
-      z-index: 1;
-      pointer-events: none;
+      width: 10px;
+      height: 10px;
+      background-color: var(--sage);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* Features */
+    .features {
+      padding: 8rem 0;
+      background-color: var(--beige);
+      position: relative;
+    }
+
+    .features::before {
+      content: '';
+      position: absolute;
+      top: -5%;
+      left: 5%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168,184,169,0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .features::after {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      right: 15%;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,200,184,0.1) 0%, transparent 70%);
+      z-index: 0;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 6rem;
+      margin-bottom: 5rem;
       position: relative;
     }
 
     .section-title::after {
       content: '';
       position: absolute;
-      bottom: -2rem;
+      bottom: -1rem;
       left: 50%;
       transform: translateX(-50%);
       width: 120px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--secondary), transparent);
-      border-radius: 10px;
+      height: 4px;
+      background: var(--sage);
+      border-radius: 2px;
     }
 
-    .services-grid {
+    .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 4rem;
       position: relative;
-      z-index: 2;
-      margin-top: 4rem;
+      z-index: 1;
     }
 
-    .service-card {
+    .feature-card {
       background-color: white;
-      border-radius: var(--border-radius);
-      padding: 3rem 2rem;
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
       text-align: center;
-      transition: var(--transition);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(232, 228, 217, 0.5);
+      border: 1px solid rgba(212, 200, 184, 0.15);
+      opacity: 0;
+      transform: translateY(40px);
+      transition-delay: 0.1s;
     }
 
-    .service-card::before {
+    .feature-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.06);
+    }
+
+    .feature-card::before {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
+      left: 0;
       width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(74, 83, 70, 0.08), transparent);
-      transition: var(--transition);
-      z-index: 1;
+      height: 6px;
+      background: linear-gradient(90deg, var(--sage), var(--taupe));
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
 
-    .service-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 100% 0, rgba(122, 110, 98, 0.05) 0%, transparent 50%);
-      transition: var(--transition);
-      z-index: 1;
+    .feature-card:hover::before {
+      opacity: 1;
     }
 
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
-      border-color: rgba(122, 110, 98, 0.2);
-    }
-
-    .service-card:hover::before {
-      left: 100%;
-    }
-
-    .service-card:hover::after {
-      background: radial-gradient(circle at 100% 0, rgba(122, 110, 98, 0.15) 0%, transparent 50%);
-    }
-
-    .service-icon {
-      width: 90px;
-      height: 90px;
-      margin: 0 auto 2.5rem;
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--beige);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(118, 110, 98, 0.15), rgba(118, 110, 98, 0.1));
-      color: var(--secondary);
-      font-size: 3rem;
-      box-shadow: 0 10px 20px rgba(118, 110, 98, 0.08);
-      transition: var(--transition);
+      margin: 0 auto 2.5rem;
+      color: var(--sage);
+      font-size: 2.5rem;
+      transition: all 0.5s ease;
     }
 
-    .service-card:hover .service-icon {
+    .feature-card:hover .feature-icon {
+      background-color: var(--sage);
+      color: white;
       transform: scale(1.1);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.4px;
+    }
+
+    .feature-card p {
+      color: var(--taupe);
+      font-weight: 500;
+      margin-bottom: 0;
     }
 
     /* About */
     .about {
-      padding: 12rem 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
+      padding: 10rem 0;
+      background-color: white;
+      display: flex;
       align-items: center;
-      background-color: var(--primary);
+      gap: 8rem;
       position: relative;
+      overflow: hidden;
+      z-index: 0;
     }
 
     .about::before {
       content: '';
       position: absolute;
-      top: -80px;
+      top: 0;
       left: 0;
-      width: 100%;
-      height: 200px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,20 50,50 T100,50 Z" fill="%23e8e4d9" opacity="0.7"/></svg>') repeat-x;
-      background-size: 500px 200px;
-      background-position: top center;
-      z-index: 1;
-    }
-
-    .about::after {
-      content: '';
-      position: absolute;
-      bottom: -80px;
-      left: 0;
-      width: 100%;
-      height: 100px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,80 50,50 T100,50 Z" fill="%23e8e4d9" opacity="0.7"/></svg>') repeat-x;
-      background-size: 500px 100px;
-      background-position: bottom center;
-      z-index: 1;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(212,200,184,0.04), transparent);
+      z-index: -1;
     }
 
     .about-image {
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
+      flex: 1;
+      border-radius: 28px;
       overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.08);
       position: relative;
-      transform: translateY(0);
-      transition: var(--transition);
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
-      margin-left: -3rem;
-      padding: 2rem;
+      background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, transparent 60%);
+      z-index: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    .about-image:hover::after {
+      opacity: 0;
     }
 
     .about-image img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
-      transform: scale(1);
+      height: auto;
+      display: block;
+      transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.04) rotateY(0.5deg);
+    }
+
+    .about-content {
+      flex: 1;
+      position: relative;
+      z-index: 1;
     }
 
     .about-content h2 {
-      font-size: 3.4rem;
       margin-bottom: 2rem;
-      color: var(--secondary);
-      position: relative;
-      z-index: 2;
-    }
-
-    .about-content h2::after {
-      content: '';
-      position: absolute;
-      bottom: -1rem;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--secondary);
+      font-weight: 700;
+      line-height: 1.2;
     }
 
     .about-content p {
       margin-bottom: 2rem;
-      position: relative;
-      z-index: 2;
+      max-width: 600px;
+      font-weight: 500;
+      color: var(--text);
     }
 
-    .about-image:hover img {
-      transform: scale(1.05);
+    .about-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-content::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 120%;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: rgba(168, 184, 169, 0.3);
+      transform: translateX(-50%);
     }
 
     /* Testimonials */
     .testimonials {
-      padding: 12rem 0;
-      background-color: var(--background);
+      padding: 8rem 0;
+      background-color: var(--beige);
       position: relative;
-      overflow: hidden;
-      margin-top: 2rem;
     }
 
     .testimonials::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,80 50,50 T100,50 Z" fill="%23f4f0e6" opacity="0.5"/></svg>') repeat-x;
-      background-size: 500px 100px;
-    }
-
-    .testimonials::after {
-      content: '';
-      position: absolute;
-      bottom: -80px;
-      left: 0;
-      width: 100%;
-      height: 100px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,20 50,50 T100,50 Z" fill="%23f4f0e6" opacity="0.5"/></svg>') repeat-x;
-      background-size: 500px 100px;
+      top: -10%;
+      right: 5%;
+      width: 400px;
+      height: 400px;
+      border: 2px dashed rgba(168, 184, 169, 0.6);
+      border-radius: 50%;
+      z-index: 0;
     }
 
     .section-title.testimonials-title {
-      margin-bottom: 7rem;
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
     }
 
     .section-title.testimonials-title::after {
-      width: 100px;
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 2px;
+      background: var(--sage);
+      border-radius: 2px;
     }
 
     .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 4rem;
-    }
-
-    .testimonial {
-      background-color: white;
-      border-radius: var(--border-radius);
-      padding: 3rem 2.5rem;
-      text-align: center;
-      box-shadow: var(--shadow);
       position: relative;
-      overflow: hidden;
-      transition: var(--transition);
-      border: 1px solid rgba(232, 228, 217, 0.5);
-    }
-
-    .testimonial::before {
-      content: '"';
-      font-family: 'Playfair Display', serif;
-      font-size: 8rem;
-      color: rgba(118, 110, 98, 0.1);
-      position: absolute;
-      top: -2rem;
-      left: 2rem;
-      line-height: 1;
       z-index: 1;
-      transform: rotate(2deg);
     }
 
-    .testimonial::after {
-      content: '';
+    .testimonial-card {
+      background-color: white;
+      border-radius: 22px;
+      padding: 2.8rem 2.8rem 3rem;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.05);
+      position: relative;
+      border: 1px solid rgba(212, 200, 184, 0.15);
+      opacity: 0;
+      transform: translateY(50px) rotateX(5deg);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition-delay: 0.1s;
+    }
+
+    .testimonial-card.visible {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px) rotateX(0deg);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+    }
+
+    .testimonial-card::before {
+      content: """;
+      font-family: 'Lora', serif;
+      font-size: 6rem;
+      color: rgba(168, 184, 169, 0.12);
       position: absolute;
-      top: 0;
+      top: 20px;
+      left: 30px;
+      line-height: 1;
+      z-index: -1;
+    }
+
+    .testimonial-card::after {
+      content: "";
+      border: 1px solid #eee;
+      position: absolute;
+      bottom: -20px;
       left: 0;
       width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 90% 10%, rgba(118, 110, 98, 0.03) 0%, transparent 80%);
-      z-index: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(168, 184, 169, 0.3), transparent);
     }
 
-    .testimonial p {
+    .testimonial-text {
       font-style: italic;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2.2rem;
+      color: var(--taupe);
       position: relative;
-      z-index: 2;
-      font-size: 1.2rem;
-      line-height: 1.8;
+      z-index: 1;
+      font-weight: 500;
+      font-size: 1.1rem;
+      line-height: 1.7;
     }
 
     .testimonial-author {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
-      position: relative;
-      z-index: 2;
     }
 
-    .testimonial-avatar {
-      width: 70px;
-      height: 70px;
+    .author-avatar {
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      background-color: var(--light);
+      background-color: var(--oat);
+      margin-right: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--text);
       overflow: hidden;
-      border: 3px solid var(--primary);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: var(--transition);
+      transition: all 0.5s ease;
     }
 
-    .testimonial-avatar img {
+    .author-avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .testimonial:hover .testimonial-avatar {
-      transform: scale(1.1);
+    .author-avatar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid rgba(168, 184, 169, 0.3);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
 
-    .testimonial-name {
-      font-weight: 700;
-      color: var(--secondary);
-      font-size: 1.3rem;
+    .testimonial-card:hover .author-avatar::before {
+      opacity: 1;
+    }
+
+    .author-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .author-role {
+      font-size: 0.9rem;
+      color: var(--taupe);
+      font-weight: 500;
     }
 
     /* Gallery */
     .gallery {
-      padding: 12rem 0;
-      background-color: var(--primary);
-      position: relative;
+      padding: 8rem 0;
+      background-color: white;
       overflow: hidden;
+      position: relative;
     }
 
     .gallery::before {
       content: '';
       position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      height: 200px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 500 200" preserveAspectRatio="none"><rect width="500" height="200" fill="none"/><path d="M0,150 Q125,170 250,150 T500,150 Z" fill="%23e8e4d9" opacity="0.7"/></svg>') repeat-x;
-      background-size: 500px 200px;
-      z-index: 1;
+      top: -5%;
+      left: -5%;
+      width: 300px;
+      height: 300px;
+      border: 1px solid rgba(168,184,169,0.2);
+      border-radius: 50%;
+      z-index: 0;
     }
 
     .gallery::after {
       content: '';
       position: absolute;
-      bottom: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
+      bottom: -5%;
+      right: -5%;
+      width: 200px;
       height: 200px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 500 200" preserveAspectRatio="none"><rect width="500" height="200" fill="none"/><path d="M0,50 Q125,30 250,50 T500,50 Z" fill="%23e8e4d9" opacity="0.7"/></svg>') repeat-x;
-      background-size: 500px 200px;
-      z-index: 1;
+      border: 2px solid rgba(168,184,169,0.1);
+      border-radius: 50%;
+      z-index: 0;
     }
 
     .section-title.gallery-title {
-      margin-bottom: 8rem;
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .section-title.gallery-title::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 2px;
+      background: var(--sage);
+      border-radius: 2px;
     }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2.5rem;
-      position: relative;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
     }
 
     .gallery-item {
       position: relative;
-      height: 400px;
-      border-radius: var(--border-radius);
+      height: 360px;
       overflow: hidden;
-      box-shadow: var(--shadow);
-      transform: translateY(10px);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+      transform: translateY(40px);
       opacity: 0;
-      transition: var(--transition);
-      border: 1px solid rgba(232, 228, 217, 0.5);
-      cursor: pointer;
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-item.visible {
+      transform: translateY(0);
+      opacity: 1;
     }
 
     .gallery-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-      z-index: 2;
-    }
-
-    .gallery-item:hover .gallery-overlay {
-      opacity: 1;
-      transform: translateY(0);
+      transform: translateY(-8px);
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: var(--transition);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-
-    .gallery-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 0;
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0.4));
-      opacity: 0;
-      transition: var(--transition);
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 1.5rem;
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 1.3rem;
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-radius: var(--border-radius);
+      transform: scale(1.1) rotate(-1deg);
     }
 
     /* Contact */
     .contact {
-      padding: 12rem 0;
-      background-color: var(--background);
+      padding: 10rem 0;
+      background-color: var(--taupe);
+      color: white;
       position: relative;
       overflow: hidden;
     }
@@ -804,488 +780,396 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,80 50,50 T100,50 Z" fill="%23f4f0e6" opacity="0.5"/></svg>') repeat-x;
-      background-size: 500px 100px;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,10 L60,30 L80,30 L65,40 L70,60 L50,50 L30,60 L35,40 L20,30 L40,30 Z' fill='%23f5f2e8' opacity='0.08'/%3E%3C/svg%3E") repeat;
+      z-index: 0;
     }
 
-    .contact-form {
-      max-width: 580px;
-      margin: 4rem auto;
-      background-color: white;
-      padding: 5rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      position: relative;
-      z-index: 2;
-    }
-
-    .form-group {
-      margin-bottom: 2.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      color: var(--secondary);
-      position: relative;
-      padding-bottom: 0.5rem;
-    }
-
-    .form-group label::after {
+    .contact::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 30px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--secondary), transparent);
-      transition: var(--transition);
+      width: 100%;
+      height: 300px;
+      background: linear-gradient(180deg, rgba(212,200,184,0.3) 0%, transparent 100%);
+      z-index: 0;
     }
 
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(74, 83, 70, 0.1);
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-info h2 {
+      margin-bottom: 2rem;
+      line-height: 1.2;
+      font-weight: 700;
+      color: white;
+    }
+
+    .contact-info p {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+
+    .contact-info p:last-child {
+      margin-bottom: 3rem;
+    }
+
+    .contact-form {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 4rem 3rem;
+      border-radius: 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
     }
 
     .form-group input,
     .form-group textarea {
       width: 100%;
       padding: 1.2rem;
-      border: 2px solid rgba(232, 228, 217, 0.5);
-      border-radius: var(--border-radius);
-      font-family: 'Lato', sans-serif;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Open Sans', sans-serif;
       font-size: 1rem;
-      transition: var(--transition);
-      background: transparent;
-      font-weight: 300;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+      transition: all 0.3s ease;
     }
 
-    .form-group input:focus::placeholder,
-    .form-group textarea:focus::placeholder {
-      opacity: 0.3;
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(168, 184, 169, 0.3);
     }
 
     .form-group textarea {
-      min-height: 200px;
+      min-height: 180px;
       resize: vertical;
     }
 
     /* Footer */
     footer {
-      background-color: var(--accent);
-      color: var(--primary);
-      padding: 6rem 0 4rem;
+      background-color: var(--wood);
+      color: white;
+      padding: 5rem 0 3rem;
       position: relative;
       overflow: hidden;
     }
 
-    .footer::before {
+    footer::before {
       content: '';
       position: absolute;
-      top: -80px;
+      top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 500 100" preserveAspectRatio="none"><rect width="500" height="100" fill="none"/><path d="M0,60 Q125,20 250,60 T500,60 Z" fill="%23e8e4d9" opacity="0.1"/></svg>') repeat-x;
-      background-size: 500px 100px;
+      height: 100px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+      z-index: 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 4rem;
+      margin-bottom: 4rem;
+      position: relative;
       z-index: 1;
     }
 
-    .footer-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 5rem;
-      margin-bottom: 5rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-column h3 {
-      font-size: 1.6rem;
-      margin-bottom: 2rem;
+    .footer-logo {
+      font-size: 2rem;
       font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: white;
       position: relative;
-      padding-bottom: 0.5rem;
     }
 
-    .footer-column h3::after {
+    .footer-logo::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--sage);
+    }
+
+    .footer-about p {
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .footer-links h3 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      color: white;
+      position: relative;
+    }
+
+    .footer-links h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--sage);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      transition: color 0.3s ease;
+      position: relative;
+      padding: 0.2rem 0;
+    }
+
+    .footer-links a::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 50px;
-      height: 2px;
-      background: var(--primary);
+      width: 0;
+      height: 1px;
+      background-color: var(--sage);
+      transition: width 0.3s ease;
     }
 
-    .footer-column p,
-    .footer-column a {
-      color: var(--primary);
-      text-decoration: none;
-      margin-bottom: 1rem;
-      display: block;
-      transition: var(--transition);
-      font-weight: 300;
-      position: relative;
-      padding-left: 0.5rem;
-    }
-
-    .footer-column a::before {
-      content: '»';
-      position: absolute;
-      left: 0;
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .footer-column a:hover {
-      color: var(--light);
-      padding-left: 1rem;
-    }
-
-    .footer-column a:hover::before {
-      opacity: 1;
+    .footer-links a:hover::after {
+      width: 100%;
     }
 
     .social-icons {
       display: flex;
       gap: 1.5rem;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
 
-    .social-icons a {
-      display: inline-block;
-      width: 45px;
-      height: 45px;
+    .social-icon {
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background-color: rgba(232, 228, 217, 0.1);
+      background-color: rgba(255, 255, 255, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: var(--transition);
+      transition: all 0.4s ease;
+      font-weight: bold;
       font-size: 1.2rem;
-      color: var(--primary);
+      color: rgba(255,255,255,0.7);
     }
 
-    .social-icons a:hover {
-      background-color: var(--light);
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    .social-icon:hover {
+      background-color: white;
+      color: var(--wood);
+      transform: translateY(-4px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    .footer-bottom {
+    .copyright {
       text-align: center;
       padding-top: 3rem;
-      border-top: 1px solid rgba(232, 228, 217, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       font-size: 0.9rem;
-      color: rgba(232, 228, 217, 0.6);
+      color: rgba(255, 255, 255, 0.6);
+      position: relative;
+      z-index: 1;
     }
 
     /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
+    @keyframes fadeUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
-      filter: blur(5px);
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-      filter: blur(0px);
-    }
-
-    /* Parallax Background */
-    .hero-parallax {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('https://images.pexels.com/photos/31864405/pexels-photo-31864405.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-      background-size: cover;
-      background-position: center;
-      transform: translateY(0);
-      z-index: -2;
-      opacity: 0.8;
-      transition: transform 0.1s ease-out;
-      pointer-events: none;
-      background-attachment: fixed;
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--light);
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--accent);
-    }
-
     /* Responsive */
-    @media (max-width: 900px) {
-      h1 {
-        font-size: 3.5rem;
-      }
+    @media (max-width: 1199px) {
+      h1 { font-size: 3.2rem; }
+      .hero h1 { font-size: 3.5rem; }
+      .hero p { font-size: 1.3rem; }
+    }
 
-      h2 {
-        font-size: 2.6rem;
-      }
+    @media (max-width: 992px) {
+      h1 { font-size: 3rem; }
+      h2 { font-size: 2.5rem; }
+      .hero h1 { font-size: 3.2rem; }
+      .hero p { font-size: 1.25rem; }
+      .about { flex-direction: column; text-align: center; }
+      .about-image, .about-content { width: 100%; }
+      .about-image { margin-bottom: 5rem; }
+      .contact-content { grid-template-columns: 1fr; }
+      .contact-form { padding: 3rem 2rem; }
+    }
 
-      .hero h1 {
-        font-size: 3.5rem;
-      }
-
-      .hero p {
-        font-size: 1.3rem;
-      }
-
-      .services,
-      .about,
-      .testimonials,
-      .gallery,
-      .contact {
-        padding: 6rem 0;
-      }
-
-      .about {
-        grid-template-columns: 1fr;
+    @media (max-width: 768px) {
+      h1 { font-size: 2.8rem; }
+      h2 { font-size: 2.2rem; }
+      .hero h1 { font-size: 3rem; }
+      .hero p { font-size: 1.2rem; }
+      .hero-buttons { flex-direction: column; }
+      .cta-button, .secondary-button { width: 100%; margin-bottom: 1rem; text-align: center; }
+      .features-grid, .testimonials-grid, .gallery-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .footer-about, .footer-links {
         text-align: center;
-        gap: 3rem;
-      }
-
-      .about-image {
-        order: -1;
-        margin-left: 0;
-        padding: 0;
-        height: 400px;
-      }
-
-      .service-card {
-        padding: 2.5rem 1.5rem;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .container {
-        padding: 0 2rem;
+        margin: 0 auto;
       }
     }
 
-    @media (max-width: 650px) {
-      h1 {
-        font-size: 2.8rem;
-      }
+    @media (max-width: 576px) {
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1.1rem; }
+      .hero-content { padding: 0 1rem; }
+      .section-title { margin-bottom: 3rem; }
+      .section-title::after { width: 100px; }
+      .features, .testimonials, .gallery, .contact { padding: 5rem 0; }
+      .about { padding: 7rem 0; }
+      .about-content h2 { font-size: 2rem; }
+      .feature-card { padding: 2.5rem 1.8rem; }
+      .testimonial-card { padding: 2.5rem 2rem; }
+      .gallery-grid { gap: 1.5rem; }
+      .contact-form { padding: 2.5rem 1.5rem; }
+    }
 
-      .hero h1 {
-        font-size: 3rem;
-      }
-
-      .nav-container {
-        padding: 0 1.5rem;
-      }
-
-      .nav-links {
-        position: fixed;
-        top: 100vh;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background-color: white;
-        padding: 2rem 1.5rem;
-        align-items: center;
-        gap: 2rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        transform: translateY(-100%);
-        transition: var(--transition);
-        z-index: 900;
-      }
-
-      .nav-links.active {
-        transform: translateY(0);
-      }
-
-      .mobile-menu-button {
-        display: block;
-        position: fixed;
-        top: 1rem;
-        right: 1rem;
-        z-index: 1001;
-        padding: 0.8rem;
-        background-color: rgba(232, 228, 217, 0.8);
-      }
-
-      .about,
-      .testimonials,
-      .gallery,
-      .contact {
-        padding: 5rem 1.5rem;
-      }
-
-      .contact-form {
-        padding: 2rem;
-        margin: 3rem auto;
-      }
-
-      .footer-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        padding: 0 1.5rem;
-      }
-
-      .footer-column h3 {
-        font-size: 1.4rem;
-      }
-
-      .footer-column p {
-        margin: 0.5rem 0;
-      }
-
-      .trust-strip {
-        gap: 2rem;
-        flex-wrap: wrap;
-      }
-
-      .trust-strip span {
-        margin: 1rem;
-        padding: 0.3rem 1rem;
-        font-size: 0.9rem;
-      }
-
-      .gallery-item {
-        height: 300px;
-      }
+    /* Custom font for social icons */
+    .social-icon {
+      font-family: 'Open Sans', sans-serif;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container nav-container">
-      <a href="#" class="logo">Modern Montessori International</a>
+  <header id="header">
+    <div class="container">
       <nav>
-        <ul class="nav-links">
-          <li><a href="#services">Learning</a></li>
-          <li><a href="#about">Approach</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Connect</a></li>
-        </ul>
+        <a href="#" class="logo">Modern Montessori International</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#features">Programs</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <button class="cta-button">Enroll Today</button>
       </nav>
-      <a href="#contact" class="cta-button">Join Us</a>
-      <button class="mobile-menu-button">☰</button>
     </div>
   </header>
 
   <section class="hero">
-    <div class="hero-parallax"></div>
-    <div class="hero-content">
-      <h1>Modern Montessori International</h1>
-      <p>Learn with purpose</p>
-      <div class="hero-buttons">
-        <a href="#contact" class="cta-button">Enroll Today</a>
-        <a href="#gallery" class="secondary-button">See Our Space</a>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Learn through wonder</h1>
+        <p>A nurturing space where curiosity leads the way, and each child grows at their own rhythm.</p>
+        <div class="hero-buttons">
+          <button class="cta-button">Schedule a Visit</button>
+          <button class="secondary-button">Learn More</button>
+        </div>
       </div>
     </div>
   </section>
 
   <div class="trust-strip">
-    <span>Trusted by families in Singapore</span>
-    <span>Peaceful, nurturing environment</span>
-    <span>Certified Montessori educators</span>
+    <div class="container">Trusted by families across Singapore</div>
   </div>
 
-  <section class="services" id="services">
+  <section class="features" id="features">
     <div class="container">
-      <h2 class="section-title">Our Learning Philosophy</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">🌿</div>
-          <h3>Self-Directed Learning</h3>
-          <p>Each child explores their interests at their own pace, building independence and intrinsic motivation through hands-on, sensorial materials.</p>
+      <h2 class="section-title">Our Approach</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌿</div>
+          <h3>Child-Centered Learning</h3>
+          <p>Every child explores at their own pace. Our educators observe, guide, and support — never rush.</p>
         </div>
-        <div class="service-card">
-          <div class="service-icon">🌱</div>
-          <h3>Prepared Environment</h3>
-          <p>Thoughtfully curated spaces foster concentration, order, and beauty — where materials are accessible, orderly, and inviting to the child.</p>
+        <div class="feature-card">
+          <div class="feature-icon">📖</div>
+          <h3>Hands-On Exploration</h3>
+          <p>From manipulating sand to crafting with clay, sensory-rich materials spark deep understanding.</p>
         </div>
-        <div class="service-card">
-          <div class="service-icon">🧘</div>
-          <h3>Mindful Development</h3>
-          <p>Quiet reflection, grace and courtesy, and emotional awareness form the foundation for lifelong emotional intelligence and social grace.</p>
+        <div class="feature-card">
+          <div class="feature-icon">🌳</div>
+          <h3>Nature as Classroom</h3>
+          <p>Outdoor play, garden tending, and seasonal observation cultivate care for our shared world.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section class="about" id="about">
-    <div class="container">
-      <div class="about-image">
-        <img src="https://images.pexels.com/photos/7296764/pexels-photo-7296764.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Nurturing classroom environment at Modern Montessori International">
-      </div>
-      <div class="about-content">
-        <h2>Our Approach</h2>
-        <p>Modern Montessori International blends the timeless principles of Maria Montessori with modern design and pedagogical insights. Our educators are deeply trained, and our spaces intentionally designed to support the child's natural desire to learn.</p>
-        <p>We observe, we adapt, and we follow the child — never rushing development, but creating conditions where growth unfolds naturally. In an age of noise and distraction, we offer the quiet, intentional space children need to become their best selves.</p>
-        <p>Our curriculum balances freedom with responsibility, fostering not just academic skills, but character, resilience, and a profound respect for self and community.</p>
-      </div>
+    <div class="about-image">
+      <img src="https://images.pexels.com/photos/8923258/pexels-photo-8923258.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Campus interior with children engaged in quiet activity">
+    </div>
+    <div class="about-content">
+      <h2>Where Mindfulness Meets Discovery</h2>
+      <p>Modern Montessori International blends the timeless principles of Maria Montessori with thoughtful, contemporary design. Our spaces are calm, luminous, and curated — not cluttered. We believe a serene environment invites deep concentration and genuine learning.</p>
+      <p>Our educators are trained specialists who observe each child with patience and joy, offering precisely the right challenge at the right time — never pushing, never pulling, always trusting the child’s innate drive to grow.</p>
     </div>
   </section>
 
-  <section class="testimonials" id="testimonials">
+  <section class="testimonials">
     <div class="container">
-      <h2 class="section-title testimonials-title">Voices of Our Community</h2>
+      <h2 class="section-title testimonials-title">Voices from Our Community</h2>
       <div class="testimonials-grid">
-        <div class="testimonial">
-          <p>A space where my daughter finally blossomed — not because she was taught to, but because she was allowed to discover herself.</p>
+        <div class="testimonial-card">
+          <p class="testimonial-text">The quiet joy I see in my daughter every morning — the way she chooses her work, concentrates with such peace — is priceless. This isn’t just preschool, it’s the beginning of a lifelong love of learning.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <img src="https://images.pexels.com/photos/18991702/pexels-photo-18991702.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Parent avatar">
+            <div class="author-avatar">A</div>
+            <div>
+              <div class="author-name">Amelia Tan</div>
+              <div class="author-role">Parent of 5-year-old</div>
             </div>
-            <div class="testimonial-name">Local Parent</div>
           </div>
         </div>
-        <div class="testimonial">
-          <p>Every detail is calibrated for peace. The light, the textures, the quiet — it feels like the school was made for children, not administrators.</p>
+        <div class="testimonial-card">
+          <p class="testimonial-text">I’ve seen many preschools, but this is the first where I feel truly respected as a partner in my child’s growth. The communication, the thoughtfulness, the intentionality — it’s transformative.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <img src="https://images.pexels.com/photos/5256524/pexels-photo-5256524.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Parent avatar">
+            <div class="author-avatar">R</div>
+            <div>
+              <div class="author-name">Ravi Mehta</div>
+              <div class="author-role">Parent of 4-year-old</div>
             </div>
-            <div class="testimonial-name">Verified Customer</div>
           </div>
         </div>
-        <div class="testimonial">
-          <p>My child’s curiosity has grown exponentially. She wakes up excited to go to school — something we never thought possible.</p>
+        <div class="testimonial-card">
+          <p class="testimonial-text">My son came home from his first week speaking in full sentences and managing his own schedule. He even told me, 'Mama, it's time for circle time!' Wasn't expecting that.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <img src="https://images.pexels.com/photos/9667023/pexels-photo-9667023.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Parent avatar">
+            <div class="author-avatar">S</div>
+            <div>
+              <div class="author-name">Sofia Nguyen</div>
+              <div class="author-role">Parent of 3-year-old</div>
             </div>
-            <div class="testimonial-name">Parent of Three-Year-Old</div>
           </div>
         </div>
       </div>
@@ -1294,31 +1178,19 @@
 
   <section class="gallery" id="gallery">
     <div class="container">
-      <h2 class="section-title gallery-title">Our Sanctuary</h2>
+      <h2 class="section-title gallery-title">A Day in Our Spaces</h2>
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/8923039/pexels-photo-8923039.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Wooden classroom materials">
-          <div class="gallery-overlay">Curiosity in Motion</div>
+          <img src="https://images.pexels.com/photos/8499488/pexels-photo-8499488.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Child working with wooden beads on a low shelf">
         </div>
         <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/9667023/pexels-photo-9667023.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Quiet reading corner">
-          <div class="gallery-overlay">Calm Discovery</div>
+          <img src="https://images.pexels.com/photos/7782160/pexels-photo-7782160.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Children planting seedlings in a small garden">
         </div>
         <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/5256524/pexels-photo-5256524.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Outdoor nature exploration">
-          <div class="gallery-overlay">Nature as Teacher</div>
+          <img src="https://images.pexels.com/photos/6694322/pexels-photo-6694322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Group sitting in a circle listening to a story">
         </div>
         <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/7296764/pexels-photo-7296764.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Child engaging with art materials">
-          <div class="gallery-overlay">Creative Expression</div>
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/31864405/pexels-photo-31864405.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Natural light streaming into classroom">
-          <div class="gallery-overlay">Light & Quiet</div>
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/18991702/pexels-photo-18991702.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Children participating in group activity">
-          <div class="gallery-overlay">Community of Learners</div>
+          <img src="https://images.pexels.com/photos/31864442/pexels-photo-31864442.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Quiet morning light in a wood-paneled classroom">
         </div>
       </div>
     </div>
@@ -1326,23 +1198,26 @@
 
   <section class="contact" id="contact">
     <div class="container">
-      <div class="contact-form">
-        <h2 class="section-title">Begin Your Journey</h2>
-        <p>Fill out the form below to request an orientation tour or learn about our enrollment process.</p>
-        <form>
+      <div class="contact-content">
+        <div class="contact-info">
+          <h2>Join Our Community at 76 South Bridge Road</h2>
+          <p>Modern Montessori International invites families to experience an environment where independence, curiosity, and calm coexist. Scheduled visits are the best way to see if our values align with yours.</p>
+          <p>Arrive ready to observe quietly. Listen to the purposeful hum of concentration. Children learn best when they are not interrupted.</p>
+        </div>
+        <form class="contact-form">
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Your name">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="Enter your full name" required>
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Your email">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="yourname@example.com" required>
           </div>
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" placeholder="Tell us about your child and what you're looking for..."></textarea>
+            <textarea id="message" placeholder="What drew you to Modern Montessori International?"></textarea>
           </div>
-          <button type="submit" class="cta-button">Request a Tour</button>
+          <button type="submit" class="cta-button">Request a Visit</button>
         </form>
       </div>
     </div>
@@ -1350,128 +1225,111 @@
 
   <footer>
     <div class="container">
-      <div class="footer-container">
-        <div class="footer-column">
-          <h3>Modern Montessori International</h3>
-          <p>76 South Bridge Road<br>Singapore 058706</p>
-        </div>
-        <div class="footer-column">
-          <h3>Explore</h3>
-          <a href="#services">Learning Philosophy</a>
-          <a href="#about">Our Approach</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#contact">Enroll</a>
-        </div>
-        <div class="footer-column">
-          <h3>Connect</h3>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Careers</a>
-        </div>
-        <div class="footer-column">
-          <h3>Social</h3>
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="footer-logo">Modern Montessori International</div>
+          <p>76 South Bridge Road, Singapore 058706</p>
           <div class="social-icons">
-            <a href="#">FB</a>
-            <a href="#">IG</a>
-            <a href="#">LI</a>
+            <a href="#" class="social-icon">I</a>
+            <a href="#" class="social-icon">F</a>
+            <a href="#" class="social-icon">I</a>
           </div>
         </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#about">Our Philosophy</a></li>
+            <li><a href="#features">Programs</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Visit Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#">For New Parents</a></li>
+            <li><a href="#">Montessori Principles</a></li>
+            <li><a href="#">Summer Programs</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Modern Montessori International. All Rights Reserved.</p>
+      <div class="copyright">
+        © 2026 Modern Montessori International. All rights reserved.
       </div>
     </div>
   </footer>
 
   <script>
-    // Sticky header
+    // Sticky Header
+    const header = document.getElementById('header');
+    let scrollPosition = 0;
+
     window.addEventListener('scroll', () => {
-      const header = document.querySelector('header');
-      if (window.scrollY > 50) {
+      const currentPosition = window.pageYOffset;
+      if (currentPosition > scrollPosition && currentPosition > 100) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
+      scrollPosition = currentPosition;
     });
 
-    // Mobile menu toggle
-    const mobileButton = document.querySelector('.mobile-menu-button');
-    const navLinks = document.querySelector('.nav-links');
-    if (mobileButton && navLinks) {
-      mobileButton.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-      });
-    }
-
-    // Hero content fade-in
-    setTimeout(() => {
-      document.querySelector('.hero-content').classList.add('show');
-    }, 500);
-
-    // Fade-in animations on scroll
-    const fadeElements = document.querySelectorAll('.service-card, .about-content, .testimonial, .gallery-item, .contact-form, .hero-content');
-    
+    // Intersection Observer for fade-in sections
     const observerOptions = {
+      root: null,
       threshold: 0.1,
       rootMargin: '0px'
     };
 
-    const fadeObserver = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    fadeElements.forEach(element => {
-      element.classList.add('fade-in');
-      fadeObserver.observe(element);
+    // Hero content
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.querySelector('.hero-content').classList.add('visible');
+        document.querySelector('.hero-buttons').classList.add('visible');
+      }, 300);
     });
 
-    // Smooth scroll for anchor links
+    // All section elements
+    const fadeElements = document.querySelectorAll('.hero-content, .features-grid, .about-image, .about-content, .testimonials-grid, .gallery-grid, .contact-content, .feature-card, .testimonial-card, .gallery-item');
+    fadeElements.forEach(el => {
+      observer.observe(el);
+    });
+
+    // Gallery hover effect enhancement
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        item.querySelector('img').style.transform = 'scale(1.1) rotate(-1deg)';
+      });
+
+      item.addEventListener('mouseleave', () => {
+        item.querySelector('img').style.transform = 'scale(1)';
+      });
+    });
+
+    // Smooth scroll links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
         
-        // Close mobile menu if open
-        if (navLinks && navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-        }
-      });
-    });
-
-    // Parallax effect on scroll
-    const heroParallax = document.querySelector('.hero-parallax');
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.pageYOffset;
-      const parallaxValue = scrollTop * 0.15;
-      heroParallax.style.transform = `translateY(${parallaxValue}px)`;
-    });
-
-    // Gallery card hover effect
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    galleryItems.forEach(item => {
-      item.addEventListener('mouseenter', () => {
-        const overlay = item.querySelector('.gallery-overlay');
-        if (overlay) {
-          overlay.style.opacity = '1';
-          overlay.style.transform = 'translateY(0)';
-        }
-      });
-      
-      item.addEventListener('mouseleave', () => {
-        const overlay = item.querySelector('.gallery-overlay');
-        if (overlay) {
-          overlay.style.opacity = '0';
-          overlay.style.transform = 'translateY(10px)';
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
         }
       });
     });
   </script>
 <script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=TW9kZXJuIE1vbnRlc3NvcmkgSW50ZXJuYXRpb25hbA&u=dmlzaXQ&s=b68a4b4a9ef2033372de13271ce268df&beacon=1&l=b3NtLW5vZGUtMzQ2MDgzMTQ0MQ";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:3612582682--></html>
+<!--bld:0efa9e14a3--></html>
