@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KPO</title>
+  <style>
+    :root {
+      --charcoal: #1a1a1a;
+      --burnt-sienna: #a64c2a;
+      --brass: #b8860b;
+      --slate-gray: #3a4450;
+      --deep-amber: #8b4513;
+      --light: #f5f0e6;
+      --gradient-start: #1a1a1a;
+      --gradient-end: #0d0d0d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+      color: var(--light);
+      overflow-x: hidden;
+      line-height: 1.7;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    h1 {
+      font-size: 5rem;
+      line-height: 0.9;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+    }
+
+    a {
+      color: var(--brass);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--light);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* --- STICKY NAV --- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1.5rem 0;
+      background: transparent;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184, 134, 11, 0.1);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    nav.scrolled {
+      background: rgba(26, 26, 26, 0.96);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(184, 134, 11, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-container.scrolled {
+      transform: translateY(-2px);
+    }
+
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--light);
+      letter-spacing: -0.8px;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--brass);
+      transition: width 0.4s ease, background 0.4s ease;
+    }
+
+    .logo:hover::after {
+      width: 100%;
+      background: var(--light);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+    }
+
+    .nav-links a {
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--brass), transparent);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .nav-links a:hover::before {
+      transform: scaleX(1);
+    }
+
+    .nav-links a:hover {
+      color: var(--light);
+      transform: translateY(-2px);
+    }
+
+    .cta-button {
+      background: transparent;
+      border: 1px solid var(--brass);
+      color: var(--brass);
+      padding: 0.7rem 1.8rem;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-radius: 50px;
+      box-shadow: 0 4px 16px rgba(184, 134, 11, 0.1);
+    }
+
+    .cta-button:hover {
+      background: var(--brass);
+      color: var(--charcoal);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(184, 134, 11, 0.3);
+    }
+
+    /* --- HERO --- */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background-image: url(https://images.pexels.com/photos/26626726/pexels-photo-26626726.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(166, 76, 42, 0.4));
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(180deg, transparent, rgba(26, 26, 26, 0.6));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 3rem;
+      max-width: 800px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: heroFadeIn 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.2s;
+    }
+
+    @keyframes heroFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      font-size: 6.5rem;
+      margin-bottom: 1.2rem;
+      line-height: 0.9;
+      color: var(--light);
+      text-shadow: 0 6px 30px rgba(0, 0, 0, 0.7), 0 0 50px rgba(184, 134, 11, 0.2);
+      font-weight: 800;
+      position: relative;
+    }
+
+    .hero h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--brass), transparent);
+      opacity: 0.8;
+    }
+
+    .hero p {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      color: var(--light);
+      opacity: 0.92;
+      font-weight: 400;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .hero p::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40%;
+      height: 1px;
+      background: rgba(184, 134, 11, 0.5);
+      opacity: 0.6;
+    }
+
+    .hero-cta-container {
+      display: flex;
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .hero-cta-container .cta-button {
+      padding: 0.8rem 2rem;
+      font-size: 1.05rem;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .hero-cta-container .cta-button:first-child {
+      background: var(--brass);
+      color: var(--charcoal);
+      box-shadow: 0 8px 24px rgba(184, 134, 11, 0.4);
+    }
+
+    .hero-cta-container .cta-button:first-child:hover {
+      background: var(--light);
+      color: var(--deep-amber);
+      transform: scale(1.05);
+    }
+
+    .hero-cta-container .cta-button:last-child {
+      background: transparent;
+      border-color: var(--brass);
+      color: var(--brass);
+    }
+
+    /* --- TRUST STRIP --- */
+    .trust-strip {
+      padding: 1rem 0;
+      background: rgba(26, 26, 26, 0.96);
+      text-align: center;
+      font-size: 0.9rem;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(184, 134, 11, 0.1);
+      border-bottom: 1px solid rgba(184, 134, 11, 0.1);
+      opacity: 0.85;
+      position: relative;
+      margin: 0;
+    }
+
+    .trust-strip::before {
+      content: '•';
+      margin: 0 0.5rem;
+      color: var(--brass);
+      opacity: 0.7;
+    }
+
+    .trust-strip::after {
+      content: '•';
+      margin: 0 0.5rem;
+      color: var(--brass);
+      opacity: 0.7;
+    }
+
+    /* --- FEATURES --- */
+    .features {
+      padding: 10rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .features h2 {
+      text-align: center;
+      margin-bottom: 6rem;
+      font-size: 3.2rem;
+      color: var(--light);
+      position: relative;
+    }
+
+    .features h2::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--brass), transparent);
+      border-radius: 10px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 4rem;
+    }
+
+    .feature-card {
+      background: rgba(166, 76, 42, 0.08);
+      padding: 3.5rem 2.8rem;
+      border-radius: 20px;
+      border: 1px solid rgba(184, 134, 11, 0.1);
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: default;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(184, 134, 11, 0.05), transparent);
+      transform: rotate(20deg);
+      transition: transform 0.6s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(184, 134, 11, 0.15);
+    }
+
+    .feature-card:hover::before {
+      transform: rotate(20deg) translateX(50%);
+    }
+
+    .feature-card svg {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 2.5rem;
+      fill: var(--brass);
+      transition: all 0.5s ease;
+    }
+
+    .feature-card:hover svg {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1.8rem;
+      color: var(--light);
+      font-weight: 600;
+    }
+
+    .feature-card p {
+      font-size: 1.3rem;
+      margin-bottom: 0;
+      opacity: 0.85;
+      line-height: 1.6;
+    }
+
+    /* --- ABOUT --- */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 12rem 0;
+      gap: 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 50px 100px rgba(0, 0, 0, 0.6);
+      margin-left: -3rem;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      object-fit: cover;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05) translateY(-10px);
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(166, 76, 42, 0.05), transparent);
+      transition: opacity 0.6s ease;
+    }
+
+    .about-image:hover::before {
+      opacity: 0.1;
+    }
+
+    .about-content h2 {
+      margin-bottom: 2.5rem;
+      font-size: 3.8rem;
+      color: var(--light);
+      line-height: 1.1;
+    }
+
+    .about-content p {
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.85;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .about-content p::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -120px;
+      width: 8px;
+      height: 1px;
+      background: var(--brass);
+      opacity: 0.6;
+    }
+
+    .about-content p::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -120px;
+      width: 8px;
+      height: 1px;
+      background: var(--brass);
+      opacity: 0.6;
+    }
+
+    /* --- TESTIMONIALS --- */
+    .testimonials {
+      padding: 10rem 0;
+      background: rgba(26, 26, 26, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+      margin-bottom: 6rem;
+      font-size: 3.2rem;
+      color: var(--light);
+      position: relative;
+    }
+
+    .testimonials h2::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--brass), transparent);
+      border-radius: 10px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 4rem;
+    }
+
+    .testimonial-card {
+      background: rgba(166, 76, 42, 0.08);
+      padding: 4rem 3rem;
+      border-radius: 20px;
+      border: 1px solid rgba(184, 134, 11, 0.1);
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 25px;
+      font-size: 10rem;
+      font-family: 'Playfair Display', serif;
+      color: rgba(184, 134, 11, 0.1);
+      line-height: 0.8;
+      z-index: 0;
+      font-weight: 400;
+    }
+
+    .testimonial-text {
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+      line-height: 1.7;
+      color: var(--light);
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .testimonial-author img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--brass);
+      transition: all 0.5s ease;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .testimonial-author img:hover {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .testimonial-author h4 {
+      font-size: 1.4rem;
+      color: var(--light);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .testimonial-author p {
+      font-size: 1.2rem;
+      opacity: 0.75;
+      font-style: normal;
+      margin: 0;
+      letter-spacing: 0.4px;
+    }
+
+    /* --- GALLERY --- */
+    .gallery {
+      padding: 10rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery h2 {
+      text-align: center;
+      margin-bottom: 6rem;
+      font-size: 3.2rem;
+      color: var(--light);
+      position: relative;
+    }
+
+    .gallery h2::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 180px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--brass), transparent, var(--brass));
+      border-radius: 20px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      height: 380px;
+      border-radius: 16px;
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: 1;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.5));
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 2;
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 1.2s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.12) rotate(-1deg);
+    }
+
+    /* --- CONTACT --- */
+    .contact {
+      padding: 12rem 0;
+      background: rgba(26, 26, 26, 0.96);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact h2 {
+      text-align: center;
+      margin-bottom: 6rem;
+      font-size: 4rem;
+      color: var(--light);
+      position: relative;
+    }
+
+    .contact h2::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--brass), transparent, var(--brass));
+      border-radius: 20px;
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 3rem 2rem;
+      background: rgba(166, 76, 42, 0.05);
+      border-radius: 24px;
+      border: 1px solid rgba(184, 134, 11, 0.1);
+      box-shadow: 0 40px 120px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .form-group label {
+      font-size: 1.3rem;
+      color: var(--brass);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+
+    .form-group label::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 50%;
+      height: 1px;
+      background: var(--brass);
+      opacity: 0.5;
+      transition: width 0.4s ease;
+    }
+
+    .form-group label:hover::after {
+      width: 100%;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 1.4rem;
+      background: rgba(26, 26, 26, 0.8);
+      border: 1px solid rgba(184, 134, 11, 0.1);
+      color: var(--light);
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      border-radius: 10px;
+      resize: vertical;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--brass);
+      box-shadow: 0 0 0 2px rgba(184, 134, 11, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .form-group textarea {
+      min-height: 180px;
+      padding-top: 1.4rem;
+    }
+
+    .contact-submit {
+      margin-top: 2rem;
+      padding: 1.6rem 4rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      background: var(--brass);
+      color: var(--charcoal);
+      cursor: pointer;
+      border: none;
+      border-radius: 50px;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 12px 40px rgba(184, 134, 11, 0.3);
+    }
+
+    .contact-submit:hover {
+      background: var(--light);
+      color: var(--deep-amber);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 16px 50px rgba(184, 134, 11, 0.5);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background: var(--charcoal);
+      padding: 6rem 0 3rem;
+      border-top: 1px solid rgba(184, 134, 11, 0.2);
+      position: relative;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 5rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand {
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand h3 {
+      color: var(--brass);
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-brand h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--brass);
+    }
+
+    .footer-brand p {
+      font-size: 1.2rem;
+      opacity: 0.7;
+      max-width: 400px;
+      line-height: 1.7;
+      color: var(--light);
+    }
+
+    .footer-links h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1.8rem;
+      color: var(--brass);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      position: relative;
+    }
+
+    .footer-links h4::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--brass);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      display: block;
+      color: var(--light);
+      font-size: 1.2rem;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .footer-links a::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: var(--light);
+      transform: translateX(5px);
+    }
+
+    .footer-links a:hover::before {
+      opacity: 1;
+    }
+
+    .footer-social a {
+      display: inline-block;
+      margin-right: 2rem;
+      color: var(--brass);
+      font-size: 2rem;
+      transition: all 0.4s ease;
+      text-transform: capitalize;
+    }
+
+    .footer-social a:hover {
+      color: var(--light);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid rgba(184, 134, 11, 0.1);
+      padding-top: 2.5rem;
+      font-size: 1rem;
+      opacity: 0.6;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .footer-bottom::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 1px;
+      background: var(--brass);
+      opacity: 0.4;
+    }
+
+    /* --- DECORATIONS --- */
+    .section-divider {
+      height: 140px;
+      width: 100%;
+      overflow: hidden;
+      margin: 0;
+      position: relative;
+    }
+
+    .section-divider svg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.12;
+    }
+
+    .svg-wave {
+      fill: var(--burnt-sienna);
+      opacity: 0.12;
+      shape-rendering: geometricPrecision;
+    }
+
+    .floating-shapes {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: -1;
+      overscroll-behavior: contain;
+    }
+
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--burnt-sienna);
+      opacity: 0.08;
+      filter: blur(20px);
+      z-index: -1;
+    }
+
+    .shape1 {
+      width: 400px;
+      height: 400px;
+      top: 15%;
+      left: 6%;
+      animation: float 20s ease-in-out infinite;
+      background: radial-gradient(circle, var(--brass) 0%, transparent 70%);
+    }
+
+    .shape2 {
+      width: 500px;
+      height: 500px;
+      top: 55%;
+      left: 30%;
+      animation: float 25s ease-in-out infinite 2s;
+      background: radial-gradient(circle, var(--burnt-sienna) 0%, transparent 80%);
+    }
+
+    .shape3 {
+      width: 300px;
+      height: 300px;
+      bottom: 5%;
+      right: 12%;
+      animation: float 18s ease-in-out infinite 1s;
+      background: radial-gradient(circle, var(--brass) 0%, transparent 60%);
+    }
+
+    .shape4 {
+      width: 200px;
+      height: 200px;
+      bottom: 15%;
+      left: 25%;
+      animation: float 16s ease-in-out infinite 0.5s;
+      background: radial-gradient(circle, var(--burnt-sienna) 0%, transparent 75%);
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-30px) rotate(180deg);
+      }
+    }
+
+    /* --- ANIMATED BACKGROUND GLITCH --- */
+    .hero::after,
+    .about::after,
+    .testimonials::after,
+    .gallery::after,
+    .contact::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(166, 76, 42, 0.03) 80%, rgba(26, 26, 26, 0.1) 100%);
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .hero::after {
+      opacity: 0.3;
+    }
+
+    /* --- MOBILE --- */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        line-height: 1;
+        font-weight: 700;
+      }
+
+      .hero p {
+        font-size: 1.7rem;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .nav-links {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .feature-grid,
+      .testimonial-grid,
+      .gallery-grid {
+        gap: 2.5rem;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        padding: 8rem 0;
+      }
+
+      .about-image {
+        margin-left: 0;
+        border-radius: 20px;
+      }
+
+      .about-content h2 {
+        font-size: 2.8rem;
+      }
+
+      .about-content p {
+        font-size: 1.3rem;
+      }
+
+      .gallery-item {
+        height: 240px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .contact-form {
+        margin: 0 1rem;
+        padding: 2rem;
+        border-radius: 18px;
+      }
+
+      .contact h2 {
+        font-size: 3rem;
+      }
+
+      .contact-submit {
+        padding: 1.4rem 3rem;
+        font-size: 1.2rem;
+      }
+
+      .section-divider {
+        height: 70px;
+      }
+
+      .trust-strip,
+      .footer-bottom,
+      .footer-links ul,
+      .nav-links a {
+        font-size: 0.9rem;
+        letter-spacing: 0.4px;
+      }
+
+      .hero-cta-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .hero-cta-container .cta-button {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .social-icons {
+        justify-content: center;
+      }
+    }
+
+    /* --- SMALL MOBILE --- */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+      }
+
+      .features h2,
+      .testimonials h2,
+      .gallery h2 {
+        font-size: 2.5rem;
+      }
+
+      .about h2 {
+        font-size: 2.3rem;
+      }
+
+      .contact h2 {
+        font-size: 2.8rem;
+      }
+
+      .feature-card,
+      .testimonial-card {
+        padding: 2rem 1.2rem;
+      }
+
+      .feature-card svg {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 2rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        padding: 1.2rem;
+        font-size: 1.1rem;
+      }
+
+      .contact-submit {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.1rem;
+      }
+
+      .footer-brand p {
+        font-size: 1rem;
+      }
+
+      .footer-links h4,
+      .footer-links a {
+        font-size: 0.9rem;
+      }
+
+      .footer-social a {
+        font-size: 1.6rem;
+      }
+
+      .section-divider {
+        height: 50px;
+      }
+
+      .about-image,
+      .gallery-item {
+        border-radius: 12px;
+      }
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* --- ANIMATED REVEAL --- */
+    .reveal {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    .feature-card,
+    .testimonial-card,
+    .gallery-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+  </style>
+</head>
+<body>
+  <nav id="mainNav">
+    <div class="container nav-container">
+      <a href="#" class="logo">KPO</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="cta-button">Reserve</button>
+    </div>
+  </nav>
+
+  <div class="hero" id="home">
+    <div class="hero-content">
+      <h1>KPO</h1>
+      <p>Where silence pours</p>
+      <div class="hero-cta-container">
+        <button class="cta-button">Discover</button>
+        <button class="cta-button">Reserve</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust-strip">Trusted by quiet patrons | Expertly curated | Intimate experience</div>
+
+  <div class="features" id="features">
+    <div class="container">
+      <h2>Experience Silence</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-10h2v3h3v2h-3v3h-2v-3H7v-2h3V7z"/>
+          </svg>
+          <h3>Crafted Spirits</h3>
+          <p>Hand-selected liquors and rare distillations, each chosen for complexity over volume.</p>
+        </div>
+        <div class="feature-card">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 12.5L12 16 6 12.5 12 9z"/>
+            <path d="M3 22h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V6H3v2zm0-4h18V2H3v2z"/>
+          </svg>
+          <h3>Atmospheric Design</h3>
+          <p>Warm lighting, tactile wood, velvet tones — every detail designed to quiet the mind.</p>
+        </div>
+        <div class="feature-card">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l6.59-6.59L19 8l-7 7z"/>
+          </svg>
+          <h3>Uninterrupted Hours</h3>
+          <p>No music, no noise. Just perfect pours and the sound of stillness.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path class="svg-wave" d="M0,0V46.29c47.79,22.2,97.28,32.77,139.61,28.83,22.25-3.07,51.11-17.05,70.02-30.86C289.84,99.68,393.59,126.06,419.2,126.07c13.76,0,48.14-23.87,97-38.84,16.8-5.37,46-22.18,64.28-30.77,15.97-7.2,31.68-10.4,46.23-10.56C542.2,64.66,553,65.29,563,66.21C584.57,69.72,624.34,76.74,642.73,79.42c27.73,3.87,49.85,1.43,71.64-4.08,7.32-2.13,8.79-2.71,10.88-3.93,10.86-6.45,21.94-16.7,27.68-20.34,4.9-3.16,7.37-5.6,10.32-8.87,4.55-5.59,10.49-12.29,14.72-16.36,3.09-2.86,5.42-5.32,8.77-8.68C831.55,4.85,859.7,1.82,883,1.82c0,0,90,14,208,14,70,14,100,21,100,21,0,0,0,0,0,0.38L1200,67.2V0L1198,3.3S1165.32,30,1128.21,73.56C1107.4,92.43,1076.75,114,1042,109.5s-37.25-13.5-57.5-18L949,55c-10-2-30,3-30,3s-50,10-65,10C876.65,65,860,65,860,65l-8,8c-15.15,14.1-65.33,54.15-95.09,60.16-8.61,1.8-18.5,2-29.39,1.22C632.42,126,587,115.5,569.5,108.5C526.5,89.24,473,75.5,441.5,77.5C403.37,79.35,336.6,112.23,336.6,112.23c80.78,7.9,138.77,52,164,80.77C512.34,179.73,542,189,542,189l-34.82,4.06c-64.64,7.42-123.37-11-123.37-11S404,183,368,178.56c-8.4-1.19-31.46-5.21-37.57-8-6.11-2.79-15.37-8-17.54-8.57-1.96-.48-8.53,3-8.53,3v11z" />
+    </svg>
+  </div>
+
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/31970859/pexels-photo-31970859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Interior of KPO bar with warm lighting and wooden details" />
+      </div>
+      <div class="about-content">
+        <h2>A sanctuary in quiet</h2>
+        <p>KPO is not a bar you find — it's a space you remember. Created for those who seek more than a drink, but a moment. A place where time softens, and conversation becomes a hush. No loud music, no crowds, no distractions. Just the glow of brass, the warmth of oak, and the quiet precision of a perfectly poured spirit.</p>
+        <p>Our doors open for those who understand: silence isn't empty. It's full — of memory, feeling, and the space between notes.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path class="svg-wave" d="M0,0V46.29c47.79,22.2,97.28,32.77,139.61,28.83,22.25-3.07,51.11-17.05,70.02-30.86C289.84,99.68,393.59,126.06,419.2,126.07c13.76,0,48.14-23.87,97-38.84,16.8-5.37,46-22.18,64.28-30.77,15.97-7.2,31.68-10.4,46.23-10.56C542.2,64.66,553,65.29,563,66.21C584.57,69.72,624.34,76.74,642.73,79.42c27.73,3.87,49.85,1.43,71.64-4.08,7.32-2.13,8.79-2.71,10.88-3.93,10.86-6.45,21.94-16.7,27.68-20.34,4.9-3.16,7.37-5.6,10.32-8.87,4.55-5.59,10.49-12.29,14.72-16.36,3.09-2.86,5.42-5.32,8.77-8.68C831.55,4.85,859.7,1.82,883,1.82c0,0,90,14,208,14,70,14,100,21,100,21,0,0,0,0,0,0.38L1200,67.2V0L1198,3.3S1165.32,30,1128.21,73.56C1107.4,92.43,1076.75,114,1042,109.5s-37.25-13.5-57.5-18L949,55c-10-2-30,3-30,3s-50,10-65,10C876.65,65,860,65,860,65l-8,8c-15.15,14.1-65.33,54.15-95.09,60.16-8.61,1.8-18.5,2-29.39,1.22C632.42,126,587,115.5,569.5,108.5C526.5,89.24,473,75.5,441.5,77.5C403.37,79.35,336.6,112.23,336.6,112.23c80.78,7.9,138.77,52,164,80.77C512.34,179.73,542,189,542,189l-34.82,4.06c-64.64,7.42-123.37-11-123.37-11S404,183,368,178.56c-8.4-1.19-31.46-5.21-37.57-8-6.11-2.79-15.37-8-17.54-8.57-1.96-.48-8.53,3-8.53,3v11z" />
+    </svg>
+  </div>
+
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2>Voices in silence</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">I came for a drink. I stayed for an hour without saying a word. That’s how deep the quiet gets here.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/26626726/pexels-photo-26626726.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Profile of a quiet patron" />
+            <div>
+              <h4>Local Client</h4>
+              <p>Regular since 2023</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">The lighting. The glassware. The stillness. No bar has ever made me feel more present.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/31970859/pexels-photo-31970859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Profile of a thoughtful guest" />
+            <div>
+              <h4>Verified Customer</h4>
+              <p>From downtown</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">I’ve visited 200 bars. This is the only one I’ve brought my father to. He didn’t say a word, and neither did I. That’s the highest praise.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/29392061/pexels-photo-29392061.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Profile of a returning guest" />
+            <div>
+              <h4>Local Client</h4>
+              <p>Found us by chance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2>Stillness in frames</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/29392061/pexels-photo-29392061.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Bar top with amber liquid and brass tools" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/6908562/pexels-photo-6908562.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Warm wooden shelves with bottles and low lighting" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/5359300/pexels-photo-5359300.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Empty corner with velvet chair and single pendant light" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/3937673/pexels-photo-3937673.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Glass being filled by bartender in soft focus" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/29392061/pexels-photo-29392061.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Brass cocktail shaker and glass on dark oak" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/5359300/pexels-photo-5359300.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Candlelight on a single empty stool" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path class="svg-wave" d="M0,0V46.29c47.79,22.2,97.28,32.77,139.61,28.83,22.25-3.07,51.11-17.05,70.02-30.86C289.84,99.68,393.59,126.06,419.2,126.07c13.76,0,48.14-23.87,97-38.84,16.8-5.37,46-22.18,64.28-30.77,15.97-7.2,31.68-10.4,46.23-10.56C542.2,64.66,553,65.29,563,66.21C584.57,69.72,624.34,76.74,642.73,79.42c27.73,3.87,49.85,1.43,71.64-4.08,7.32-2.13,8.79-2.71,10.88-3.93,10.86-6.45,21.94-16.7,27.68-20.34,4.9-3.16,7.37-5.6,10.32-8.87,4.55-5.59,10.49-12.29,14.72-16.36,3.09-2.86,5.42-5.32,8.77-8.68C831.55,4.85,859.7,1.82,883,1.82c0,0,90,14,208,14,70,14,100,21,100,21,0,0,0,0,0,0.38L1200,67.2V0L1198,3.3S1165.32,30,1128.21,73.56C1107.4,92.43,1076.75,114,1042,109.5s-37.25-13.5-57.5-18L949,55c-10-2-30,3-30,3s-50,10-65,10C876.65,65,860,65,860,65l-8,8c-15.15,14.1-65.33,54.15-95.09,60.16-8.61,1.8-18.5,2-29.39,1.22C632.42,126,587,115.5,569.5,108.5C526.5,89.24,473,75.5,441.5,77.5C403.37,79.35,336.6,112.23,336.6,112.23c80.78,7.9,138.77,52,164,80.77C512.34,179.73,542,189,542,189l-34.82,4.06c-64.64,7.42-123.37-11-123.37-11S404,183,368,178.56c-8.4-1.19-31.46-5.21-37.57-8-6.11-2.79-15.37-8-17.54-8.57-1.96-.48-8.53,3-8.53,3v11z" />
+    </svg>
+  </div>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Enter quietly</h2>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" id="name" placeholder="Just your name, please" />
+        </div>
+        <div class="form-group">
+          <label for="email">Your email</label>
+          <input type="email" id="email" placeholder="We'll wait for you" />
+        </div>
+        <div class="form-group">
+          <label for="message">What brings you here</label>
+          <textarea id="message" placeholder="No need to rush..."></textarea>
+        </div>
+        <button type="submit" class="contact-submit">Reserve a moment</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>KPO</h3>
+          <p>Where silence pours. Intentionally quiet. Thoughtfully crafted. For those who know that the best conversations happen between words.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Hours</h4>
+          <ul>
+            <li>Friday: 5pm - 11pm</li>
+            <li>Saturday: 4pm - 12am</li>
+            <li>Sunday: 5pm - 10pm</li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Connect</h4>
+          <div class="footer-social">
+            <a href="#">Instagram</a>
+            <a href="#">Letter</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        KPO — © 2026. A quiet space.
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-shapes">
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <div class="floating-shape shape4"></div>
+  </div>
+
+  <script>
+    // Sticky nav
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('mainNav');
+      const navContainer = document.querySelector('.nav-container');
+      
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+        navContainer.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+        navContainer.classList.remove('scrolled');
+      }
+    });
+
+    // Reveal elements on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.feature-card, .testimonial-card, .gallery-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      observer.observe(el);
+    });
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.feature-card, .testimonial-card, .gallery-item').forEach(el => {
+          el.classList.add('reveal');
+        });
+      }, 600);
+    });
+
+    // Smooth scrolling
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Form submit
+    document.querySelector('.contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Your message has been received. We’ll be in touch.');
+    });
+
+    // Floating shapes randomization
+    document.addEventListener('DOMContentLoaded', () => {
+      const shapes = document.querySelectorAll('.floating-shape');
+      shapes.forEach(shape => {
+        const duration = parseFloat(getComputedStyle(shape).animationDuration);
+        shape.style.animationDelay = 'calc(' + Math.random() * 2 + 's)';
+      });
+    });
+
+    // Enhanced parallax effect for hero background
+    window.addEventListener('scroll', () => {
+      const hero = document.querySelector('.hero');
+      const speed = 0.3;
+      const scrolled = window.pageYOffset;
+      hero.style.backgroundPositionY = scrolled * speed + 'px';
+    });
+
+    // Hover effect for logo
+    const logo = document.querySelector('.logo');
+    const nav = document.getElementById('mainNav');
+
+    logo.addEventListener('mouseenter', () => {
+      logo.style.transform = 'scale(1.05)';
+      logo.style.textShadow = '0 0 20px rgba(184, 134, 11, 0.5)';
+    });
+
+    logo.addEventListener('mouseleave', () => {
+      logo.style.transform = 'scale(1)';
+      logo.style.textShadow = 'none';
+    });
+
+    // Cursor interaction
+    document.body.addEventListener('mousemove', (e) => {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      document.body.style.setProperty('--mouse-x', x);
+      document.body.style.setProperty('--mouse-y', y);
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=S1BP&u=dmlzaXQ&s=34f70ea599f7129d126acfecd32c90e7&beacon=1&l=b3NtLW5vZGUtNTE4Mjk1ODU2";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:79528b055b--></html>
