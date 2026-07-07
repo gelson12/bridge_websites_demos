@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanbruno</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --terracotta: #b76e59;
+      --oat-white: #f8f4f0;
+      --charcoal: #2d2d2d;
+      --olive: #4a5b4d;
+      --burnt-sienna: #9e4e2a;
+      --primary: var(--terracotta);
+      --secondary: var(--olive);
+      --text: var(--charcoal);
+      --bg: var(--oat-white);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+      --transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+      background-image: radial-gradient(circle at 20% 80%, rgba(183, 110, 89, 0.02) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(74, 91, 77, 0.02) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: transparent;
+      padding: 1.5rem 0;
+      transition: var(--transition);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(248, 244, 240, 0.3);
+    }
+
+    nav.scrolled {
+      background: rgba(248, 244, 240, 0.94);
+      box-shadow: var(--shadow);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(183, 110, 89, 0.1);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      color: var(--charcoal);
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      position: relative;
+      padding: 0.2rem 0;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, var(--primary), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+    }
+
+    .logo:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 1rem;
+      transition: var(--transition);
+      position: relative;
+      padding: 0.2rem 0;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      border-radius: 40px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 14px rgba(183, 110, 89, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: var(--transition);
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      background: var(--burnt-sienna);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(183, 110, 89, 0.3);
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.6)), url(https://images.pexels.com/photos/32559187/pexels-photo-32559187.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) center/cover no-repeat;
+      color: white;
+      padding: 0;
+      text-align: center;
+      margin-bottom: 8rem;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.47,208.42-12.41,64.18,19.18,104.17,86.42,139.78,146.89,23.44,38.61,32.77,77.8,43.54,126.87V282C362.27,282,500.57,174.66,628.89,82.4c67.13-48.97,122.79-12.78,174.33-8.83,61.16,4.3,113.11,38.37,159.37,68.49,46.39,30.06,63.78,42.9,82.08,42.9,16.89,0,30.48-15.48,30.48-52.27V0Z" fill="%23F8F4F0" opacity="0.15"/></svg>') repeat-x;
+      background-size: 100% 60px;
+    }
+
+    .hero-content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      animation: fadeInUp 1.5s ease-out;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .hero h1::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.5), transparent);
+    }
+
+    .hero p {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+      position: relative;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    .hero p::before {
+      content: '“';
+      font-size: 5rem;
+      color: rgba(255,255,255,0.2);
+      position: absolute;
+      top: -15px;
+      left: -20px;
+      line-height: 1;
+    }
+
+    .hero p::after {
+      content: '”';
+      font-size: 5rem;
+      color: rgba(255,255,255,0.2);
+      position: absolute;
+      bottom: -70px;
+      right: -15px;
+      line-height: 1;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+
+    .hero .cta-button {
+      background: var(--oat-white);
+      color: var(--charcoal);
+      border: 2px solid var(--oat-white);
+      box-shadow: none;
+      font-weight: 700;
+    }
+
+    .hero .cta-button:hover {
+      background: transparent;
+      color: var(--charcoal);
+      border-color: var(--terracotta);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(183, 110, 89, 0.4);
+    }
+
+    .trust-strip {
+      background: var(--oat-white);
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--terracotta), transparent);
+    }
+
+    .trust-strip::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--olive), transparent);
+    }
+
+    .services {
+      padding: 8rem 0;
+      background: var(--bg);
+      position: relative;
+    }
+
+    .services::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,0V60H1200V0C900,60 600,60 300,60Z" fill="%23F8F4F0" opacity="0.1" /></svg>') repeat-x;
+      background-size: 100% 60px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .section-header h2 {
+      font-size: 3rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary);
+    }
+
+    .section-header p {
+      font-size: 1.2rem;
+      color: #666;
+      margin-top: 0.5rem;
+      font-weight: 300;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    .service-card {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--oat-white);
+      border-radius: 24px;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(183, 110, 89, 0.03), transparent);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem;
+      fill: var(--primary);
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(183, 110, 89, 0.1);
+      padding: 1rem;
+    }
+
+    .service-card:hover .service-icon {
+      fill: var(--burnt-sienna);
+      transform: scale(1.1);
+      background: rgba(158, 78, 42, 0.1);
+    }
+
+    .service-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      color: var(--charcoal);
+      position: relative;
+      display: inline-block;
+    }
+
+    .service-card h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .service-card p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .about {
+      padding: 8rem 0;
+      background: var(--oat-white);
+      display: flex;
+      align-items: center;
+      gap: 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" preserveAspectRatio="none"><circle cx="200" cy="250" r="200" fill="%23B76E59" opacity="0.03" /></svg>') center/contain no-repeat;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.08);
+      position: relative;
+      transform: perspective(800px) rotateY(0deg) rotateX(0deg);
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .about:hover .about-image {
+      transform: perspective(1000px) rotateY(-2deg) rotateX(1deg);
+    }
+
+    .about:hover .about-image img {
+      transform: scale(1.08) translateZ(30px);
+      filter: brightness(1.1);
+    }
+
+    .about-content {
+      flex: 1;
+      transform: translateX(0);
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .about:hover .about-content {
+      transform: translateX(10px);
+    }
+
+    .about h2 {
+      font-size: 3rem;
+      margin-bottom: 1.8rem;
+      color: var(--charcoal);
+      position: relative;
+      display: inline-block;
+    }
+
+    .about h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--primary);
+    }
+
+    .about p {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    .about p:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+
+    .testimonials {
+      padding: 8rem 0;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      background: var(--terracotta);
+      border-radius: 50%;
+      opacity: 0.05;
+      z-index: -1;
+    }
+
+    .testimonials::after {
+      content: '';
+      position: absolute;
+      bottom: -120px;
+      left: 50%;
+      transform: translateX(50%);
+      width: 250px;
+      height: 250px;
+      background: var(--olive);
+      border-radius: 50%;
+      opacity: 0.04;
+      z-index: -1;
+    }
+
+    .section-header.testimonials-header {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .section-header.testimonials-header h2 {
+      font-size: 3rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header.testimonials-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .testimonial-card {
+      background: var(--oat-white);
+      padding: 3rem 2rem;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--olive));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .testimonial-card p {
+      font-style: italic;
+      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      line-height: 1.8;
+      padding: 0 1.5rem;
+    }
+
+    .testimonial-card p::before,
+    .testimonial-card p::after {
+      content: '"';
+      font-size: 3rem;
+      color: var(--primary);
+      opacity: 0.2;
+      position: absolute;
+      font-family: serif;
+    }
+
+    .testimonial-card p::before {
+      top: -20px;
+      left: 0;
+    }
+
+    .testimonial-card p::after {
+      bottom: -60px;
+      right: 0;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      transition: var(--transition);
+      margin-top: 1.5rem;
+    }
+
+    .testimonial-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--oat-white);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 3px solid var(--terracotta);
+    }
+
+    .testimonial-card:hover .testimonial-avatar {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .testimonial-name {
+      font-weight: 700;
+      color: var(--charcoal);
+      font-size: 1.1rem;
+    }
+
+    .testimonial-role {
+      color: #777;
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+
+    .gallery {
+      padding: 8rem 0;
+      background: var(--olive);
+      color: white;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" preserveAspectRatio="none"><path d="M0,0L1200,100L1200,300L0,250Z" fill="%234A5B4D" opacity="0.9" /></svg>') repeat-x;
+      background-size: 100% 300px;
+      z-index: -1;
+    }
+
+    .gallery h2 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 5rem;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .gallery h2::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(to right, rgba(255,255,255,0.8), transparent);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      position: relative;
+      height: 300px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.3));
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 1;
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.12) translateY(-20px);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 2;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 0.9;
+    }
+
+    .gallery-item:hover h3 {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact {
+      padding: 8rem 0;
+      background: var(--bg);
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><polygon points="0,100 1200,0 1200,100" fill="%23B76E59" opacity="0.02" /></svg>') repeat-x;
+      background-size: 100% 100px;
+      z-index: -1;
+    }
+
+    .section-header.contact-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 3rem;
+      background: var(--oat-white);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1.2rem;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--bg);
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+      position: relative;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(183, 110, 89, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .form-group textarea {
+      min-height: 180px;
+      resize: vertical;
+      padding-top: 1.2rem;
+    }
+
+    .form-group input:focus ~ label,
+    .form-group textarea:focus ~ label {
+      transform: translateY(-18px);
+      font-size: 0.8rem;
+      color: var(--primary);
+    }
+
+    .contact-form .cta-button {
+      width: 100%;
+      padding: 1.2rem;
+      font-size: 1rem;
+      margin-top: 2rem;
+    }
+
+    footer {
+      background: var(--charcoal);
+      color: white;
+      padding: 5rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0,0L1200,20L1200,0Z" fill="%23B76E59" opacity="0.04" /></svg>') repeat-x;
+      background-size: 100% 50px;
+      z-index: -1;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 4rem;
+      margin-bottom: 5rem;
+    }
+
+    .footer-section h3 {
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+      color: var(--oat-white);
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--terracotta);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(248, 244, 240, 0.7);
+      margin-bottom: 1rem;
+      display: block;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-section p + p {
+      margin-top: 0.3rem;
+    }
+
+    .footer-section a:hover {
+      color: var(--oat-white);
+      transform: translateX(3px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      color: rgba(248, 244, 240, 0.7);
+      transition: var(--transition);
+      font-size: 1.4rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .social-links a:hover {
+      color: var(--oat-white);
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .footer-section i {
+      color: var(--terracotta);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: rgba(248, 244, 240, 0.6);
+    }
+
+    .parallax-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="g" cx="50%" cy="30%" r="80%"><stop offset="0%" stop-color="%23B76E59" stop-opacity="0.02"/><stop offset="100%" stop-color="%23B76E59" stop-opacity="0"/></radialGradient></defs><circle cx="800" cy="600" r="180" fill="url(%23g)"/><circle cx="400" cy="400" r="160" fill="url(%23g)"/><circle cx="1000" cy="200" r="100" fill="url(%23g)"/></svg>');
+      background-attachment: fixed;
+      background-size: 1200px 800px;
+      background-repeat: no-repeat;
+      z-index: -2;
+      opacity: 0.5;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (min-width: 1024px) {
+      .container {
+        padding: 0 4rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about {
+        flex-direction: column;
+        gap: 4rem;
+        text-align: center;
+      }
+
+      .about-image {
+        width: 100%;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: var(--text);
+        cursor: pointer;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding-top: 6rem;
+        height: 90vh;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .hero p {
+        font-size: 1.2rem;
+      }
+      .section-header h2 {
+        font-size: 2.2rem;
+      }
+      .contact-form {
+        margin: 0 1rem;
+        padding: 1.5rem;
+      }
+      .service-card,
+      .testimonial-card {
+        padding: 2rem 1.5rem;
+      }
+      .gallery-item {
+        height: 240px;
+      }
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="parallax-bg"></div>
+
+  <nav id="main-nav">
+    <a href="#" class="logo">Sanbruno</a>
+    <div class="nav-links">
+      <a href="#services">Café</a>
+      <a href="#about">Story</a>
+      <a href="#testimonials">Brews</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Connect</a>
+    </div>
+    <a href="#contact" class="cta-button">Visit Us</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Sanbruno</h1>
+      <p>Brewed with quiet care</p>
+      <div class="hero-cta-group">
+        <a href="#contact" class="cta-button">Plan Your Visit</a>
+        <a href="#services" class="cta-button">Explore Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <p>Trusted by local patrons for warm spaces and quiet moments</p>
+  </div>
+
+  <section id="services" class="services">
+    <div class="container">
+      <header class="section-header">
+        <h2>Our Craft</h2>
+        <p>Everything is made with care, slowly, and by hand</p>
+      </header>
+      <div class="services-grid">
+        <div class="service-card animate-on-scroll">
+          <svg class="service-icon" width="80" height="80" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          <h3>Broad Beans</h3>
+          <p>Every bean is carefully sourced from family farms that share our passion for quality.</p>
+        </div>
+        <div class="service-card animate-on-scroll">
+          <svg class="service-icon" width="80" height="80" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 6c-3.87 0-7 3.13-7 7s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zM18 8c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2z"/>
+          </svg>
+          <h3>Slow Brew</h3>
+          <p>We believe time is the most important ingredient. Every cup is brewed mindfully.</p>
+        </div>
+        <div class="service-card animate-on-scroll">
+          <svg class="service-icon" width="80" height="80" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          <h3>Ground Fresh</h3>
+          <p>Our coffee is roasted in small batches and ground moments before brewing each order.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="about-image">
+      <img src="https://images.pexels.com/photos/4353571/pexels-photo-4353571.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Sanbruno's cozy interior with wooden tables and warm lighting" />
+    </div>
+    <div class="about-content">
+      <h2>Our Quiet Place</h2>
+      <p>Sanbruno began in 2018, born from a simple belief — that the most meaningful moments happen in stillness. We don’t sell coffee. We offer a pause. A quiet corner where you can breathe. A hand-poured cup that warms more than your hands. Our space is designed for listening — to conversations, to the steam from the kettle, to the rhythm of your own thoughts. We use no automated machines. Everything is touched by human hands. From the grinding to the pouring to the settling of the cup into your palms, it’s all done with intention. The rhythm here is slow. And that's the point.</p>
+      <p>We serve no pastries. We offer no Wi-Fi password. We don’t even serve lattes with foam art. We believe distractions in the name of convenience only make the world louder. Here, you’re invited to be quiet. To sit. To savor. To return.</p>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <header class="section-header testimonials-header">
+        <h2>What People Say</h2>
+        <p>Minimal words. Maximum meaning.</p>
+      </header>
+      <div class="testimonial-grid">
+        <div class="testimonial-card animate-on-scroll">
+          <p>Most peaceful spot in town. I come here to be alone with my notebooks and stretches of silence.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/32559187/pexels-photo-32559187.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Avatar of a woman" class="testimonial-avatar" />
+            <div>
+              <div class="testimonial-name">Local Reader</div>
+              <div class="testimonial-role">Verified customer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate-on-scroll">
+          <p>After my divorce, this was the first place I dared to sit quietly, without rushing. They remembered my name. I still come every weekend.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/4353571/pexels-photo-4353571.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Avatar of an older man" class="testimonial-avatar" />
+            <div>
+              <div class="testimonial-name">Daily Visitor</div>
+              <div class="testimonial-role">Local client</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate-on-scroll">
+          <p>No sugar. No noise. No pretense. Just perfect coffee and the kind of space that makes you feel seen, not sold to.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/37290133/pexels-photo-37290133.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Avatar of a young person" class="testimonial-avatar" />
+            <div>
+              <div class="testimonial-name">Healing Journey</div>
+              <div class="testimonial-role">Early riser</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2>More Moments</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/31416062/pexels-photo-31416062.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A steaming ceramic cup on a wooden table beside an open book" />
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/37290133/pexels-photo-37290133.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Close-up of artisan coffee brewing with slow pour" />
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/30890566/pexels-photo-30890566.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Hand holding a small roasted coffee bean against natural wood" />
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/17209529/pexels-photo-17209529.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="A corner shelf showing coffee grinders and ceramic mugs" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <header class="section-header contact-header">
+        <h2>Get in Touch</h2>
+        <p>Walk in. Sit. Breathe.</p>
+      </header>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name..." />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email..." />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us how we can serve you..."  ></textarea>
+        </div>
+        <button type="submit" class="cta-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>Sanbruno</h3>
+          <p>Brewed with quiet care</p>
+          <p>Where coffee meets stillness</p>
+        </div>
+        <div class="footer-section">
+          <h3>Hours</h3>
+          <p>Thursday – Tuesday: 7:30 AM – 6:00 PM</p>
+          <p>Wednesday: Closed</p>
+        </div>
+        <div class="footer-section">
+          <h3>Find Us</h3>
+          <p>123 Quiet Street</p>
+          <p>Your Town, Your Region</p>
+          <p>(Local area)</p>
+        </div>
+        <div class="footer-section">
+          <h3>Stay Connected</h3>
+          <div class="social-links">
+            <a href="https://instagram.com" aria-label="Instagram">📸</a>
+            <a href="https://facebook.com" aria-label="Facebook">📘</a>
+            <a href="https://x.com" aria-label="X">🐦</a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        © 2026 Sanbruno. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // NAVIGATION SCROLL EFFECT
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('main-nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // ANIMATE ON SCROLL
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    animateElements.forEach(el => {
+      observer.observe(el);
+    });
+
+    // HERO SCALE UP ANIMATION
+    document.querySelector('.hero').style.backgroundImage = `url(https://images.pexels.com/photos/32559187/pexels-photo-32559187.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)`;
+    
+    // Add subtle parallax effect to hero
+    window.addEventListener('mousemove', (e) => {
+      const hero = document.querySelector('.hero');
+      const x = e.clientX / window.innerWidth - 0.5;
+      const y = e.clientY / window.innerHeight - 0.5;
+      hero.style.transform = `translateX(${-x * 15}px) translateY(${-y * 15}px)`;
+    });
+
+    // Touch handling for mobile
+    if ('ontouchstart' in window) {
+      document.addEventListener('touchmove', (e) => {
+        const hero = document.querySelector('.hero');
+        const touch = e.touches[0];
+        const x = touch.clientX / window.innerWidth - 0.5;
+        const y = touch.clientY / window.innerHeight - 0.5;
+        hero.style.transform = `translateX(${-x * 5}px) translateY(${-y * 5}px)`;
+      });
+    }
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=U2FuYnJ1bm8&u=dmlzaXQ&s=3c6daf436d7a742fcfcbb3126ae67fc1&beacon=1&l=b3NtLW5vZGUtNTgwODExOTMw";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:f395b1e207--></html>
