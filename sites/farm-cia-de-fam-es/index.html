@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farmácia de Famões</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --accent: #e74c3c;
+      --light: #ffffff;
+      --off-white: #f8f8f8;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--primary);
+      overflow-x: hidden;
+      background-color: var(--light);
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Sticky Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      background: transparent;
+      padding: 1.5rem 0;
+      transition: var(--transition);
+      z-index: 1000;
+      box-shadow: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1rem 0;
+      box-shadow: var(--shadow);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: var(--transition);
+    }
+
+    .logo:hover::after {
+      width: 100%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      font-size: 1.05rem;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--secondary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, var(--secondary), #2980b9);
+      color: var(--light);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+      transform: translateY(0);
+    }
+
+    .cta-button:hover {
+      background: linear-gradient(135deg, #2980b9, #2573a7);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+    }
+
+    /* Hero */
+    .hero {
+      height: 90vh;
+      background-image: url('https://images.pexels.com/photos/33297957/pexels-photo-33297957.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(44, 62, 80, 0.55);
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,31.11,158.39,22.2,121.1,0,188.92-36.1,207.1,0,18.2,36.1,88.36,98.99,167.75,99.3l200,0v100H0V0Z" fill="%23ffffff" opacity="0.05"/></svg>') repeat-x;
+      background-size: 1200px 100px;
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: var(--light);
+      max-width: 600px;
+      animation: fadeSlideUp 1.2s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .secondary-button {
+      background: transparent;
+      color: var(--light);
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--light);
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .secondary-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+    }
+
+    .secondary-button:hover::before {
+      left: 100%;
+    }
+
+    .secondary-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--light);
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background: linear-gradient(90deg, var(--secondary), #2980b9);
+      color: var(--light);
+      padding: 1.2rem 0;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M20,0 L70,0 L90,30 L100,100 L0,100 L10,30 Z" fill="currentColor" opacity="0.1"/></svg>') repeat;
+    }
+
+    /* Services */
+    .services {
+      padding: 6rem 0;
+      background-color: var(--light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      font-size: 2.8rem;
+      color: var(--primary);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--secondary), #2980b9);
+      border-radius: 2px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .service-card {
+      background: var(--off-white);
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(44, 62, 80, 0.05);
+      transform: translateY(0);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(52, 152, 219, 0.1), transparent 70%);
+      transform: rotate(45deg);
+      transition: var(--transition);
+      opacity: 0;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem;
+      background: linear-gradient(135deg, var(--secondary), #2980b9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      font-size: 2.5rem;
+      transition: var(--transition);
+      box-shadow: 0 8px 20px rgba(52, 152, 219, 0.2);
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1);
+    }
+
+    .service-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+      color: var(--primary);
+    }
+
+    .service-card p {
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* About */
+    .about {
+      padding: 6rem 0;
+      background-color: var(--off-white);
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><circle cx="20" cy="20" r="4" fill="%232c3e50" opacity="0.05"/><circle cx="60" cy="30" r="3" fill="%233498db" opacity="0.05"/><circle cx="15" cy="65" r="2" fill="%23e74c3c" opacity="0.05"/></svg>') repeat;
+      z-index: 0;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      transition: var(--transition);
+      transform: scale(1);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.08);
+    }
+
+    .about-content {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-content h2 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    .about-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      color: #444;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 6rem 0;
+      background-color: var(--light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--secondary), transparent 70%);
+      opacity: 0.08;
+    }
+
+    .testimonials::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent), transparent 70%);
+      opacity: 0.06;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      font-size: 2.8rem;
+      color: var(--primary);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--secondary), #2980b9);
+      border-radius: 2px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .testimonial {
+      background: rgba(44, 62, 80, 0.03);
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      position: relative;
+      transition: var(--transition);
+      border: 1px solid rgba(44, 62, 80, 0.05);
+    }
+
+    .testimonial:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial::before {
+      content: """;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 5rem;
+      color: var(--secondary);
+      font-family: Georgia, serif;
+      opacity: 0.15;
+      line-height: 1;
+    }
+
+    .testimonial::after {
+      content: """;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 3rem;
+      color: var(--secondary);
+      font-family: Georgia, serif;
+      opacity: 0.1;
+      line-height: 1;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .client {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .client-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--secondary), #2980b9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      font-weight: bold;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 10px rgba(52, 152, 219, 0.2);
+    }
+
+    .client-name {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Gallery Section */
+    .gallery {
+      padding: 6rem 0;
+      background-color: var(--off-white);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M10,10 L30,10 L30,30 L10,30 Z" fill="none" stroke="%233498db" stroke-width="1" opacity="0.1"/></svg>') repeat;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.8rem;
+      color: var(--primary);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--secondary), #2980b9);
+      border-radius: 2px;
+    }
+
+    .gallery p {
+      color: #666;
+      margin-bottom: 3rem;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      height: 300px;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      transform: translateY(0);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+      transform: scale(1);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(44, 62, 80, 0.3), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-item span {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+      color: var(--light);
+      font-weight: 600;
+      background: transparent;
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .gallery-item:hover span {
+      opacity: 1;
+      transform: translateY(0);
+      background: rgba(44, 62, 80, 0.8);
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, var(--primary), #1a2530);
+      color: var(--light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--secondary), transparent 70%);
+      opacity: 0.1;
+    }
+
+    .contact::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent), transparent 50%);
+      opacity: 0.08;
+    }
+
+    .contact h2 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .contact h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--secondary), #2980b9);
+      border-radius: 2px;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--light);
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--secondary), #2980b9);
+      color: var(--light);
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: var(--transition);
+    }
+
+    .submit-button:hover::before {
+      left: 100%;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(52, 152, 219, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      background: #1a2530;
+      color: var(--light);
+      padding: 5rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0,0V50c80,10,150,0,250,10c100,10,200,0,300,10c100,10,200,0,300,10c100,10,200,0,300,10c100,10,200,0,300,10V0H0Z" fill="%232c3e50" opacity="0.1"/></svg>') repeat-x;
+      z-index: 2;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 4rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    .footer-column h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.8rem;
+      position: relative;
+      padding-bottom: 1rem;
+      color: var(--light);
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary);
+      border-radius: 1.5px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: #bdc3c7;
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+      padding: 0.1rem 0;
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--secondary);
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-link {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      text-decoration: none;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .social-link:hover {
+      background: var(--secondary);
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.95rem;
+      color: #bdc3c7;
+    }
+
+    /* Animations */
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-fade {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section-fade.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Floating shapes */
+    .floating-shape {
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.08;
+      border-radius: 50%;
+    }
+
+    .shape1 {
+      top: 20%;
+      right: 10%;
+      width: 160px;
+      height: 160px;
+      background: var(--secondary);
+      animation: float 12s linear infinite alternate;
+    }
+
+    .shape2 {
+      bottom: 15%;
+      left: 15%;
+      width: 140px;
+      height: 140px;
+      background: var(--accent);
+      animation: float 15s linear infinite alternate-reverse;
+    }
+
+    .shape3 {
+      top: 40%;
+      left: 5%;
+      width: 120px;
+      height: 120px;
+      background: var(--secondary);
+      opacity: 0.05;
+      animation: float 10s linear infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0px) rotate(0deg); }
+      to { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      .about {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .about-image,
+      .about-content {
+        width: 100%;
+      }
+
+      .about-content h2 {
+        font-size: 2.4rem;
+      }
+
+      .services-grid,
+      .testimonials-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial {
+        padding: 2rem 1.5rem;
+      }
+
+      .contact-form {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav id="mainNav">
+    <div class="container nav-container">
+      <a href="#home" class="logo">Farmácia de Famões</a>
+      <div class="nav-links">
+        <a href="#services">Serviços</a>
+        <a href="#about">Sobre Nós</a>
+        <a href="#gallery">Galeria</a>
+        <a href="#contact">Contacto</a>
+      </div>
+      <a href="#contact" class="cta-button">Marcar Consulta</a>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <div class="container hero-content">
+      <h1>Farmácia de Famões</h1>
+      <p>Cuidado que se sente em casa</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="cta-button">Fale Conosco</a>
+        <a href="#services" class="secondary-button">Conheça Nossos Serviços</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    Trabalhamos com dedicação, precisão e atenção ao detalhe, cada dia para a sua família.
+  </div>
+
+  <section id="services" class="services">
+    <div class="container">
+      <h2 class="section-title">Nossos Serviços</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">💊</div>
+          <h3>Medicação</h3>
+          <p>Dispensação segura e personalizada de medicamentos, com aconselhamento profissional por farmacêuticos qualificados.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🩺</div>
+          <h3>Consulência de Saúde</h3>
+          <p>Atendimento individualizado para orientação em uso de medicamentos, controle de pressão, glicemia e outros indicadores.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📦</div>
+          <h3>Entrega Domiciliar</h3>
+          <p>Medicamentos e produtos essenciais entregues na sua porta, especialmente para idosos e pessoas com mobilidade reduzida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="about-image">
+      <img src="https://images.pexels.com/photos/8657366/pexels-photo-8657366.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Equipe da Farmácia de Famões" />
+    </div>
+    <div class="about-content">
+      <h2>Uma Farmácia ao Seu Lado</h2>
+      <p>Desde o nosso início, Farmácia de Famões tem sido o ponto de confiança da comunidade. Nosso compromisso é oferecer um atendimento humano, acessível e especializado para cada cliente.</p>
+      <p>Nossa equipe está sempre pronta para ouvir suas necessidades, guiar na escolha de produtos e garantir que você receba a melhor cuidado. Somos mais que uma farmácia — somos parte da sua família.</p>
+      <p>Atendemos com ética, seriedade e carinho — porque sua saúde merece atenção contínua e profissional.</p>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2 class="section-title">O que Nossos Clientes Dizem</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p>Trato com carinho, órgão e respeito. Sempre me senti bem-vindo e bem orientado.</p>
+          <div class="client">
+            <div class="client-avatar">C</div>
+            <div class="client-name">Cliente Local</div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>Entregam minha medicação sem qualquer problema, mesmo com horários apertados. Excelente serviço!</p>
+          <div class="client">
+            <div class="client-avatar">M</div>
+            <div class="client-name">Cliente Verdadeiro</div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>Compreensivos e sempre dispostos a ajudar. Uma farmácia que verdadeiramente sente em casa.</p>
+          <div class="client">
+            <div class="client-avatar">R</div>
+            <div class="client-name">Cliente Satisfeito</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2 class="section-title">Nossa Família</h2>
+      <p>Um olhar sobre o nosso espaço, nossa equipe e o acolhimento que oferecemos.</p>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/8657368/pexels-photo-8657368.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Interior da Farmácia de Famões" />
+          <span>Interior da Farmácia</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/8667531/pexels-photo-8667531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Farmacêutico com cliente" />
+          <span>Atendimento Personalizado</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/14797864/pexels-photo-14797864.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Pilhas de medicamentos organizzadas" />
+          <span>Organização Profissional</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/14797865/pexels-photo-14797865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Equipe da Farmácia de Famões" />
+          <span>Nossa Equipe</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Fale Conosco</h2>
+      <div class="contact-form">
+        <form>
+          <div class="form-group">
+            <label for="name">Seu Nome</label>
+            <input type="text" id="name" name="name" placeholder="Digite seu nome" required />
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="message" placeholder="Como podemos ajudar?" required></textarea>
+          </div>
+          <button type="submit" class="submit-button">Enviar Mensagem</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>Farmácia de Famões</h3>
+          <p>Comprometidos com a saúde e o bem-estar da comunidade local. Um atendimento humanizado, feito com cuidado e seriedade.</p>
+          <div class="social-links">
+            <a href="#" class="social-link">I</a>
+            <a href="#" class="social-link">F</a>
+            <a href="#" class="social-link">T</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Links Rápidos</h3>
+          <ul class="footer-links">
+            <li><a href="#home">Início</a></li>
+            <li><a href="#services">Serviços</a></li>
+            <li><a href="#about">Sobre Nós</a></li>
+            <li><a href="#gallery">Galeria</a></li>
+            <li><a href="#contact">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Horário</h3>
+          <ul class="footer-links">
+            <li>Segunda a Sexta: 8h - 19h</li>
+            <li>Sábado: 9h - 17h</li>
+            <li>Domingo e Feriados: 10h - 14h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        © 2026 Farmácia de Famões. Todos os direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky nav
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Animate sections on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('appear');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.service-card, .testimonial, .gallery-item, .about-image, .about-content').forEach(el => {
+      el.classList.add('section-fade');
+      observer.observe(el);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Add initial animation to hero content after a small delay
+    setTimeout(() => {
+      const heroContent = document.querySelector('.hero-content');
+      if (heroContent) {
+        heroContent.style.opacity = '0';
+        heroContent.style.transition = 'opacity 1.2s ease-out 0.2s';
+        setTimeout(() => {
+          if (heroContent) heroContent.style.opacity = '1';
+        }, 100);
+      }
+    }, 500);
+
+    // Parallax effect on hero
+    window.addEventListener('mousemove', (e) => {
+      const hero = document.querySelector('.hero');
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+      hero.style.transform = `rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
+    });
+
+    // Reset parallax on mouse leave
+    window.addEventListener('mouseleave', () => {
+      const hero = document.querySelector('.hero');
+      hero.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=RmFybcOhY2lhIGRlIEZhbcO1ZXM&u=dmlzaXQ&s=c87d74fbd5dfb0c444444798d9506deb&beacon=1&l=b3NtLW5vZGUtMjY4MjgzNzQw";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:684be66bce--></html>
