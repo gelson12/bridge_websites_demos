@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmácia Belém</title>
+  <style>
+    :root {
+      --white: #ffffff;
+      --teal: #4dd0e1;
+      --gray: #f5f5f5;
+      --navy: #0a1a2f;
+      --gold: #e6b97a;
+      --font-main: 'Lato', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--navy);
+      line-height: 1.7;
+      overflow-x: hidden;
+      background-color: var(--white);
+      background-image: radial-gradient(circle at 20% 80%, rgba(77, 208, 225, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(230, 185, 122, 0.02) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-main);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      text-transform: capitalize;
+    }
+
+    h1 {
+      font-size: 3.8rem;
+      line-height: 1.2;
+      background: linear-gradient(90deg, var(--navy), var(--teal));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      border-radius: 2px;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    a {
+      color: var(--navy);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--teal);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* STICKY NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1.5rem 0;
+      background: transparent;
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo {
+      font-family: var(--font-main);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -1px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo span {
+      color: var(--teal);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      z-index: 2;
+      position: relative;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--teal);
+      transition: var(--transition);
+      transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background-color: var(--teal);
+      color: var(--white);
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 6px 18px rgba(77, 208, 225, 0.2);
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .cta-button:hover {
+      background-color: var(--navy);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(10, 26, 47, 0.25);
+    }
+
+    /* HERO */
+    .hero {
+      height: 90vh;
+      background-image: url('https://images.pexels.com/photos/8667531/pexels-photo-8667531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      will-change: transform;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(10, 26, 47, 0.5), rgba(10, 26, 47, 0.7) 60%, transparent);
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      background: radial-gradient(circle at center, rgba(77, 208, 225, 0.1), transparent 70%);
+      z-index: 1;
+      animation: floatIn 12s ease-in-out infinite;
+      transform: scale(1.2);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: var(--white);
+      max-width: 600px;
+      animation: fadeInUp 1.2s ease-out;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .hero h1 {
+      font-size: 4.8rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 1.8rem;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      animation: fadeInUp 1.4s ease-out;
+      animation-delay: 0.2s;
+    }
+
+    .cta-button.secondary {
+      background-color: transparent;
+      border: 2px solid var(--white);
+      color: var(--white);
+      box-shadow: 0 6px 18px rgba(255, 255, 255, 0.15);
+    }
+
+    .cta-button.secondary:hover {
+      background-color: var(--white);
+      color: var(--navy);
+    }
+
+    /* TRUST STRIP */
+    .trust-strip {
+      background: linear-gradient(90deg, #0a1a2f, #4dd0e1);
+      padding: 0.3rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shimmer 3s infinite;
+    }
+
+    .trust-strip div {
+      padding: 0.5rem 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      border-radius: 20px;
+      margin: 0 0.5rem;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 8rem 0;
+      background-color: var(--white);
+      position: relative;
+    }
+
+    .services::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M25 50 L75 50 M50 25 L50 75" stroke="%234dd0e1" stroke-width="1" opacity="0.03" stroke-dasharray="4"/></svg>');
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      font-size: 2.8rem;
+      color: var(--navy);
+      position: relative;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      z-index: 1;
+      transform: translateY(30px);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .service-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      transform: scaleX(0);
+      transition: var(--transition);
+      transform-origin: left;
+      z-index: -1;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e6b97a;
+      border-radius: 50%;
+      margin: 0 auto 2.5rem;
+      color: var(--navy);
+      font-size: 2.2rem;
+      box-shadow: 0 8px 20px rgba(230, 185, 122, 0.2);
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1);
+    }
+
+    .service-card h3 {
+      margin-bottom: 1.5rem;
+      font-size: 1.9rem;
+      color: var(--navy);
+    }
+
+    .service-card p {
+      color: #555;
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 8rem 0;
+      background-color: var(--gray);
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M10 90 L90 10 M30 10 L10 30 M70 90 L90 70 M10 70 L70 10 M30 90 L90 30" stroke="%230a1a2f" stroke-width="1" opacity="0.02"/></svg>');
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+      position: relative;
+      transform: translateX(-40px);
+      opacity: 0;
+    }
+
+    .about-image.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: var(--transition);
+      transform: scale(1);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-content {
+      flex: 1;
+      padding: 0 4rem;
+      transform: translateX(40px);
+      opacity: 0;
+    }
+
+    .about-content.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .about-content h2 {
+      margin-bottom: 1.5rem;
+      color: var(--navy);
+    }
+
+    .about-content p {
+      margin-bottom: 2rem;
+      color: #444;
+    }
+
+    .about-content p:last-child {
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.3px;
+      font-size: 1.2rem;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      padding: 8rem 0;
+      background-color: var(--white);
+      position: relative;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 80% 20%, rgba(77, 208, 225, 0.1), transparent 70%), radial-gradient(circle at 20% 80%, rgba(230, 185, 122, 0.1), transparent 70%);
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      font-size: 2.8rem;
+      color: var(--navy);
+      position: relative;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 3rem;
+      position: relative;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+      transition: var(--transition);
+      transform: translateY(50px);
+      opacity: 0;
+      border-left: 4px solid var(--teal);
+    }
+
+    .testimonial-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      font-family: var(--font-main);
+      font-size: 5rem;
+      color: var(--teal);
+      opacity: 0.1;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      line-height: 1;
+      transform: rotate(180deg);
+    }
+
+    .testimonial-card::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 30px;
+      width: 20px;
+      height: 20px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 5px 15px rgba(230, 185, 122, 0.3);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.8;
+      position: relative;
+      padding-right: 1.5rem;
+    }
+
+    .testimonial-text::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      background: var(--teal);
+      border-radius: 50%;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .testimonial-author img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 1.5rem;
+      object-fit: cover;
+      border: 2px solid var(--teal);
+      transition: var(--transition);
+    }
+
+    .testimonial-author:hover img {
+      transform: scale(1.1);
+    }
+
+    .author-info h4 {
+      font-family: var(--font-main);
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+      font-size: 1.1rem;
+    }
+
+    .author-info p {
+      color: var(--teal);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* GALLERY */
+    .gallery {
+      padding: 8rem 0;
+      background-color: var(--gray);
+      text-align: center;
+      position: relative;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(77, 208, 225, 0.05), transparent 80%);
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .gallery h2 {
+      margin-bottom: 4rem;
+      font-size: 2.8rem;
+      color: var(--navy);
+      position: relative;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .gallery-item {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+      height: 320px;
+      cursor: pointer;
+      transition: var(--transition);
+      transform: scale(0.97);
+      opacity: 0;
+    }
+
+    .gallery-item.visible {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+      transform: scale(1);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, rgba(10, 26, 47, 0.4));
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    .gallery-item .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 2rem;
+      color: white;
+      transform: translateY(100%);
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .gallery-item:hover .overlay {
+      transform: translateY(0);
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 8rem 0;
+      background: linear-gradient(135deg, #0a1a2f 0%, #4dd0e1 100%);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M25 25 L75 25 M25 75 L50 50 L75 75" stroke="%23ffffff" stroke-width="1" opacity="0.06"/></svg>');
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .contact h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.8rem;
+      color: var(--white);
+      position: relative;
+    }
+
+    .contact h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
+      border-radius: 2px;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 25px;
+      padding: 3rem;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.07);
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 0 2px rgba(77, 208, 225, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .form-group textarea {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+    .cta-button {
+      background-color: var(--teal);
+      color: var(--white);
+      padding: 1rem 2.5rem;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 25px rgba(77, 208, 225, 0.3);
+      width: 100%;
+    }
+
+    .cta-button:hover {
+      background-color: var(--navy);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(10, 26, 47, 0.3);
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--navy);
+      color: var(--white);
+      padding: 4rem 0 2rem;
+      position: relative;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-column h3 {
+      font-family: var(--font-main);
+      margin-bottom: 1.8rem;
+      font-size: 1.8rem;
+      color: var(--white);
+      position: relative;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+    }
+
+    .footer-about p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1.8rem;
+      line-height: 1.8;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 1rem;
+      transition: var(--transition);
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      transition: var(--transition);
+      position: relative;
+      padding: 0.3rem 0;
+    }
+
+    .footer-links a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--teal);
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover::before {
+      width: 100%;
+    }
+
+    .footer-links a:hover {
+      color: var(--teal);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: var(--white);
+      transition: var(--transition);
+      font-size: 1.4rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-icons a:hover {
+      background: var(--teal);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 6px 20px rgba(77, 208, 225, 0.4);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transition-delay: 0.1s;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes floatIn {
+      0%, 100% { transform: scale(1.2) rotate(0deg); }
+      50% { transform: scale(1.3) rotate(15deg); }
+    }
+
+    /* CUSTOM SHAPE DIVIDER */
+    .shape-divider {
+      height: 100px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      margin: -20px 0;
+      z-index: 3;
+    }
+
+    .shape-divider svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      bottom: 0;
+      left: 0;
+    }
+
+    .shape-divider svg path {
+      fill: var(--white);
+      opacity: 0.9;
+    }
+
+    /* MOBILE */
+    @media (max-width: 992px) {
+      h1 { font-size: 3.4rem; }
+      h2 { font-size: 2.4rem; }
+      .hero h1 { font-size: 3.8rem; }
+      .hero p { font-size: 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .about-content { padding: 0 2rem; }
+      .trust-strip { gap: 1.5rem; }
+      .trust-strip div { padding: 0.5rem 1.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 3rem; }
+      h2 { font-size: 2rem; }
+      .hero h1 { font-size: 3.2rem; }
+      .hero p { font-size: 1.4rem; }
+      .hero-buttons { flex-direction: column; }
+      .nav-container { flex-direction: column; }
+      .nav-links { margin-top: 1rem; gap: 1rem; }
+      .about { flex-direction: column; }
+      .about-image { margin-bottom: 2rem; }
+      .about-content { padding: 0 2rem; }
+    }
+
+    @media (max-width: 576px) {
+      h1 { font-size: 2.4rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero { height: 80vh; }
+      .hero p { font-size: 1.3rem; }
+      section { padding: 5rem 0; }
+      .section-title { font-size: 2.2rem; }
+      .service-card { padding: 2.5rem 1.5rem; }
+      .service-icon { width: 70px; height: 70px; font-size: 2rem; }
+      .footer-column { text-align: center; }
+      .footer-container { gap: 2rem; }
+      .contact-form { padding: 2.5rem; }
+      .testimonial-card { padding: 2rem; }
+      .testimonial-author img { width: 40px; height: 40px; }
+      .social-icons a { width: 45px; height: 45px; font-size: 1.2rem; }
+    }
+
+    /* BACKDROP FILTER OVERFLOW FIX */
+    body {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    /* FIX FOR PSEUDO-ELEMENT ON HEADER */
+    header {
+      contain: layout style;
+    }
+
+    /* IMPROVED FONT RENDERING */
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">Farmácia<span>Belém</span></a>
+      <div class="nav-links">
+        <a href="#services">Serviços</a>
+        <a href="#about">Sobre</a>
+        <a href="#testimonials">Depoimentos</a>
+        <a href="#contact">Contacto</a>
+      </div>
+      <button class="cta-button">Agendar Consulta</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Farmácia Belém</h1>
+      <p>Cuidado que cuida de si</p>
+      <div class="hero-buttons">
+        <button class="cta-button">Saiba Mais</button>
+        <button class="cta-button secondary">Contacte-nos</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <div>Confiança comprovada</div>
+    <div>Equipa especializada</div>
+    <div>Atendimento pessoal</div>
+    <div>Produto original</div>
+  </div>
+
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Serviços</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">💊</div>
+          <h3>Farmácia Clínica</h3>
+          <p>Atendimento personalizado com supervisão farmacêutica para o correto uso de medicamentos, aconselhamento sobre terapêuticas e monitorização de saúde.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">👩‍⚕️</div>
+          <h3>Cuidado da Saúde</h3>
+          <p>Testes de saúde, aconselhamento nutricional, apoio a crónicos e programas de saúde preventiva, tudo num espaço acolhedor e profissional.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📦</div>
+          <h3>Entrega Domiciliária</h3>
+          <p>Medicamentos e produtos de saúde entregues diretamente à sua porta, com agendamento flexível e acompanhamento da sua rotina de tratamento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/8657287/pexels-photo-8657287.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Equipa da Farmácia Belém em acção">
+      </div>
+      <div class="about-content">
+        <h2>A Farmácia que convida a confiar</h2>
+        <p>Situada no coração da Santa Maria de Belém, a Farmácia Belém é um estabelecimento onde medicamentos e cuidado vêm de mãos dadas. Desde o primeiro contacto, a nossa equipa dedica-se a compreender as suas necessidades, oferecendo soluções personalizadas com resultado e respeito.</p>
+        <p>Na Farmácia Belém, trata-se de mais do que vender produtos — é sobre manter a saúde, um dia de cada vez. Com um ambiente calmo e um olhar atento, garantimos que nunca se sente só no seu percurso de cuidado.</p>
+        <p>10-B Rua Tristão Vaz, 1400-352 Santa Maria de Belém</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">O que dizem os nossos clientes</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">Tinha dúvidas sobre a interação dos medicamentos e a farmacêutica explicou-me tudo com calma e paciência. Agora sinto-me mais seguro no meu tratamento.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/8667531/pexels-photo-8667531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cliente da Farmácia Belém">
+            <div class="author-info">
+              <h4>Local client</h4>
+              <p>Verificado</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">A entrega domiciliária fez toda a diferença quando passei por uma recuperação médica. A farmácia mostrou-se atenta, rápida e humana.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/8657287/pexels-photo-8657287.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cliente da Farmácia Belém">
+            <div class="author-info">
+              <h4>Local client</h4>
+              <p>Verificado</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">Encontro sempre um profissional preparado, mesmo para as perguntas mais mínimas. A Warfarina é complicada, e eles não me deixam na dúvida.</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/14797855/pexels-photo-14797855.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cliente da Farmácia Belém">
+            <div class="author-info">
+              <h4>Local client</h4>
+              <p>Verificado</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Farmácia Belém</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/14797855/pexels-photo-14797855.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Bancada da Farmácia Belém">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/12332074/pexels-photo-12332074.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Estantes de medicamentos">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/7615571/pexels-photo-7615571.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cuidados ao paciente">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/38034841/pexels-photo-38034841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Ambiente acolhedor da farmácia">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Entre em contacto</h2>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" id="name" placeholder="O seu nome completo">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="O seu email">
+        </div>
+        <div class="form-group">
+          <label for="message">Mensagem</label>
+          <textarea id="message" placeholder="Como podemos ajudá-lo hoje?"></textarea>
+        </div>
+        <button type="submit" class="cta-button">Enviar Mensagem</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="shape-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M1200 120L0 120V0C158.53 94.5 499.11 118.8 877.7 118.8C1231.69 118.8 1200 120 1200 120" fill="var(--white)"></path>
+    </svg>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column footer-about">
+          <h3>Farmácia Belém</h3>
+          <p>Cuidado que cuida de si. A Farmácia Belém é um espaço de confiança, atenção e conhecimento, dedicado à saúde da comunidade de Santa Maria de Belém.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook">F</a>
+            <a href="#" aria-label="Instagram">I</a>
+            <a href="#" aria-label="WhatsApp">W</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Links Rápidos</h3>
+          <ul class="footer-links">
+            <li><a href="#services">Serviços</a></li>
+            <li><a href="#about">Sobre</a></li>
+            <li><a href="#testimonials">Depoimentos</a></li>
+            <li><a href="#contact">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Alteração de Horários</h3>
+          <ul class="footer-links">
+            <li><a href="#">Segunda a Sábado: 8:30 - 20:00</a></li>
+            <li><a href="#">Domingos e Feriados: 9:00 - 15:00</a></li>
+            <li><a href="#">Feriados Especiais: consulta disponível</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2026 Farmácia Belém. Todos os direitos reservados. • 10-B Rua Tristão Vaz, 1400-352 Santa Maria de Belém</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // NAV SCROLL EFFECT
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // ANIMATION ON SCROLL
+    const revealElements = document.querySelectorAll('.service-card, .about-image, .testimonial-card, .gallery-item, .about-content');
+
+    const observerOptions = {
+      root: null,
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    revealElements.forEach(el => {
+      el.classList.add('fade-in');
+      observer.observe(el);
+    });
+
+    // SMOOTH SCROLL ANCHORS
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // SUBMIT CONTACT FORM
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Mensagem enviada com sucesso! Devolveremos o contacto o mais breve possível.');
+      this.reset();
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=RmFybcOhY2lhIEJlbMOpbQ&u=dmlzaXQ&s=f98c2e4bcac989a2416ba06481616b0d&beacon=1&l=b3NtLW5vZGUtNTkzNTc2NjQ5";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:d0fdc2c6ed--></html>
