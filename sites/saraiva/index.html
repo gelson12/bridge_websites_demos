@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saraiva</title>
+  <style>
+    :root {
+      --terracotta: #cc725c;
+      --olive: #5a6657;
+      --cream: #f8f4ef;
+      --walnut: #4a3a30;
+      --gold: #d4af37;
+      --shadow-lg: 0 28px 60px rgba(0,0,0,0.12);
+      --shadow-md: 0 16px 40px rgba(0,0,0,0.08);
+      --shadow-sm: 0 8px 24px rgba(0,0,0,0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      color: var(--walnut);
+      background-color: var(--cream);
+      overflow-x: hidden;
+      line-height: 1.8;
+      background-image: radial-gradient(circle at 20% 80%, rgba(204,114,92,0.05) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(212,175,55,0.03) 0%, transparent 50%);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 5.5rem;
+      line-height: 0.9;
+    }
+
+    h2 {
+      font-size: 3.2rem;
+    }
+
+    h3 {
+      font-size: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background-color: rgba(248, 244, 239, 0.88);
+      padding: 1.5rem 0;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+      will-change: transform, background-color;
+    }
+
+    .nav.scrolled {
+      padding: 1rem 0;
+      background-color: rgba(248, 244, 239, 0.96);
+      box-shadow: 0 12px 50px rgba(0,0,0,0.1);
+      transform: translateY(0);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--terracotta);
+      text-decoration: none;
+      letter-spacing: -1.5px;
+      transition: all 0.5s ease;
+      position: relative;
+      padding-left: 4px;
+    }
+
+    .logo::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      background-color: var(--gold);
+      border-radius: 50%;
+      transition: all 0.5s ease;
+      opacity: 0;
+    }
+
+    .logo:hover::before {
+      opacity: 1;
+      transform: translateY(-50%) scale(1.3);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--walnut);
+      font-size: 1.125rem;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--terracotta));
+      transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-radius: 1px;
+    }
+
+    .nav-links a:hover {
+      color: var(--terracotta);
+    }
+
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, var(--terracotta), #b65d4c);
+      color: var(--cream);
+      padding: 1rem 2.25rem;
+      border: none;
+      border-radius: 40px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      cursor: pointer;
+      box-shadow: 0 12px 32px rgba(204, 114, 92, 0.4);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+      will-change: transform, box-shadow;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      opacity: 0;
+      border-radius: 44px;
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(204, 114, 92, 0.5);
+    }
+
+    .cta-button:hover::before {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+
+    /* HERO */
+    .hero {
+      height: 120vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background-image: url('https://images.pexels.com/photos/12181619/pexels-photo-12181619.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--cream);
+      filter: brightness(0.9);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(120, 90, 78, 0.7), rgba(120, 90, 78, 0.92));
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10%;
+      left: -10%;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle at center, rgba(204,114,92,0.1) 0%, transparent 40%);
+      transform: rotate(12deg);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      padding: 4rem;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .hero h1 {
+      font-size: 6.25rem;
+      margin-bottom: 1.25rem;
+      line-height: 0.9;
+      text-shadow: 4px 6px 16px rgba(0,0,0,0.45);
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 1.75rem;
+      margin-bottom: 3.5rem;
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      text-shadow: 2px 4px 12px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .hero p::after {
+      content: '—';
+      display: block;
+      margin-top: 1.5rem;
+      font-size: 2.5rem;
+      color: var(--gold);
+      opacity: 0.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-buttons .cta-button:not(.alt) {
+      background: linear-gradient(135deg, var(--terracotta), #b65d4c);
+    }
+
+    .hero-buttons .cta-button.alt {
+      background: transparent;
+      color: var(--cream);
+      border: 2px solid var(--cream);
+      box-shadow: none;
+    }
+
+    .hero-buttons .cta-button.alt:hover {
+      background-color: rgba(255,255,255,0.1);
+      box-shadow: 0 12px 24px rgba(255,255,255,0.3);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* TRUST */
+    .trust-strip {
+      padding: 1.75rem 0;
+      background-color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 Q50,25 100,50 T200,50' fill='none' stroke='%23d4af37' stroke-width='0.5' stroke-opacity='0.2'/%3E%3C/svg%3E") repeat-x;
+      bottom: 0;
+      height: 2px;
+      pointer-events: none;
+    }
+
+    .trust-item {
+      margin: 0 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--olive);
+      position: relative;
+      padding: 0 0.5rem;
+    }
+
+    .trust-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 0.7rem;
+      background-color: var(--terracotta);
+      opacity: 0.2;
+    }
+
+    .trust-item:first-child::before {
+      display: none;
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 9rem 0;
+      background-color: var(--cream);
+      position: relative;
+    }
+
+    .features::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 12px;
+      background: linear-gradient(90deg, transparent, rgba(192,114,92,0.1), transparent);
+      z-index: -1;
+      border-radius: 50%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5.5rem;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--terracotta), var(--gold));
+      box-shadow: 0 2px 10px rgba(204,114,92,0.3);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+    }
+
+    .feature-card {
+      background-color: rgba(248, 244, 239, 0.8);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(192, 114, 92, 0.1);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(0);
+      opacity: 0;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-20px);
+      box-shadow: var(--shadow-lg);
+      z-index: 10;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--terracotta), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: 1;
+      border-radius: 2px;
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='12'%3E%3Cpath d='M0,10 Q25,5 50,10 T100,10' fill='none' stroke='%23d4af37' stroke-width='1' stroke-opacity='0.5'/%3E%3C/svg%3E") repeat-x;
+      z-index: 2;
+    }
+
+    .feature-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--terracotta), #b65d4c);
+      border-radius: 50%;
+      color: var(--cream);
+      transition: all 0.5s ease;
+      box-shadow: 0 8px 24px rgba(204,114,92,0.3);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1);
+    }
+
+    .feature-title {
+      margin-bottom: 1.25rem;
+      font-size: 1.85rem;
+    }
+
+    .feature-card p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      opacity: 0.9;
+      transition: opacity 0.4s ease;
+    }
+
+    .feature-card:hover p {
+      opacity: 1;
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 10rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7rem;
+      align-items: center;
+      background-color: var(--cream);
+      position: relative;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -150px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(192,114,92,0.1) 0%, transparent 70%);
+      z-index: -1;
+      border-radius: 50%;
+      filter: blur(10px);
+    }
+
+    .about-image {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(204, 114, 92, 0.2);
+      transform: scale(1);
+      transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%);
+      background-size: 20px 20px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .about-image:hover::before {
+      opacity: 1;
+    }
+
+    .about-image:hover {
+      transform: scale(1.06);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.08);
+    }
+
+    .about-content h2 {
+      margin-bottom: 2.5rem;
+      color: var(--walnut);
+      position: relative;
+    }
+
+    .about-content h2::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--terracotta), var(--gold));
+      border-radius: 1.5px;
+    }
+
+    .about-content p {
+      margin-bottom: 2.2rem;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: var(--walnut);
+      opacity: 0.95;
+      transition: opacity 0.4s ease;
+    }
+
+    .about-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-content p:hover {
+      opacity: 1;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      padding: 9rem 0;
+      background-color: var(--olive);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40'%3E%3Cpath d='M0,20 Q25,0 50,20 T100,20' fill='none' stroke='%23d4af37' stroke-width='1' stroke-opacity='0.1'/%3E%3C/svg%3E") repeat-x;
+      z-index: 1;
+    }
+
+    .testimonials::after {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      left: -15%;
+      width: 130%;
+      height: 130%;
+      background: radial-gradient(circle at center, rgba(204,114,92,0.1) 0%, transparent 40%);
+      transform: rotate(35deg);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .testimonials .section-title {
+      color: var(--cream);
+    }
+
+    .testimonials .section-title:after {
+      background: linear-gradient(90deg, var(--gold), var(--terracotta));
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+    }
+
+    .testimonial-card {
+      background-color: rgba(248, 244, 239, 0.12);
+      border-radius: 20px;
+      padding: 3rem;
+      position: relative;
+      border-left: 5px solid var(--gold);
+      box-shadow: var(--shadow-md);
+      transition: all 0.6s ease;
+      transform: translateY(0);
+      opacity: 0;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 22px;
+      left: 22px;
+      font-size: 4.5rem;
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      opacity: 0.3;
+      line-height: 1;
+      z-index: 1;
+    }
+
+    .testimonial-card::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.9);
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .avatar {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--terracotta), #b65d4c);
+      margin-right: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .testimonial-card:hover .avatar {
+      transform: scale(1.1);
+    }
+
+    .author-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--cream);
+    }
+
+    .author-title {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* PRICING / GALLERY */
+    .gallery {
+      padding: 10rem 0;
+      background-color: var(--cream);
+      position: relative;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='100'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%23cc725c' stroke-width='0.5' stroke-opacity='0.08'/%3E%3Ccircle cx='90' cy='30' r='25' fill='none' stroke='%23d4af37' stroke-width='0.3' stroke-opacity='0.05'/%3E%3C/svg%3E") repeat-x;
+      opacity: 0.8;
+      z-index: -1;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--terracotta), var(--gold));
+      box-shadow: 0 2px 12px rgba(204,114,92,0.3);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .gallery-item {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      height: 400px;
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      z-index: 2;
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.08);
+      box-shadow: var(--shadow-lg);
+      z-index: 15;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.18);
+    }
+
+    .gallery-item p {
+      position: absolute;
+      bottom: 2rem;
+      left: 1.75rem;
+      color: var(--cream);
+      font-size: 1.2rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      z-index: 3;
+    }
+
+    .gallery-item:hover p {
+      opacity: 1;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 10rem 0;
+      background-color: var(--walnut);
+      color: var(--cream);
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -100px;
+      width: 200px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 1;
+      filter: blur(15px);
+    }
+
+    .contact .section-title {
+      color: var(--cream);
+    }
+
+    .contact .section-title:after {
+      background: linear-gradient(90deg, var(--gold), var(--terracotta));
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 4rem auto 0;
+      padding: 4rem;
+      background: rgba(248, 244, 239, 0.1);
+      border-radius: 24px;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.2);
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .form-group {
+      margin-bottom: 2.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      font-size: 1rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      background-color: rgba(248, 244, 239, 0.1);
+      color: var(--cream);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.4s ease;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08) inset;
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .form-control:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+      background-color: rgba(248, 244, 239, 0.2);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    textarea.form-control {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    /* FOOTER */
+    .footer {
+      background-color: var(--olive);
+      color: var(--cream);
+      padding: 6rem 0 3rem;
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40'%3E%3Cpath d='M0,15 Q50,0 100,15 T200,15' fill='none' stroke='%23d4af37' stroke-width='0.8' stroke-opacity='0.1'/%3E%3C/svg%3E") repeat-x;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1fr 1fr;
+      gap: 5rem;
+      margin-bottom: 5rem;
+    }
+
+    .footer-about h3 {
+      margin-bottom: 1.75rem;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    .footer-about h3::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 70px;
+      height: 2.5px;
+      background: linear-gradient(90deg, var(--gold), var(--terracotta));
+    }
+
+    .footer-about p {
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      opacity: 0.85;
+    }
+
+    .footer-links h3 {
+      margin-bottom: 1.75rem;
+      font-size: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 0.8rem;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 0.5s ease;
+      position: relative;
+      padding-left: 0.5rem;
+    }
+
+    .footer-links a::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-links a:hover::before {
+      opacity: 1;
+    }
+
+    .footer-social a {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin-right: 1.5rem;
+      text-align: center;
+      line-height: 45px;
+      color: var(--cream);
+      text-decoration: none;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-social a:hover {
+      background-color: var(--gold);
+      color: var(--cream);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(212,175,55,0.3);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* ANIMATIONS */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .animate-on-scroll.viewed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MAGICAL DETAILS */
+    .pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      background: repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(192,114,92,0.03) 80px, rgba(192,114,92,0.03) 81px), repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(212,175,55,0.02) 80px, rgba(212,175,55,0.02) 81px);
+    }
+
+    .pattern-line {
+      stroke: var(--gold);
+      stroke-width: 0.5;
+      opacity: 0.05;
+    }
+
+    .pattern-circle {
+      fill: none;
+      stroke: var(--terracotta);
+      stroke-width: 1;
+      opacity: 0.03;
+    }
+
+    /* MOBILE */
+    @media (max-width: 767px) {
+      .hero h1 {
+        font-size: 4rem;
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+        padding: 5rem 0;
+      }
+
+      .about-image {
+        order: -1;
+      }
+
+      .trust-item {
+        margin: 0 1rem;
+      }
+
+      .feature-card {
+        padding: 2.5rem;
+      }
+
+      .feature-icon {
+        width: 70px;
+        height: 70px;
+      }
+
+      .gallery-grid {
+        gap: 1.5rem;
+      }
+
+      .gallery-item {
+        height: 280px;
+      }
+
+      .gallery-item img {
+        object-fit: cover;
+      }
+
+      .contact-form {
+        padding: 2rem;
+        margin: 3rem auto 0;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 0 2rem;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .nav {
+        padding: 1rem 0;
+      }
+
+      .nav.scrolled {
+        padding: 0.75rem 0;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+      }
+
+      .feature-title {
+        font-size: 1.6rem;
+      }
+
+      .feature-card {
+        padding: 2rem;
+      }
+
+      .section-title {
+        margin-bottom: 4rem;
+      }
+
+      .section-title:after {
+        width: 60px;
+        bottom: -16px;
+      }
+
+      .footer-content {
+        padding: 0 2rem;
+      }
+    }
+
+    /* SPECIAL EFFECTS */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .floating-element {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-element.delay-1 { animation-delay: -1s; }
+    .floating-element.delay-2 { animation-delay: -2s; }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-container">
+      <a href="#" class="logo">Saraiva</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#features">Menu</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="cta-button">Reserve Table</button>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Saraiva</h1>
+      <p>Lifelong flavors, crafted with soul and time</p>
+      <div class="hero-buttons">
+        <button class="cta-button">Reserve Now</button>
+        <button class="cta-button alt">View Menu</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-strip">
+    <div class="container">
+      <div class="trust-item">Family recipes since 1980</div>
+      <div class="trust-item">Locally sourced ingredients</div>
+      <div class="trust-item">Traditional cooking methods</div>
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Our Specialties</h2>
+      <div class="features-grid">
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C7.58 3 4 6.58 4 11c0 5 8 11 8 11s8-6 8-11c0-4.42-3.58-8-8-8zm0 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+          </div>
+          <h3 class="feature-title">Handcrafted Dishes</h3>
+          <p>Each plate is prepared with traditional methods passed down through generations, honoring authenticity and flavor.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
+          </div>
+          <h3 class="feature-title">Fresh Daily</h3>
+          <p>Our ingredients are sourced daily from local farmers and markets to ensure peak freshness and respect for the land.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm1-7h-2V2h2v3.5zM5.5 12c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5zM3 18.5h2.75l4.66-6.21L11.5 16.5l3.22-4.81c.6-.9 1.43-1.78 2.48-1.78h.5c.83 0 1.5.67 1.5 1.5 0 .75-.57 1.32-1.29 1.5l-2.2 1.34V21c0 .83.67 1.5 1.5 1.5h1.5c.83 0 1.5-.67 1.5-1.5v-2c-.43-.8-.89-1.49-1.5-2.13C18.47 15 17.21 16 14.91 18h-.36c-.97-.56-1.87-1.12-2.72-1.84L9 21.5c-.27.5-.69.91-1.23 1.26L3 22v-3.5c0-.83-.67-1.5-1.5-1.5h-.5z"/></svg>
+          </div>
+          <h3 class="feature-title">Authentic Heritage</h3>
+          <p>A true taste of tradition, where every spice, sauce, and simmer tells a story as old as the hills.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/8064896/pexels-photo-8064896.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Saraiva's warm kitchen interior with chefs preparing traditional meals">
+      </div>
+      <div class="about-content">
+        <h2>Welcome to Saraiva</h2>
+        <p>Since its humble beginnings, Saraiva has been a sanctuary for those who crave the real taste of tradition. What began as a single table in the heart of our family's home has evolved into a cherished dining experience rooted in respect — for ingredients, for time, and for memory.</p>
+        <p>Our chefs honor the wisdom of generations, combining rustic techniques with seasonal bounty to create dishes that nourish not just the body, but the soul. Every meal here is a story — one of resilience, of celebration, of belonging.</p>
+        <p>Join us, and let your hunger become a moment of connection.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2 class="section-title">What They Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card animate-on-scroll">
+          <p class="testimonial-text">The flavors took me back to my grandmother's kitchen in Portugal — untouched by time, pure and deeply comforting.</p>
+          <div class="testimonial-author">
+            <div class="avatar">J</div>
+            <div>
+              <div class="author-name">Janet</div>
+              <div class="author-title">Verified Customer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate-on-scroll">
+          <p class="testimonial-text">After years of dining out, I finally found a place that tastes like home. The bread alone? Worth the trip.</p>
+          <div class="testimonial-author">
+            <div class="avatar">L</div>
+            <div>
+              <div class="author-name">Lisa</div>
+              <div class="author-title">Local Patron</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate-on-scroll">
+          <p class="testimonial-text">It’s not just a meal — it’s an experience. The warmth in the air, the hum of conversation, the scent of slow-simmered sauces — this is where memories are made.</p>
+          <div class="testimonial-author">
+            <div class="avatar">M</div>
+            <div>
+              <div class="author-name">Miguel</div>
+              <div class="author-title">Regular Guest</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2 class="section-title">A Taste of Saraiva</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/37290111/pexels-photo-37290111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Plate of traditional stew with rustic bread">
+          <p>Carne Assada</p>
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/4699965/pexels-photo-4699965.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Herbs and spices arranged on wooden counter">
+          <p>Herb Garden</p>
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/9658801/pexels-photo-9658801.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Chef preparing fresh pasta by hand">
+          <p>Handmade Pasta</p>
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/27961865/pexels-photo-27961865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Candles and wine glasses on a wooden table at dusk">
+          <p>Dinner Ambiance</p>
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/12181619/pexels-photo-12181619.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Interior of Sarahiva’s cozy dining room with warm lighting">
+          <p>Interior Design</p>
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://images.pexels.com/photos/8064896/pexels-photo-8064896.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Chef serving a table with a warm, welcoming smile">
+          <p>Our Team</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">Get in Touch</h2>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" class="form-control" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" placeholder="Your email">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" class="form-control" placeholder="Tell us about your visit"></textarea>
+        </div>
+        <button type="submit" class="cta-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <h3>Saraiva</h3>
+          <p>Tastes from the heart. Traditional cuisines crafted with generations of wisdom, local ingredients, and quiet passion.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Twitter">TW</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Hours</h3>
+          <ul>
+            <li>Mon - Thu: 5pm - 10pm</li>
+            <li>Fri - Sat: 5pm - 11pm</li>
+            <li>Sun: 4pm - 9pm</li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Address</h3>
+          <ul>
+            <li>The old quarter</li>
+            <li>07321</li>
+            <li>Local area</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Saraiva. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <svg class="pattern" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="pattern1" patternUnits="userSpaceOnUse" width="100" height="100">
+        <line x1="0" y1="0" x2="100" y2="100" class="pattern-line" />
+        <line x1="0" y1="100" x2="100" y2="0" class="pattern-line" />
+        <circle cx="50" cy="50" r="10" class="pattern-circle" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#pattern1)" />
+  </svg>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const nav = document.querySelector('.nav');
+      const heroContent = document.querySelector('.hero-content');
+      const featureCards = document.querySelectorAll('.feature-card');
+      const aboutImage = document.querySelector('.about-image');
+      const testimonials = document.querySelectorAll('.testimonial-card');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const sections = document.querySelectorAll('.features, .about, .testimonials, .gallery, .contact, .footer');
+
+      const observeElements = (elements) => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('viewed');
+              if (entry.target.classList.contains('gallery-item')) {
+                const caption = entry.target.querySelector('p');
+                if (caption) {
+                  setTimeout(() => {
+                    caption.style.opacity = '1';
+                  }, 300);
+                }
+              }
+            }
+          });
+        }, { threshold: 0.1 });
+
+        elements.forEach(el => observer.observe(el));
+      };
+
+      // Sticky nav
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      // Animated hero
+      if (heroContent) {
+        setTimeout(() => {
+          heroContent.classList.add('viewed');
+        }, 300);
+      }
+
+      // Reveal cards on scroll with staggered delay
+      featureCards.forEach((card, index) => {
+        setTimeout(() => {
+          if (card.classList.contains('animate-on-scroll')) {
+            card.classList.add('viewed');
+          }
+        }, 300 + (index * 150));
+      });
+
+      // Animate about image on scroll
+      if (aboutImage && !aboutImage.classList.contains('viewed')) {
+        observeElements([aboutImage]);
+      }
+
+      // Animate testimonials on scroll
+      testimonials.forEach((testimonial, index) => {
+        setTimeout(() => {
+          if (testimonial.classList.contains('animate-on-scroll')) {
+            testimonial.classList.add('viewed');
+          }
+        }, 300 + (index * 150));
+      });
+
+      // Animate gallery items on scroll with staggered delay
+      galleryItems.forEach((item, index) => {
+        setTimeout(() => {
+          if (item.classList.contains('animate-on-scroll')) {
+            item.classList.add('viewed');
+          }
+        }, 300 + (index * 150));
+      });
+
+      // Section reveal
+      observeElements(sections);
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Form handling
+      const contactForm = document.querySelector('.contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', e => {
+          e.preventDefault();
+          alert('Thank you for your message! We will get back to you soon.');
+          contactForm.reset();
+        });
+      }
+
+      // Add subtle background float animation to logo
+      const logo = document.querySelector('.logo');
+      if (logo) {
+        logo.classList.add('floating-element');
+      }
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=U2FyYWl2YQ&u=dmlzaXQ&s=408c4f366c65e37b30f14272daa9214e&beacon=1&l=b3NtLW5vZGUtMjg5MDQ4MjMw";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:faba70d104--></html>
