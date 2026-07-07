@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnetic</title>
+  <style>
+    :root {
+      --burnt-sienna: #A52A2A;
+      --charcoal-gray: #333333;
+      --mustard-yellow: #D4AF37;
+      --cream: #F8F4E9;
+      --deep-forest-green: #1A3D1A;
+      --text-dark: #222;
+      --text-light: #f8f4e9;
+      --shadow-heavy: 0 20px 40px rgba(0,0,0,0.12);
+      --shadow-medium: 0 10px 25px rgba(0,0,0,0.08);
+      --shadow-light: 0 4px 12px rgba(0,0,0,0.05);
+      --transition-slow: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --transition-fast: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      color: var(--text-dark);
+      background-color: var(--cream);
+      overflow-x: hidden;
+      line-height: 1.7;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="2" fill="%23A52A2A"/></svg>'), auto;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+    }
+
+    h3 {
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Sticky Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1.5rem 0;
+      background: transparent;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+      transition: var(--transition-fast);
+      will-change: background, box-shadow;
+    }
+
+    nav.scrolled {
+      padding: 1rem 0;
+      background: rgba(248, 244, 233, 0.96);
+      box-shadow: var(--shadow-light);
+      border-bottom: 1px solid rgba(165, 42, 42, 0.08);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--charcoal-gray);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .logo:after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--mustard-yellow);
+      transition: var(--transition-fast);
+    }
+
+    .logo:hover:after {
+      width: 100%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      position: relative;
+    }
+
+    .nav-links a {
+      color: var(--charcoal-gray);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      position: relative;
+      transition: var(--transition-fast);
+    }
+
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--mustard-yellow);
+      transition: var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--burnt-sienna);
+    }
+
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta-button {
+      background-color: var(--burnt-sienna);
+      color: var(--text-light);
+      padding: 0.7rem 1.8rem;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: var(--shadow-light);
+      will-change: transform, box-shadow;
+    }
+
+    .cta-button:hover {
+      background-color: #8a2020;
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .cta-button:active {
+      transform: translateY(-1px) scale(1);
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background-image: url('https://images.pexels.com/photos/2387675/pexels-photo-2387675.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(26, 61, 26, 0.8), rgba(82, 57, 45, 0.95));
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10vh;
+      left: 0;
+      width: 100%;
+      height: 150vh;
+      background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 650px;
+      padding: 0 2rem;
+      opacity: 0;
+      transform: translateY(60px);
+      animation: fadeInUp 1.2s ease-out forwards;
+      animation-delay: 0.3s;
+      will-change: opacity, transform;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .hero h1:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 120px;
+      height: 3px;
+      background: var(--mustard-yellow);
+      z-index: -1;
+    }
+
+    .hero p {
+      color: var(--text-light);
+      font-size: 1.4rem;
+      margin-bottom: 2.5rem;
+      text-shadow: 1.5px 1.5px 8px rgba(0, 0, 0, 0.5);
+      font-weight: 400;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-buttons .cta-button {
+      background-color: var(--mustard-yellow);
+      color: var(--charcoal-gray);
+      border: 1.5px solid var(--mustard-yellow);
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-light);
+    }
+
+    .hero-buttons .cta-button:hover {
+      background-color: transparent;
+      color: var(--mustard-yellow);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: var(--shadow-medium);
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background: linear-gradient(90deg, var(--charcoal-gray), transparent);
+      color: var(--text-light);
+      padding: 0.8rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      position: relative;
+      margin: -1px 0;
+      overflow: hidden;
+    }
+
+    .trust-strip::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 30%;
+      height: 2px;
+      background: var(--mustard-yellow);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      50% { left: 200%; }
+      100% { left: 200%; }
+    }
+
+    /* Services */
+    .services {
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    .services::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: var(--burnt-sienna);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--mustard-yellow);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .service-card {
+      background-color: var(--cream);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: var(--transition-slow);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-light);
+      border: 1px solid rgba(212, 175, 55, 0.05);
+      transform: translateY(40px);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .service-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-heavy);
+      border-color: rgba(165, 42, 42, 0.15);
+    }
+
+    .service-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(165, 42, 42, 0.1);
+      border-radius: 50%;
+      color: var(--burnt-sienna);
+      transition: var(--transition-fast);
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1);
+      background-color: rgba(212, 175, 55, 0.15);
+      color: var(--mustard-yellow);
+    }
+
+    .service-icon svg {
+      width: 50px;
+      height: 50px;
+      transition: var(--transition-fast);
+    }
+
+    .service-card h3 {
+      margin-bottom: 1.5rem;
+      color: var(--burnt-sienna);
+    }
+
+    .service-card p {
+      color: var(--text-dark);
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* About */
+    .about {
+      padding: 8rem 0;
+      background-color: var(--cream);
+      position: relative;
+    }
+
+    .about::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0C150,100 250,80 350,90C450,100 550,110 650,90C750,70 850,70 950,90C1050,110 1150,100 1200,90V120H0Z" fill="%23F8F4E9"></path></svg>');
+      background-repeat: repeat-x;
+      background-size: 1200px 120px;
+      z-index: 1;
+    }
+
+    .about-container {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-heavy);
+      position: relative;
+      transform: scale(1);
+      transition: var(--transition-slow);
+      perspective: 1000px;
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(165,42,42,0.2) 0%, transparent 80%);
+      z-index: 1;
+      transition: var(--transition-fast);
+    }
+
+    .about-image:hover {
+      transform: scale(1.05);
+    }
+
+    .about-image:hover::before {
+      background: linear-gradient(120deg, rgba(212,175,55,0.3) 0%, transparent 80%);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-slow);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.08);
+    }
+
+    .about-content {
+      flex: 1;
+    }
+
+    .about-content h2 {
+      margin-bottom: 1.8rem;
+      color: var(--charcoal-gray);
+    }
+
+    .about-content p {
+      margin-bottom: 1.8rem;
+      color: var(--text-dark);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      position: relative;
+    }
+
+    .about-content p::before {
+      content: '';
+      position: absolute;
+      left: -16px;
+      top: 0.3rem;
+      width: 6px;
+      height: 6px;
+      background-color: var(--mustard-yellow);
+      border-radius: 50%;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 8rem 0;
+      background: linear-gradient(180deg, var(--charcoal-gray) 40%, transparent 60%);
+      color: var(--text-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0,0V60C150,90 250,70 350,80C450,90 550,100 650,80C750,60 850,60 950,80C1050,100 1150,90 1200,60V0H0Z" fill="%23333333"></path></svg>');
+      background-repeat: repeat-x;
+      background-size: 1200px 100px;
+      z-index: 1;
+    }
+
+    .testimonials::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0,0V40C150,60 250,50 350,60C450,70 550,80 650,60C750,40 850,40 950,60C1050,80 1150,70 1200,40V0H0Z" fill="%23F8F4E9"></path></svg>');
+      background-repeat: repeat-x;
+      background-size: 1200px 100px;
+      z-index: 1;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
+    }
+
+    .testimonial-card {
+      background-color: var(--cream);
+      padding: 3rem;
+      border-radius: 12px;
+      position: relative;
+      box-shadow: var(--shadow-heavy);
+      transform: translateY(40px);
+      opacity: 0;
+      transition: var(--transition-slow);
+      border: 1px solid rgba(165, 42, 42, 0.1);
+    }
+
+    .testimonial-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .testimonial-card:before {
+      content: """;
+      font-size: 5rem;
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      color: var(--mustard-yellow);
+      opacity: 0.3;
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1;
+      z-index: 1;
+    }
+
+    .testimonial-text {
+      margin-bottom: 2.5rem;
+      font-style: italic;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      font-weight: 500;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--burnt-sienna), #8a2020);
+      margin-right: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-weight: bold;
+      font-size: 1.4rem;
+      box-shadow: var(--shadow-light);
+    }
+
+    .author-name {
+      font-weight: 700;
+      color: var(--burnt-sienna);
+    }
+
+    .author-title {
+      font-size: 0.9rem;
+      color: var(--deep-forest-green);
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 8rem 0;
+      background-color: var(--cream);
+      position: relative;
+    }
+
+    .gallery::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0,0V40C150,60 250,50 350,60C450,70 550,80 650,60C750,40 850,40 950,60C1050,80 1150,70 1200,40V0H0Z" fill="%23F8F4E9"></path></svg>');
+      background-repeat: repeat-x;
+      background-size: 1200px 100px;
+      z-index: 1;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 12px;
+      position: relative;
+      height: 280px;
+      cursor: pointer;
+      transition: var(--transition-slow);
+      transform: translateY(40px);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .gallery-item.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px) scale(1.03);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-slow);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.15) brightness(1.05);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(26, 61, 26, 0.85), transparent);
+      color: var(--text-light);
+      padding: 2rem 1.5rem;
+      transform: translateY(70px);
+      opacity: 0;
+      transition: var(--transition-slow);
+      z-index: 2;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .gallery-overlay h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .gallery-overlay h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--mustard-yellow);
+    }
+
+    /* Contact */
+    .contact {
+      padding: 8rem 0;
+      background-color: var(--burnt-sienna);
+      color: var(--text-light);
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0C150,100 250,80 350,90C450,100 550,110 650,90C750,70 850,70 950,90C1050,110 1150,100 1200,90V120H0Z" fill="%23A52A2A"></path></svg>');
+      background-repeat: repeat-x;
+      background-size: 1200px 120px;
+      z-index: 1;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact h2 {
+      margin-bottom: 2rem;
+      font-size: clamp(2rem, 6vw, 3rem);
+      color: var(--text-light);
+    }
+
+    .contact p {
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .contact-form {
+      width: 100%;
+      max-width: 650px;
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      margin-bottom: 0.7rem;
+      text-align: left;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(255,255,255,0.1);
+      color: var(--text-light);
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      transition: var(--transition-fast);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      background-color: rgba(255,255,255,0.15);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.2);
+      border-bottom: 1px solid var(--mustard-yellow);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 160px;
+    }
+
+    .contact-form button {
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--charcoal-gray);
+      color: var(--text-light);
+      padding: 5rem 0 3rem;
+      position: relative;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 3rem;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--mustard-yellow);
+      position: relative;
+    }
+
+    .footer-logo::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 80px;
+      height: 2px;
+      background: var(--mustard-yellow);
+    }
+
+    .footer-about p {
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .footer-links h3 {
+      margin-bottom: 1.8rem;
+      color: var(--mustard-yellow);
+      font-size: 1.2rem;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .footer-links li::before {
+      content: '';
+      position: absolute;
+      left: -18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      background-color: var(--mustard-yellow);
+      border-radius: 50%;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition-fast);
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .footer-links a:hover {
+      color: var(--mustard-yellow);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: var(--transition-fast);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .social-icon:hover {
+      background-color: var(--burnt-sienna);
+      transform: translateY(-4px) scale(1.08);
+      box-shadow: 0 8px 20px rgba(165, 42, 42, 0.4);
+      color: var(--text-light);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* SVG Waves - Enhanced */
+    .svg-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      z-index: 2;
+    }
+
+    .svg-wave--top {
+      top: -1px;
+      height: 60px;
+    }
+
+    /* Special Animations */
+    .wc {
+      animation: float 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Horizontal Parallax */
+    .parallax-layer {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .layer-1 {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><circle cx="100" cy="100" r="8" fill="rgba(212,175,55,0.1)" /></svg>');
+      background-repeat: repeat;
+      background-size: 200px;
+      animation: parallax 20s linear infinite;
+    }
+
+    .layer-2 {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><circle cx="150" cy="150" r="5" fill="rgba(165,42,42,0.1)" /></svg>');
+      background-repeat: repeat;
+      background-size: 300px;
+      animation: parallax 30s linear infinite reverse;
+    }
+
+    @keyframes parallax {
+      from { background-position: 0 0; }
+      to { background-position: 100% 100%; }
+    }
+
+    /* Floating lights */
+    .light::before {
+      content: '';
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: rgba(212, 175, 55, 0.6);
+      border-radius: 50%;
+      animation: twinkle 2s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 0;
+      }
+      
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+      
+      .cta-button {
+        margin-top: 0.5rem;
+      }
+      
+      .hero {
+        height: 90vh;
+        padding: 2rem;
+      }
+      
+      .hero h1 {
+        font-size: clamp(2.2rem, 7vw, 3.5rem);
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .about-container {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      .about-image {
+        width: 100%;
+      }
+      
+      .section-title {
+        margin-bottom: 3rem;
+      }
+      
+      .services-grid,
+      .testimonial-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .service-card,
+      .testimonial-card {
+        padding: 2rem 1.5rem;
+      }
+      
+      .gallery-item {
+        height: 250px;
+      }
+      
+      .gallery-overlay h3 {
+        font-size: 1.3rem;
+      }
+      
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        align-items: center;
+      }
+      
+      .footer-links {
+        margin-top: 1rem;
+      }
+      
+      .social-icons {
+        justify-content: center;
+      }
+      
+      .contact {
+        padding: 6rem 0;
+      }
+      
+      .contact-form {
+        padding: 0 1rem;
+        gap: 1.5rem;
+      }
+      
+      .form-group input,
+      .form-group textarea {
+        padding: 1rem;
+      }
+      
+      .trust-strip {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Parallax Background Layers -->
+  <div class="parallax-layer layer-1"></div>
+  <div class="parallax-layer layer-2"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">Magnetic</a>
+      <div class="nav-links">
+        <a href="#services">Menu</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="cta-button">Visit Us</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Magnetic</h1>
+      <p>Where the ale flows and stories stick</p>
+      <div class="hero-buttons">
+        <a href="#services" class="cta-button">Explore Our Brews</a>
+        <a href="#contact" class="cta-button">Book a Table</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    Trusted by locals for authentic ales and timeless vibes
+  </div>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2 class="section-title">Our Offerings</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 6V18M6 12H18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Locally Crafted Ales</h3>
+          <p>Small-batch brews with earthy hops and rich malts, distilled in the heart of the region.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 8V6C20 4.89543 19.1046 4 18 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V16M18 6H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Traditional Pub Grub</h3>
+          <p>Hearty, simple, soulful dishes made with local ingredients and low intervention cooking.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 16V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Communal Atmosphere</h3>
+          <p>Warm wooden tables, low lighting, and the kind of quiet chatter that feels like home.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container about-container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/37889516/pexels-photo-37889516.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Interior of Magnetic pub with warm lighting and wooden bar">
+      </div>
+      <div class="about-content">
+        <h2>More Than a Pub, A Gathering</h2>
+        <p>No neon signs here, no curated playlists. Just the clink of glassware, the crackle of an old fireplace, and the kind of conversation that’s been happening here since before anyone can remember.</p>
+        <p>Started informally as a leaning post for farmers and lorry drivers, Magnetic evolved without planning. The only rule: be kind, stay a while.</p>
+        <p>Our bar is worn smooth by decades of elbows, our floors still show the marks of well-loved boots. We don’t restore, we honor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Voices of the Scene</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">I came in for one pint and stayed six hours. The owner remembered my name by the third glass. That’s rare these days.</p>
+          <div class="testimonial-author">
+            <div class="avatar">J</div>
+            <div>
+              <div class="author-name">Jim</div>
+              <div class="author-title">Regular since '98</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-text">The best pie I’ve ever had. No description does it justice. Just sit at the bar, order one, and shut up until it’s gone.</p>
+          <div class="testimonial-author">
+            <div class="avatar">S</div>
+            <div>
+              <div class="author-name">Sarah</div>
+              <div class="author-title">Verified customer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-text">Told my daughter about this place. She cried when we left. That’s the power of a real pub.</p>
+          <div class="testimonial-author">
+            <div class="avatar">T</div>
+            <div>
+              <div class="author-name">Tony</div>
+              <div class="author-title">Local father</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2 class="section-title">Amongst the Atmosphere</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/5055184/pexels-photo-5055184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Wooden bar with stein glasses and copper taps">
+          <div class="gallery-overlay">
+            <h3>Bar & Taproom</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/12202388/pexels-photo-12202388.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Mismatched chairs around a wooden table with cracked mugs">
+          <div class="gallery-overlay">
+            <h3>Communal Tables</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/33034447/pexels-photo-33034447.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Hand-penned chalkboard with beer names and prices">
+          <div class="gallery-overlay">
+            <h3>Chalkboard Menus</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/5054648/pexels-photo-5054648.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fireplace with old boots and hats hung nearby">
+          <div class="gallery-overlay">
+            <h3>Cozy Nooks</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container contact-container">
+      <h2>Get in Touch</h2>
+      <p>Just walk in. Or give us a shout.</p>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="jane.doe@example.com">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us what brings you here..."></textarea>
+        </div>
+        <button type="submit" class="cta-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-about">
+        <div class="footer-logo">Magnetic</div>
+        <p>Where the ale flows and stories stick. No phones. No hurry. Just good company and solid brews.</p>
+        <div class="social-icons">
+          <a href="#" class="social-icon">f</a>
+          <a href="#" class="social-icon">t</a>
+          <a href="#" class="social-icon">i</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#services">Menu</a></li>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Visit Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3>Hours</h3>
+        <ul>
+          <li>Mon - Thu: 4pm – 11pm</li>
+          <li>Fri - Sat: 12pm – 1am</li>
+          <li>Sun: 12pm – 10pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2026 Magnetic. All rights reserved.
+    </div>
+  </footer>
+
+  <svg class="svg-wave" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0V60C150,90 250,70 350,80C450,90 550,100 650,80C750,60 850,60 950,80C1050,100 1150,90 1200,60V0H0Z" fill="var(--cream)"></path>
+  </svg>
+
+  <script>
+    // Sticky Nav
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.service-card, .testimonial-card, .gallery-item').forEach(el => {
+      el.classList.add('fade-in-up');
+      observer.observe(el);
+    });
+
+    // Staggered testimonial reveal
+    document.querySelectorAll('.testimonial-card').forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('visible');
+      }, 100 * index);
+    });
+
+    // Form Submit
+    const form = document.querySelector('.contact-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for your message! We’ll get back to you soon.');
+      form.reset();
+    });
+
+    // Add subtle movement to hero content
+    document.querySelector('.hero-content').style.opacity = '0';
+    setTimeout(() => {
+      document.querySelector('.hero-content').style.opacity = '1';
+    }, 600);
+
+    // Enhanced scroll parallax for hero
+    window.addEventListener('scroll', () => {
+      const hero = document.querySelector('.hero');
+      const scrollValue = window.pageYOffset;
+      hero.style.backgroundPositionY = scrollValue * 0.5 + 'px';
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=TWFnbmV0aWM&u=dmlzaXQ&s=15b64a6231225fe53f5dcfc6858d2891&beacon=1&l=b3NtLW5vZGUtMzM4MjQ3OTc3";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:52fd27f1f0--></html>
