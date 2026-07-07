@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Elliott Davis Properties - Premium estate agents in London. Sales, lettings, property management, mortgages, and more since 1969.">
+    <meta name="theme-color" content="#F97316">
+    <title>Elliott Davis Properties | Premium Estate Agents in London</title>
+
+    <style>
+        :root {
+            --orange-primary: #F97316;
+            --orange-dark: #EA580C;
+            --navy: #1E3A5F;
+            --white: #FFFFFF;
+            --light-gray: #F8FAFC;
+            --medium-gray: #94A3B8;
+            --dark-gray: #334155;
+            --text-dark: #0F172A;
+            --accent-gold: #D4AF37;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Trebuchet MS, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        /* ============== HERO SECTION ============== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy) 0%, #2D5A7B 50%, var(--navy) 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 60px 20px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .hero .since {
+            display: inline-block;
+            background: rgba(249, 115, 22, 0.2);
+            border: 1px solid var(--orange-primary);
+            color: var(--orange-primary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            font-size: 1rem;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--orange-primary);
+            color: var(--white);
+            box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--orange-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(249, 115, 22, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        .location-badge {
+            margin-top: 50px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* ============== NAVIGATION ============== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(30, 58, 95, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--orange-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--orange-primary);
+            border-radius: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* ============== SERVICES SECTION ============== */
+        .services {
+            padding: 80px 20px;
+            background: linear-gradient(to bottom, var(--light-gray), var(--white));
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--navy);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #E2E8F0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--orange-primary), var(--orange-dark));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-out;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--orange-primary), var(--orange-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--medium-gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ============== PROPERTIES SECTION ============== */
+        .properties {
+            padding: 80px 20px;
+            background: var(--white);
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .property-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            border: 1px solid #E2E8F0;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .property-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .property-image.gradient-1 {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+        }
+
+        .property-image.gradient-2 {
+            background: linear-gradient(135deg, #4158D0 0%, #C850C0 100%);
+        }
+
+        .property-image.gradient-3 {
+            background: linear-gradient(135deg, #0093E9 0%, #80D0C7 100%);
+        }
+
+        .property-image.gradient-4 {
+            background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);
+        }
+
+        .property-image.gradient-5 {
+            background: linear-gradient(135deg, #30CFD0 0%, #330867 100%);
+        }
+
+        .property-image.gradient-6 {
+            background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+        }
+
+        .property-price-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--white);
+            color: var(--orange-primary);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .property-details {
+            padding: 25px;
+        }
+
+        .property-title {
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .property-location {
+            color: var(--medium-gray);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .property-features {
+            display: flex;
+            gap: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #E2E8F0;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        .property-feature {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ============== TESTIMONIALS SECTION ============== */
+        .testimonials {
+            padding: 80px 20px;
+            background: linear-gradient(to bottom, var(--light-gray), var(--white));
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            border-left: 4px solid var(--orange-primary);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stars {
+            color: var(--orange-primary);
+            font-size: 1rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-text {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .testimonial-role {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        /* ============== LEAD FORM SECTION ============== */
+        .lead-form-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--navy) 0%, #2D5A7B 100%);
+            color: var(--white);
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-section-header h2 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 15px;
+        }
+
+        .form-section-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.05rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--orange-primary);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .checkbox-group {
+            display: grid;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+
+        .checkbox-label input {
+            width: auto;
+            margin: 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px 32px;
+            background: var(--orange-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+            box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: var(--orange-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(249, 115, 22, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* ============== FOOTER ============== */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--orange-primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: var(--orange-primary);
+        }
+
+        .footer-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        .footer-divider p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* ============== ANIMATIONS ============== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+        }
+
+        /* ============== SCROLL ANIMATIONS ============== */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Elliott <span>Davis</span></a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#properties">Properties</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="since">Established in 1969 • London, E13 9DB</div>
+            <h1>Premium Property Solutions in London</h1>
+            <p class="tagline">Expert estate agents delivering exceptional service for over 55 years. Sales, lettings, mortgages, and comprehensive property management.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Schedule a Consultation</a>
+                <a href="#properties" class="btn btn-secondary">View Properties</a>
+            </div>
+            <div class="location-badge">
+                <span>📍 Stratford, London</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="services">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive property solutions tailored to your needs</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card scroll-fade">
+                    <div class="service-icon">🏠</div>
+                    <h3>Property Sales</h3>
+                    <p>Strategic market expertise helping you achieve the best price for your property in London's competitive market.</p>
+                </div>
+
+                <div class="service-card scroll-fade">
+                    <div class="service-icon">🔑</div>
+                    <h3>Lettings</h3>
+                    <p>Professional lettings management with tenant screening, rent collection, and property maintenance.</p>
+                </div>
+
+                <div class="service-card scroll-fade">
+                    <div class="service-icon">🏢</div>
+                    <h3>Property Management</h3>
+                    <p>Complete property management services handling maintenance, tenants, and legal compliance.</p>
+                </div>
+
+                <div class="service-card scroll-fade">
+                    <div class="service-icon">💰</div>
+                    <h3>Mortgages</h3>
+                    <p>Expert mortgage advice connecting you with lenders offering competitive rates and flexible terms.</p>
+                </div>
+
+                <div class="service-card scroll-fade">
+                    <div class="service-icon">⚖️</div>
+                    <h3>Legal Services</h3>
+                    <p>Comprehensive legal support including conveyancing, contracts, and property compliance documentation.</p>
+                </div>
+
+                <div class="service-card scroll-fade">
+                    <div class="service-icon">🔍</div>
+                    <h3>Property Surveys</h3>
+                    <p>Professional property surveys identifying structural issues and providing detailed condition assessments.</p>
+                </div>
+
+                <div class="service-card scroll-fade">
+                    <div class="service-icon">🚪</div>
+                    <h3>Evictions</h3>
+                    <p>Professional eviction management handling complex situations with legal expertise and discretion.</p>
+                </div>
+
+                <div class="service-card scroll-fade">
+                    <div class="service-icon">🎨</div>
+                    <h3>Design & Build</h3>
+                    <p>Property design and renovation services creating stunning spaces that maximize value and appeal.</p>
+                </div>
+
+                <div class="service-card scroll-fade">
+                    <div class="service-icon">📊</div>
+                    <h3>Market Insights</h3>
+                    <p>Data-driven market analysis and trends helping you make informed investment decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROPERTIES SECTION -->
+    <section id="properties" class="properties">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Featured Properties</h2>
+                <p>Handpicked homes and investment opportunities</p>
+            </div>
+
+            <div class="properties-grid">
+                <!-- Property 1 -->
+                <div class="property-card scroll-fade">
+                    <div class="property-image gradient-1">
+                        <div class="property-price-badge">£895,000</div>
+                        🏡
+                    </div>
+                    <div class="property-details">
+                        <div class="property-title">Riverside Townhouse</div>
+                        <div class="property-location">📍 Walthamstow, E17</div>
+                        <div class="property-features">
+                            <div class="property-feature">🛏️ 4 beds</div>
+                            <div class="property-feature">🛁 2 baths</div>
+                            <div class="property-feature">📏 1,850 sqft</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 2 -->
+                <div class="property-card scroll-fade">
+                    <div class="property-image gradient-2">
+                        <div class="property-price-badge">£650,000</div>
+                        🏠
+                    </div>
+                    <div class="property-details">
+                        <div class="property-title">Modern Apartment</div>
+                        <div class="property-location">📍 Stratford, E15</div>
+                        <div class="property-features">
+                            <div class="property-feature">🛏️ 2 beds</div>
+                            <div class="property-feature">🛁 1 bath</div>
+                            <div class="property-feature">📏 950 sqft</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 3 -->
+                <div class="property-card scroll-fade">
+                    <div class="property-image gradient-3">
+                        <div class="property-price-badge">£1,250,000</div>
+                        🏘️
+                    </div>
+                    <div class="property-details">
+                        <div class="property-title">Victorian Villa</div>
+                        <div class="property-location">📍 Leyton, E10</div>
+                        <div class="property-features">
+                            <div class="property-feature">🛏️ 5 beds</div>
+                            <div class="property-feature">🛁 3 baths</div>
+                            <div class="property-feature">📏 2,500 sqft</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 4 -->
+                <div class="property-card scroll-fade">
+                    <div class="property-image gradient-4">
+                        <div class="property-price-badge">£575,000</div>
+                        🏢
+                    </div>
+                    <div class="property-details">
+                        <div class="property-title">City Center Flat</div>
+                        <div class="property-location">📍 Canary Wharf, E14</div>
+                        <div class="property-features">
+                            <div class="property-feature">🛏️ 1 bed</div>
+                            <div class="property-feature">🛁 1 bath</div>
+                            <div class="property-feature">📏 650 sqft</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 5 -->
+                <div class="property-card scroll-fade">
+                    <div class="property-image gradient-5">
+                        <div class="property-price-badge">£925,000</div>
+                        🏡
+                    </div>
+                    <div class="property-details">
+                        <div class="property-title">Garden House</div>
+                        <div class="property-location">📍 Leytonstone, E11</div>
+                        <div class="property-features">
+                            <div class="property-feature">🛏️ 4 beds</div>
+                            <div class="property-feature">🛁 2 baths</div>
+                            <div class="property-feature">📏 2,100 sqft</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 6 -->
+                <div class="property-card scroll-fade">
+                    <div class="property-image gradient-6">
+                        <div class="property-price-badge">£795,000</div>
+                        🏠
+                    </div>
+                    <div class="property-details">
+                        <div class="property-title">Contemporary Home</div>
+                        <div class="property-location">📍 Stratford, E13</div>
+                        <div class="property-features">
+                            <div class="property-feature">🛏️ 3 beds</div>
+                            <div class="property-feature">🛁 2 baths</div>
+                            <div class="property-feature">📏 1,650 sqft</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="testimonials" class="testimonials">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Client Testimonials</h2>
+                <p>Trusted by hundreds of satisfied clients across London</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card scroll-fade">
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-text">"Elliott Davis made selling my property incredibly smooth. Their market knowledge and professional approach resulted in an offer 5% above asking price. Highly recommended!"</div>
+                    <div class="testimonial-author">Sarah Johnson</div>
+                    <div class="testimonial-role">Property Seller, Walthamstow</div>
+                </div>
+
+                <div class="testimonial-card scroll-fade">
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-text">"As a first-time buyer, Elliott Davis guided me through every step. Their mortgage advisor found us an excellent rate, and the legal team handled everything flawlessly."</div>
+                    <div class="testimonial-author">Michael Chen</div>
+                    <div class="testimonial-role">First-Time Buyer, Stratford</div>
+                </div>
+
+                <div class="testimonial-card scroll-fade">
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-text">"Their property management service has been exceptional. They handle tenant issues promptly and provide transparent monthly reports. Peace of mind knowing my investment is in capable hands."</div>
+                    <div class="testimonial-author">Emma Williams</div>
+                    <div class="testimonial-role">Property Investor, Leyton</div>
+                </div>
+
+                <div class="testimonial-card scroll-fade">
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-text">"The survey team identified potential structural issues early, saving me from a costly mistake. Their detailed report and recommendations were invaluable in negotiating the final price."</div>
+                    <div class="testimonial-author">David Martinez</div>
+                    <div class="testimonial-role">Property Buyer, Canary Wharf</div>
+                </div>
+
+                <div class="testimonial-card scroll-fade">
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-text">"Letting my flat through Elliott Davis was stress-free. They screened tenants thoroughly and manage everything from rent collection to maintenance requests."</div>
+                    <div class="testimonial-author">Lisa Anderson</div>
+                    <div class="testimonial-role">Landlord, Leytonstone</div>
+                </div>
+
+                <div class="testimonial-card scroll-fade">
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-text">"Working with their design and build team transformed my property. The renovation was completed on time and within budget, increasing my home's value significantly."</div>
+                    <div class="testimonial-author">James Robinson</div>
+                    <div class="testimonial-role">Property Renovator, Stratford</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEAD FORM SECTION -->
+    <section id="contact" class="lead-form-section">
+        <div class="section-container">
+            <div class="form-container">
+                <div class="form-section-header">
+                    <h2>Get in Touch</h2>
+                    <p>Let's discuss your property needs. Our expert team is ready to help.</p>
+                </div>
+
+                <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="020 XXXX XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyType">Property Type *</label>
+                            <select id="propertyType" name="propertyType" required>
+                                <option value="">Select a property type</option>
+                                <option value="residential">Residential</option>
+                                <option value="investment">Investment</option>
+                                <option value="commercial">Commercial</option>
+                                <option value="unsure">Not Sure</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>I'm interested in: *</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interest" value="sales" required>
+                                Property Sales
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interest" value="lettings">
+                                Lettings
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interest" value="management">
+                                Property Management
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interest" value="mortgages">
+                                Mortgage Advice
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interest" value="survey">
+                                Property Survey
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Tell us more about your needs</label>
+                        <textarea id="message" name="message" placeholder="What would you like help with?"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="section-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Elliott Davis Properties</h3>
+                    <p>Premium estate agents serving London since 1969</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>📍 Stratford, London E13 9DB</p>
+                    <p>📞 Call for consultation</p>
+                    <p>✉️ info@elliotdavis.co.uk</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#services">Sales & Lettings</a>
+                    <a href="#services">Mortgages</a>
+                    <a href="#services">Property Management</a>
+                    <a href="#services">Legal Services</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Hours</h3>
+                    <p>Monday - Friday: 9am - 6pm</p>
+                    <p>Saturday: 10am - 4pm</p>
+                    <p>Sunday: Closed</p>
+                </div>
+            </div>
+
+            <div class="footer-divider">
+                <p>&copy; 2026 Elliott Davis Properties. All rights reserved. | Professional Standards | Privacy Policy | Terms & Conditions</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form Submission Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // Get selected interests
+            const interests = Array.from(formData.getAll('interest')).join(', ');
+
+            // Validate at least one interest is selected
+            if (!interests) {
+                alert('Please select at least one area of interest.');
+                return;
+            }
+
+            // Prepare data
+            const data = {
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                propertyType: formData.get('propertyType'),
+                interests: interests,
+                message: formData.get('message'),
+                timestamp: new Date().toISOString()
+            };
+
+            // Log submission (in production, this would send to a backend service)
+            console.log('Form submitted:', data);
+
+            // Show success message
+            const successMessage = document.createElement('div');
+            successMessage.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #22c55e;
+                color: white;
+                padding: 16px 24px;
+                border-radius: 8px;
+                font-weight: 600;
+                z-index: 1000;
+                animation: slideInRight 0.3s ease-out;
+            `;
+            successMessage.textContent = '✓ Thank you! We\'ll be in touch within 24 hours.';
+            document.body.appendChild(successMessage);
+
+            // Reset form
+            form.reset();
+
+            // Remove success message after 5 seconds
+            setTimeout(() => {
+                successMessage.remove();
+            }, 5000);
+        }
+
+        // Scroll animation observer
+        function observeScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.scroll-fade').forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Smooth scroll for navigation links
+        function setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            observeScrollAnimations();
+            setupSmoothScroll();
+        });
+
+        // Add animation for success message
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
