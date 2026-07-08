@@ -1,977 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top Class Turkish Barber</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --black: #0a0a0a;
-      --gold: #c9a25b;
-      --deep-red: #7a241d;
-      --cream: #f8f5f0;
-      --charcoal: #2d2d2d;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Lora', serif;
-      color: var(--black);
-      background-color: var(--cream);
-      overflow-x: hidden;
-      line-height: 1.7;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* Sticky Nav */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 1.5rem 0;
-      background: transparent;
-      z-index: 1000;
-      transition: all 0.3s ease;
-    }
-
-    nav.scrolled {
-      background-color: rgba(248, 245, 240, 0.95);
-      padding: 1rem 0;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--black);
-      text-decoration: none;
-      letter-spacing: -1px;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .logo span {
-      color: var(--gold);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      color: var(--black);
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: color 0.3s;
-      position: relative;
-    }
-
-    .nav-links a:hover {
-      color: var(--deep-red);
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 1px;
-      bottom: -4px;
-      left: 0;
-      background-color: var(--gold);
-      transition: width 0.3s;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .cta-button {
-      background-color: var(--deep-red);
-      color: var(--cream);
-      border: none;
-      padding: 0.7rem 1.8rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.3s;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .cta-button:hover {
-      background-color: var(--gold);
-      color: var(--black);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(194, 158, 93, 0.3);
-    }
-
-    /* Hero */
-    .hero {
-      height: 100vh;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.pexels.com/photos/37764947/pexels-photo-37764947.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center/cover;
-      display: flex;
-      align-items: center;
-      color: var(--cream);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 70% 30%, rgba(199, 162, 91, 0.1) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(122, 36, 29, 0.1) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .hero-content {
-      max-width: 700px;
-      padding-left: 5%;
-      animation: fadeInUp 1.2s ease-out forwards;
-      opacity: 0;
-    }
-
-    .hero h1 {
-      font-size: 4.5rem;
-      margin-bottom: 1rem;
-      letter-spacing: -2px;
-      font-weight: 700;
-    }
-
-    .hero p {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      font-weight: 500;
-      opacity: 0.9;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .hero-buttons .cta-button {
-      margin-right: 0;
-    }
-
-    /* Trust Strip */
-    .trust-strip {
-      background-color: var(--black);
-      color: var(--cream);
-      padding: 1rem 0;
-      font-size: 0.9rem;
-      text-align: center;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-top: -1px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Services */
-    .services {
-      padding: 8rem 0;
-      background-color: var(--cream);
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 4rem;
-      font-size: 3rem;
-      color: var(--black);
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
-    }
-
-    .service-card {
-      background: var(--cream);
-      border-radius: 10px;
-      padding: 2.5rem 2rem;
-      text-align: center;
-      transition: all 0.4s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .service-card svg {
-      width: 80px;
-      height: 80px;
-      fill: var(--gold);
-      margin-bottom: 1.5rem;
-      transition: all 0.5s ease;
-    }
-
-    .service-card:hover svg {
-      fill: var(--black);
-      transform: scale(1.1);
-    }
-
-    .service-card h3 {
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
-      color: var(--black);
-    }
-
-    .service-card p {
-      color: var(--charcoal);
-      font-size: 1.05rem;
-    }
-
-    /* About */
-    .about {
-      padding: 8rem 0;
-      background-color: var(--black);
-      color: var(--cream);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .about::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a0a0a"/><path d="M10 10 L90 10 L50 90 Z" fill="none" stroke="%23c9a25b" stroke-width="1"/></svg>');
-      opacity: 0.03;
-      z-index: 0;
-    }
-
-    .about-content {
-      display: flex;
-      align-items: center;
-      gap: 5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .about-text {
-      flex: 1;
-    }
-
-    .about-text h2 {
-      font-size: 3.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--cream);
-      line-height: 1.2;
-    }
-
-    .about-text p {
-      margin-bottom: 2rem;
-      font-size: 1.2rem;
-      line-height: 1.8;
-      opacity: 0.9;
-    }
-
-    .about-image {
-      flex: 1;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-      transform: translateX(0);
-      transition: transform 0.6s ease;
-    }
-
-    .about-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .about-image:hover {
-      transform: scale(1.03);
-    }
-
-    /* Testimonials */
-    .testimonials {
-      padding: 8rem 0;
-      background-color: var(--cream);
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 3rem;
-    }
-
-    .testimonial-card {
-      background-color: var(--black);
-      color: var(--cream);
-      padding: 2.5rem;
-      border-radius: 10px;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transition: all 0.4s ease;
-    }
-
-    .testimonial-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    .testimonial-card::before {
-      content: '"';
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 5rem;
-      font-family: 'Playfair Display', serif;
-      color: var(--gold);
-      opacity: 0.3;
-      line-height: 1;
-    }
-
-    .testimonial-card p {
-      margin-bottom: 2rem;
-      font-style: italic;
-      font-size: 1.1rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-    }
-
-    .testimonial-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: var(--charcoal);
-      margin-right: 1rem;
-      overflow: hidden;
-    }
-
-    .testimonial-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .testimonial-name {
-      font-weight: 600;
-      color: var(--gold);
-      font-size: 1.1rem;
-    }
-
-    .testimonial-role {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-
-    /* Gallery */
-    .gallery {
-      padding: 8rem 0;
-      background-color: var(--black);
-      color: var(--cream);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .gallery::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a0a0a"/><path d="M10 10 L90 10 L50 90 Z" fill="none" stroke="%23c9a25b" stroke-width="0.5"/></svg>');
-      opacity: 0.03;
-      z-index: 0;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .gallery-item {
-      position: relative;
-      border-radius: 10px;
-      overflow: hidden;
-      height: 300px;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.08);
-    }
-
-    .gallery-item::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .gallery-item:hover::after {
-      opacity: 1;
-    }
-
-    /* Contact */
-    .contact {
-      padding: 8rem 0;
-      background-color: var(--cream);
-      position: relative;
-    }
-
-    .contact::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 30% 70%, rgba(199, 162, 91, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(122, 36, 29, 0.05) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .contact-form {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 4rem;
-      background-color: var(--black);
-      color: var(--cream);
-      border-radius: 15px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
-    }
-
-    .form-title {
-      text-align: center;
-      margin-bottom: 3rem;
-      font-size: 3rem;
-      color: var(--gold);
-    }
-
-    .form-group {
-      margin-bottom: 2rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.8rem;
-      font-size: 1.1rem;
-      color: var(--cream);
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(201, 162, 91, 0.3);
-      border-radius: 8px;
-      color: var(--cream);
-      font-family: 'Lora', serif;
-      font-size: 1rem;
-      transition: all 0.3s;
-    }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: rgba(255, 255, 255, 0.5);
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 0 2px rgba(201, 162, 91, 0.3);
-    }
-
-    .form-group textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-
-    .submit-button {
-      width: 100%;
-      padding: 1rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      background-color: var(--gold);
-      color: var(--black);
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .submit-button:hover {
-      background-color: var(--deep-red);
-      color: var(--cream);
-    }
-
-    /* Footer */
-    footer {
-      background-color: var(--deep-red);
-      color: var(--cream);
-      padding: 4rem 0 2rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 3rem;
-    }
-
-    .footer-col h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--gold);
-    }
-
-    .footer-col p,
-    .footer-col a {
-      color: var(--cream);
-      opacity: 0.9;
-      margin-bottom: 0.8rem;
-      display: block;
-      text-decoration: none;
-      transition: opacity 0.3s;
-    }
-
-    .footer-col a:hover {
-      opacity: 1;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .social-links a {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--cream);
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-
-    .social-links a:hover {
-      background-color: var(--gold);
-      color: var(--black);
-    }
-
-    .copyright {
-      text-align: center;
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-
-    /* SVG Icons */
-    .icon-male {
-      width: 80px;
-      height: 80px;
-      fill: currentColor;
-    }
-
-    .icon-blade {
-      width: 80px;
-      height: 80px;
-      fill: currentColor;
-    }
-
-    .icon-silver {
-      width: 80px;
-      height: 80px;
-      fill: currentColor;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .section {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 3rem;
-      }
-
-      .hero p {
-        font-size: 1.2rem;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .about-content {
-        flex-direction: column;
-        gap: 3rem;
-      }
-
-      .about-text h2 {
-        font-size: 2.8rem;
-      }
-
-      .contact-form {
-        padding: 3rem 2rem;
-      }
-
-      .footer-grid {
-        gap: 2rem;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .mobile-menu-btn {
-        display: block;
-        background: none;
-        border: none;
-        color: var(--black);
-        font-size: 1.5rem;
-        cursor: pointer;
-      }
-    }
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Top Class Turkish Barber</title>
+<meta name="description" content="Style that turns heads">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Top Class Turkish Barber">
+<meta property="og:description" content="Style that turns heads">
+<meta property="og:image" content="https://images.pexels.com/photos/7195805/pexels-photo-7195805.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Top Class Turkish Barber">
+<meta name="twitter:description" content="Style that turns heads">
+<meta name="twitter:image" content="https://images.pexels.com/photos/7195805/pexels-photo-7195805.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0e0c0a;--ink:#f6efe6;--mut:#b6a892;--acc:#e0a060;--card:#171310;--line:rgba(224,160,96,.18)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.05}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+      padding:18px 28px;backdrop-filter:blur(10px);background:rgba(14,12,10,.55);border-bottom:1px solid var(--line)}
+  nav .brand{font-family:'Fraunces';font-weight:700;font-size:20px;letter-spacing:.3px}
+  nav .links{display:flex;gap:26px;font-size:14px;color:var(--mut)}
+  nav .links a:hover{color:var(--acc)}
+  @media(max-width:720px){nav .links{display:none}}
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;isolation:isolate}
+  .hero .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;
+            transform:scale(1.05);animation:zoom 18s ease-in-out infinite alternate}
+  .hero::after{content:'';position:absolute;inset:0;z-index:-1;
+            background:linear-gradient(180deg,rgba(14,12,10,.55),rgba(14,12,10,.82) 70%,var(--bg))}
+  @keyframes zoom{to{transform:scale(1.16)}}
+  .hero .inner{padding:120px 0 80px}
+  .eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--acc);
+           margin-bottom:22px;opacity:0;animation:rise .9s .1s forwards}
+  .hero h1{font-size:clamp(44px,9vw,104px);letter-spacing:-.02em;opacity:0;animation:rise 1s .25s forwards}
+  .hero p.tag{margin-top:18px;font-size:clamp(18px,2.4vw,26px);color:var(--mut);max-width:620px;
+              opacity:0;animation:rise 1s .45s forwards}
+  .btn{display:inline-block;margin-top:38px;padding:15px 34px;border-radius:100px;background:var(--acc);color:#221606;
+       font-weight:700;letter-spacing:.02em;opacity:0;animation:rise 1s .6s forwards;transition:transform .25s,box-shadow .25s}
+  .btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(224,160,96,.6)}
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  section{padding:104px 0}
+  .lead{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
+  .about h2{font-size:clamp(32px,5vw,56px);max-width:14ch;letter-spacing:-.02em}
+  .about p{margin-top:22px;font-size:19px;color:var(--mut);max-width:60ch}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:820px){.grid3{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 30px;transition:transform .3s,border-color .3s}
+  .card:hover{transform:translateY(-6px);border-color:var(--acc)}
+  .card-no{font-family:'Fraunces';font-size:34px;color:var(--acc);opacity:.7}
+  .card h3{font-size:23px;margin:10px 0 8px}
+  .card p{color:var(--mut);font-size:15.5px}
+  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}}
+  .gal figure{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .gal figure:hover img{transform:scale(1.08)}
+  .gal .ph{width:100%;height:100%;background:linear-gradient(135deg,#1d1712,#0e0c0a)}
+  .contact{background:linear-gradient(180deg,var(--bg),#15110d)}
+  .contact .row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  @media(max-width:820px){.contact .row{grid-template-columns:1fr}}
+  .contact h2{font-size:clamp(30px,4.5vw,50px);letter-spacing:-.02em}
+  .contact p{color:var(--mut);margin-top:18px;font-size:18px;max-width:46ch}
+  form{display:grid;gap:14px}
+  input,textarea{background:#100d0a;border:1px solid var(--line);border-radius:12px;padding:15px 16px;color:var(--ink);
+                 font-family:inherit;font-size:15px}
+  input:focus,textarea:focus{outline:none;border-color:var(--acc)}
+  textarea{min-height:120px;resize:vertical}
+  form .btn{margin-top:6px;animation:none;opacity:1;border:none;cursor:pointer;font-size:15px}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:13.5px;border-top:1px solid var(--line)}
+  footer .big{font-family:'Fraunces';font-size:26px;color:var(--ink);margin-bottom:10px}
+  .badge{display:inline-block;margin-top:14px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+         color:var(--acc);opacity:.8}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--d,0ms),transform .7s var(--d,0ms)}
+  .reveal.in{opacity:1;transform:none}
+</style>
 </head>
 <body>
-  <nav id="mainNav">
-    <div class="container nav-container">
-      <a href="#" class="logo">Top<span>Class</span> Turkish Barber</a>
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <a href="#contact" class="cta-button">Book Now</a>
-    </div>
-  </nav>
-
-  <section class="hero" id="home">
-    <div class="container hero-content">
-      <h1>Top Class Turkish Barber</h1>
-      <p>Where Tradition Meets the Blade</p>
-      <div class="hero-buttons">
-        <a href="#contact" class="cta-button">Book Appointment</a>
-        <a href="#services" class="cta-button" style="background-color: transparent; color: var(--cream); border: 2px solid var(--cream);">View Services</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="trust-strip">
-    Trusted by generations since day one
+<nav>
+  <a class="brand" href="#top">Top Class Turkish Barber</a>
+  <div class="links">
+    <a href="#top">Home</a><a href="#about">About</a><a href="#services">Services</a>
+    <a href="#gallery">Gallery</a><a href="#contact">Contact</a>
   </div>
-
-  <section class="services" id="services">
-    <div class="container">
-      <h2 class="section-title">Our Services</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <svg class="icon-male" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-          <h3>Classic Cut & Style</h3>
-          <p>Experience the precision of traditional barbering with clean lines, tapered fades, and personalized styling that reflects your individuality.</p>
-        </div>
-        <div class="service-card">
-          <svg class="icon-blade" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 11v12"/><path d="M9 15l3-3 3 3"/></svg>
-          <h3>Traditional Shave</h3>
-          <p>Hand-lathered with our signature blend, a hot towel, and a straight razor — the ultimate ritual in masculine grooming.</p>
-        </div>
-        <div class="service-card">
-          <svg class="icon-silver" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><path d="M12 12v6"/><path d="M9 15h6"/><path d="M20 22a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8z"/><path d="M16 14l-2-3-2 3"/><path d="M12 10v6"/></svg>
-          <h3>Beard Design</h3>
-          <p>From sculpted to wild, we shape, define, and refine your beard with our signature precision to enhance your features and style.</p>
-        </div>
-      </div>
+</nav>
+<header class="hero" id="top">
+  <div class="bg" style="background-image:url('https://images.pexels.com/photos/7195805/pexels-photo-7195805.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940')"></div>
+  <div class="wrap inner">
+    <span class="eyebrow">Proudly serving 1 Kidmore End Road Reading RG4 8SD</span>
+    <h1>Top Class Turkish Barber</h1>
+    <p class="tag">Style that turns heads</p>
+    <a class="btn" href="#contact">Get in touch</a>
+  </div>
+</header>
+<section class="about wrap" id="about">
+  <div class="lead">About us</div>
+  <h2 class="reveal">Style that turns heads</h2>
+  <p class="reveal" style="--d:120ms">We're a local favourite, proud to serve our community with care and a personal touch. Come and see what makes us different.</p>
+</section>
+<section class="wrap" id="services">
+  <div class="lead">What we offer</div>
+  <div class="grid3"><div class="card reveal"><div class="card-no">01</div><h3>Cuts &amp; styling</h3><p>Cuts, colour and styling tailored to you.</p></div>
+<div class="card reveal"><div class="card-no">02</div><h3>Treatments</h3><p>Pamper treatments that leave you looking and feeling great.</p></div>
+<div class="card reveal"><div class="card-no">03</div><h3>Easy booking</h3><p>Book online or pop in — we&#x27;ll fit you in.</p></div></div>
+</section>
+<section class="wrap" id="gallery">
+  <div class="lead">A look inside</div>
+  <div class="gal"><figure class="reveal" style="--d:0ms"><img loading="lazy" src="https://images.pexels.com/photos/7195803/pexels-photo-7195803.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Top Class Turkish Barber"></figure>
+<figure class="reveal" style="--d:60ms"><img loading="lazy" src="https://images.pexels.com/photos/7195799/pexels-photo-7195799.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Top Class Turkish Barber"></figure>
+<figure class="reveal" style="--d:120ms"><img loading="lazy" src="https://images.pexels.com/photos/7195812/pexels-photo-7195812.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Top Class Turkish Barber"></figure>
+<figure class="reveal" style="--d:180ms"><img loading="lazy" src="https://images.pexels.com/photos/7195796/pexels-photo-7195796.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Top Class Turkish Barber"></figure>
+<figure class="reveal" style="--d:240ms"><img loading="lazy" src="https://images.pexels.com/photos/7195811/pexels-photo-7195811.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Top Class Turkish Barber"></figure>
+<figure class="reveal" style="--d:300ms"><img loading="lazy" src="https://images.pexels.com/photos/7195803/pexels-photo-7195803.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Top Class Turkish Barber"></figure></div>
+</section>
+<section class="contact" id="contact">
+  <div class="wrap row">
+    <div>
+      <div class="lead">Contact</div>
+      <h2 class="reveal">Come say hello</h2>
+      <p class="reveal" style="--d:120ms">We'd love to welcome you. Find us, call us, or drop by.</p>
     </div>
-  </section>
-
-  <section class="about" id="about">
-    <div class="container about-content">
-      <div class="about-text">
-        <h2>A Tradition of Excellence</h2>
-        <p>At Top Class Turkish Barber, we honor the century-old rituals of Turkish barbering — the warm lather, the straight-edge precision, the time-honored techniques passed down through generations. Each visit is more than a haircut; it's a moment of calm, care, and craftsmanship.</p>
-        <p>Our hands work with the same care our grandfather’s hands did — patient, confident, and deliberate. Whether it's a classic fade or a full traditional shave, we treat every client like family, offering an experience that is as authentic as it is exceptional.</p>
-      </div>
-      <div class="about-image">
-        <img src="https://images.pexels.com/photos/37663563/pexels-photo-37663563.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Master barber giving a traditional shave">
-      </div>
-    </div>
-  </section>
-
-  <section class="testimonials" id="testimonials">
-    <div class="container">
-      <h2 class="section-title">What Our Clients Say</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <p>An absolute masterpiece of grooming. The kind of service you don't find anywhere else — precise, calming, and utterly professional.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <img src="https://images.pexels.com/photos/37764947/pexels-photo-37764947.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client avatar">
-            </div>
-            <div>
-              <div class="testimonial-name">Verified Customer</div>
-              <div class="testimonial-role">Regular Client</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p>The attention to detail is beyond compare. From the first handshake to the final touch of the aftershave, I felt respected, relaxed, and refreshed.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <img src="https://images.pexels.com/photos/37663563/pexels-photo-37663563.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client avatar">
-            </div>
-            <div>
-              <div class="testimonial-name">Local Client</div>
-              <div class="testimonial-role">Business Owner</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p>My father came here decades ago. Now I bring my son. That’s the mark of true quality. We’re not just getting haircuts — we’re continuing a legacy.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <img src="https://images.pexels.com/photos/7697492/pexels-photo-7697492.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client avatar">
-            </div>
-            <div>
-              <div class="testimonial-name">Family Client</div>
-              <div class="testimonial-role">Third Generation</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="gallery" id="gallery">
-    <div class="container">
-      <h2 class="section-title">Our Craft</h2>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/7320177/pexels-photo-7320177.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Barber at work">
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/7697492/pexels-photo-7697492.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Barber tools">
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/7320329/pexels-photo-7320329.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer shave">
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/3771620/pexels-photo-3771620.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Beard grooming">
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/7697492/pexels-photo-7697492.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Barber tools">
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.pexels.com/photos/7320329/pexels-photo-7320329.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer shave">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="contact-form">
-        <h2 class="form-title">Get in Touch</h2>
-        <form id="contactForm">
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="Your name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="Your email" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" placeholder="Tell us how we can help..." required></textarea>
-          </div>
-          <button type="submit" class="submit-button">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h3>Top Class Turkish Barber</h3>
-          <p>Where Tradition Meets the Blade</p>
-          <p>1 Kidmore End Road<br>Reading RG4 8SD</p>
-        </div>
-        <div class="footer-col">
-          <h3>Quick Links</h3>
-          <a href="#home">Home</a>
-          <a href="#services">Services</a>
-          <a href="#about">About</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h3>Connect</h3>
-          <p>Open by appointment</p>
-          <p>Mon–Sat: 10am – 7pm<br>Sun: Closed</p>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook">f</a>
-            <a href="#" aria-label="Instagram">i</a>
-            <a href="#" aria-label="Twitter">t</a>
-          </div>
-        </div>
-      </div>
-      <div class="copyright">
-        &copy; 2026 Top Class Turkish Barber. All rights reserved.
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
-      const nav = document.getElementById('mainNav');
-      if (window.scrollY > 100) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
-
-    // Section fade-in animation
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.section').forEach(section => {
-      observer.observe(section);
-    });
-
-    // Smooth scroll for nav links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Form submission
-    const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      
-      alert(`Thank you, ${name}! Your message has been received. We'll contact you soon.`);
-      contactForm.reset();
-    });
-
-    // Gallery hover effect (already handled by CSS)
-  </script>
+    <form class="reveal" style="--d:200ms" onsubmit="return false">
+      <input placeholder="Your name"><input type="email" placeholder="Your email">
+      <textarea placeholder="Your message"></textarea>
+      <button class="btn" type="submit">Send</button>
+    </form>
+  </div>
+</section>
+<footer>
+  <div class="big">Top Class Turkish Barber</div>
+  <div>Proudly serving 1 Kidmore End Road Reading RG4 8SD</div>
+  <div class="badge">★ Website preview crafted by Bridge Digital Solutions</div>
+</footer>
+<script>
+  const io=new IntersectionObserver((es)=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
 <script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=VG9wIENsYXNzIFR1cmtpc2ggQmFyYmVy&u=dmlzaXQ&s=30c10e4291d126701eef4f85f7bfd3aa&beacon=1&l=b3NtLW5vZGUtMzI0NzQ5NjA0";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:70f99299fb--></html>
+<!--bld:fe9af33039--></html>
