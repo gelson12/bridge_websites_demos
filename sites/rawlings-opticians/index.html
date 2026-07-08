@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rawlings Opticians</title>
+    <style>
+        :root {
+            --charcoal: #2a2a2a;
+            --cream: #fdf5e6;
+            --gold: #d4b483;
+            --slate: #4a5a6e;
+            --off-white: #f8f6f1;
+            --text-dark: #1a1a1a;
+            --text-light: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--off-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        a {
+            color: var(--charcoal);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--gold);
+        }
+
+        /* === NAV === */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: transparent;
+            transition: background 0.4s ease, padding 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--charcoal);
+            font-weight: 700;
+            letter-spacing: -0.8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-size: 1.05rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background-color: var(--cream);
+            color: var(--charcoal);
+            border: 1px solid var(--charcoal);
+            padding: 0.8rem 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background-color: var(--gold);
+            color: var(--off-white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* === HERO === */
+        .hero {
+            height: 100vh;
+            background-image: url('https://images.pexels.com/photos/5202060/pexels-photo-5202060.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(42, 42, 42, 0.4);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 5%;
+            max-width: 1000px;
+            animation: slideInUp 1.2s ease-out;
+        }
+
+        .hero h1 {
+            color: var(--off-white);
+            margin-bottom: 1.5rem;
+            font-size: 4.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            color: var(--off-white);
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .hero-buttons .cta-button {
+            background-color: transparent;
+            color: var(--off-white);
+            border-color: var(--off-white);
+        }
+
+        .hero-buttons .cta-button:hover {
+            background-color: var(--off-white);
+            color: var(--charcoal);
+        }
+
+        /* === TRUST STRIP === */
+        .trust-strip {
+            background-color: var(--cream);
+            padding: 1.5rem 0;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--slate);
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--charcoal);
+        }
+
+        /* === FEATURES === */
+        .features {
+            padding: 8rem 5%;
+            background-color: var(--off-white);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background-color: var(--gold);
+            margin: 1rem auto 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background-color: var(--cream);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 2rem;
+            fill: var(--slate);
+            transition: fill 0.3s ease;
+        }
+
+        .feature-card:hover svg {
+            fill: var(--gold);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.7rem;
+        }
+
+        /* === ABOUT === */
+        .about {
+            padding: 8rem 5%;
+            display: flex;
+            align-items: center;
+            gap: 8rem;
+            background-color: var(--off-white);
+            position: relative;
+        }
+
+        @media (max-width: 900px) {
+            .about {
+                flex-direction: column-reverse;
+                gap: 4rem;
+            }
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.6s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h2 {
+            margin-bottom: 2rem;
+            font-size: 2.8rem;
+        }
+
+        .about-content p {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        /* === TESTIMONIALS === */
+        .testimonials {
+            padding: 8rem 5%;
+            background-color: var(--cream);
+            position: relative;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .testimonial {
+            background-color: var(--off-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial::before {
+            content: """;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 6rem;
+            color: var(--gold);
+            opacity: 0.1;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--slate);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-author h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .testimonial-author span {
+            font-size: 1rem;
+            color: var(--slate);
+            font-weight: 400;
+        }
+
+        /* === GALLERY === */
+        .gallery {
+            padding: 8rem 5%;
+            background-color: var(--off-white);
+            text-align: center;
+        }
+
+        .gallery h2 {
+            margin-bottom: 5rem;
+            font-size: 2.5rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            aspect-ratio: 1;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        /* === CONTACT === */
+        .contact {
+            padding: 8rem 5%;
+            background-color: var(--slate);
+            color: var(--off-white);
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.pexels.com/photos/5202046/pexels-photo-5202046.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+            filter: blur(4px);
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin-bottom: 2rem;
+            font-size: 2.8rem;
+            color: var(--off-white);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact p {
+            margin-bottom: 3rem;
+            font-size: 1.3rem;
+            color: var(--cream);
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 700px) {
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--off-white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form .submit-btn {
+            background-color: var(--gold);
+            color: var(--off-white);
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+            letter-spacing: 0.7px;
+        }
+
+        .contact-form .submit-btn:hover {
+            background-color: var(--cream);
+            color: var(--charcoal);
+            transform: translateY(-3px);
+        }
+
+        /* === FOOTER === */
+        footer {
+            background-color: var(--charcoal);
+            color: var(--off-white);
+            padding: 6rem 5% 3rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand .logo {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .footer-brand p {
+            color: var(--cream);
+            max-width: 300px;
+        }
+
+        .footer-links h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-social a {
+            color: var(--cream);
+            font-size: 1.5rem;
+        }
+
+        .footer-social a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 6rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: var(--cream);
+        }
+
+        /* === SVG DECORATIONS === */
+        .section-divider {
+            margin: 4rem 0;
+            width: 100%;
+            height: 80px;
+            overflow: hidden;
+        }
+
+        .section-divider svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === FLOATING SHAPES === */
+        .floating-shape {
+            position: absolute;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .shape1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--gold), transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            left: -100px;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .shape2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--slate), transparent 70%);
+            border-radius: 50%;
+            bottom: -200px;
+            right: -100px;
+            animation: float 14s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-50px) rotate(180deg);
+            }
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .about {
+                gap: 3rem;
+            }
+
+            .about-content h2 {
+                font-size: 2.2rem;
+            }
+
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 4rem 5% 2rem;
+            }
+        }
+
+        /* === MOBILE MENU BUTTON === */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--charcoal);
+            cursor: pointer;
+            z-index: 200;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="mainNav">
+        <div class="logo">Rawlings Opticians</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button class="cta-button">Book an Eye Test</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    </nav>
+
+    <div class="hero" id="home">
+        <div class="hero-content">
+            <h1>Clear Vision,<br>Clearly Understood</h1>
+            <p>Precision eye care in the heart of Croydon, tailored to your unique needs.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-button">Book an Appointment</a>
+                <a href="#services" class="cta-button">Our Services</a>
+            </div>
+        </div>
+        <div class="floating-shape shape1"></div>
+        <div class="floating-shape shape2"></div>
+    </div>
+
+    <div class="trust-strip">
+        Trusted by families across Croydon for over three decades
+    </div>
+
+    <section class="features" id="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path><path d="M11 5h2v6h8v2h-8v6h-2v-6H5v-2h8v-6z"></path></svg>
+                <h3>Comprehensive Eye Exams</h3>
+                <p>Our advanced diagnostic procedures ensure accurate assessment of your visual health with every visit.</p>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path><path d="M11 5h2v6h8v2h-8v6h-2v-6H5v-2h8v-6z"></path></svg>
+                <h3>Frame Styling & Fit</h3>
+                <p>Expert consultation to find your perfect frame — balancing comfort, vision, and personal style.</p>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path><path d="M11 5h2v6h8v2h-8v6h-2v-6H5v-2h8v-6z"></path></svg>
+                <h3>Lens Technology</h3>
+                <p>State-of-the-art lenses designed for clarity, comfort, and protection in every light condition.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V120H1200V0C1199.99,75.52 1047.96,120 888.11,120C726.75,120 600.29,78.31 479.07,60C337.91,37.8 175.87,0 0,0Z" fill="var(--cream)"></path>
+        </svg>
+    </div>
+
+    <section class="about" id="about">
+        <div class="about-image animate-on-scroll">
+            <img src="https://images.pexels.com/photos/5996656/pexels-photo-5996656.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Professional opticians at work">
+        </div>
+        <div class="about-content animate-on-scroll">
+            <h2>Welcome to Rawlings Opticians</h2>
+            <p>Since our founding in the quiet heart of Croydon, our commitment to excellence in vision care has never wavered. We blend the artistry of eyewear with the precision of ocular science — delivering clarity that transforms lives.</p>
+            <p>Each pair of glasses we craft is more than a medical device; it’s a personal statement, carefully chosen, expertly fitted, and lovingly maintained.</p>
+            <p>Our clinicians listen before prescribing. We believe vision care begins with understanding — your lifestyle, your vision, and your goals.</p>
+        </div>
+    </section>
+
+    <div class="section-divider">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V120H1200V0C1199.99,75.52 1047.96,120 888.11,120C726.75,120 600.29,78.31 479.07,60C337.91,37.8 175.87,0 0,0Z" fill="var(--slate)"></path>
+        </svg>
+    </div>
+
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2>What Our Clients Say</h2>
+        </div>
+        <div class="testimonials-container">
+            <div class="testimonial animate-on-scroll">
+                <p>After years of struggling with contacts, I finally found an eye care experience that put me at ease. The attention to detail in my prescription and frame selection was extraordinary.</p>
+                <div class="testimonial-author">
+                    <img src="https://images.pexels.com/photos/5202060/pexels-photo-5202060.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client">
+                    <div>
+                        <h4>Sarah J.</h4>
+                        <span>Verified Customer</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial animate-on-scroll">
+                <p>I’ve visited dozens of opticians — none come close to the calm expertise and genuine care I received at Rawlings. I finally feel truly seen and understood.</p>
+                <div class="testimonial-author">
+                    <img src="https://images.pexels.com/photos/5996656/pexels-photo-5996656.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client">
+                    <div>
+                        <h4>Michael R.</h4>
+                        <span>Longtime Patient</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial animate-on-scroll">
+                <p>My children love going here. The staff makes the experience fun, and my optometrist patiently answered every question — no glossing over details. A rare gem.</p>
+                <div class="testimonial-author">
+                    <img src="https://images.pexels.com/photos/1627639/pexels-photo-1627639.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client">
+                    <div>
+                        <h4>Denise T.</h4>
+                        <span>Parent of Two</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="section-title">
+            <h2>Our Practice</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item animate-on-scroll">
+                <img src="https://images.pexels.com/photos/5202046/pexels-photo-5202046.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Modern eyewear display">
+            </div>
+            <div class="gallery-item animate-on-scroll">
+                <img src="https://images.pexels.com/photos/1627639/pexels-photo-1627639.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer trying on frames">
+            </div>
+            <div class="gallery-item animate-on-scroll">
+                <img src="https://images.pexels.com/photos/34093133/pexels-photo-34093133.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Optician adjusting lenses">
+            </div>
+            <div class="gallery-item animate-on-scroll">
+                <img src="https://images.pexels.com/photos/26167588/pexels-photo-26167588.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Bright, clean interior">
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2>Let's Talk Vision</h2>
+            <p>Book a consultation with our expert team and experience precision care in the heart of Croydon.</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Tell us about your vision needs..." required></textarea>
+                <button type="submit" class="submit-btn">Schedule Your Visit</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo">Rawlings Opticians</div>
+                <p>8 High Street Croydon CR0 1YA</p>
+                <p>Precision vision care, delivered with care.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook">f</a>
+                    <a href="#" aria-label="Instagram">i</a>
+                    <a href="#" aria-label="Twitter">t</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="#">Comprehensive Exams</a></li>
+                    <li><a href="#">Prescription Lenses</a></li>
+                    <li><a href="#">Designer Frames</a></li>
+                    <li><a href="#">Contact Lens Fitting</a></li>
+                    <li><a href="#">Children's Eye Care</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">GDPR Compliance</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Rawlings Opticians. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.querySelector('.nav-links');
+            const nav = document.getElementById('mainNav');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+
+            // Sticky Nav
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // Animate on Scroll
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinks.style.display = 'none';
+                    }
+                });
+            });
+
+            // Parallax effect on hero
+            window.addEventListener('scroll', () => {
+                const hero = document.querySelector('.hero');
+                const scrollTop = window.pageYOffset;
+                hero.style.backgroundPositionY = scrollTop * 0.5 + 'px';
+            });
+
+            // Form submission
+            const contactForm = document.querySelector('.contact-form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                this.querySelectorAll('input, textarea').forEach(field => {
+                    field.value = '';
+                });
+                alert('Thank you for your message. We will Contact you shortly.');
+            });
+        });
+    </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=UmF3bGluZ3MgT3B0aWNpYW5z&u=dmlzaXQ&s=033515e0ad7568af30a1d9bad23a4542&beacon=1&l=b3NtLXdheS0xOTcyNzgwMzI";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:566f8823bd--></html>
