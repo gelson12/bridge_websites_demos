@@ -1,1046 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armstrong James</title>
-    <style>
-        :root {
-            --primary: #0a1a3d;
-            --secondary: #2c3e50;
-            --light: #e0e0e0;
-            --lighter: #c0c0c0;
-            --offwhite: #f8f8f8;
-            --font-heading: 'Merriweather', serif;
-            --font-body: 'Lato', sans-serif;
-            --shadow-low: 0 4px 12px rgba(10, 26, 61, 0.1);
-            --shadow-high: 0 8px 24px rgba(10, 26, 61, 0.15);
-            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --radius: 8px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--secondary);
-            line-height: 1.7;
-            background-color: var(--offwhite);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            margin-bottom: 1.5rem;
-        }
-
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        a:hover {
-            color: var(--secondary);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: transparent;
-            padding: 1.5rem 0;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        nav.scrolled {
-            background-color: rgba(248, 248, 248, 0.95);
-            padding: 1rem 0;
-            box-shadow: var(--shadow-low);
-        }
-
-        .nav-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            color: var(--primary);
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background-color: var(--primary);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-        }
-
-        .cta-button:hover {
-            background-color: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-high);
-        }
-
-        /* Hero */
-        .hero {
-            height: 100vh;
-            background-image: url('https://images.pexels.com/photos/7875996/pexels-photo-7875996.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(10, 26, 61, 0.7), rgba(10, 26, 61, 0.9));
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 700px;
-            padding: 0 2rem;
-            color: white;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards 0.2s;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 3.5rem;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .secondary-button {
-            background-color: transparent;
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: var(--radius);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            border: 1px solid white;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-        }
-
-        .secondary-button:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Trust Strip */
-        .trust-strip {
-            background-color: var(--offwhite);
-            padding: 1.5rem 0;
-            text-align: center;
-            border-bottom: 1px solid var(--lighter);
-        }
-
-        .trust-items {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .trust-item {
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            color: var(--secondary);
-        }
-
-        /* Services */
-        .services {
-            padding: 6rem 0;
-            background-color: white;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--primary);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-        }
-
-        .service-card {
-            background-color: var(--offwhite);
-            padding: 2.5rem 2rem;
-            border-radius: var(--radius);
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--lighter);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background: linear-gradient(180deg, var(--primary), transparent);
-            transition: var(--transition);
-            z-index: 1;
-        }
-
-        .service-card:hover::before {
-            height: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-high);
-            z-index: 10;
-        }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            transition: var(--transition);
-        }
-
-        .service-card:hover .service-icon {
-            background-color: var(--secondary);
-        }
-
-        .service-card h3 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        /* About */
-        .about {
-            padding: 8rem 0;
-            background-color: var(--offwhite);
-            position: relative;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%230a1a3d" fill-opacity="0.03" d="M12,32,13.19,18.15A1.58,1.58,0,0,0,11.8,17a3.57,3.57,0,0,0-2.24-.73l-2.24,0H6a3.57,3.57,0,0,0-2.24.73,1.58,1.58,0,0,0-.73,1.64l1.14,13.85A1.54,1.54,0,0,0,6,50a2.39,2.39,0,0,0,1.56-.66L9.59,46a2.3,2.3,0,0,0,.73-1.64c0-.68-.21-1.15-.73-1.64a3.57,3.57,0,0,0-2.24-.73H6a1.58,1.58,0,0,0-1.58,1.64L5.15,41.4c.11,1.69,1,2.51,2.24,2.51a3.29,3.29,0,0,0,1.05-.15l2.66-.8a3.23,3.23,0,0,0,1.56-.73,3.45,3.45,0,0,0,.73-2.51,1.58,1.58,0,0,0-.73-1.64c-1.26-.5-2.08-.59-2.84-1.66L1.81,29.56A1.55,1.55,0,0,0,1,31.13a1.5,1.5,0,0,0,.21.56l5,7.46A1.55,1.55,0,0,0,12,32Z"/><path fill="%230a1a3d" fill-opacity="0.03" d="M49,32l-1.19,13.85A1.58,1.58,0,0,0,47.71,47a3.57,3.57,0,0,0,2.24.73l2.24,0H54a3.57,3.57,0,0,0,2.24-.73,1.58,1.58,0,0,0,.73-1.64l-1.14-13.85A1.54,1.54,0,0,0,54,15a2.39,2.39,0,0,0-1.56.66L50.59,19a2.3,2.3,0,0,0-.73,1.64c0,.68.21,1.15.73,1.64a3.57,3.57,0,0,0,2.24.73H54a1.58,1.58,0,0,0,1.58-1.64l.21-1.18C56,22.07,55.22,21,53.82,21a3.29,3.29,0,0,0-1.05.15l-2.66.8A3.23,3.23,0,0,0,49,22.74a3.45,3.45,0,0,0-.73,2.51,1.58,1.58,0,0,0,.73,1.64c1.26.5,2.08.59,2.84,1.66L58.19,29.56A1.55,1.55,0,0,0,59,31.13a1.5,1.5,0,0,0-.21.56l-5,7.46A1.55,1.55,0,0,0,49,32Z"/><path fill="%230a1a3d" fill-opacity="0.03" d="M87.54,32,86.35,18.15A1.58,1.58,0,0,0,84.96,17a3.57,3.57,0,0,0-2.24-.73l-2.24,0H82a3.57,3.57,0,0,0-2.24.73,1.58,1.58,0,0,0-.73,1.64l1.14,13.85A1.54,1.54,0,0,0,82,50a2.39,2.39,0,0,0,1.56-.66L85,46a2.3,2.3,0,0,0,.73-1.64c0-.68-.21-1.15-.73-1.64a3.57,3.57,0,0,0-2.24-.73H82a1.58,1.58,0,0,0-1.58,1.64l.21,1.18c1.13.11,1.91,1.11,1.77,2.51a3.29,3.29,0,0,0-.85,2.21l.21,1.18c.54.71,1.14,1.18,2.24,1.64a1.58,1.58,0,0,0,1.64-.73c1-.7,1.3-1.5,1.73-2.75l1.14-3.52A1.55,1.55,0,0,0,91,31.13a1.5,1.5,0,0,0-.21-.56l-5-7.46A1.55,1.55,0,0,0,87.54,32Z"/></svg>') repeat;
-            z-index: 0;
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 6rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .about-image {
-            flex: 1;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-high);
-            position: relative;
-            height: 480px;
-            transition: var(--transition);
-        }
-
-        .about-image:hover {
-            transform: scale(1.03);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-text h2 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: var(--secondary);
-            font-weight: 400;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 6rem 0;
-            background-color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonials::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(10, 26, 61, 0.08) 0%, transparent 70%);
-            z-index: 0;
-        }
-
-        .testimonials::after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            left: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(10, 26, 61, 0.08) 0%, transparent 70%);
-            z-index: 0;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-card {
-            background-color: var(--offwhite);
-            padding: 2.5rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-low);
-            position: relative;
-            transition: var(--transition);
-            border: 1px solid var(--lighter);
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-high);
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-            color: var(--secondary);
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--light);
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .author-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .author-name {
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .author-role {
-            font-size: 0.9rem;
-            color: var(--secondary);
-        }
-
-        /* Gallery */
-        .gallery {
-            padding: 8rem 0;
-            background-color: var(--offwhite);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            height: 300px;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-low);
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-            z-index: 10;
-            box-shadow: var(--shadow-high);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Contact */
-        .contact {
-            padding: 8rem 0;
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .contact-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 4rem;
-        }
-
-        .contact-title {
-            margin-bottom: 1rem;
-        }
-
-        .contact-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 3rem;
-            max-width: 700px;
-            font-size: 1.2rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            padding: 1rem;
-            border: none;
-            border-radius: var(--radius);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            color: var(--secondary);
-            background-color: rgba(255, 255, 255, 0.15);
-            transition: var(--transition);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            background-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--secondary);
-            color: white;
-            padding: 4rem 0 2rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-column h3 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-
-        .footer-column p,
-        .footer-column a {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .footer-column a {
-            transition: var(--transition);
-        }
-
-        .footer-column a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-icon:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .nav-inner {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
-                max-width: 300px;
-                margin: 1.5rem auto 0;
-            }
-
-            .about-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .about-image {
-                height: 300px;
-            }
-
-            .testimonials::before,
-            .testimonials::after {
-                display: none;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for section reveals */
-        .section-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-        }
-
-        .section-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Floating decoration */
-        .floating-deco {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: rgba(240, 240, 240, 0.1);
-            z-index: 5000;
-            pointer-events: none;
-            animation: floatAnimation 15s linear infinite;
-        }
-
-        @keyframes floatAnimation {
-            0% {
-                transform: translateY(100vh) translateX(0);
-            }
-            100% {
-                transform: translateY(-100px) translateX(400px);
-            }
-        }
-    </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Armstrong James</title>
+<meta name="description" content="Quality you can count on">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Armstrong James">
+<meta property="og:description" content="Quality you can count on">
+<meta property="og:image" content="https://images.pexels.com/photos/7385395/pexels-photo-7385395.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Armstrong James">
+<meta name="twitter:description" content="Quality you can count on">
+<meta name="twitter:image" content="https://images.pexels.com/photos/7385395/pexels-photo-7385395.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0e0c0a;--ink:#f6efe6;--mut:#b6a892;--acc:#e0a060;--card:#171310;--line:rgba(224,160,96,.18)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.05}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+      padding:18px 28px;backdrop-filter:blur(10px);background:rgba(14,12,10,.55);border-bottom:1px solid var(--line)}
+  nav .brand{font-family:'Fraunces';font-weight:700;font-size:20px;letter-spacing:.3px}
+  nav .links{display:flex;gap:26px;font-size:14px;color:var(--mut)}
+  nav .links a:hover{color:var(--acc)}
+  @media(max-width:720px){nav .links{display:none}}
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;isolation:isolate}
+  .hero .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;
+            transform:scale(1.05);animation:zoom 18s ease-in-out infinite alternate}
+  .hero::after{content:'';position:absolute;inset:0;z-index:-1;
+            background:linear-gradient(180deg,rgba(14,12,10,.55),rgba(14,12,10,.82) 70%,var(--bg))}
+  @keyframes zoom{to{transform:scale(1.16)}}
+  .hero .inner{padding:120px 0 80px}
+  .eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--acc);
+           margin-bottom:22px;opacity:0;animation:rise .9s .1s forwards}
+  .hero h1{font-size:clamp(44px,9vw,104px);letter-spacing:-.02em;opacity:0;animation:rise 1s .25s forwards}
+  .hero p.tag{margin-top:18px;font-size:clamp(18px,2.4vw,26px);color:var(--mut);max-width:620px;
+              opacity:0;animation:rise 1s .45s forwards}
+  .btn{display:inline-block;margin-top:38px;padding:15px 34px;border-radius:100px;background:var(--acc);color:#221606;
+       font-weight:700;letter-spacing:.02em;opacity:0;animation:rise 1s .6s forwards;transition:transform .25s,box-shadow .25s}
+  .btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(224,160,96,.6)}
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  section{padding:104px 0}
+  .lead{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
+  .about h2{font-size:clamp(32px,5vw,56px);max-width:14ch;letter-spacing:-.02em}
+  .about p{margin-top:22px;font-size:19px;color:var(--mut);max-width:60ch}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:820px){.grid3{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 30px;transition:transform .3s,border-color .3s}
+  .card:hover{transform:translateY(-6px);border-color:var(--acc)}
+  .card-no{font-family:'Fraunces';font-size:34px;color:var(--acc);opacity:.7}
+  .card h3{font-size:23px;margin:10px 0 8px}
+  .card p{color:var(--mut);font-size:15.5px}
+  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}}
+  .gal figure{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .gal figure:hover img{transform:scale(1.08)}
+  .gal .ph{width:100%;height:100%;background:linear-gradient(135deg,#1d1712,#0e0c0a)}
+  .contact{background:linear-gradient(180deg,var(--bg),#15110d)}
+  .contact .row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  @media(max-width:820px){.contact .row{grid-template-columns:1fr}}
+  .contact h2{font-size:clamp(30px,4.5vw,50px);letter-spacing:-.02em}
+  .contact p{color:var(--mut);margin-top:18px;font-size:18px;max-width:46ch}
+  form{display:grid;gap:14px}
+  input,textarea{background:#100d0a;border:1px solid var(--line);border-radius:12px;padding:15px 16px;color:var(--ink);
+                 font-family:inherit;font-size:15px}
+  input:focus,textarea:focus{outline:none;border-color:var(--acc)}
+  textarea{min-height:120px;resize:vertical}
+  form .btn{margin-top:6px;animation:none;opacity:1;border:none;cursor:pointer;font-size:15px}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:13.5px;border-top:1px solid var(--line)}
+  footer .big{font-family:'Fraunces';font-size:26px;color:var(--ink);margin-bottom:10px}
+  .badge{display:inline-block;margin-top:14px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+         color:var(--acc);opacity:.8}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--d,0ms),transform .7s var(--d,0ms)}
+  .reveal.in{opacity:1;transform:none}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="container nav-inner">
-            <a href="#home" class="logo">Armstrong James</a>
-            <div class="nav-links">
-                <a href="#services">Services</a>
-                <a href="#about">About</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <button class="cta-button">Inquire</button>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Clarity in every case</h1>
-            <p>Armstrong James provides steadfast legal representation with precision, discretion, and unwavering dedication to your best interests.</p>
-            <div class="hero-buttons">
-                <button class="cta-button">Schedule Consultation</button>
-                <button class="secondary-button">Learn More</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust Strip -->
-    <section class="trust-strip">
-        <div class="container trust-items">
-            <div class="trust-item">Trusted by clients</div>
-            <div class="trust-item">Experienced team</div>
-            <div class="trust-item">Free initial consultation</div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">⚖️</div>
-                    <h3>Civil Litigation</h3>
-                    <p>Comprehensive representation in commercial and personal injury disputes, with meticulous attention to detail and strategic planning.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏠</div>
-                    <h3>Real Estate Law</h3>
-                    <p>Guidance through property transactions, title disputes, lease agreements, and zoning matters with clarity and precision.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">👨‍👩‍👧</div>
-                    <h3>Familial Law</h3>
-                    <p>Support and advocacy in divorce, child custody, adoption, and other family matters with empathy and respect for your dignity.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About -->
-    <section class="about" id="about">
-        <div class="container about-content">
-            <div class="about-image">
-                <img src="https://images.pexels.com/photos/7841812/pexels-photo-7841812.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Armstrong James legal team in professional setting">
-            </div>
-            <div class="about-text">
-                <h2>Established Trust. Delivered Results.</h2>
-                <p>Armstrong James has been serving the community with integrity since day one. Our practice is built on decades of experience, deep knowledge of the law, and an unwavering commitment to ethical representation.</p>
-                <p>We believe in clear communication, transparent fees, and personalized strategy. Our clients aren't just case files—they're people with lives, families, and futures that matter.</p>
-                <p>Every decision we make is guided by one principle: the pursuit of justice, not just legal outcomes.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <h2 class="section-title">Client Feedback</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"They handled my complex property dispute with remarkable calm and efficiency. I felt heard at every stage."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <img src="https://images.pexels.com/photos/7876037/pexels-photo-7876037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client">
-                        </div>
-                        <div>
-                            <div class="author-name">Local Client</div>
-                            <div class="author-role">Real Estate Dispute</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"The attention to detail and professionalism was unmatched. I felt secure knowing my family's future was in capable hands."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <img src="https://images.pexels.com/photos/7792841/pexels-photo-7792841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client">
-                        </div>
-                        <div>
-                            <div class="author-name">Verified Customer</div>
-                            <div class="author-role">Familial Law Matter</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"They didn't just represent me—they guided me. The clarity and calm in their advice helped me make decisions I felt confident about."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <img src="https://images.pexels.com/photos/34817076/pexels-photo-34817076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client">
-                        </div>
-                        <div>
-                            <div class="author-name">Local Client</div>
-                            <div class="author-role">Civil Litigation</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery -->
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <h2 class="section-title">Our Environment</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/31139000/pexels-photo-31139000.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Law office interior">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/7876037/pexels-photo-7876037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Team meeting">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/7792841/pexels-photo-7792841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Legal documents">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/34817076/pexels-photo-34817076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Law library">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="contact" id="contact">
-        <div class="container contact-content">
-            <h2 class="contact-title">Get in touch</h2>
-            <p class="contact-subtitle">We're ready to help when you need us most. Begin your journey toward resolution with a conversation.</p>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" placeholder="Your full name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="your.email@example.com">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" placeholder="Tell us about your situation..."></textarea>
-                </div>
-                <button type="submit" class="cta-button">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Armstrong James</h3>
-                    <p>Providing legal representation with integrity, precision, and discretion.</p>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon">f</a>
-                        <a href="#" class="social-icon">in</a>
-                        <a href="#" class="social-icon">t</a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <a href="#services">Services</a>
-                    <a href="#about">About Us</a>
-                    <a href="#testimonials">Testimonials</a>
-                    <a href="#gallery">Gallery</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="footer-column">
-                    <h3>Service Areas</h3>
-                    <a href="#">Local Community</a>
-                    <a href="#">Regional Practice</a>
-                    <a href="#">Statewide Representation</a>
-                    <a href="#">Consultation by Appointment</a>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2026 Armstrong James. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Sticky nav
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Section reveals
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.service-card, .testimonial-card, .gallery-item, .about-content').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Floating decorative elements
-        for (let i = 0; i < 15; i++) {
-            const deco = document.createElement('div');
-            deco.classList.add('floating-deco');
-            deco.style.left = Math.random() * 100 + '%';
-            deco.style.animationDelay = Math.random() * 15 + 's';
-            deco.style.width = Math.random() * 5 + 5 + 'px';
-            deco.style.height = deco.style.width;
-            deco.style.opacity = Math.random() * 0.3 + 0.05;
-            document.body.appendChild(deco);
-        }
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message. We will contact you shortly.');
-            this.reset();
-        });
-
-        // Add subtle animation to hero text
-        document.addEventListener('DOMContentLoaded', () => {
-            const heroContent = document.querySelector('.hero-content');
-            heroContent.style.opacity = 0;
-            heroContent.style.transform = 'translateY(30px)';
-            setTimeout(() => {
-                heroContent.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-                heroContent.style.opacity = 1;
-                heroContent.style.transform = 'translateY(0)';
-            }, 500);
-        });
-    </script>
+<nav>
+  <a class="brand" href="#top">Armstrong James</a>
+  <div class="links">
+    <a href="#top">Home</a><a href="#about">About</a><a href="#services">Services</a>
+    <a href="#gallery">Gallery</a><a href="#contact">Contact</a>
+  </div>
+</nav>
+<header class="hero" id="top">
+  <div class="bg" style="background-image:url('https://images.pexels.com/photos/7385395/pexels-photo-7385395.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940')"></div>
+  <div class="wrap inner">
+    <span class="eyebrow"></span>
+    <h1>Armstrong James</h1>
+    <p class="tag">Quality you can count on</p>
+    <a class="btn" href="#contact">Get in touch</a>
+  </div>
+</header>
+<section class="about wrap" id="about">
+  <div class="lead">About us</div>
+  <h2 class="reveal">Quality you can count on</h2>
+  <p class="reveal" style="--d:120ms">We're a local favourite, proud to serve our community with care and a personal touch. Come and see what makes us different.</p>
+</section>
+<section class="wrap" id="services">
+  <div class="lead">What we offer</div>
+  <div class="grid3"><div class="card reveal"><div class="card-no">01</div><h3>Crafted with care</h3><p>Every detail handled by people who take pride in their work.</p></div>
+<div class="card reveal"><div class="card-no">02</div><h3>Local &amp; personal</h3><p>A warm welcome and service that remembers your name.</p></div>
+<div class="card reveal"><div class="card-no">03</div><h3>Trusted quality</h3><p>The standard our regulars keep coming back for.</p></div></div>
+</section>
+<section class="wrap" id="gallery">
+  <div class="lead">A look inside</div>
+  <div class="gal"><figure class="reveal" style="--d:0ms"><img loading="lazy" src="https://images.pexels.com/photos/6659343/pexels-photo-6659343.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Armstrong James"></figure>
+<figure class="reveal" style="--d:60ms"><img loading="lazy" src="https://images.pexels.com/photos/34417195/pexels-photo-34417195.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Armstrong James"></figure>
+<figure class="reveal" style="--d:120ms"><img loading="lazy" src="https://images.pexels.com/photos/18008026/pexels-photo-18008026.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Armstrong James"></figure>
+<figure class="reveal" style="--d:180ms"><img loading="lazy" src="https://images.pexels.com/photos/8050435/pexels-photo-8050435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Armstrong James"></figure>
+<figure class="reveal" style="--d:240ms"><img loading="lazy" src="https://images.pexels.com/photos/18000843/pexels-photo-18000843.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Armstrong James"></figure>
+<figure class="reveal" style="--d:300ms"><img loading="lazy" src="https://images.pexels.com/photos/6659343/pexels-photo-6659343.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Armstrong James"></figure></div>
+</section>
+<section class="contact" id="contact">
+  <div class="wrap row">
+    <div>
+      <div class="lead">Contact</div>
+      <h2 class="reveal">Come say hello</h2>
+      <p class="reveal" style="--d:120ms">We'd love to welcome you. Find us, call us, or drop by.</p>
+    </div>
+    <form class="reveal" style="--d:200ms" onsubmit="return false">
+      <input placeholder="Your name"><input type="email" placeholder="Your email">
+      <textarea placeholder="Your message"></textarea>
+      <button class="btn" type="submit">Send</button>
+    </form>
+  </div>
+</section>
+<footer>
+  <div class="big">Armstrong James</div>
+  <div></div>
+  <div class="badge">★ Website preview crafted by Bridge Digital Solutions</div>
+</footer>
+<script>
+  const io=new IntersectionObserver((es)=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
 <script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=QXJtc3Ryb25nIEphbWVz&u=dmlzaXQ&s=a51a1a8e6d151a40005c9f3d61b93f2f&beacon=1&l=b3NtLW5vZGUtNTkzNTI1ODkwMg";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
-<!--bld:a8d0d276fd--></html>
+<!--bld:e578994a7f--></html>
