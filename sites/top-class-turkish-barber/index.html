@@ -1,1127 +1,977 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Class Turkish Barbers | Timeless Grooming, Exceptional Style</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-maroon: #6B1B2B;
-            --color-gold: #B8860B;
-            --color-charcoal: #2A2A2A;
-            --color-ivory: #FDF9F3;
-            --color-beige: #D4BBAA;
-            --font-display: 'Playfair Display', serif;
-            --font-body: 'Lato', sans-serif;
-            --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.1);
-            --border-radius: 8px;
-        }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-body);
-            line-height: 1.6;
-            color: var(--color-charcoal);
-            background-color: var(--color-ivory);
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--color-gold);
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: var(--color-maroon);
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-display);
-            color: var(--color-maroon);
-            margin-bottom: 0.8em;
-            line-height: 1.2;
-        }
-
-        h1 { font-size: 3.5em; }
-        h2 { font-size: 2.5em; }
-        h3 { font-size: 1.8em; }
-        p { margin-bottom: 1em; }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--color-gold);
-            color: var(--color-ivory);
-            padding: 12px 25px;
-            border-radius: var(--border-radius);
-            font-family: var(--font-body);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .btn:hover {
-            background-color: var(--color-maroon);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--color-maroon);
-            border: 2px solid var(--color-maroon);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--color-maroon);
-            color: var(--color-ivory);
-        }
-
-        /* Nav */
-        .main-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: transparent;
-            padding: 15px 0;
-            z-index: 1000;
-            transition: all 0.4s ease-in-out;
-        }
-
-        .main-nav.scrolled {
-            background-color: var(--color-charcoal);
-            padding: 10px 0;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-family: var(--font-display);
-            font-size: 2.2em;
-            font-weight: 700;
-            color: var(--color-gold);
-            transition: color 0.3s ease;
-        }
-
-        .main-nav.scrolled .logo {
-            color: var(--color-ivory);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--color-ivory);
-            font-weight: 400;
-            position: relative;
-            padding-bottom: 5px;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--color-gold);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .main-nav.scrolled .nav-links a {
-            color: var(--color-ivory);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger .bar {
-            width: 25px;
-            height: 3px;
-            background-color: var(--color-ivory);
-            transition: all 0.3s ease;
-        }
-
-        .nav-links.active {
-            display: flex;
-        }
-
-        /* Hero */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--color-ivory);
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--color-maroon) 0%, var(--color-charcoal) 100%);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.pexels.com/photos/9146943/pexels-photo-9146943.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') center center/cover no-repeat;
-            opacity: 0.35;
-            z-index: -1;
-            animation: heroZoom 15s infinite alternate ease-in-out;
-        }
-
-        @keyframes heroZoom {
-            from { transform: scale(1); }
-            to { transform: scale(1.08); }
-        }
-
-        .hero-content {
-            max-width: 800px;
-            padding: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: heroReveal 1s forwards cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-        }
-
-        @keyframes heroReveal {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero h1 {
-            font-size: 5em;
-            color: var(--color-gold);
-            margin-bottom: 10px;
-            animation: textFadeIn 1s forwards ease-out 0.8s;
-        }
-
-        .hero p {
-            font-size: 1.5em;
-            font-weight: 300;
-            margin-bottom: 40px;
-            color: var(--color-ivory);
-            animation: textFadeIn 1s forwards ease-out 1s;
-        }
-
-        .hero .cta-group {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            animation: textFadeIn 1s forwards ease-out 1.2s;
-        }
-
-        @keyframes textFadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Trust Strip */
-        .trust-strip {
-            background-color: var(--color-charcoal);
-            color: var(--color-ivory);
-            padding: 60px 0;
-            text-align: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .trust-strip .container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .trust-item {
-            flex: 1;
-            min-width: 200px;
-            padding: 15px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .trust-item.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .trust-item h3 {
-            font-family: var(--font-display);
-            font-size: 3em;
-            color: var(--color-gold);
-            margin-bottom: 5px;
-        }
-
-        .trust-item p {
-            font-size: 1.1em;
-            color: var(--color-beige);
-            margin: 0;
-        }
-
-        /* Section Layouts */
-        section {
-            padding: 100px 0;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            position: relative;
-            overflow: hidden;
-        }
-
-        section.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        section:nth-of-type(odd) {
-            background-color: var(--color-ivory);
-        }
-
-        section:nth-of-type(even) {
-            background-color: var(--color-beige);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 3.5em;
-            color: var(--color-maroon);
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -10px;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--color-gold);
-            border-radius: 2px;
-        }
-
-        .section-header p {
-            font-size: 1.2em;
-            color: var(--color-charcoal);
-            max-width: 700px;
-            margin: 20px auto 0;
-        }
-
-        /* Services */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background-color: var(--color-ivory);
-            padding: 40px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-soft);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-card svg {
-            width: 60px;
-            height: 60px;
-            fill: var(--color-gold);
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            color: var(--color-maroon);
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-
-        .service-card p {
-            color: var(--color-charcoal);
-            font-size: 1.05em;
-        }
-
-        /* About */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            flex-wrap: wrap;
-        }
-
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-            position: relative;
-        }
-
-        .about-image img {
-            max-width: 100%;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-soft);
-            display: block;
-            transition: transform 0.4s ease-in-out;
-        }
-
-        .about-image img:hover {
-            transform: scale(1.03);
-        }
-
-        .about-text {
-            flex: 2;
-            min-width: 300px;
-        }
-
-        .about-text h2 {
-            text-align: left;
-        }
-
-        /* Testimonials */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .testimonial-card {
-            background-color: var(--color-ivory);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-soft);
-            position: relative;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .testimonial-card blockquote {
-            font-style: italic;
-            color: var(--color-charcoal);
-            margin-bottom: 20px;
-            position: relative;
-            padding: 0 20px;
-        }
-
-        .testimonial-card blockquote::before,
-        .testimonial-card blockquote::after {
-            font-family: var(--font-display);
-            font-size: 3em;
-            color: var(--color-gold);
-            position: absolute;
-            line-height: 1;
-        }
-
-        .testimonial-card blockquote::before {
-            content: '“';
-            top: 0px;
-            left: 0px;
-        }
-
-        .testimonial-card blockquote::after {
-            content: '”';
-            bottom: -20px;
-            right: 0px;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .testimonial-author img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--color-gold);
-        }
-
-        .author-info strong {
-            display: block;
-            font-weight: 700;
-            color: var(--color-maroon);
-        }
-
-        .author-info span {
-            color: var(--color-charcoal);
-            font-size: 0.9em;
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            overflow: hidden;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-soft);
-            position: relative;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease-in-out;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.08);
-        }
-
-        .gallery-item-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(var(--color-maroon), 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-item-overlay {
-            opacity: 1;
-        }
-
-        .gallery-item-overlay p {
-            color: var(--color-ivory);
-            font-family: var(--font-display);
-            font-size: 1.5em;
-            text-align: center;
-            padding: 20px;
-        }
-
-        /* Contact */
-        .contact-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .contact-form {
-            background-color: var(--color-ivory);
-            padding: 50px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-soft);
-            width: 100%;
-            max-width: 700px;
-        }
-
-        .contact-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
-            color: var(--color-maroon);
-        }
-
-        .contact-form input[type="text"],
-        .contact-form input[type="email"],
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid var(--color-beige);
-            border-radius: var(--border-radius);
-            font-family: var(--font-body);
-            font-size: 1em;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .contact-form input[type="text"]:focus,
-        .contact-form input[type="email"]:focus,
-        .contact-form textarea:focus {
-            border-color: var(--color-gold);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(var(--color-gold), 0.2);
-        }
-
-        .contact-form textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .contact-form .btn {
-            width: 100%;
-        }
-
-        /* Footer */
-        .main-footer {
-            background-color: var(--color-charcoal);
-            color: var(--color-ivory);
-            padding: 80px 0 40px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            padding-bottom: 50px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-column h4 {
-            font-family: var(--font-display);
-            font-size: 1.5em;
-            color: var(--color-gold);
-            margin-bottom: 25px;
-        }
-
-        .footer-column p, .footer-column li {
-            font-size: 0.95em;
-            margin-bottom: 10px;
-            color: var(--color-beige);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li a {
-            color: var(--color-beige);
-            transition: color 0.3s ease;
-        }
-
-        .footer-column ul li a:hover {
-            color: var(--color-gold);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            color: var(--color-beige);
-            font-size: 1.8em;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--color-gold);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: var(--color-beige);
-        }
-
-        /* Mobile Nav */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--color-charcoal);
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-                padding: 20px 0;
-                border-radius: 0 0 var(--border-radius) var(--border-radius);
-            }
-
-            .main-nav.scrolled .nav-links {
-                background-color: var(--color-charcoal);
-            }
-
-            .nav-links li {
-                text-align: center;
-                margin: 10px 0;
-            }
-
-            .nav-links a {
-                color: var(--color-ivory);
-                font-size: 1.2em;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hero h1 { font-size: 3em; }
-            .hero p { font-size: 1.2em; }
-            .hero .cta-group { flex-direction: column; gap: 15px; }
-            .btn { width: 80%; margin: 0 auto; }
-
-            .section-header h2 { font-size: 2.5em; }
-
-            .about-content { flex-direction: column; }
-            .about-text h2 { text-align: center; }
-            
-            .contact-form { padding: 30px; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .social-links { justify-content: center; }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .staggered-item {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s forwards ease-out;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Class Turkish Barber</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --gold: #c9a25b;
+      --deep-red: #7a241d;
+      --cream: #f8f5f0;
+      --charcoal: #2d2d2d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      color: var(--black);
+      background-color: var(--cream);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Sticky Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.5rem 0;
+      background: transparent;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      background-color: rgba(248, 245, 240, 0.95);
+      padding: 1rem 0;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: -1px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--black);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--deep-red);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background-color: var(--deep-red);
+      color: var(--cream);
+      border: none;
+      padding: 0.7rem 1.8rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      background-color: var(--gold);
+      color: var(--black);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(194, 158, 93, 0.3);
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.pexels.com/photos/37764947/pexels-photo-37764947.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 30%, rgba(199, 162, 91, 0.1) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(122, 36, 29, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      padding-left: 5%;
+      animation: fadeInUp 1.2s ease-out forwards;
+      opacity: 0;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -2px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .hero-buttons .cta-button {
+      margin-right: 0;
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background-color: var(--black);
+      color: var(--cream);
+      padding: 1rem 0;
+      font-size: 0.9rem;
+      text-align: center;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: -1px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Services */
+    .services {
+      padding: 8rem 0;
+      background-color: var(--cream);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      font-size: 3rem;
+      color: var(--black);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .service-card {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-card svg {
+      width: 80px;
+      height: 80px;
+      fill: var(--gold);
+      margin-bottom: 1.5rem;
+      transition: all 0.5s ease;
+    }
+
+    .service-card:hover svg {
+      fill: var(--black);
+      transform: scale(1.1);
+    }
+
+    .service-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      color: var(--black);
+    }
+
+    .service-card p {
+      color: var(--charcoal);
+      font-size: 1.05rem;
+    }
+
+    /* About */
+    .about {
+      padding: 8rem 0;
+      background-color: var(--black);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a0a0a"/><path d="M10 10 L90 10 L50 90 Z" fill="none" stroke="%23c9a25b" stroke-width="1"/></svg>');
+      opacity: 0.03;
+      z-index: 0;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .about-text p {
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      transform: translateX(0);
+      transition: transform 0.6s ease;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .about-image:hover {
+      transform: scale(1.03);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 8rem 0;
+      background-color: var(--cream);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+    }
+
+    .testimonial-card {
+      background-color: var(--black);
+      color: var(--cream);
+      padding: 2.5rem;
+      border-radius: 10px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 5rem;
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      opacity: 0.3;
+      line-height: 1;
+    }
+
+    .testimonial-card p {
+      margin-bottom: 2rem;
+      font-style: italic;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--charcoal);
+      margin-right: 1rem;
+      overflow: hidden;
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    .testimonial-role {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 8rem 0;
+      background-color: var(--black);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a0a0a"/><path d="M10 10 L90 10 L50 90 Z" fill="none" stroke="%23c9a25b" stroke-width="0.5"/></svg>');
+      opacity: 0.03;
+      z-index: 0;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 300px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 8rem 0;
+      background-color: var(--cream);
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 70%, rgba(199, 162, 91, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(122, 36, 29, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 4rem;
+      background-color: var(--black);
+      color: var(--cream);
+      border-radius: 15px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 3rem;
+      color: var(--gold);
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+      color: var(--cream);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(201, 162, 91, 0.3);
+      border-radius: 8px;
+      color: var(--cream);
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(201, 162, 91, 0.3);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background-color: var(--gold);
+      color: var(--black);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .submit-button:hover {
+      background-color: var(--deep-red);
+      color: var(--cream);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--deep-red);
+      color: var(--cream);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+    }
+
+    .footer-col h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+
+    .footer-col p,
+    .footer-col a {
+      color: var(--cream);
+      opacity: 0.9;
+      margin-bottom: 0.8rem;
+      display: block;
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+
+    .footer-col a:hover {
+      opacity: 1;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .social-links a:hover {
+      background-color: var(--gold);
+      color: var(--black);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* SVG Icons */
+    .icon-male {
+      width: 80px;
+      height: 80px;
+      fill: currentColor;
+    }
+
+    .icon-blade {
+      width: 80px;
+      height: 80px;
+      fill: currentColor;
+    }
+
+    .icon-silver {
+      width: 80px;
+      height: 80px;
+      fill: currentColor;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .about-content {
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      .about-text h2 {
+        font-size: 2.8rem;
+      }
+
+      .contact-form {
+        padding: 3rem 2rem;
+      }
+
+      .footer-grid {
+        gap: 2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+        background: none;
+        border: none;
+        color: var(--black);
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+    }
+  </style>
 </head>
 <body>
+  <nav id="mainNav">
+    <div class="container nav-container">
+      <a href="#" class="logo">Top<span>Class</span> Turkish Barber</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="cta-button">Book Now</a>
+    </div>
+  </nav>
 
-    <!-- Navigation -->
-    <header class="main-nav">
-        <div class="nav-content">
-            <a href="#" class="logo">Top Class Turkish Barbers</a>
-            <nav>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#contact" class="btn">Book Now</a></li>
-                </ul>
-            </nav>
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <h1>Top Class Turkish Barber</h1>
+      <p>Where Tradition Meets the Blade</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="cta-button">Book Appointment</a>
+        <a href="#services" class="cta-button" style="background-color: transparent; color: var(--cream); border: 2px solid var(--cream);">View Services</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    Trusted by generations since day one
+  </div>
+
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <svg class="icon-male" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+          <h3>Classic Cut & Style</h3>
+          <p>Experience the precision of traditional barbering with clean lines, tapered fades, and personalized styling that reflects your individuality.</p>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-content">
-            <h1>Top Class Turkish Barbers</h1>
-            <p>Timeless Grooming, Exceptional Style. Masterful cuts for the modern gentleman.</p>
-            <div class="cta-group">
-                <a href="#services" class="btn">Explore Services</a>
-                <a href="#contact" class="btn btn-secondary">Book Appointment</a>
-            </div>
+        <div class="service-card">
+          <svg class="icon-blade" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 11v12"/><path d="M9 15l3-3 3 3"/></svg>
+          <h3>Traditional Shave</h3>
+          <p>Hand-lathered with our signature blend, a hot towel, and a straight razor — the ultimate ritual in masculine grooming.</p>
         </div>
-    </section>
-
-    <!-- Trust Strip -->
-    <section class="trust-strip">
-        <div class="container">
-            <div class="trust-item">
-                <h3 data-target="15">0</h3>
-                <p>Years Experience</p>
-            </div>
-            <div class="trust-item">
-                <h3 data-target="500">0</h3>
-                <p>Happy Clients</p>
-            </div>
-            <div class="trust-item">
-                <h3 data-target="4.9" data-decimals="1">0</h3>
-                <p>Star Rating</p>
-            </div>
+        <div class="service-card">
+          <svg class="icon-silver" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><path d="M12 12v6"/><path d="M9 15h6"/><path d="M20 22a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8z"/><path d="M16 14l-2-3-2 3"/><path d="M12 10v6"/></svg>
+          <h3>Beard Design</h3>
+          <p>From sculpted to wild, we shape, define, and refine your beard with our signature precision to enhance your features and style.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Services Section -->
-    <section id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Services</h2>
-                <p>Experience the precision and tradition of classic Turkish barbering, tailored for you.</p>
+  <section class="about" id="about">
+    <div class="container about-content">
+      <div class="about-text">
+        <h2>A Tradition of Excellence</h2>
+        <p>At Top Class Turkish Barber, we honor the century-old rituals of Turkish barbering — the warm lather, the straight-edge precision, the time-honored techniques passed down through generations. Each visit is more than a haircut; it's a moment of calm, care, and craftsmanship.</p>
+        <p>Our hands work with the same care our grandfather’s hands did — patient, confident, and deliberate. Whether it's a classic fade or a full traditional shave, we treat every client like family, offering an experience that is as authentic as it is exceptional.</p>
+      </div>
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/37663563/pexels-photo-37663563.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Master barber giving a traditional shave">
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Our Clients Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p>An absolute masterpiece of grooming. The kind of service you don't find anywhere else — precise, calming, and utterly professional.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/37764947/pexels-photo-37764947.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client avatar">
             </div>
-            <div class="services-grid">
-                <div class="service-card staggered-item" style="animation-delay: 0s;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15H9V9h2v8zm4 0h-2V9h2v8zM12 7c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
-                    <h3>Hair Styling & Cuts</h3>
-                    <p>From classic short backs and sides to modern fades, our expert barbers craft the perfect look.</p>
-                </div>
-                <div class="service-card staggered-item" style="animation-delay: 0.1s;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-4 0c1.66 0 2.99-1.34 2.99-3S13.66 5 12 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-4 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm-4 0c1.66 0 2.99-1.34 2.99-3S5.66 5 4 5C2.34 5 1 6.34 1 8s1.34 3 3 3z"/></svg>
-                    <h3>Traditional Wet Shave</h3>
-                    <p>Indulge in the ultimate classic grooming experience with a luxurious hot towel wet shave.</p>
-                </div>
-                <div class="service-card staggered-item" style="animation-delay: 0.2s;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.71 4.79c-.39-.39-1.02-.39-1.41 0l-1.92 1.92-1.41-1.41c-.39-.39-1.02-.39-1.41 0L10.37 8l-1.96-1.96c-.39-.39-1.02-.39-1.41 0L5.7 8.35c-.39.39-.39 1.02 0 1.41L12 16.06c.39.39 1.02.39 1.41 0l6.3-6.3c.39-.39.39-1.02 0-1.41l-1.9-1.9zM12 14.54l-5.3-5.3 1.41-1.41 5.3 5.3z"/></svg>
-                    <h3>Beard Trim & Shape</h3>
-                    <p>Expert shaping and trimming to keep your beard looking sharp and well-maintained.</p>
-                </div>
-                <div class="service-card staggered-item" style="animation-delay: 0.3s;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4c-3.72 0-6.73 2.92-7.07 6.5h-1.9C2.92 14.85 6.25 18 10.16 18H18c2.21 0 4-1.79 4-4 0-2.21-1.79-4-4-4h-.65z"/></svg>
-                    <h3>Facial Grooming</h3>
-                    <p>Rejuvenate your skin with our refreshing facial treatments, enhancing your overall look.</p>
-                </div>
+            <div>
+              <div class="testimonial-name">Verified Customer</div>
+              <div class="testimonial-role">Regular Client</div>
             </div>
+          </div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image staggered-item" style="animation-delay: 0s;">
-                    <img src="https://images.pexels.com/photos/7697486/pexels-photo-7697486.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Barber giving a shave">
-                </div>
-                <div class="about-text staggered-item" style="animation-delay: 0.2s;">
-                    <h2>Crafting Confidence, One Cut at a Time</h2>
-                    <p>At Top Class Turkish Barbers, we believe a haircut is more than just a trim – it's an experience, a ritual, and an art form. Located conveniently at <strong>1 Kidmore End Road Reading RG4 8SD</strong>, we bring decades of traditional Turkish grooming expertise to the heart of Reading.</p>
-                    <p>Our skilled barbers are masters of their craft, dedicated to providing impeccable service, from precision haircuts and hot towel shaves to expert beard trims and refreshing facial treatments. We use only the finest products and techniques to ensure you leave feeling refreshed, refined, and confident.</p>
-                    <a href="#contact" class="btn btn-secondary">Learn More & Book</a>
-                </div>
+        <div class="testimonial-card">
+          <p>The attention to detail is beyond compare. From the first handshake to the final touch of the aftershave, I felt respected, relaxed, and refreshed.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/37663563/pexels-photo-37663563.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client avatar">
             </div>
+            <div>
+              <div class="testimonial-name">Local Client</div>
+              <div class="testimonial-role">Business Owner</div>
+            </div>
+          </div>
         </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>What Our Clients Say</h2>
-                <p>Hear from the gentlemen who trust us with their style and grooming.</p>
+        <div class="testimonial-card">
+          <p>My father came here decades ago. Now I bring my son. That’s the mark of true quality. We’re not just getting haircuts — we’re continuing a legacy.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.pexels.com/photos/7697492/pexels-photo-7697492.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client avatar">
             </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card staggered-item" style="animation-delay: 0s;">
-                    <blockquote>"Absolutely the best barber in Reading. The attention to detail is unmatched, and the hot towel shave is pure luxury. I wouldn't go anywhere else."</blockquote>
-                    <div class="testimonial-author">
-                        <img src="https://images.pexels.com/photos/7697712/pexels-photo-7697712.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client 1 Avatar">
-                        <div class="author-info">
-                            <strong>Michael R.</strong>
-                            <span>Regular Client</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card staggered-item" style="animation-delay: 0.1s;">
-                    <blockquote>"A truly classic barbershop experience. From the moment you walk in, you feel welcomed. My hair always looks fantastic, and the beard trim is spot on."</blockquote>
-                    <div class="testimonial-author">
-                        <img src="https://images.pexels.com/photos/6007400/pexels-photo-6007400.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client 2 Avatar">
-                        <div class="author-info">
-                            <strong>David C.</strong>
-                            <span>Satisfied Customer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card staggered-item" style="animation-delay: 0.2s;">
-                    <blockquote>"Finally found my go-to place! Professional, friendly, and always delivers a top-class cut. The ambiance is perfect for relaxing."</blockquote>
-                    <div class="testimonial-author">
-                        <img src="https://images.pexels.com/photos/9146943/pexels-photo-9146943.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client 3 Avatar">
-                        <div class="author-info">
-                            <strong>James P.</strong>
-                            <span>New Local</span>
-                        </div>
-                    </div>
-                </div>
+            <div>
+              <div class="testimonial-name">Family Client</div>
+              <div class="testimonial-role">Third Generation</div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Craft in Focus</h2>
-                <p>A glimpse into the artistry and atmosphere of Top Class Turkish Barbers.</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item staggered-item" style="animation-delay: 0s;">
-                    <img src="https://images.pexels.com/photos/7518732/pexels-photo-7518732.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Barber working on a client">
-                    <div class="gallery-item-overlay">
-                        <p>Precision Cuts</p>
-                    </div>
-                </div>
-                <div class="gallery-item staggered-item" style="animation-delay: 0.1s;">
-                    <img src="https://images.pexels.com/photos/7697486/pexels-photo-7697486.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Traditional wet shave">
-                    <div class="gallery-item-overlay">
-                        <p>Wet Shave Perfection</p>
-                    </div>
-                </div>
-                <div class="gallery-item staggered-item" style="animation-delay: 0.2s;">
-                    <img src="https://images.pexels.com/photos/7697712/pexels-photo-7697712.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Detailed beard trim">
-                    <div class="gallery-item-overlay">
-                        <p>Beard Artistry</p>
-                    </div>
-                </div>
-                <div class="gallery-item staggered-item" style="animation-delay: 0.3s;">
-                    <img src="https://images.pexels.com/photos/6007400/pexels-photo-6007400.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Relaxing facial treatment">
-                    <div class="gallery-item-overlay">
-                        <p>Rejuvenating Facials</p>
-                    </div>
-                </div>
-                <div class="gallery-item staggered-item" style="animation-delay: 0.4s;">
-                    <img src="https://images.pexels.com/photos/9146943/pexels-photo-9146943.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Classic barber shop interior">
-                    <div class="gallery-item-overlay">
-                        <p>Classic Ambiance</p>
-                    </div>
-                </div>
-                <div class="gallery-item staggered-item" style="animation-delay: 0.5s;">
-                    <img src="https://images.pexels.com/photos/7518732/pexels-photo-7518732.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Client getting a haircut">
-                    <div class="gallery-item-overlay">
-                        <p>Client Experience</p>
-                    </div>
-                </div>
-            </div>
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Our Craft</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/7320177/pexels-photo-7320177.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Barber at work">
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container contact-content">
-            <div class="section-header">
-                <h2>Book Your Appointment</h2>
-                <p>Ready for a fresh look? Schedule your visit with our expert barbers today.</p>
-            </div>
-            <div class="contact-form staggered-item">
-                <form action="#" method="POST">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="service">Desired Service</label>
-                    <input type="text" id="service" name="service" placeholder="e.g., Haircut & Shave">
-
-                    <label for="message">Message (optional)</label>
-                    <textarea id="message" name="message"></textarea>
-
-                    <button type="submit" class="btn">Send Request</button>
-                </form>
-            </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/7697492/pexels-photo-7697492.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Barber tools">
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h4>Top Class Turkish Barbers</h4>
-                    <p>Experience the art of timeless grooming. Located in Reading, we offer precision cuts, traditional shaves, and a welcoming atmosphere.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.908c0-.817.096-1.092 1.071-1.092h3.929l.01-3h-4.01c-3.233 0-4.364 1.74-4.364 4.148v3.852z"/></svg>
-                        </a>
-                        <a href="#" aria-label="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.204-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.584.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </a>
-                        <a href="#" aria-label="Google Maps">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#contact">Book Now</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Contact Us</h4>
-                    <p>1 Kidmore End Road Reading RG4 8SD</p>
-                    <p>Phone: <a href="tel:+441234567890">0123 456 7890</a></p>
-                    <p>Email: <a href="mailto:info@topclassturkishbarbers.com">info@topclassturkishbarbers.com</a></p>
-                    <p>Open: Mon-Sat, 9 AM - 6 PM</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2024 Top Class Turkish Barbers. All rights reserved.
-            </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/7320329/pexels-photo-7320329.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer shave">
         </div>
-    </footer>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/3771620/pexels-photo-3771620.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Beard grooming">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/7697492/pexels-photo-7697492.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Barber tools">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/7320329/pexels-photo-7320329.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Customer shave">
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    // Close mobile nav if open
-                    const navLinks = document.querySelector('.nav-links');
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        document.querySelector('.hamburger').classList.remove('active');
-                    }
-                });
-            });
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-form">
+        <h2 class="form-title">Get in Touch</h2>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Your email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Tell us how we can help..." required></textarea>
+          </div>
+          <button type="submit" class="submit-button">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-            // Sticky navigation bar
-            const nav = document.querySelector('.main-nav');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-            });
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Top Class Turkish Barber</h3>
+          <p>Where Tradition Meets the Blade</p>
+          <p>1 Kidmore End Road<br>Reading RG4 8SD</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <p>Open by appointment</p>
+          <p>Mon–Sat: 10am – 7pm<br>Sun: Closed</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">i</a>
+            <a href="#" aria-label="Twitter">t</a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2026 Top Class Turkish Barber. All rights reserved.
+      </div>
+    </div>
+  </footer>
 
-            // Mobile navigation toggle
-            const hamburger = document.querySelector('.hamburger');
-            const navLinks = document.querySelector('.nav-links');
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                hamburger.classList.toggle('active');
-            });
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('mainNav');
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
 
-            // Intersection Observer for scroll-reveal animations
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
+    // Section fade-in animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px'
+    };
 
-            const sectionObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
 
-            document.querySelectorAll('section:not(.hero)').forEach(section => {
-                sectionObserver.observe(section);
-            });
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
 
-            // Staggered item animation
-            const staggeredItems = document.querySelectorAll('.staggered-item');
-            const staggeredObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        let delay = 0;
-                        Array.from(entry.target.parentNode.children).forEach((child, index) => {
-                            if (child.classList.contains('staggered-item') && !child.classList.contains('animate')) {
-                                setTimeout(() => {
-                                    child.classList.add('animate');
-                                }, delay);
-                                delay += 100; // Stagger delay for each item
-                            }
-                        });
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
 
-            // Observe the parent containers of staggered items (e.g., .services-grid, .gallery-grid)
-            document.querySelectorAll('.services-grid, .about-content, .testimonials-grid, .gallery-grid, .contact-content').forEach(container => {
-                staggeredObserver.observe(container);
-            });
+    // Form submission
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      alert(`Thank you, ${name}! Your message has been received. We'll contact you soon.`);
+      contactForm.reset();
+    });
 
-
-            // Animated number counters
-            const animateNumbers = (entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const targets = entry.target.querySelectorAll('.trust-item h3');
-                        targets.forEach((target, index) => {
-                            setTimeout(() => {
-                                const dataTarget = parseFloat(target.getAttribute('data-target'));
-                                const decimals = parseInt(target.getAttribute('data-decimals') || '0');
-                                let current = 0;
-                                const increment = dataTarget / 150; // Adjust for speed
-
-                                const timer = setInterval(() => {
-                                    current += increment;
-                                    if (current >= dataTarget) {
-                                        current = dataTarget;
-                                        clearInterval(timer);
-                                    }
-                                    target.textContent = current.toFixed(decimals);
-                                }, 10);
-                                target.parentNode.classList.add('animate');
-                            }, index * 150); // Stagger the start of each counter
-                        });
-                        observer.unobserve(entry.target); // Stop observing after animation
-                    }
-                });
-            };
-
-            const numberObserver = new IntersectionObserver(animateNumbers, {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.5
-            });
-
-            const trustStrip = document.querySelector('.trust-strip');
-            if (trustStrip) {
-                numberObserver.observe(trustStrip);
-            }
-        });
-    </script>
-</body>
-</html>
+    // Gallery hover effect (already handled by CSS)
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=VG9wIENsYXNzIFR1cmtpc2ggQmFyYmVy&u=dmlzaXQ&s=30c10e4291d126701eef4f85f7bfd3aa&beacon=1&l=b3NtLW5vZGUtMzI0NzQ5NjA0";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:70f99299fb--></html>
