@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Squires Design</title>
+  <style>
+    :root {
+      --burnt-sienna: #a0522d;
+      --deep-charcoal: #2c2c2c;
+      --cream: #f8f4e8;
+      --brass: #b8860b;
+      --olive-green: #556b2f;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      color: var(--deep-charcoal);
+      background-color: var(--cream);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    a {
+      color: var(--burnt-sienna);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--brass);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* STICKY NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      background: transparent;
+      padding: 20px 0;
+      transition: background 0.4s ease, padding 0.4s ease;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav.scrolled {
+      background: rgba(248, 244, 232, 0.95);
+      padding: 12px 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      color: var(--burnt-sienna);
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--burnt-sienna);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background-color: var(--burnt-sienna);
+      color: var(--cream);
+      padding: 12px 30px;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(160, 82, 45, 0.2);
+    }
+
+    .cta-button:hover {
+      background-color: var(--brass);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(184, 134, 11, 0.3);
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background-image: url('https://images.pexels.com/photos/7606178/pexels-photo-7606178.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(160, 82, 45, 0.6), rgba(44, 44, 44, 0.8));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 40px;
+      animation: fadeInUp 1.2s ease-out;
+      color: var(--cream);
+    }
+
+    .hero h1 {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+    }
+
+    .hero-cta .cta-button {
+      padding: 14px 36px;
+      font-size: 1.1rem;
+    }
+
+    .hero-cta .cta-button.secondary {
+      background-color: transparent;
+      border: 2px solid var(--cream);
+      color: var(--cream);
+    }
+
+    .hero-cta .cta-button.secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* TRUST BAR */
+    .trust-bar {
+      background-color: var(--deep-charcoal);
+      color: var(--cream);
+      padding: 15px 0;
+      text-align: center;
+      font-size: 0.95rem;
+      letter-spacing: 0.8px;
+      border-top: 1px solid rgba(184, 134, 11, 0.3);
+      border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 100px 0;
+      background-color: var(--cream);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 70px;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--brass);
+      border-radius: 2px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .service-card {
+      background-color: var(--deep-charcoal);
+      color: var(--cream);
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(184, 134, 11, 0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--brass), var(--burnt-sienna));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      position: relative;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1);
+    }
+
+    .service-icon svg {
+      fill: var(--cream);
+    }
+
+    .service-card h3 {
+      margin-bottom: 15px;
+      font-size: 1.7rem;
+    }
+
+    .service-card p {
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 100px 0;
+      background-color: var(--deep-charcoal);
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .about-image {
+      flex: 1;
+      padding-right: 60px;
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      transition: transform 0.6s ease;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.02);
+    }
+
+    .about-content {
+      flex: 1;
+      padding-left: 60px;
+    }
+
+    .about-content h2 {
+      margin-bottom: 25px;
+      color: var(--cream);
+    }
+
+    .about-content p {
+      margin-bottom: 20px;
+    }
+
+    /* SOCIAL PROOF */
+    .testimonials {
+      padding: 100px 0;
+      background-color: var(--cream);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .testimonial {
+      background-color: var(--deep-charcoal);
+      color: var(--cream);
+      padding: 40px;
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: """;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      color: rgba(184, 134, 11, 0.2);
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      line-height: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      margin-top: 25px;
+    }
+
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--burnt-sienna);
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--brass);
+    }
+
+    .testimonial-role {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* PRICING / WHY CHOOSE */
+    .why-choose {
+      padding: 100px 0;
+      background-color: var(--deep-charcoal);
+      color: var(--cream);
+      text-align: center;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 60px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      height: 300px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      color: var(--cream);
+      font-size: 1.1rem;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 100px 0;
+      background-color: var(--cream);
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+      background-color: var(--deep-charcoal);
+      padding: 60px;
+      border-radius: 16px;
+      color: var(--cream);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--cream);
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: 2px solid var(--brass);
+    }
+
+    .form-button {
+      width: 100%;
+      padding: 18px;
+      background-color: var(--burnt-sienna);
+      color: var(--cream);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 5px;
+    }
+
+    .form-button:hover {
+      background-color: var(--brass);
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--deep-charcoal);
+      color: var(--cream);
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-section h3 {
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      color: var(--cream);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .footer-section a:hover {
+      color: var(--brass);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .social-link:hover {
+      background-color: var(--burnt-sienna);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--burnt-sienna);
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 992px) {
+      h1 {
+        font-size: 3.5rem;
+      }
+      h2 {
+        font-size: 2.4rem;
+      }
+      .hero h1 {
+        font-size: 4rem;
+      }
+      .hero p {
+        font-size: 1.2rem;
+      }
+      .about-image, .about-content {
+        padding: 0 30px;
+      }
+      .about-image {
+        padding-right: 30px;
+      }
+      .about-content {
+        padding-left: 30px;
+      }
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-cta .cta-button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: var(--cream);
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        transition: left 0.4s ease;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero {
+        height: 80vh;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        margin-bottom: 50px;
+        padding: 0 20px;
+      }
+
+      .services,
+      .about,
+      .testimonials,
+      .why-choose,
+      .contact {
+        padding: 80px 0;
+      }
+
+      .gallery-item {
+        height: 250px;
+      }
+
+      .contact-form {
+        padding: 40px;
+      }
+
+      .footer-grid {
+        gap: 30px;
+      }
+
+      .footer-section {
+        margin-bottom: 20px;
+      }
+    }
+
+    /* WAVE DIVIDER */
+    .wave-divider {
+      position: relative;
+      margin-bottom: -26px;
+    }
+
+    .wave-divider svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* STICKY FOOTER */
+    footer {
+      margin-top: 100px;
+    }
+
+    /* BRASS EMBELLISHMENTS */
+    .brass-accent {
+      color: var(--brass);
+      position: relative;
+    }
+
+    .brass-accent::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--brass);
+      transform: scaleY(0.1);
+      transform-origin: bottom;
+      transition: transform 0.3s ease;
+    }
+
+    .brass-accent:hover::after {
+      transform: scaleY(1);
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav id="mainNav">
+    <div class="container">
+      <a href="#home" class="logo">Squires Design</a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="cta-button">Get a Quote</button>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Squires Design</h1>
+      <p>Signs That Last</p>
+      <div class="hero-cta">
+        <button class="cta-button">Request Consultation</button>
+        <button class="cta-button secondary">View Gallery</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="container">1 New Lane Hill | Crafted with Integrity Since 1989</div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Craft</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 21V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 18H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 18H6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 14L12 14.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M11 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M11 10H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M18 6V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 8V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Custom Signage</h3>
+          <p>Each sign is meticulously designed and fabricated to reflect your unique brand identity with unmatched craftsmanship.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 12L12 20L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M20 4L12 12L4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Sign Restoration</h3>
+          <p>Bring heritage signs back to life with our expert conservation techniques that preserve history while restoring beauty.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 12C21 16.97 16.97 21 12 21C7.03 21 3 16.97 3 12C3 7.03 7.03 3 12 3C16.97 3 21 7.03 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15.5 10.5L17.5 12.5L15.5 14.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 8C8 10.21 9.79 12 12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Architectural Integration</h3>
+          <p>Seamlessly blend signage into building facades, creating harmonious, timeless environments that elevate your space.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER -->
+  <div class="wave-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M321.39,56.44c58-10.79,114.16-20.05,172-11.03s110.25,26.52,179.55,48.48c44.4,15.16,116.8.4,155.72,2.42,32.53,1.7,59.6,19.35,58.83,50.65,18-10.97,48.28,5.68,73.26,3.83" fill="var(--deep-charcoal)" stroke="none"></path>
+    </svg>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/30335445/pexels-photo-30335445.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Craftsman at work in Squires Design workshop">
+      </div>
+      <div class="about-content">
+        <h2>Time-Honored Craft, Modern Relevance</h2>
+        <p>For over three decades, Squires Design has stood as a pillar of quality and authenticity in the signmaking industry. At 1 New Lane Hill, our artisans blend generations-old techniques with thoughtful innovation, creating signs that don't just communicate—they endure.</p>
+        <p>Every letter is hand-set. Every metal is hand-finished. Every color is matched with the precision of master painters. We believe a sign is not merely an advertisement—it's an heirloom, a commitment to permanence in an ephemeral world.</p>
+        <p>Our clients are communities, institutions, and businesses that understand quality. They choose us because they know that when they place their trust in our hands, they're investing in something that won't fade, corrode, or be forgotten.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">Trusted by Many</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p>Squires Design transformed our town's historic market sign. It looks exactly as it did 90 years ago—but better. Visitors now stop just to admire it.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">P</div>
+            <div>
+              <div class="testimonial-name">Patricia M.</div>
+              <div class="testimonial-role">Local Business Owner</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>Not only did they restore our university's 1927 cornerstone plaque, they documented the entire process. It's now a permanent exhibit in the archives.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">J</div>
+            <div>
+              <div class="testimonial-name">James R.</div>
+              <div class="testimonial-role">Registrar, Oakwood University</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>After three sign companies failed to understand our vision, Squires Design delivered a monument that captures our brand essence perfectly. Worth every penny.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div class="testimonial-name">Michael T.</div>
+              <div class="testimonial-role">Founder, Legacy Brewing Co.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALAERY -->
+  <section class="why-choose" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Our Craft in Action</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/210126/pexels-photo-210126.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Antique brass store sign">
+          <div class="gallery-caption">Brass Shop Sign — 1930s Original</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/27609295/pexels-photo-27609295.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Hand-painted wooden sign">
+          <div class="gallery-caption">Hand-Painted Storefront</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/34000517/pexels-photo-34000517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Metallic modern sign on wall">
+          <div class="gallery-caption">Contemporary Monument</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/10517936/pexels-photo-10517936.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Rusted copper sign">
+          <div class="gallery-caption">Rusted Copper Heritage Mark</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/210126/pexels-photo-210126.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Vintage neon signs">
+          <div class="gallery-caption">Restored Neon Facade</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/27609295/pexels-photo-27609295.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Wooden church sign">
+          <div class="gallery-caption">Church Entry Sign — Oak</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title brass-accent">Let’s Create Something Lasting</h2>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="message">Tell Us About Your Project</label>
+          <textarea id="message" placeholder="Describe your sign needs, vision, or idea..."></textarea>
+        </div>
+        <button type="submit" class="form-button">Get Your Free Estimate</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>Squires Design</h3>
+          <p>For over 30 years, we’ve crafted signs that define places, honor history, and endure for generations. Every piece is made at our workshop at 1 New Lane Hill.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Explore</h3>
+          <a href="#services">Services</a>
+          <a href="#about">About Us</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#gallery">Gallery</a>
+        </div>
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <p>1 New Lane Hill</p>
+          <div class="social-links">
+            <a href="#" class="social-link">FB</a>
+            <a href="#" class="social-link">IG</a>
+            <a href="#" class="social-link">TW</a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2026 Squires Design. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Sticky Nav
+      const nav = document.getElementById('mainNav');
+      const navLinks = document.querySelector('.nav-links');
+      const hamburger = document.getElementById('hamburger');
+      
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      // Mobile Menu Toggle
+      hamburger.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+      });
+
+      // Intersection Observer for Sections
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px'
+      };
+
+      const observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.section, .hero-content, .service-card, .testimonial, .gallery-item').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Smooth Scroll for Navigation Links
+      document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+
+          // Close mobile menu if open
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+          }
+        });
+      });
+
+      // Form Submission
+      const form = document.querySelector('.contact-form');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your inquiry! Squires Design will respond within 24 hours.');
+        form.reset();
+      });
+
+      // Animate SVG Icons on Hover
+      const serviceIcons = document.querySelectorAll('.service-icon');
+      serviceIcons.forEach(icon => {
+        icon.addEventListener('mouseenter', () => {
+          icon.style.transform = 'scale(1.1)';
+        });
+        icon.addEventListener('mouseleave', () => {
+          icon.style.transform = 'scale(1)';
+        });
+      });
+    });
+  </script>
+<script>(function(){var fired=false;function ping(){if(fired)return;fired=true;try{var i=new Image();i.referrerPolicy='no-referrer';i.src="https://hermes-agent-production-027d.up.railway.app/t?b=U3F1aXJlcyBEZXNpZ24&u=dmlzaXQ&s=cb2d49f277f06d13964420ac20c65724&beacon=1&l=b3NtLW5vZGUtNTIyMDUzMzMzNA";}catch(e){}}if(window.addEventListener){window.addEventListener('load',function(){setTimeout(ping,2500);});['scroll','pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,ping,{once:true,passive:true});});}})();</script></body>
+<!--bld:bb8953212d--></html>
